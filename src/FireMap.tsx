@@ -1,5 +1,9 @@
-import {constrainObservationPopup} from './motion/popupLayout';
-import {selectedAtlasYear,selectAtlasYear,observedAtlasDates} from '../shared/atlasTemporal';
+import { constrainObservationPopup } from "./motion/popupLayout";
+import {
+  selectedAtlasYear,
+  selectAtlasYear,
+  observedAtlasDates,
+} from "../shared/atlasTemporal";
 import RegionExplorer from "./components/RegionExplorer";
 import type { CameraDestination } from "./components/RegionExplorer";
 import { clearObservationFilters } from "../shared/activation";
@@ -89,7 +93,7 @@ function metadataPopup(properties: Record<string, unknown>, region: Region) {
   const kicker = document.createElement("span");
   kicker.className = "atlas-popup-kicker";
   kicker.textContent = t(
-    region==='northern-jordan'
+    region === "northern-jordan"
       ? "NORTHERN JORDAN / NASA OBSERVATIONS"
       : "AJLOUN / NASA OBSERVATIONS",
   );
@@ -146,7 +150,7 @@ function observationPopup(
     .getElement()
     .querySelector("button")
     ?.setAttribute("aria-label", t("Close popup"));
-  constrainObservationPopup(instance,result);
+  constrainObservationPopup(instance, result);
   return result;
 }
 
@@ -161,13 +165,32 @@ export default function FireMap({
   calendarSelection?: CalendarMapSelection | null;
   onRegionChange?: (region: Region) => void;
 }) {
-  useEffect(()=>{
-    const root=document.querySelector<HTMLElement>('.atlas-screen');
-    if(!root)return;
-    const targets=[['.atlas-masthead','--atlas-header-h'],['.atlas-timeline','--atlas-time-h'],['.atlas-imagery','--atlas-style-h']] as const;
-    const measure=()=>{for(const [selector,property]of targets){const element=root.querySelector(selector);if(element)root.style.setProperty(property,element.getBoundingClientRect().height+'px');}};
-    const observer=new ResizeObserver(measure);for(const [selector]of targets){const element=root.querySelector(selector);if(element)observer.observe(element);}measure();return()=>observer.disconnect();
-  },[]);
+  useEffect(() => {
+    const root = document.querySelector<HTMLElement>(".atlas-screen");
+    if (!root) return;
+    const targets = [
+      [".atlas-masthead", "--atlas-header-h"],
+      [".atlas-timeline", "--atlas-time-h"],
+      [".atlas-imagery", "--atlas-style-h"],
+    ] as const;
+    const measure = () => {
+      for (const [selector, property] of targets) {
+        const element = root.querySelector(selector);
+        if (element)
+          root.style.setProperty(
+            property,
+            element.getBoundingClientRect().height + "px",
+          );
+      }
+    };
+    const observer = new ResizeObserver(measure);
+    for (const [selector] of targets) {
+      const element = root.querySelector(selector);
+      if (element) observer.observe(element);
+    }
+    measure();
+    return () => observer.disconnect();
+  }, []);
   const language = useLanguage();
   const reduced = useMotionPreference();
   const { scope, update } = useMission();
@@ -201,23 +224,56 @@ export default function FireMap({
   const boundary = useRef<FeatureCollection<Geometry> | null>(null);
   const regionRef = useRef<Region>("ajloun");
   const popup = useRef<ml.Popup | null>(null);
-  const selectedObservation=useRef<string|number|undefined>(undefined);
+  const selectedObservation = useRef<string | number | undefined>(undefined);
   const region = scope.region;
   const setRegion = (value: Region) => update({ region: value });
-  const [cameraContext, setCameraContext] = useState<CameraDestination>('ajloun');
+  const [cameraContext, setCameraContext] =
+    useState<CameraDestination>("ajloun");
   function exploreCamera(destination: CameraDestination) {
     setCameraContext(destination);
     journey.current = camera.current?.begin() ?? 0;
-    if(destination!=='earth'){const ticket=journey.current;fetch(destination==='ajloun'?'/jordan-adm1.geojson':'/northern-jordan.geojson').then(r=>r.json()).then(result=>{if(ticket!==journey.current)return;camera.current?.fit(destination==='ajloun'?{type:'FeatureCollection',features:result.features.filter((f:import('geojson').Feature)=>f.properties?.shapeName==='Ajloun')}:result,ticket);}).catch(()=>setMapError('Regional boundary could not load.'));return;}
-    map.current?.setPadding({top:0,right:0,bottom:0,left:0});
-    map.current?.flyTo({ center: destination === 'earth' ? [35,24] : [35.85,32.35], zoom: destination === 'earth' ? 1.5 : 8, bearing:0, pitch:0, duration:reduced?0:1800, essential:false });
+    if (destination !== "earth") {
+      const ticket = journey.current;
+      fetch(
+        destination === "ajloun"
+          ? "/jordan-adm1.geojson"
+          : "/northern-jordan.geojson",
+      )
+        .then((r) => r.json())
+        .then((result) => {
+          if (ticket !== journey.current) return;
+          camera.current?.fit(
+            destination === "ajloun"
+              ? {
+                  type: "FeatureCollection",
+                  features: result.features.filter(
+                    (f: import("geojson").Feature) =>
+                      f.properties?.shapeName === "Ajloun",
+                  ),
+                }
+              : result,
+            ticket,
+          );
+        })
+        .catch(() => setMapError("Regional boundary could not load."));
+      return;
+    }
+    map.current?.setPadding({ top: 0, right: 0, bottom: 0, left: 0 });
+    map.current?.flyTo({
+      center: destination === "earth" ? [35, 24] : [35.85, 32.35],
+      zoom: destination === "earth" ? 1.5 : 8,
+      bearing: 0,
+      pitch: 0,
+      duration: reduced ? 0 : 1800,
+      essential: false,
+    });
   }
   const [mode, setMode] = useState<"satellite" | "street">("satellite");
   const [data, setData] = useState<Observations>(EMPTY);
   const [status, setStatus] = useState("loading");
   const [mapError, setMapError] = useState("");
   const [retry, setRetry] = useState(0);
-  const [sourceError,setSourceError]=useState('');
+  const [sourceError, setSourceError] = useState("");
   const date =
     scope.startDate && scope.startDate === scope.endDate
       ? scope.startDate
@@ -379,7 +435,8 @@ export default function FireMap({
           },
         });
         signals.current?.present(currentData.current);
-        if(selectedObservation.current) signals.current?.select(selectedObservation.current);
+        if (selectedObservation.current)
+          signals.current?.select(selectedObservation.current);
       }
     };
     instance.on("style.load", restore);
@@ -414,7 +471,7 @@ export default function FireMap({
         !currentData.current.features.some((item) => item.id === feature.id)
       )
         return;
-      selectedObservation.current=feature.id;
+      selectedObservation.current = feature.id;
       signals.current?.select(feature.id);
       const properties = displayProvenance(
         feature.properties,
@@ -453,7 +510,7 @@ export default function FireMap({
           (f) => f.properties?.shapeName === "Ajloun",
         );
         if (!ajloun) throw new Error();
-        if (disposed || regionRef.current!=="ajloun") return;
+        if (disposed || regionRef.current !== "ajloun") return;
         boundary.current = { type: "FeatureCollection", features: [ajloun] };
         if (instance.getSource("observations")) restore();
         if (regionRef.current === "ajloun")
@@ -474,12 +531,19 @@ export default function FireMap({
     };
   }, []);
 
-  const requestFromYear=(scope.startDate??scope.calendarMonth).slice(0,4);
-  const requestThroughYear=scope.endDate?.slice(0,4)??requestFromYear;
+  const requestFromYear = (scope.startDate ?? scope.calendarMonth).slice(0, 4);
+  const requestThroughYear = scope.endDate?.slice(0, 4) ?? requestFromYear;
   useEffect(() => {
     const controller = new AbortController();
-    queueMicrotask(()=>{if(!controller.signal.aborted)setStatus('loading');});
-    fetchObservationCollection(region, controller.signal,Number(requestFromYear),Number(requestThroughYear))
+    queueMicrotask(() => {
+      if (!controller.signal.aborted) setStatus("loading");
+    });
+    fetchObservationCollection(
+      region,
+      controller.signal,
+      Number(requestFromYear),
+      Number(requestThroughYear),
+    )
       .then((result) => {
         if (controller.signal.aborted) return;
         setSourceError("");
@@ -506,28 +570,51 @@ export default function FireMap({
         currentData.current = displayed;
         setData(safe);
         signals.current?.present(displayed);
-        setStatus((safe as import('../shared/model').ObservationCollection).metadata?.availability?.state==='unavailable'?'unavailable':safe.features.length?'ready':'empty');
+        setStatus(
+          (safe as import("../shared/model").ObservationCollection).metadata
+            ?.availability?.state === "unavailable"
+            ? "unavailable"
+            : safe.features.length
+              ? "ready"
+              : "empty",
+        );
       })
-      .catch((error:unknown) => {
+      .catch((error: unknown) => {
         if (!controller.signal.aborted) {
-          setSourceError(error instanceof Error&&/^(Select at most|Narrow the UTC window)/.test(error.message)?error.message:"Observation source unavailable. Retry connection.");
+          setSourceError(
+            error instanceof Error &&
+              /^(Select at most|Narrow the UTC window)/.test(error.message)
+              ? error.message
+              : "Observation source unavailable. Retry connection.",
+          );
           setStatus("error");
           setInspectorOpen(true);
         }
       });
     return () => controller.abort();
-  }, [region, retry, setDate, setSensor, setConfidence,requestFromYear,requestThroughYear]);
+  }, [
+    region,
+    retry,
+    setDate,
+    setSensor,
+    setConfidence,
+    requestFromYear,
+    requestThroughYear,
+  ]);
 
   function changeRegion(next: Region) {
     // Commit shared region before retained-map effects can run.
-    if(next!==scope.region){setRegion(next);return;}
+    if (next !== scope.region) {
+      setRegion(next);
+      return;
+    }
     if (next === regionRef.current) return;
     pendingCalendar.current = null;
     journey.current = camera.current?.begin() ?? 0;
     setStatus("loading");
     focusDetails.current = false;
     setListLimit(50);
-    selectedObservation.current=undefined;
+    selectedObservation.current = undefined;
     setSelected(null);
     setInspectorTab("observations");
     regionRef.current = next;
@@ -543,12 +630,23 @@ export default function FireMap({
       data.features.map((f) => String(f.properties?.instrument ?? "Unknown")),
     ),
   ];
-  const historicalMetadata=(data as import('../shared/model').ObservationCollection).metadata;
-  const historical=historicalMetadata?.historical===true;
-  const selectedYear=selectedAtlasYear(scope);
-  const years=historical&&Array.isArray(historicalMetadata.availableYears)?historicalMetadata.availableYears.map(String):[];
-  const dates=observedAtlasDates(data as import('../shared/model').ObservationCollection,scope,filterObservationCollection).filter(d=>!historical||d.startsWith(selectedYear));
-  function chooseYear(year:string){update(selectAtlasYear(year,region,scope.regionalYears));}
+  const historicalMetadata = (
+    data as import("../shared/model").ObservationCollection
+  ).metadata;
+  const historical = historicalMetadata?.historical === true;
+  const selectedYear = selectedAtlasYear(scope);
+  const years =
+    historical && Array.isArray(historicalMetadata.availableYears)
+      ? historicalMetadata.availableYears.map(String)
+      : [];
+  const dates = observedAtlasDates(
+    data as import("../shared/model").ObservationCollection,
+    scope,
+    filterObservationCollection,
+  ).filter((d) => !historical || d.startsWith(selectedYear));
+  function chooseYear(year: string) {
+    update(selectAtlasYear(year, region, scope.regionalYears));
+  }
   const confidences = [
     ...new Set(
       data.features
@@ -574,7 +672,7 @@ export default function FireMap({
     setConfidence(nextConfidence);
     setListLimit(50);
     setInspectorTab("observations");
-    selectedObservation.current=undefined;
+    selectedObservation.current = undefined;
     setSelected(null);
     popup.current?.remove();
     const filtered: Observations = filterObservationCollection(data, {
@@ -598,12 +696,15 @@ export default function FireMap({
     signals.current?.present(filtered);
     // A same-year fetch can finish just after a user opens a valid record.
     // Keep that immutable selection; only incompatible scopes clear it.
-    if(selectedObservation.current!==undefined&&filtered.features.some(f=>f.id===selectedObservation.current)){
+    if (
+      selectedObservation.current !== undefined &&
+      filtered.features.some((f) => f.id === selectedObservation.current)
+    ) {
       signals.current?.select(selectedObservation.current);
       return;
     }
     popup.current?.remove();
-    selectedObservation.current=undefined;
+    selectedObservation.current = undefined;
     setSelected(null);
     setInspectorTab("observations");
   });
@@ -621,7 +722,13 @@ export default function FireMap({
     data,
   ]);
   function filterDate(next: string) {
-    if(historical&&next==="all"){update({...selectAtlasYear(selectedYear,region,scope.regionalYears),calendarMonth:scope.calendarMonth});return;}
+    if (historical && next === "all") {
+      update({
+        ...selectAtlasYear(selectedYear, region, scope.regionalYears),
+        calendarMonth: scope.calendarMonth,
+      });
+      return;
+    }
     if (
       next !== date ||
       (next === "all" && (scope.startDate || scope.endDate))
@@ -644,8 +751,8 @@ export default function FireMap({
       feature.properties ?? {},
       currentDatasets.current,
     );
-    selectedObservation.current=feature.id;
-      signals.current?.select(feature.id);
+    selectedObservation.current = feature.id;
+    signals.current?.select(feature.id);
     setSelected({ properties, coordinates: feature.geometry.coordinates });
     focusDetails.current = true;
     setInspectorTab("details");
@@ -665,18 +772,50 @@ export default function FireMap({
         : 500,
     });
   }
-  const inspectedEvidence = useRef<{id:number;data:Observations} | null>(null);
+  const inspectedEvidence = useRef<{ id: number; data: Observations } | null>(
+    null,
+  );
   const inspectEvidence = useEffectEvent(() => {
-    if(status!=='ready'){inspectedEvidence.current=null;return;}
+    if (status !== "ready") {
+      inspectedEvidence.current = null;
+      return;
+    }
     // Apply the handoff filters before inspecting; re-open after any data effect clears it.
-    if (!calendarSelection?.observationId || consumedCalendar.current!==calendarSelection.id || (inspectedEvidence.current?.id===calendarSelection.id && inspectedEvidence.current.data===data && popup.current?.isOpen())) return;
-    if (scope.region !== calendarSelection.region || scope.startDate !== calendarSelection.date || scope.endDate !== calendarSelection.date || scope.sensor !== calendarSelection.sensor) return;
-    const feature = currentData.current.features.find(f => f.id === calendarSelection.observationId);
-    if (!feature || !map.current?.getSource('observations')) return;
-    inspectedEvidence.current = {id:calendarSelection.id,data};
+    if (
+      !calendarSelection?.observationId ||
+      consumedCalendar.current !== calendarSelection.id ||
+      (inspectedEvidence.current?.id === calendarSelection.id &&
+        inspectedEvidence.current.data === data &&
+        popup.current?.isOpen())
+    )
+      return;
+    if (
+      scope.region !== calendarSelection.region ||
+      scope.startDate !== calendarSelection.date ||
+      scope.endDate !== calendarSelection.date ||
+      scope.sensor !== calendarSelection.sensor
+    )
+      return;
+    const feature = currentData.current.features.find(
+      (f) => f.id === calendarSelection.observationId,
+    );
+    if (!feature || !map.current?.getSource("observations")) return;
+    inspectedEvidence.current = { id: calendarSelection.id, data };
     inspectObservation(feature);
   });
-  useEffect(() => { const frame = requestAnimationFrame(() => inspectEvidence()); return () => cancelAnimationFrame(frame); }, [calendarSelection, data, status,scope.region, scope.sensor, scope.processing,scope.startDate, scope.endDate]);
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => inspectEvidence());
+    return () => cancelAnimationFrame(frame);
+  }, [
+    calendarSelection,
+    data,
+    status,
+    scope.region,
+    scope.sensor,
+    scope.processing,
+    scope.startDate,
+    scope.endDate,
+  ]);
   function refit() {
     if (!map.current) return;
     const target = boundary.current;
@@ -686,8 +825,7 @@ export default function FireMap({
   useEffect(() => {
     if (!missionRequest || !camera.current) return;
     journey.current = camera.current.begin();
-    const target =
-      boundary.current;
+    const target = boundary.current;
     if (target) camera.current.fit(target, journey.current);
     document.getElementById("enter-mission")?.focus({ preventScroll: true });
   }, [missionRequest]);
@@ -704,7 +842,7 @@ export default function FireMap({
         pendingCalendar.current = selection;
       } else if (status === "ready" || status === "empty") {
         applyFilters(selection.date, selection.sensor, "all");
-        requestAnimationFrame(()=>inspectEvidence());
+        requestAnimationFrame(() => inspectEvidence());
         // Calendar region selection can load while the retained map is hidden.
         // This explicit user handoff starts a fresh, cancellable camera journey.
         journey.current = camera.current?.begin() ?? 0;
@@ -729,7 +867,39 @@ export default function FireMap({
     );
     return () => cancelAnimationFrame(frame);
   }, [calendarSelection]);
-  useEffect(()=>{let cancelled=false;fetch(region==='ajloun'?'/jordan-adm1.geojson':'/northern-jordan.geojson').then(r=>r.json()).then(result=>{if(cancelled)return;const next:FeatureCollection=region==='ajloun'?{type:'FeatureCollection',features:result.features.filter((f:import('geojson').Feature)=>f.properties?.shapeName==='Ajloun')}:result;boundary.current=next;const source=map.current?.getSource('ajloun-boundary') as import('maplibre-gl').GeoJSONSource|undefined;source?.setData(next);if(camera.current){journey.current=camera.current.begin();camera.current.fit(next,journey.current);}}).catch(()=>setMapError('Regional boundary could not load.'));return()=>{cancelled=true;};},[region]);
+  useEffect(() => {
+    let cancelled = false;
+    fetch(
+      region === "ajloun" ? "/jordan-adm1.geojson" : "/northern-jordan.geojson",
+    )
+      .then((r) => r.json())
+      .then((result) => {
+        if (cancelled) return;
+        const next: FeatureCollection =
+          region === "ajloun"
+            ? {
+                type: "FeatureCollection",
+                features: result.features.filter(
+                  (f: import("geojson").Feature) =>
+                    f.properties?.shapeName === "Ajloun",
+                ),
+              }
+            : result;
+        boundary.current = next;
+        const source = map.current?.getSource("ajloun-boundary") as
+          | import("maplibre-gl").GeoJSONSource
+          | undefined;
+        source?.setData(next);
+        if (camera.current) {
+          journey.current = camera.current.begin();
+          camera.current.fit(next, journey.current);
+        }
+      })
+      .catch(() => setMapError("Regional boundary could not load."));
+    return () => {
+      cancelled = true;
+    };
+  }, [region]);
   const fixture = false;
   const availability = (data as import("../shared/model").ObservationCollection)
     .metadata?.availability;
@@ -760,14 +930,16 @@ export default function FireMap({
     <section
       className="atlas-screen"
       data-inspector={inspectorOpen ? "open" : "closed"}
-      data-observation-selected={selected?"true":"false"}
+      data-observation-selected={selected ? "true" : "false"}
       aria-label={t("Mission Atlas")}
     >
       <div
         className="atlas-map fire-map-canvas"
         ref={container}
         aria-label={t(
-          region==='northern-jordan'?"Northern Jordan boundary":"Interactive Ajloun pilot boundary map",
+          region === "northern-jordan"
+            ? "Northern Jordan boundary"
+            : "Interactive Ajloun pilot boundary map",
         )}
       />
       <div className="atlas-vignette" aria-hidden="true" />
@@ -798,7 +970,12 @@ export default function FireMap({
           <strong>{t("MISSION ATLAS")}</strong>
           <small>{t("SCIENTIFIC CARTOGRAPHY")}</small>
         </div>
-        <RegionExplorer region={region} onRegion={changeRegion} onCamera={exploreCamera} loaded={data.features.length > 0} />
+        <RegionExplorer
+          region={region}
+          onRegion={changeRegion}
+          onCamera={exploreCamera}
+          loaded={data.features.length > 0}
+        />
         <button
           className="atlas-window"
           onClick={() => document.getElementById("atlas-scrubber")?.focus()}
@@ -822,7 +999,12 @@ export default function FireMap({
       <div className="atlas-editorial">
         <span className="atlas-overline">
           {t("FIELD STUDY ")}
-          <b>/</b> {t(region==='northern-jordan'?'JO / NORTHERN JORDAN':'JO / AJLOUN GOVERNORATE')}
+          <b>/</b>{" "}
+          {t(
+            region === "northern-jordan"
+              ? "JO / NORTHERN JORDAN"
+              : "JO / AJLOUN GOVERNORATE",
+          )}
         </span>
         <h1>
           {t(region === "northern-jordan" ? "Northern Jordan" : "Ajloun")}
@@ -957,7 +1139,11 @@ export default function FireMap({
       <div className="atlas-key">
         <span>
           <i className="key-boundary" />
-          {t(region==='ajloun'?"Ajloun boundary":"Northern Jordan boundary")}
+          {t(
+            region === "ajloun"
+              ? "Ajloun boundary"
+              : "Northern Jordan boundary",
+          )}
         </span>
         {t(
           fixture &&
@@ -1043,14 +1229,49 @@ export default function FireMap({
           ),
         )}
       </AnimatePresence>
-      {cameraContext !== 'ajloun' && <p className="camera-scope-note" role="status">{t('Exploration view only. Observation coverage remains the selected regional dataset; global data is unavailable.')}</p>}
+      {cameraContext !== "ajloun" && (
+        <p className="camera-scope-note" role="status">
+          {t(
+            "Exploration view only. Observation coverage remains the selected regional dataset; global data is unavailable.",
+          )}
+        </p>
+      )}
       <AtlasTimeline
         dates={dates}
-        playbackScope={JSON.stringify([region,sensor,confidence,scope.processing,scope.frpMin,scope.frpMax])}
-        years={years} year={selectedYear} onYear={chooseYear} status={status}
-        message={sourceError|| (historical&&!years.includes(selectedYear)?'This year is not available in the selected region. Coverage is unknown.':date!=='all'&&!dates.includes(date)?'Selected date has no delivered observations under these filters. Coverage is unknown.':scope.startDate&&scope.endDate&&scope.startDate.slice(0,4)!==scope.endDate.slice(0,4)?'Custom UTC date range':'')}
+        playbackScope={JSON.stringify([
+          region,
+          sensor,
+          confidence,
+          scope.processing,
+          scope.frpMin,
+          scope.frpMax,
+        ])}
+        years={years}
+        year={selectedYear}
+        onYear={chooseYear}
+        status={status}
+        message={
+          sourceError ||
+          (historical && !years.includes(selectedYear)
+            ? "This year is not available in the selected region. Coverage is unknown."
+            : date !== "all" && !dates.includes(date)
+              ? "Selected date has no delivered observations under these filters. Coverage is unknown."
+              : scope.startDate &&
+                  scope.endDate &&
+                  scope.startDate.slice(0, 4) !== scope.endDate.slice(0, 4)
+                ? "Custom UTC date range"
+                : "")
+        }
         selected={
-          date === "all" && (scope.startDate || scope.endDate) && !(historical&&scope.startDate===selectedYear+"-01-01"&&scope.endDate===selectedYear+"-12-31") ? "range" : date
+          date === "all" &&
+          (scope.startDate || scope.endDate) &&
+          !(
+            historical &&
+            scope.startDate === selectedYear + "-01-01" &&
+            scope.endDate === selectedYear + "-12-31"
+          )
+            ? "range"
+            : date
         }
         onSelect={filterDate}
         fixture={fixture}
