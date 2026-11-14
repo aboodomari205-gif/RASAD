@@ -1,0 +1,285 @@
+{
+  "audit": "firepulse.delivery-inspection/v1",
+  "inspectionDate": "2026-11-12",
+  "method": "Immutable ZIP/CSV hashes, exact raw-row duplicate check, shared acquisitionUTC and Ajloun pointInRegion; no import, channel mapping or cross-sensor association.",
+  "deliveries": [
+    {
+      "archive": "DL_FIRE_M-C61_842987.zip",
+      "archiveSHA256": "03196399f1bbd9feaa46e3cc7557a6c62ff3a544dc5d4c5cd03e48393b84268a",
+      "csvMember": "fire_archive_M-C61_842987.csv",
+      "csvSHA256": "4733b146e4de6de0cf62dddd090b17fedd32f31d24fbae232e7054ea635f66e0",
+      "headers": [
+        "latitude",
+        "longitude",
+        "brightness",
+        "scan",
+        "track",
+        "acq_date",
+        "acq_time",
+        "satellite",
+        "instrument",
+        "confidence",
+        "version",
+        "bright_t31",
+        "frp",
+        "daynight",
+        "type"
+      ],
+      "rowCount": 19,
+      "exactDuplicateRows": 0,
+      "observedDateRange": [
+        "2020-05-18",
+        "2025-11-05"
+      ],
+      "distinctObservedDates": 17,
+      "observedBoundsWestSouthEastNorth": [
+        35.5912,
+        32.1708,
+        35.8923,
+        32.4138
+      ],
+      "rawValueDistributions": {
+        "instrument": {
+          "MODIS": 19
+        },
+        "satellite": {
+          "Aqua": 13,
+          "Terra": 6
+        },
+        "version": {
+          "6.03": 14,
+          "61.03": 5
+        },
+        "confidence": {
+          "100": 2,
+          "15": 1,
+          "32": 1,
+          "42": 1,
+          "55": 2,
+          "57": 1,
+          "60": 1,
+          "61": 1,
+          "62": 1,
+          "70": 1,
+          "71": 1,
+          "76": 1,
+          "80": 1,
+          "82": 1,
+          "84": 1,
+          "87": 1,
+          "95": 1
+        },
+        "daynight": {
+          "D": 15,
+          "N": 4
+        },
+        "type": {
+          "0": 19
+        }
+      },
+      "numericSyntaxOnly": {
+        "brightness": {
+          "missing": 0,
+          "nonFiniteOrInvalid": 0,
+          "negative": 0,
+          "zero": 0,
+          "range": [
+            303.5,
+            392.7
+          ]
+        },
+        "scan": {
+          "missing": 0,
+          "nonFiniteOrInvalid": 0,
+          "negative": 0,
+          "zero": 0,
+          "range": [
+            1.0,
+            3.6
+          ]
+        },
+        "track": {
+          "missing": 0,
+          "nonFiniteOrInvalid": 0,
+          "negative": 0,
+          "zero": 0,
+          "range": [
+            1.0,
+            1.8
+          ]
+        },
+        "bright_t31": {
+          "missing": 0,
+          "nonFiniteOrInvalid": 0,
+          "negative": 0,
+          "zero": 0,
+          "range": [
+            292.0,
+            322.9
+          ]
+        },
+        "frp": {
+          "missing": 0,
+          "nonFiniteOrInvalid": 0,
+          "negative": 0,
+          "zero": 0,
+          "range": [
+            5.5,
+            431.4
+          ]
+        }
+      },
+      "sharedUTCAndPolygonAudit": {
+        "invalidUTC": 0,
+        "utcRange": [
+          "2020-05-18T11:05:00.000Z",
+          "2025-11-05T12:20:00.000Z"
+        ],
+        "withinAjloun": 5,
+        "outsideAjloun": 14,
+        "withinAjlounUTCRange": [
+          "2020-10-24T10:22:00.000Z",
+          "2025-07-02T11:18:00.000Z"
+        ],
+        "boundaryGeometry": "Polygon",
+        "boundaryChecksum": "ea4daf0c0f9ef83e0e2be08ef5efb7f9dfb52a9cb987bb02178206eeeaa4938a"
+      },
+      "requestedDateRange": null,
+      "requestedAOI": null,
+      "verifiedCoverage": false,
+      "importApproved": false,
+      "scientificValidation": "not performed"
+    },
+    {
+      "archive": "DL_FIRE_SV-C2_842985.zip",
+      "archiveSHA256": "3117f6ccce99d31cacd7892ea5bf27eadc3af790a22f8a9e999be88bc158f59f",
+      "csvMember": "fire_archive_SV-C2_842985.csv",
+      "csvSHA256": "b2aa325124f7cb032a1025eedda10dc9521558fa27e000521274a0e092d981bc",
+      "headers": [
+        "latitude",
+        "longitude",
+        "brightness",
+        "scan",
+        "track",
+        "acq_date",
+        "acq_time",
+        "satellite",
+        "instrument",
+        "confidence",
+        "version",
+        "bright_t31",
+        "frp",
+        "daynight",
+        "type"
+      ],
+      "rowCount": 128,
+      "exactDuplicateRows": 0,
+      "observedDateRange": [
+        "2020-05-01",
+        "2025-10-18"
+      ],
+      "distinctObservedDates": 76,
+      "observedBoundsWestSouthEastNorth": [
+        35.59639,
+        32.17173,
+        35.89929,
+        32.4148
+      ],
+      "rawValueDistributions": {
+        "instrument": {
+          "SNPP": 128
+        },
+        "satellite": {
+          "SNPP": 128
+        },
+        "version": {
+          "2": 128
+        },
+        "confidence": {
+          "h": 6,
+          "l": 23,
+          "n": 99
+        },
+        "daynight": {
+          "D": 99,
+          "N": 29
+        },
+        "type": {
+          "0": 128
+        }
+      },
+      "numericSyntaxOnly": {
+        "brightness": {
+          "missing": 0,
+          "nonFiniteOrInvalid": 0,
+          "negative": 0,
+          "zero": 0,
+          "range": [
+            298.18,
+            367.0
+          ]
+        },
+        "scan": {
+          "missing": 0,
+          "nonFiniteOrInvalid": 0,
+          "negative": 0,
+          "zero": 0,
+          "range": [
+            0.32,
+            0.76
+          ]
+        },
+        "track": {
+          "missing": 0,
+          "nonFiniteOrInvalid": 0,
+          "negative": 0,
+          "zero": 0,
+          "range": [
+            0.36,
+            0.77
+          ]
+        },
+        "bright_t31": {
+          "missing": 0,
+          "nonFiniteOrInvalid": 0,
+          "negative": 0,
+          "zero": 0,
+          "range": [
+            285.66,
+            366.65
+          ]
+        },
+        "frp": {
+          "missing": 0,
+          "nonFiniteOrInvalid": 0,
+          "negative": 0,
+          "zero": 0,
+          "range": [
+            0.28,
+            377.62
+          ]
+        }
+      },
+      "sharedUTCAndPolygonAudit": {
+        "invalidUTC": 0,
+        "utcRange": [
+          "2020-05-01T10:53:00.000Z",
+          "2025-10-18T10:32:00.000Z"
+        ],
+        "withinAjloun": 31,
+        "outsideAjloun": 97,
+        "withinAjlounUTCRange": [
+          "2020-08-02T10:09:00.000Z",
+          "2025-10-18T10:32:00.000Z"
+        ],
+        "boundaryGeometry": "Polygon",
+        "boundaryChecksum": "ea4daf0c0f9ef83e0e2be08ef5efb7f9dfb52a9cb987bb02178206eeeaa4938a"
+      },
+      "requestedDateRange": null,
+      "requestedAOI": null,
+      "verifiedCoverage": false,
+      "importApproved": false,
+      "scientificValidation": "not performed"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+.region-explorer{position:relative}.region-explorer>summary{list-style:none;cursor:pointer;display:grid;gap:7px}.region-explorer>summary::-webkit-details-marker{display:none}.region-explorer>summary strong{font-size:12px;font-weight:500}.region-explorer>summary strong span{margin-inline-start:18px}.region-explorer-panel{position:absolute;inset-block-start:calc(100% + 24px);inset-inline-start:0;width:min(490px,calc(100vw - 32px));padding:26px;background:var(--atlas-graphite);border:1px solid var(--atlas-line);box-shadow:0 20px 50px #0008;z-index:60;color:var(--atlas-ivory)}.region-explorer-panel h2{font:28px var(--atlas-display);letter-spacing:-.04em;max-width:350px}.region-explorer-panel p{font-size:12px;line-height:1.65;color:var(--atlas-muted);white-space:normal}.region-camera-options{display:grid;margin-block:20px}.region-camera-options button{display:grid;grid-template-columns:26px 1fr;gap:5px;text-align:start;padding:16px 0;border:0;border-top:1px solid var(--atlas-line);background:transparent;color:var(--atlas-ivory);cursor:pointer}.region-camera-options small{grid-row:span 2;color:var(--atlas-coral)}.region-camera-options span{font-size:11px;color:var(--atlas-muted)}.region-camera-options button:hover strong{color:var(--atlas-cyan)}.region-explorer-panel label{display:grid;gap:9px;font-size:11px}.region-explorer-panel select{width:100%;padding:12px!important;border:1px solid var(--atlas-line)!important;background:var(--atlas-void)!important;color:var(--atlas-ivory)}.region-coverage{border-inline-start:2px solid var(--atlas-cyan);padding-inline-start:12px}.region-explorer :focus-visible{outline:2px solid var(--atlas-cyan);outline-offset:4px}.camera-scope-note{position:absolute;inset-block-start:95px;inset-inline-start:50%;transform:translateX(-50%);max-width:min(450px,80vw);padding:10px 16px;background:var(--atlas-void);border-inline-start:2px solid var(--atlas-cyan);color:var(--atlas-ivory);font-size:11px;z-index:5;pointer-events:none}@media(max-width:760px){.region-explorer-panel{position:fixed;inset-inline:16px;inset-block-start:120px;max-height:calc(100dvh - 140px);overflow:auto}.camera-scope-note{inset-block-start:125px}}
+
+/* Reserve the measured mission header/timeline, rather than viewport-only offsets. */
+.region-explorer-panel {
+ display:flex;flex-direction:column;min-height:0;
+ max-height:calc(100dvh - var(--atlas-header-h,116px) - var(--atlas-time-h,145px) - var(--atlas-footer-h,48px) - var(--atlas-gap,14px)*3);
+ overflow:hidden;padding:0;
+}
+.region-explorer-header { display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex:none;padding:20px 24px 12px;background:var(--atlas-graphite); }
+.region-explorer-header>div { min-width:0; }
+.region-explorer-header h2 { margin:8px 0 0; }
+.region-explorer-close { flex:none;display:grid;place-items:center;min-width:32px;min-height:32px;border:1px solid var(--atlas-line);background:transparent;color:var(--atlas-ivory);font-size:22px;cursor:pointer; }
+.region-explorer-content { min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable;padding:0 24px 20px; }
+@media(max-width:760px){
+ .region-explorer-panel { inset-block-start:calc(var(--atlas-header-h,116px) + 4px); }
+ .region-explorer-header { padding:14px 16px 10px; }
+ .region-explorer-header h2 { font-size:24px; }
+ .region-explorer-content { padding:0 16px 16px; }
+}

@@ -1,0 +1,17 @@
+﻿{
+  "datasets": [
+    {
+      "id": "ajloun-viirs-archive-v1",
+      "title": "Ajloun validated VIIRS archive",
+      "regionId": "ajloun",
+      "kind": "archive",
+      "source": "NASA FIRMS",
+      "sensor": "VIIRS",
+      "product": "REPLACE_WITH_ACTUAL_FIRMS_PRODUCT_ID",
+      "processing": "standard",
+      "version": "REPLACE_WITH_ACTUAL_CSV_COLLECTION_VERSION",
+      "filename": "YOUR_ARCHIVE.csv"
+    }
+  ],
+  "active": ["ajloun-viirs-archive-v1"]
+}

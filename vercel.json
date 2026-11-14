@@ -1,0 +1,18 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "vite",
+  "installCommand": "npm ci && npm --prefix server ci",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "functions": {
+    "api/[...path].js": {
+      "maxDuration": 30,
+      "includeFiles": ["public/jordan-adm1.geojson"],
+      "excludeFiles": [".checkpoints/**", "server/data/**", "**/.env*", "**/*.sqlite*"]
+    }
+  },
+  "rewrites": [
+    { "source": "/api/:path*", "destination": "/api/[...path]" },
+    { "source": "/((?!api/|assets/|earth/|.*\\.).*)", "destination": "/index.html" }
+  ]
+}

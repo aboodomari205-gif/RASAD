@@ -1,0 +1,61 @@
+.earth-landing { position: fixed; inset: 0; z-index: 30; overflow: auto; min-height: 640px; color: #edf0ec; background: #060b13; isolation: isolate; font-family: 'DM Sans', sans-serif; }
+.earth-art { position: absolute; inset: 0; overflow: hidden; background: radial-gradient(ellipse at 75% 48%, #142237 0, #080f1a 35%, #060b13 66%); }
+.earth-art::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(90deg, #060b1366, transparent 65%), linear-gradient(0deg, #060b13, transparent 24%); }
+.earth-canvas { position: absolute !important; inset: 0; pointer-events: none; }
+.earth-still { position: absolute; width: min(70vw, 850px); height: auto; aspect-ratio: 1; object-fit: contain; right: -1vw; top: 50%; transform: translateY(-50%) rotate(-12deg); border-radius: 50%; opacity: .85; transition: opacity .6s; filter: brightness(.8); }
+.earth-still.is-obscured { opacity: 0; }
+.earth-unavailable { position: absolute; right: 12%; top: 45%; font-size: 12px; letter-spacing: 2px; color: #9cadbf; }
+.earth-header { position: relative; z-index: 3; display: flex; align-items: center; justify-content: space-between; gap: 25px; padding: 34px 4.5vw; }
+.earth-wordmark { font-family: 'Space Grotesk', sans-serif; font-size: 23px; color: #f4f3ed; font-weight: 600; letter-spacing: 2px; text-decoration: none; line-height: 1; }
+.earth-wordmark > span { color: #ff7043; }
+.earth-wordmark small { display: block; font-family: 'DM Sans', sans-serif; font-size: 8px; letter-spacing: 4px; margin-top: 10px; font-weight: 400; color: #a8b6c3; }
+.earth-edition { margin-right: auto; margin-left: 45px; color: #8f9da9; font-size: 8px; letter-spacing: 1.3px; line-height: 1.9; }
+.earth-editorial { position: absolute; left: 7.5vw; top: 50%; translate: 0 -47%; z-index: 2; width: min(49vw, 690px); pointer-events: none; }
+.earth-kicker { display: flex; align-items: center; gap: 14px; font-size: 8px; letter-spacing: 2.7px; color: #b2c4cf; margin-bottom: 30px; }
+.earth-kicker::before { content: ''; width: 26px; height: 1px; background: #ff7043; }
+.earth-editorial h1 { margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: clamp(44px, 5.7vw, 95px); line-height: 1.09; letter-spacing: -.065em; font-weight: 400; }
+.earth-title-line { display: block; overflow: hidden; padding-bottom: .06em; }
+.earth-title-line > span { display: block; }
+.earth-title-line:last-child { color: #b1bcc7; }
+.earth-description { font-size: clamp(12px, 1vw, 15px); color: #aab8c4; line-height: 1.9; max-width: 340px; margin: 26px 0 30px; }
+.earth-enter { pointer-events: auto; display: inline-flex; gap: 48px; align-items: center; justify-content: space-between; border: 1px solid #ff8b66; background: #ff7043; color: #13191c; font-size: 12px; font-weight: 600; padding: 17px 23px; border-radius: 3px; box-shadow: 0 5px 28px #ff704310; }
+.earth-enter:hover { background: #ff8a60; }
+.earth-enter:disabled { opacity: .7; }
+.earth-enter span { font-size: 20px; font-weight: 400; }
+.earth-destination { display: flex; align-items: center; gap: 8px; color: #b0bec8; font-size: 7px; letter-spacing: 1.2px; margin-top: 18px; }
+.earth-destination i { width: 4px; height: 4px; background: #45d6c5; border-radius: 50%; }
+.earth-destination > span { color: #738796; font-size: 6px; margin-left: 5px; }
+.earth-gesture { position: absolute; top: 15%; bottom: 15%; left: 50%; right: 0; z-index: 1; cursor: grab; touch-action: pan-y; border-radius: 50%; }
+.earth-gesture:active { cursor: grabbing; }
+.earth-gesture:focus-visible { outline-offset: -12px; outline-color: #45d6c577; }
+.earth-scene-caption { position: absolute; right: 5.5vw; bottom: 20%; pointer-events: none; text-align: right; }
+.earth-scene-caption > span { font-size: 7px; letter-spacing: 2px; color: #b4c2cd; }
+.earth-caption-line { display: block; height: 32px; width: 1px; background: linear-gradient(transparent, #68879d); margin: 0 0 13px auto; }
+.earth-scene-caption p { font-size: 8px; line-height: 1.9; color: #7e96a8; margin-top: 8px; }
+.earth-footer { position: absolute; bottom: 0; left: 4.5vw; right: 4.5vw; display: flex; align-items: flex-end; justify-content: space-between; gap: 25px; padding: 24px 0 28px; border-top: 1px solid #7f98af22; z-index: 2; }
+.earth-footer > p { font-size: 8px; letter-spacing: 1.8px; line-height: 1.9; margin: 0; color: #b5c1cc; }
+.earth-footer > p span { color: #6f8293; }
+.earth-footer > a { font-size: 7px; letter-spacing: .8px; color: #8fa0af; text-decoration: none; }
+.earth-footer > a:hover { color: #dbe9f1; }
+.earth-asset-state { font-size: 9px; color: #8b9da9; max-width: 300px; line-height: 1.6; }
+.earth-landing.is-entering .earth-gesture { pointer-events: none; }
+.workspace-host { min-height: 100dvh; }
+.workspace-host[data-covered=true] { visibility: hidden; pointer-events: none; }
+.earth-handoff { position: fixed; inset: 0; background: radial-gradient(ellipse at 65% 40%, #243a4e, #080d17 65%); z-index: 35; display: grid; place-items: center; }
+.earth-handoff p { font-size: 10px; letter-spacing: 3px; color: #c5d5df; }
+@media (max-width: 1050px) { .earth-edition { margin-left: 10px; font-size: 7px; } .earth-editorial { left: 6vw; width: 56vw; } .earth-scene-caption { bottom: 21%; } .earth-destination { letter-spacing: .6px; } }
+@media (max-width: 760px) { .earth-landing { min-height: 740px; } .earth-header { padding: 25px 23px; align-items: flex-start; } .earth-wordmark { font-size: 19px; } .earth-edition { display: none; } .earth-art { bottom: 20%; } .earth-still { width: 95vw; right: -15%; top: 40%; opacity: .74; } .earth-gesture { top: 13%; bottom: 45%; left: 15%; } .earth-editorial { left: 7vw; top: 47%; width: 87vw; translate: none; } .earth-editorial h1 { font-size: clamp(42px, 9.7vw, 67px); } .earth-kicker { font-size: 7px; margin-bottom: 17px; letter-spacing: 2px; } .earth-description { font-size: 11px; line-height: 1.7; max-width: 295px; margin: 18px 0 21px; } .earth-enter { padding: 12px 20px; font-size: 11px; gap: 55px; } .earth-destination { font-size: 6px; margin-top: 14px; } .earth-scene-caption { top: 24%; bottom: auto; right: 6vw; } .earth-scene-caption p { font-size: 7px; } .earth-scene-caption > span { font-size: 6px; letter-spacing: 1px; } .earth-footer { padding: 17px 0; left: 7vw; right: 7vw; flex-wrap: wrap; row-gap: 9px; } .earth-footer > p { font-size: 6px; } .earth-asset-state { font-size: 7px; max-width: 190px; } .earth-footer > a { width: 100%; font-size: 6px; } }
+@media (max-height: 740px) and (min-width: 761px) { .earth-editorial { top: 46%; } .earth-editorial h1 { font-size: clamp(44px, 5vw, 70px); } .earth-description { margin: 18px 0; } .earth-kicker { margin-bottom: 20px; } }
+@media (prefers-reduced-motion: reduce) { .earth-still { transition: none; } }
+
+.mission-starting { padding: 70px 35px; color: #a6bdcf; font-size: 13px; }
+
+.earth-landing { min-height: 0; }
+.earth-layout { position: relative; isolation: isolate; height: 100dvh; min-height: 640px; }
+@media (max-width: 760px) { .earth-layout { min-height: 740px; } }
+.earth-pause { pointer-events: auto; color: #b7c7d2; font-size: 8px; padding: 6px 0; background: none; border: 0; border-bottom: 1px solid #536a7c; }
+.earth-pause:hover { color: #fff; }
+.mission-unavailable { max-width: 650px; margin: 80px auto; }
+.mission-unavailable h1 { margin: 20px 0; }
+.mission-unavailable p { line-height: 1.8; margin-bottom: 25px; }
+.mission-unavailable .text-button { display: block; margin-top: 20px; }

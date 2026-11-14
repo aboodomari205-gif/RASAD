@@ -1,0 +1,43 @@
+import type { Feature, FeatureCollection, Point, Polygon, MultiPolygon } from 'geojson';
+export type RegionId = 'ajloun' | 'northern-jordan';
+export type Instrument = 'VIIRS' | 'MODIS';
+export type Sensor = Instrument | 'UNKNOWN';
+export type AvailabilityState = 'loaded' | 'partial' | 'unavailable' | 'error' | 'fixture';
+export type Processing = 'nrt' | 'standard' | 'unknown';
+export type ArchiveDeliveryProvenance = {zip:string;zipSHA256:string;member:string;csvSHA256:string;[key:string]:unknown};
+export type Dataset = {
+  id: string; title: string; regionId: RegionId; kind: 'fixture' | 'archive' | 'nrt' | 'unknown';
+  source: string; sensor?: Instrument; platform?: string | null; product?: string | null;
+  processing?: Processing; version?: string | null; filename?: string; checksum?: string;
+  importedAt?: string; partial?: boolean; availability?: Availability;
+  fieldSemantics?: Record<string, string>;
+  deliveryProfile?:'MODIS'|'SNPP'|'N20'|'N21';
+  provenanceFiles?:ArchiveDeliveryProvenance[];
+  archiveProfile?: 'firms-delivery-v1' | 'modis-c61' | 'viirs-snpp' | 'modis-firms-export' | 'viirs-snpp-firms-export';
+};
+export type Availability = { state: AvailabilityState; fixture: boolean; quality: 'complete' | 'partial'; coverage: 'unknown' | 'verified'; reasons: string[] };
+export type ObservationCollection = FeatureCollection<Point> & { metadata?: {
+  mode?: string; region?: string; developmentFixture?: boolean; filename?: string;
+  datasets?: Dataset[]; availability?: Availability; coverage?: CoverageDay[];
+  [key: string]: unknown;
+} };
+export type Observation = {
+  id: string; datasetId: string; regionId: RegionId; utcDate: string; acquiredAt: string | null;
+  timestampPrecision: 'instant' | 'day'; longitude: number; latitude: number;
+  sensor: Sensor; sensorRaw: string | null; platform: string | null; platformRaw: string | null; frp: number | null;
+  confidence: { raw: string | number | null; scheme: 'viirs-categorical' | 'modis-percent' | 'unknown'; category: 'low' | 'nominal' | 'high' | null; valid: boolean | null };
+  source: string; provenance: { fixture: boolean; product: string | null; processing: Processing; version: string | null };
+  feature: Feature<Point>;
+};
+export type Issue = { code: string; row?: number; field?: string; severity: 'warning' | 'error'; message: string };
+export type Diagnostics = { inputRecords: number; acceptedRecords: number; uniqueRecords: number; duplicatesRemoved: number; rejectedRecords: number; sensorExcluded: number; issues: Issue[] };
+export type NormalizedCollection = { observations: Observation[]; datasets: Dataset[]; availability: Availability; diagnostics: Diagnostics; regionMismatch: boolean };
+export type ObservationFilter = { region?: RegionId; sensor?: string; processing?:Processing; platform?: string; datasetIds?: readonly string[];
+  startDate?: string; endDate?: string; startTime?: string; endTime?: string;
+  confidenceRaw?: string; frpMin?: number; frpMax?: number; fixture?: 'include' | 'exclude' | 'only'; bbox?: readonly [number, number, number, number] };
+export type VerifiedDayCoverage = { date: string; region: RegionId; instrument: Instrument; verified: true; complete: true; source: string; datasetId?: string; platform?: string | null };
+export type CoverageDay = VerifiedDayCoverage & { datasetId: string };
+export type DayBucket = { date: string; status: 'observed' | 'verified-zero' | 'unavailable'; observations: Observation[]; count: number; frpSum: number | null; frpReported: number; frpComplete: boolean; coverageSources: string[] };
+export type Period = 'day' | 'month' | 'year';
+export type RegionGeometry = Polygon | MultiPolygon;
+export const SCHEMA_VERSION = 'firepulse.observations/v1' as const;

@@ -1,0 +1,36 @@
+﻿# Judging evidence matrix
+
+Review date: 2026-11-13. Claims apply to the activated local prototype and delivered data, not global coverage, NASA endorsement or public deployment. See NASA_CHALLENGE_READINESS.md for official-source access failures and NOAA lineage discrepancies.
+
+| Defensible claim | Implementation evidence | Source/data scope | Export / traceability | Verification evidence | Limit |
+|---|---|---|---|---|---|
+| Common observation structure preserves sensor identity and UTC | shared/model.ts, shared/observations.ts; server archive ingestion/store | Original FIRMS delivery values and dataset provenance | Canonical IDs, raw acquisition/version/confidence fields and source checksums in research report | foundation.test.ts, historicalActivation.test.ts; data audit | Schema consistency is not sensor calibration; original semantics remain source-specific. |
+| Exact regional scopes and consistent filtering | shared/regionScope.ts, src filtering/data client; region polygons | Ajloun 143 is a subset of Northern Jordan 6859 | Region, selected date range, source IDs | jordanRegions.test.ts, regionScope.test.ts, historical browser verification | Never add overlapping region totals. Polygon inclusion is not acquisition coverage. |
+| Useful combined calendar without equating counts | src/calendar/BurningCalendar.tsx, src/calendar/combined.ts; shared aggregations | July 2023 Ajloun 2 MODIS / 16 VIIRS; July 14 2 / 11 | Displayed-month CSV: 18 observation rows, IDs, UTC, sensor, FRP and provenance | calendar.test.ts, calendarCSV.test.ts; verify-claim-audit.mjs | Combined discovery displays source contributions, not equivalent fire counts. Missing days are unknown. |
+| Descriptive daily/monthly/yearly and seasonal summaries | shared/observations.ts, historySummary.ts, scientificEngine.ts | Delivered records, source/platform/product/version and processing strata | Scientific context/research report aggregations and source IDs | scientificEngine.test.ts; independent Python counts and FRP sums | Uneven sampling, clouds and missing acquisition opportunity prevent incidence/trend inference. |
+| Candidate cross-sensor association is reproducible | shared/evidence.ts, shared/agreement.ts; Agreement Lab | Ajloun 2023: 22 detections, same-region compatible processing | Matching assumptions, selected thresholds, original endpoints, distance/time deltas | evidence.test.ts, agreement.test.ts; independent exhaustive selected-scope checks | Geometric/time proximity is heuristic, not same-fire validation. Unknown-stage records excluded from compatible matching. |
+| Threshold sensitivity is explicit | sensitivity and robustness calculations in shared/agreement.ts, shared/research.ts | Ajloun 2023: 1 km/60 min 12 edges, 13 IDs, 1 group; 1 km/7 min 5/6/1 | Selected configuration and candidate edge list | research.test.ts, scientificEngine.test.ts; actual browser export regression | Stable across tested settings is not a probability or validated confidence. |
+| Direct edges differ from connected groups | shared/evidence.ts association graph | Candidate endpoints; repeated observation participation retained as identity | Edge IDs and connected components | evidence.test.ts, research.test.ts transitivity/boundary cases | Transitive members need not directly match each other; components are not independent fires. |
+| Source differences remain visible | Sensor Difference Explorer / IntelligenceWorkspace; ScientificContext | MODIS numerical versus VIIRS categorical confidence, platforms, archive/NRT | Raw confidence, platform, dataset, processing provenance per record | foundation.test.ts, research.test.ts; claim-browser assertions | Nominal sensor specification facts require NASA documentation; detections do not measure missed fires. |
+| Evidence-to-decision report is transparent | shared/research.ts, shared/scientificEngine.ts, Research Brief UI | Same selected observations and thresholds as analysis | Structured report: comparison.observations, matching.pairs, methodology.validated=false, harmonization gates | research.test.ts; claim browser verifies 22 observations, five edges, null median/anomaly | Not an operational fire alert, validated baseline or scientific prediction. |
+| Unknown coverage is an explicit gate | shared/agreement.ts coverage gate, scientificEngine.ts; Calendar/Anomaly UI | No verified acquisition/swath/cloud coverage input | Coverage limitations and null unsupported scientific outputs | scientificEngine.test.ts, calendar.test.ts, claim browser | Absence of detections never establishes verified zero; no anomaly score or historical median asserted. |
+| Original delivery integrity is checked | scripts/audit-scientific-data.mjs | SQLite revision and original archive hashes, exact polygon checks | SCIENTIFIC_DATA_AUDIT.json | Audit command PASS; DB hash unchanged by read-only audit | Import validation cannot authenticate unresolved supplier processing lineage. |
+| Computational results have an independent check | scripts/verify-scientific-independent.py | All period counts/FRP and selected exhaustive association scopes | SCIENTIFIC_INDEPENDENT_CHECK.json | Python command PASS | Independent implementation verifies arithmetic, not calibration against ground truth. |
+| Bilingual local demonstration is functioning | Existing intro, Atlas, Calendar, Evidence and Research routes | Current activated archive transport | CSV and JSON carry current selected scope; static assets separately checked | E2E/language plus historical/scientific/claim/layout/exploration browser checks PASS | Controlled legacy test baseline is separate from current-history suites; current browser checks used local development; no public deployment verification. |
+
+## Claims expressly not supported
+
+- Confirmed wildfire events, burned area, true fire incidence or sensor misses.
+- Equivalent MODIS/VIIRS raw counts, directly comparable confidence, universal conversion factors or normalized fire intensity.
+- Complete acquisition coverage, verified zero-detection days, continuous 2000-to-present history, calibrated trends, validated anomalies or predictions.
+- Validated NOAA-20/21 upstream archive lineage or operational-start inference from earliest delivered rows.
+- NASA endorsement, independently verified detailed 2026 challenge compliance or public deployment readiness.
+
+These exclusions are substantive scientific boundaries, not hidden features. Existing disabled/unavailable states are the correct outputs until appropriate independent evidence exists.
+
+## Sources and evidence handling
+
+Product family and processing discussion: [FIRMS download README](https://firms.modaps.eosdis.nasa.gov/download/Readme.txt), [MODIS fields](https://firms.modaps.eosdis.nasa.gov/content/descriptions/FIRMS_MODIS_Firehotspots.html), [VIIRS fields and web-layer dates](https://firms.modaps.eosdis.nasa.gov/content/descriptions/FIRMS_VIIRS_Firehotspots.html). NOAA discrepancies are documented rather than silently corrected.
+
+The large audit JSON is a local evidence artifact, not a browser data payload. Reports refer to delivered observations; no source row was edited for judging. Executed commands and exact changed files are listed in NASA_CHALLENGE_READINESS.md; local regression logs are under .checkpoints/readiness-*.log.
+

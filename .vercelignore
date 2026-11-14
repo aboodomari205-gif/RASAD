@@ -1,0 +1,14 @@
+.checkpoints
+.git
+.aws
+.codex
+.agents
+.env*
+**/.env*
+server/data
+**/*.sqlite*
+**/*.zip
+Microsoft
+dist
+node_modules
+server/node_modules

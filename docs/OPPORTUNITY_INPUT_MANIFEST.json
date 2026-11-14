@@ -1,0 +1,64 @@
+{
+  "schema": "firepulse.opportunity-inputs/v1",
+  "status": "candidate-files-not-scientifically-validated",
+  "scope": "Ajloun daytime acquisition pair 2023-07-14 only; not complete coverage",
+  "files": [
+    {
+      "filename": "MYD14.A2023195.1040.061.2023196115913.hdf",
+      "url": "https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-protected/MYD14.061/MYD14.A2023195.1040.061.2023196115913/MYD14.A2023195.1040.061.2023196115913.hdf",
+      "conceptId": "G2733229627-LPCLOUD",
+      "product": "MYD14",
+      "format": "HDF4",
+      "startUTC": "2023-07-14T10:40:00.000Z",
+      "endUTC": "2023-07-14T10:45:00.000Z",
+      "reportedSizeMB": "0.428275",
+      "expectedSHA256": null,
+      "lineageVerified": false
+    },
+    {
+      "filename": "MYD03.A2023195.1040.061.2023196153018.hdf",
+      "url": "https://data.laadsdaac.earthdatacloud.nasa.gov/prod-lads/MYD03/MYD03.A2023195.1040.061.2023196153018.hdf",
+      "conceptId": "G2735498612-LAADS",
+      "product": "MYD03",
+      "format": "HDF4",
+      "startUTC": "2023-07-14T10:40:00.000Z",
+      "endUTC": "2023-07-14T10:45:00.000Z",
+      "reportedSizeMB": "33.8434247970581",
+      "expectedSHA256": null,
+      "lineageVerified": false
+    },
+    {
+      "filename": "VNP14IMG.A2023195.1036.002.2024079195729.nc",
+      "url": "https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-protected/VNP14IMG.002/VNP14IMG.A2023195.1036.002.2024079195729/VNP14IMG.A2023195.1036.002.2024079195729.nc",
+      "conceptId": "G2921858604-LPCLOUD",
+      "product": "VNP14IMG",
+      "format": "HDF5",
+      "startUTC": "2023-07-14T10:36:00.000Z",
+      "endUTC": "2023-07-14T10:42:00.000Z",
+      "reportedSizeMB": "2.56643486022949",
+      "expectedSHA256": null,
+      "lineageVerified": false
+    },
+    {
+      "filename": "VNP03IMG.A2023195.1036.002.2023195181200.nc",
+      "url": "https://data.laadsdaac.earthdatacloud.nasa.gov/prod-lads/VNP03IMG/VNP03IMG.A2023195.1036.002.2023195181200.nc",
+      "conceptId": "G2735480895-LAADS",
+      "product": "VNP03IMG",
+      "format": "HDF5",
+      "startUTC": "2023-07-14T10:36:00.000Z",
+      "endUTC": "2023-07-14T10:42:00.000Z",
+      "reportedSizeMB": "175.832138061523",
+      "expectedSHA256": null,
+      "lineageVerified": false
+    }
+  ],
+  "requiredAfterFileValidation": [
+    "Native product/QA decoding",
+    "Exact ancillary input-pointer lineage",
+    "Polygon sample inclusion and validated area geometry if area is claimed",
+    "Independent scientific decoding/geometry verification"
+  ],
+  "enableOpportunity": false,
+  "enableCalibration": false,
+  "enableAnomaly": false
+}

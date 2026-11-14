@@ -1,0 +1,75 @@
+/* Localization is a presentation layer: geographic geometry/camera are never mirrored. */
+.language-switch { display:inline-flex; align-items:center; justify-content:center; gap:7px; min-height:36px; min-width:84px; padding:7px 10px; border:1px solid #485158; background:#15181d; color:#eae8e2; font:500 12px/1.5 'Segoe UI', Tahoma, sans-serif; cursor:pointer; border-radius:2px; white-space:nowrap; }
+.language-switch:hover { border-color:#7bcad1; color:#7bcad1; }
+.language-switch:focus-visible { outline:2px solid #7bcad1; outline-offset:4px; }
+.atlas-masthead > .language-switch, .calendar-masthead > .language-switch { position:absolute; inset-inline-end:151px; top:20px; }
+.atlas-screen .atlas-masthead { padding-inline-end:260px; gap:18px; }
+.burning-calendar .calendar-masthead { padding-inline-end:260px; }
+.earth-header > .language-switch { order:4; flex-shrink:0; }
+:root[lang=ar] { --atlas-font:'Segoe UI', Tahoma, Arial, sans-serif; --atlas-display:'Segoe UI', Tahoma, Arial, sans-serif; --atlas-mono:'Segoe UI', Tahoma, Arial, sans-serif; }
+html[lang=ar] body, html[lang=ar] button, html[lang=ar] input, html[lang=ar] select, html[lang=ar] .earth-landing { font-family:'Segoe UI', Tahoma, Arial, sans-serif; }
+html[lang=ar] :is(h1,h2,h3,p,span,small,strong,label,legend,button,th,td,a) { letter-spacing:normal; }
+html[lang=ar] :is(.atlas-brand,.atlas-window,.observation-row,.calendar-day,.lab-table th,.lab-table td) { text-align:start; }
+html[lang=ar] :is(.atlas-overline,.atlas-stamp,.ledger-provenance,.ledger-summary small,.temporal-caption,.calendar-footer) { line-height:1.8; }
+html[lang=ar] .atlas-brand > span { direction:ltr; text-align:start; }
+html[lang=ar] .atlas-brand small { direction:rtl; font-size:8px; }
+html[lang=ar] .atlas-register { border-left:0; border-right:1px solid var(--atlas-line); padding-left:0; padding-right:16px; }
+html[lang=ar] .atlas-index-nav { right:auto; left:28px; }
+html[lang=ar] .atlas-index-sheet { right:auto; left:0; text-align:start; }
+html[lang=ar] .atlas-index-sheet button { text-align:start; }
+html[lang=ar] .atlas-masthead { padding-inline-start:28px; }
+html[lang=ar] .atlas-region select { padding-inline:0 15px; }
+html[lang=ar] .calendar-masthead > div { border-left:0; border-right:1px solid var(--atlas-line); padding-left:0; padding-right:25px; }
+html[lang=ar] .calendar-masthead > .atlas-text-button { margin-left:0; margin-right:auto; }
+html[lang=ar] .calendar-month-nav svg, html[lang=ar] .atlas-index-sheet button > svg, html[lang=ar] .ledger-back > svg { transform:scaleX(-1); }
+html[lang=ar] .calendar-heading h1 { line-height:1.4; }
+html[lang=ar] .calendar-grid th { font-size:11px; }
+html[lang=ar] .calendar-day small { font-size:9px; }
+html[lang=ar] .calendar-frp-summary dd { margin-inline-start:0; }
+html[lang=ar] .earth-editorial { text-align:right; width:min(44vw,630px); }
+html[lang=ar] .earth-editorial h1 { font-family:var(--atlas-display); font-size:clamp(38px,4.6vw,76px); line-height:1.5; }
+html[lang=ar] .earth-title-line { padding-block:.08em; }
+html[lang=ar] .earth-description { margin-left:auto; margin-right:0; }
+html[lang=ar] .earth-edition { margin:0 auto 0 0; }
+html[lang=ar] .earth-wordmark { direction:ltr; }
+html[lang=ar] .earth-wordmark small { direction:rtl; font-size:11px; }
+html[lang=ar] .earth-kicker { font-size:11px; }
+html[lang=ar] .earth-destination { flex-wrap:wrap; font-size:9px; }
+html[lang=ar] .earth-destination > span { font-size:9px; }
+html[lang=ar] .earth-footer :is(p,a), html[lang=ar] .earth-scene-caption p { font-size:10px; line-height:1.8; }
+html[lang=ar] .earth-header { gap:20px; }
+html[lang=ar] .brief-summary { font-family:var(--atlas-font); text-align:start; line-height:2; }
+/* UTC ISO strings, coordinates, native inputs and instrument identifiers retain order. */
+:is(input[type=date],input[type=number],input[type=range],.record-data,.record-frp,.atlas-view-label > span:last-child,.atlas-window strong,.temporal-dates,.record-power,time,.season-orbit svg,.source-bars) { direction:ltr; unicode-bidi:isolate; }
+.metadata-grid dd { unicode-bidi:plaintext; overflow-wrap:anywhere; }
+.atlas-popup-row > span:last-child { direction:ltr; unicode-bidi:isolate; }
+html[lang=ar] .atlas-popup-row > span:first-child { flex:1; min-width:0; }
+html[lang=ar] .atlas-popup-row > span:last-child { flex:0 1 54%; min-width:0; overflow-wrap:anywhere; }
+html[lang=ar] .ledger-empty > p { font-size:12px; }
+@media (max-width:1250px) { .atlas-screen .atlas-masthead { grid-template-columns:150px 115px minmax(155px,1fr) minmax(155px,1fr); gap:12px; } }
+@media (max-width:1100px) and (min-width:761px) { .atlas-screen .atlas-masthead { grid-template-columns:150px minmax(150px,1fr) minmax(145px,1fr); } .atlas-screen .atlas-register { display:none; } }
+@media (max-width:760px) {
+  .atlas-index-nav .atlas-index-trigger { width:80px; padding-inline:7px 0; gap:7px; }
+  .atlas-index-nav .atlas-index-trigger small { display:none; }
+  .atlas-screen .atlas-masthead { grid-template-columns:1fr 1fr; padding-inline:18px; gap:0 15px; }
+  .atlas-masthead > .language-switch { top:10px; inset-inline-end:109px; min-width:72px; padding:6px; font-size:11px; }
+  .atlas-masthead .atlas-brand > span { font-size:16px; }
+  .atlas-masthead .atlas-brand { gap:6px; width:max-content; max-width:calc(100vw - 205px); }
+  .atlas-masthead .atlas-brand > svg { width:23px; }
+  .atlas-masthead .atlas-brand small { max-width:105px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .burning-calendar .calendar-masthead { padding-inline:18px 195px; }
+  .calendar-masthead .calendar-brand { gap:6px; flex-shrink:0; }
+  .calendar-masthead .calendar-brand > span { font-size:16px; }
+  .calendar-masthead .calendar-brand > svg { width:23px; }
+  .calendar-masthead > .language-switch { inset-inline-end:109px; min-width:72px; padding:6px; font-size:11px; }
+  html[lang=ar] .atlas-index-nav { left:18px; }
+  html[lang=ar] .calendar-grid th { font-size:9px; }
+  html[lang=ar] .calendar-day small { font-size:8px; }
+  .earth-header { flex-wrap:wrap; gap:12px; }
+  .earth-header > .language-switch { order:0; margin-inline-start:auto; }
+  html[lang=ar] .earth-editorial h1 { font-size:clamp(32px,8vw,48px); }
+  html[lang=ar] .earth-editorial { width:88%; }
+  html[lang=ar] .earth-footer :is(p,a) { font-size:9px; }
+}
+@media print { .language-switch { display:none !important; } }
+@media(max-width:360px){.atlas-masthead .atlas-brand>svg{display:none}.atlas-masthead .atlas-brand>span{font-size:14px}.atlas-screen .atlas-masthead{padding-inline:12px}.atlas-masthead .atlas-brand{max-width:105px}}

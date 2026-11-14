@@ -1,0 +1,13 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+const required = ['dist/index.html', 'dist/jordan-adm1.geojson', 'dist/earth/blue-marble-2048.png', 'vercel.json', 'api/[...path].js'];
+for (const filename of required) assert.ok(fs.existsSync(filename), `Missing release asset: ${filename}`);
+const assets = fs.readdirSync('dist/assets');
+assert.ok(assets.some(name => /^maplibre-gl-worker-.*\.mjs$/.test(name)), 'MapLibre worker must be bundled');
+for (const filename of assets.filter(name => /\.(js|mjs)$/.test(name))) assert.ok(!/FIRMS_MAP_KEY|FIREPULSE_DATA_API_ORIGIN/.test(fs.readFileSync(path.join('dist/assets', filename), 'utf8')), 'Server configuration identifier found in browser bundle');
+const config = JSON.parse(fs.readFileSync('vercel.json', 'utf8'));
+assert.equal(config.framework, 'vite'); assert.equal(config.outputDirectory, 'dist');
+assert.ok(config.functions['api/[...path].js'].excludeFiles.includes('**/.env*'));
+assert.ok(config.functions['api/[...path].js'].excludeFiles.includes('server/data/**'));
+console.log('PASS static release assets, bundled map worker, server/client configuration separation and Function packaging safeguards. Deployment itself is not verified.');

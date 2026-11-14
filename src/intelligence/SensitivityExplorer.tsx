@@ -1,0 +1,22 @@
+import { motion } from 'motion/react';
+import type { ReactNode } from 'react';
+import type { associateSensors, MatchOptions } from '../../shared/evidence';
+import { useMotionPreference } from '../motion/useMotionPreference';
+import { t } from '../i18n/translate';
+import './sensitivity.css';
+
+type Matching = ReturnType<typeof associateSensors>;
+export default function SensitivityExplorer({ current, reference, onReference, trace }: {
+  current: Matching; reference: Matching; onReference: (options: MatchOptions) => void; trace: (id: string) => ReactNode;
+}) {
+  const reduced = useMotionPreference();
+  return <section className="sensitivity-explorer" aria-labelledby="sensitivity-title">
+    <header><span className="atlas-overline">{t('HARMONIZATION / SENSITIVITY')}</span><h3 id="sensitivity-title">{t('How much does the threshold change the evidence?')}</h3><p>{t('Adjust the matching radius and UTC tolerance above. Compare the current graph with a pinned reference on the same filtered observations.')}</p></header>
+    <div className="sensitivity-comparison lab-table-scroll" tabIndex={0} role="region" aria-label={t('Threshold comparison. These counts describe candidate associations, not fires.')}><table><caption>{t('Threshold comparison. These counts describe candidate associations, not fires.')}</caption><thead><tr><th scope="col">{t('Threshold setting')}</th><th scope="col">{t('Candidate pairs')}</th><th scope="col">{t('Unique participating observations')}</th><th scope="col">{t('Connected association groups')}</th></tr></thead><tbody>{([{ label: 'Pinned reference', result: reference, key: 'reference' }, { label: 'Current thresholds', result: current, key: 'current' }]).map(({ label, result, key }) => <tr key={key} data-sensitivity={key}><th scope="row">{t(label)}<small dir="ltr">{result.methodology.distanceKm} km / {result.methodology.minutes} min</small></th>{[result.pairs.length, result.uniqueObservationCount, result.groupCount].map((value, index) => <td key={index} data-metric={t(['Candidate pairs', 'Unique participating observations', 'Connected association groups'][index])}><motion.span key={value} initial={{ opacity: reduced ? 1 : .5 }} animate={{ opacity: 1 }} transition={{ duration: reduced ? 0 : .15 }}>{value}</motion.span></td>)}</tr>)}</tbody></table></div>
+    <div className="sensitivity-actions"><button onClick={() => onReference({ distanceKm: current.methodology.distanceKm, minutes: current.methodology.minutes })}>{t('Pin current thresholds')}</button><button onClick={() => onReference({ distanceKm: 1, minutes: 60 })}>{t('Reset reference to 1 km / 60 min')}</button><span role="status">{t('Reference recalculates when the observation scope changes.')}</span></div>
+    <p className="sensitivity-caveat">{t('A connected group is a chain of possible cross-sensor associations. Its endpoints may exceed the selected thresholds. Groups are not independently confirmed events; larger thresholds do not imply better evidence.')}</p>
+    <div className="sensitivity-groups">{current.groups.slice(0,25).map((group,index) => <details key={group.id} className="sensitivity-group"><summary><span className="sensitivity-group-number">{String(index+1).padStart(2,'0')}</span><span>{t('Association group')}<small>{group.pairCount} {t('Candidate pairs')} · {group.observationCount} {t('Unique participating observations')}</small></span><span className="sensitivity-sensors" dir="ltr">{group.sensorCounts.MODIS} MODIS / {group.sensorCounts.VIIRS} VIIRS</span></summary><p>{t('Largest direct-edge deltas')} <bdi>{group.maxEdgeDistanceKm.toFixed(3)} km / {group.maxEdgeMinutes.toFixed(1)} min</bdi></p><div className="sensitivity-edge-list">{group.pairs.slice(0,100).map(edge => <div key={JSON.stringify([edge.modisId,edge.viirsId])}><strong dir="ltr">{edge.distanceKm.toFixed(3)} km / {edge.deltaMinutes.toFixed(1)} min</strong><code>{edge.modisId}</code><code>{edge.viirsId}</code></div>)}</div><h4>{t('Original observations and sensor provenance')}</h4>{group.memberIds.slice(0,100).map(trace)}</details>)}</div>
+    {!current.groups.length && <p>{t('No connected candidate groups at these thresholds. Coverage and actual fire activity remain unknown.')}</p>}
+    <p className="sensitivity-note">{t('Display limit: 25 groups and 100 edges or observations per disclosure. Export includes the full graph and reference comparison. Unique observations count each source ID once; this is not a sensor-normalized activity measure.')}</p>
+  </section>;
+}

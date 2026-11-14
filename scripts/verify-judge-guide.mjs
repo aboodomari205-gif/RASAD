@@ -1,0 +1,35 @@
+import assert from 'node:assert/strict';
+export async function verifyJudgeGuide({evaluate,waitFor,navigate,send}) {
+ await navigate('Evidence Engine');await waitFor('!!document.getElementById("start-judge-guide")');
+ const click=label=>evaluate(`[...document.querySelectorAll('.judge-guide button')].find(b=>b.textContent===${JSON.stringify(label)}).click()`);
+ await click('Start guided demonstration');await waitFor('document.querySelector(".judge-guide h3")?.textContent==="The problem"');
+ await click('Next');await waitFor('document.querySelector(".guide-action").textContent.includes("5 MODIS / 31 VIIRS")');
+ await click('Inspect source in Atlas');await waitFor('!!document.querySelector(".atlas-popup-title") && !document.querySelector(".evidence-engine")');
+ assert.ok(await evaluate('document.querySelector(".maplibregl-popup").textContent.includes("NASA FIRMS")'));
+ await navigate('Evidence Engine');await waitFor('document.querySelector(".judge-guide h3")?.textContent==="Real Ajloun observations"');
+ await click('Next');await waitFor('document.querySelector("[data-sensitivity=current] td")?.textContent==="5"');
+ await click('Inspect candidate associations');assert.equal(await evaluate('document.activeElement.id'),'candidate-evidence');
+ await click('Next');await click('Explore threshold settings');assert.equal(await evaluate('document.activeElement.id'),'agreement-lab');
+ const setting=value=>evaluate(`[...document.querySelectorAll('[data-setting]')].find(b=>b.dataset.setting===${JSON.stringify(value)}).click()`);
+ await setting('0.25/6');await waitFor('document.querySelector("[data-sensitivity=current] td").textContent==="0"');
+ await setting('1/60');await waitFor('document.querySelector("[data-sensitivity=current] td").textContent==="5"');
+ await click('Next');await click('Read evidence verdict');assert.equal(await evaluate('document.activeElement.id'),'coverage-gate');
+ for(const gate of ['anomaly','zero'])assert.equal(await evaluate(`document.querySelector('[data-gate=${gate}]').dataset.verdict`),'unavailable');
+ await click('Next');
+ await evaluate('(()=>{window.originalBlobURL=URL.createObjectURL;URL.createObjectURL=blob=>{window.judgeExport=blob;return window.originalBlobURL(blob)};})()');
+ await click('Export scientific comparison JSON');
+ const brief=await evaluate('JSON.parse(await window.judgeExport.text())');
+ assert.equal(brief.schema,'firepulse.scientific-comparison/v1');assert.equal(brief.observations.length,36);assert.equal(brief.matching.pairs.length,5);assert.equal(brief.matching.groupCount,1);assert.equal(brief.datasets.length,2);assert.equal(brief.methodology.validated,false);
+ await evaluate('URL.createObjectURL=window.originalBlobURL');
+ await click('Back');assert.equal(await evaluate('document.querySelector(".judge-guide h3").textContent'),'Evidence verdict');
+ await click('Restart');assert.equal(await evaluate('document.querySelector(".judge-guide h3").textContent'),'The problem');
+ await send('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});
+ await evaluate('document.querySelector(".intelligence-workspace .language-switch").click()');await waitFor('document.documentElement.dir==="rtl"');
+ assert.equal(await evaluate('document.querySelector(".judge-guide h3").textContent'),'المشكلة');assert.ok(await evaluate('document.documentElement.scrollWidth<=innerWidth+1'));
+ await evaluate('document.querySelector(".judge-guide").scrollIntoView()');
+ const {writeFile}=await import('node:fs/promises');const shot=await send('Page.captureScreenshot',{format:'png'});await writeFile('.checkpoints/sprint4-guide-mobile.png',Buffer.from(shot.data,'base64'));
+ await evaluate('document.querySelector(".intelligence-workspace .language-switch").click()');await click('Exit guide');await waitFor('document.activeElement.id==="start-judge-guide"');
+ await send('Emulation.setDeviceMetricsOverride',{width:1440,height:1000,deviceScaleFactor:1,mobile:false});
+ await evaluate('document.querySelector(".agreement-lab").scrollIntoView()');const desktop=await send('Page.captureScreenshot',{format:'png'});await writeFile('.checkpoints/sprint4-lab-desktop.png',Buffer.from(desktop.data,'base64'));
+ console.log('PASS six-step judge guide, source/map handoff, thresholds, gate, export, back/restart/exit, Arabic mobile and focus');
+}

@@ -1,0 +1,9 @@
+﻿.observed-periods .history-comparison-controls label { min-width:0;max-width:100%;flex:1 1 180px; }
+.observed-periods select { width:100%;min-width:0;max-width:100%; }
+.observed-periods .lab-actions { display:flex;flex-wrap:wrap;gap:10px; }
+.observed-periods button[aria-pressed=true] { border-color:var(--atlas-cyan);color:var(--atlas-cyan); }
+.observed-periods :is(p,small,bdi) { overflow-wrap:anywhere; }
+.observed-period-detail { margin-block:20px;padding-block:18px;border-block:1px solid var(--atlas-line); }
+.observed-period-detail:focus-visible { outline:2px solid var(--atlas-cyan);outline-offset:4px; }
+.observed-source-records details { padding-block:12px;border-bottom:1px solid var(--atlas-line); }
+.observed-periods .lab-table-scroll { max-width:100%; }

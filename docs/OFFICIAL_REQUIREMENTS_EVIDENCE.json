@@ -1,0 +1,40 @@
+{
+  "auditDate": "2026-11-14",
+  "timezone": "Asia/Amman",
+  "officialSummary": {
+    "url": "https://www.spaceappschallenge.org/2026/challenges/modis-and-viirs-hot-spots/",
+    "access": "Official-domain search-index result retrieved; direct web open HTTP 502; local Node direct fetch TypeError",
+    "quote": "web application that harmonizes these records into a burning activity calendar",
+    "fullDetailsRetrieved": false,
+    "officialResourceListRetrieved": false
+  },
+  "alternativeOfficialURL": {
+    "url": "https://www.spaceappschallenge.org/2026/challenges/harmonization-of-modis-and-viirs-hot-spots/",
+    "access": "Indexed title found; live open HTTP 502; local fetch TypeError"
+  },
+  "archiveAttempt": {
+    "url": "https://web.archive.org/cdx/search/cdx?url=spaceappschallenge.org/2026/challenges/modis-and-viirs-hot-spots/&output=json&filter=statuscode:200&collapse=digest",
+    "access": "Not accessible via web tool; no successful snapshot identified"
+  },
+  "secondary": {
+    "url": "https://hackathlone.com/challenges/modis-and-viirs-hot-spots",
+    "access": "Retrieved local-event reproduction; NOT independently authenticated verbatim official detail",
+    "sections": [
+      "Summary",
+      "Background",
+      "Objectives",
+      "Potential considerations",
+      "NASA data and resources"
+    ]
+  },
+  "excluded": [
+    {
+      "url": "https://spacedata.swapniltamse.com/challenges/modis-viirs-hot-spots/",
+      "reason": "Third-party suggested dataset list explicitly not official resource list"
+    },
+    {
+      "url": "https://staging-web-v2.spaceappschallenge.org/",
+      "reason": "Staging search results include mismatched challenge content; excluded as authoritative requirements"
+    }
+  ]
+}

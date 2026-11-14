@@ -1,0 +1,97 @@
+{
+  "method": "Python stdlib counters and exhaustive Haversine/UTC matching; detection-only",
+  "regions": {
+    "ajloun": {
+      "count": 143,
+      "selectedObservedMonths": {
+        "2020-10": {
+          "delivered": 2,
+          "bySensor": {
+            "MODIS": 1,
+            "VIIRS": 1
+          },
+          "byProcessing": {
+            "standard": 2
+          }
+        },
+        "2021-07": {
+          "delivered": 1,
+          "bySensor": {
+            "VIIRS": 1
+          },
+          "byProcessing": {
+            "standard": 1
+          }
+        },
+        "2023-07": {
+          "delivered": 18,
+          "bySensor": {
+            "VIIRS": 16,
+            "MODIS": 2
+          },
+          "byProcessing": {
+            "standard": 18
+          }
+        },
+        "2026-09": {
+          "delivered": 5,
+          "bySensor": {
+            "VIIRS": 5
+          },
+          "byProcessing": {
+            "nrt": 5
+          }
+        }
+      },
+      "independentBaselinePairCheck": 15,
+      "checkedScope": "all delivered"
+    },
+    "northern-jordan": {
+      "count": 6859,
+      "selectedObservedMonths": {
+        "2020-10": {
+          "delivered": 67,
+          "bySensor": {
+            "VIIRS": 60,
+            "MODIS": 7
+          },
+          "byProcessing": {
+            "standard": 67
+          }
+        },
+        "2021-07": {
+          "delivered": 67,
+          "bySensor": {
+            "VIIRS": 65,
+            "MODIS": 2
+          },
+          "byProcessing": {
+            "standard": 67
+          }
+        },
+        "2023-07": {
+          "delivered": 120,
+          "bySensor": {
+            "VIIRS": 108,
+            "MODIS": 12
+          },
+          "byProcessing": {
+            "standard": 120
+          }
+        },
+        "2026-09": {
+          "delivered": 111,
+          "bySensor": {
+            "VIIRS": 108,
+            "MODIS": 3
+          },
+          "byProcessing": {
+            "nrt": 111
+          }
+        }
+      },
+      "independentBaselinePairCheck": 53,
+      "checkedScope": "2023"
+    }
+  }
+}

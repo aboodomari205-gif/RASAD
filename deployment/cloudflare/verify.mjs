@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import worker from '../../releases/cloudflare-pages/_worker.js';
+const env={ASSETS:{fetch:()=>new Response('asset')}};
+const get=async p=>{const r=await worker.fetch(new Request('https://firepulse.test'+p),env);return {status:r.status,body:await r.json()};};
+assert.equal((await get('/api/observations?mode=ajloun')).body.features.length,36);
+assert.equal((await get('/api/observations?mode=northern-jordan')).body.features.length,0);
+for(const [sensor,count]of [['MODIS',5],['VIIRS',31]])assert.equal((await get('/api/history/observations?region=ajloun&sensor='+sensor)).body.observations.length,count);
+assert.equal((await get('/api/history/coverage')).body.coverageStatus,'unknown');
+assert.equal((await get('/api/history/observations?region=ajloun&from=2012-12-21&to=2012-12-21')).body.observations.length,0);
+assert.equal((await get('/api/history/observations?datasetId=missing')).status,404);
+assert.equal((await get('/api/history/observations?sensor=bad')).status,400);
+assert.equal((await get('/api/hotspots')).status,503);
+assert.equal((await get('/api/history/comparison?period=month')).body.comparison.methodology.validatedNormalization,false);
+assert.equal((await get('/api/history/aggregates?period=year')).status,200);
+assert.equal(await (await worker.fetch(new Request('https://firepulse.test/'),env)).text(),'asset');
+console.log('PASS bundled Worker: 36 Ajloun / 7 fixture; sensor/date filters; aggregates/comparison/coverage; errors and asset routing. Cloudflare hosting not yet verified.');
