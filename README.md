@@ -4,13 +4,27 @@
 
 RASAD brings authentic MODIS and VIIRS thermal detections onto common spatial and UTC supports while retaining sensor, platform, product, processing, confidence and uncertainty. MODIS (~1 km nominal) and VIIRS (~375 m nominal) have different detection sensitivity; adding their raw counts does not create a comparable fire-history series. Hotspots are not unique fires, perimeters or verified ignition events.
 
+## Final NASA source delivery
+
+**Full Project Link: https://github.com/aboodomari205-gif/FIREPULSE**
+
+This public repository contains the complete current RASAD source, original-style interactive MapLibre map, authentic Brazil national/pilot boundary controls, bilingual navigation, Burning Calendar, AI Research Lab, methods, tests and small reproducible real research artifacts. The supplied blue Trassad artwork is the current logo; earlier artwork is preserved.
+
+GitHub hosts **source code**, not a deployed live application. No public live app URL is verified. Native maps/history require the original ignored local index or a separately hosted durable data API. The multi-GB archive, raw NASA deliveries, credentials, dependencies, build output and private checkpoints are excluded.
+
+Default camera: Mato Grosso [-57,-14,-55,-12]. Initial shared window: August 1-31, 2024; selected observation day: August 24, 2024. Source identity, actual data, H3/equal-area support, provenance and model limitations remain unchanged. The map-specific historical appearance is restored from checkpoint ff6c9d3 without reverting scientific data plumbing.
+
+[Final Brazil overview](docs/screenshots/final-brazil-overview.png) | [Pilot observations and overlay](docs/screenshots/final-pilot-boundary.png) | [Arabic mobile controls and current logo](docs/screenshots/final-boundaries-mobile-ar.png)
+
+The separate seven-slide PDF is [submission/RASAD_NASA_DEMO_7_SLIDES.pdf](submission/RASAD_NASA_DEMO_7_SLIDES.pdf). Its public demo link is distinct from the full project/source link. No NASA portal submission is claimed. Earlier access-blocker reports are retained as dated history and superseded by this final delivery.
+
 ## Interactive map restored - final emergency delivery
 
 The DEFAULT Harmonization Lab starts with the actual large MapLibre interactive map, satellite imagery, genuine Brazil pilot detections, source filters, acquisition timeline/playback and same-map native/common-support H3 or equal-area views. No introductory panel is placed before the map. AI calibration is a future opportunity-aware DATA-BLOCKED pipeline; the unchanged actual FRP model is a secondary expandable experiment.
 
 Current proof, exact changed files and restored-map screenshots: [map restoration report](docs/RASAD_MAP_RESTORATION_REPORT.md). Submission copy: [SUBMISSION_READY.md](SUBMISSION_READY.md). Separate seven-slide PDF: [submission/RASAD_NASA_DEMO_7_SLIDES.pdf](submission/RASAD_NASA_DEMO_7_SLIDES.pdf).
 
-The latest requested FIREPULSE remote is inaccessible (Repository not found); do not imply the final correction has been pushed there. The prior RASAD public source remains available. Original local index/raw data are excluded from GitHub.
+The final intended source repository is the public FIREPULSE repository linked above. Original local index/raw data remain excluded from GitHub.
 
 ## Four focused sections
 
@@ -23,7 +37,7 @@ The default home is **Harmonization Lab** (`/#harmonization-lab`). There is no c
 
 Arabic RTL/English LTR, mobile navigation and the original RASAD logo remain. Generic risk, dispatch/evacuation, environmental dashboards, redundant analytics pages and decorative Earth entry are unmounted from the visible product. Their source and original data are preserved. Experimental ML is prominently labeled **not validated MODIS-VIIRS calibration, downscaling, reconstruction or wildfire prediction**.
 
-Source delivery: https://github.com/aboodomari205-gif/RASAD. No application hosting or NASA submission was performed.
+Source delivery: https://github.com/aboodomari205-gif/FIREPULSE. No application hosting or NASA submission was performed.
 
 ## Real data and pilot
 

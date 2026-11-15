@@ -20,9 +20,7 @@ export default function AtlasTimeline({
   const reduced = useMotionPreference();
   const chips=useRef<HTMLDivElement>(null);
   const datesKey=dates.join(',');
-  const previousDate=[...dates].reverse().find(d=>selected!=='all'&&selected!=='range'&&d<selected);
-  const followingDate=dates.find(d=>selected==='all'||selected==='range'||d>selected);
-  useEffect(()=>{if(chips.current&&getComputedStyle(chips.current).visibility!=='hidden')chips.current.querySelector('.is-active')?.scrollIntoView({block:'nearest',inline:'center',behavior:'instant'});},[selected,playbackScope,year,datesKey]);
+  useEffect(()=>{const strip=chips.current,active=strip?.querySelector<HTMLElement>('.is-active');if(strip&&active)strip.scrollLeft=active.offsetLeft-strip.offsetLeft-strip.clientWidth/2+active.clientWidth/2;},[selected,datesKey]);
   const signature=JSON.stringify([playbackScope,year,dates]);
   const [playback,setPlayback]=useState<string|null>(null);
   const playing=playback===signature&&status==='ready'&&dates.length>1;
@@ -66,12 +64,6 @@ export default function AtlasTimeline({
         </button>
       </div>
       <div className="temporal-workspace">
-        <div className="rasad-date-navigation">
-          <button aria-label={t('Previous delivered date')} disabled={!previousDate||status!=='ready'} onClick={()=>previousDate&&selectDate(previousDate)}><AtlasGlyph name="back" size={16}/></button>
-          <label>{t('UTC date')}<input id="rasad-date-select" aria-label={t('UTC date')} type="date" value={/^\d{4}-\d{2}-\d{2}$/.test(selected)?selected:''} min={year?year+'-01-01':dates[0]} max={year?year+'-12-31':dates.at(-1)} onChange={e=>{if(e.target.value)selectDate(e.target.value);}}/></label>
-          <button aria-label={t('Next delivered date')} disabled={!followingDate||status!=='ready'} onClick={()=>followingDate&&selectDate(followingDate)}><AtlasGlyph name="arrow" size={16}/></button>
-          <button className="rasad-latest-date" disabled={!dates.length||status!=='ready'} onClick={()=>selectDate(dates.at(-1)!)}>{t('Latest delivered date')}</button>
-        </div>
         {onYear&&years.length>0&&<div className="atlas-year-controls">
           <span>{t('Historical year / UTC')}</span>
           <button aria-label={t('Previous observed year')} disabled={yearIndex<=0} onClick={()=>{pause();onYear(years[yearIndex-1]);}}>&lsaquo;</button>
@@ -87,7 +79,7 @@ export default function AtlasTimeline({
         {t(
           dates.length ? (
             <>
-              <div ref={chips} className="temporal-dates">
+              <div className="temporal-dates" ref={chips}>
                 <button
                   title={years.length?t("All observed dates in selected year"):undefined}
                   className={`date-chip ${selected === "all" ? "is-active" : ""}`}

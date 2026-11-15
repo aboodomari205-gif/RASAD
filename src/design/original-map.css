@@ -1,0 +1,1994 @@
+/* Original FIREPULSE map declarations from ff6c9d3; selectors scoped to the RASAD map panel only. */
+.app-shell .main-content .restored-map-panel .atlas-screen {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  height: 100dvh;
+  min-height: 680px;
+  overflow: hidden;
+  background: var(--atlas-void);
+  color: var(--atlas-ivory);
+}
+.app-shell .main-content .restored-map-panel .atlas-map {
+  position: absolute;
+  inset: 76px 0 0;
+  width: 100%;
+  height: auto;
+}
+.app-shell .main-content .restored-map-panel .atlas-vignette {
+  position: absolute;
+  inset: 76px 0 0;
+  pointer-events: none;
+  z-index: 1;
+  background:
+    linear-gradient(90deg, #0b0d10b8, #0b0d1000 35%),
+    linear-gradient(
+      180deg,
+      #0b0d10a6,
+      transparent 30%,
+      transparent 66%,
+      #0b0d10e6
+    );
+}
+.app-shell .main-content .restored-map-panel .atlas-masthead {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 76px;
+  display: grid;
+  grid-template-columns:
+    185px 150px minmax(185px, 1fr) minmax(180px, 1fr)
+    minmax(150px, 1fr);
+  align-items: center;
+  gap: 25px;
+  padding: 0 172px 0 28px;
+  border-bottom: 1px solid var(--atlas-line);
+  background: var(--atlas-void);
+  z-index: 8;
+}
+.app-shell .main-content .restored-map-panel .atlas-brand {
+  display: flex;
+  gap: 11px;
+  align-items: center;
+  text-align: left;
+  color: var(--atlas-ivory);
+  background: none;
+  border: 0;
+  padding: 0;
+}
+.app-shell .main-content .restored-map-panel .atlas-brand > svg {
+  color: var(--atlas-coral);
+}
+.app-shell .main-content .restored-map-panel .atlas-brand > span {
+  font: 600 19px/1 var(--atlas-display);
+  letter-spacing: 0.8px;
+}
+.app-shell .main-content .restored-map-panel .atlas-brand > span > span {
+  color: var(--atlas-coral);
+}
+.app-shell .main-content .restored-map-panel .atlas-brand small {
+  font: 6px/1.5 var(--atlas-mono);
+  letter-spacing: 1.6px;
+  display: block;
+  color: var(--atlas-muted);
+  margin-top: 8px;
+}
+.app-shell .main-content .restored-map-panel .atlas-register {
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  gap: 5px 10px;
+  border-left: 1px solid var(--atlas-line);
+  padding-left: 20px;
+}
+.app-shell .main-content .restored-map-panel .atlas-register > span {
+  grid-row: 1 / 3;
+  color: var(--atlas-coral);
+  font: 10px/1.5 var(--atlas-mono);
+}
+.app-shell .main-content .restored-map-panel .atlas-register > strong {
+  font-size: 9px;
+  font-weight: 550;
+  letter-spacing: 1.3px;
+  white-space: nowrap;
+}
+.app-shell .main-content .restored-map-panel .atlas-register > small {
+  font: 6px/1.5 var(--atlas-mono);
+  color: var(--atlas-dim);
+  white-space: nowrap;
+}
+.app-shell .main-content .restored-map-panel .atlas-region,
+.app-shell .main-content .restored-map-panel .atlas-source,
+.app-shell .main-content .restored-map-panel .atlas-window {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 7px;
+  min-width: 0;
+}
+.app-shell .main-content .restored-map-panel .atlas-masthead .atlas-overline {
+  font-size: 7px;
+  letter-spacing: 1.15px;
+  color: var(--atlas-dim);
+}
+.app-shell .main-content .restored-map-panel .atlas-region select {
+  width: 100%;
+  font-size: 11px;
+  padding: 0 15px 0 0;
+  color: var(--atlas-ivory);
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  text-overflow: ellipsis;
+}
+.app-shell .main-content .restored-map-panel .atlas-region select option {
+  background: var(--atlas-graphite);
+  color: var(--atlas-ivory);
+}
+.app-shell .main-content .restored-map-panel .atlas-source strong,
+.app-shell .main-content .restored-map-panel .atlas-window strong {
+  font-size: 10px;
+  font-weight: 450;
+  white-space: nowrap;
+}
+.app-shell .main-content .restored-map-panel .atlas-window {
+  background: none;
+  border: 0;
+  padding: 0;
+  color: var(--atlas-ivory);
+  text-align: left;
+}
+.app-shell .main-content .restored-map-panel .atlas-window:hover strong {
+  color: var(--atlas-cyan);
+}
+.app-shell .main-content .restored-map-panel .atlas-editorial {
+  position: absolute;
+  top: 120px;
+  left: 32px;
+  z-index: 3;
+  pointer-events: none;
+  max-width: 260px;
+}
+.app-shell .main-content .restored-map-panel .atlas-editorial .atlas-overline {
+  font-size: 8px;
+  color: #c3c8c7;
+}
+.app-shell .main-content .restored-map-panel .atlas-editorial .atlas-overline b {
+  color: var(--atlas-coral);
+  margin: 0 7px;
+  font-weight: 400;
+}
+.app-shell .main-content .restored-map-panel .atlas-editorial h1 {
+  font: 400 clamp(40px, 4.3vw, 62px)/1.13 var(--atlas-display);
+  letter-spacing: -0.075em;
+  margin: 12px 0 13px;
+}
+.app-shell .main-content .restored-map-panel .atlas-editorial h1 > span {
+  color: var(--atlas-coral);
+}
+.app-shell .main-content .restored-map-panel .atlas-stamp {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  color: #e0e0d8;
+  font: 7px/1.6 var(--atlas-mono);
+  letter-spacing: 1px;
+}
+.app-shell .main-content .restored-map-panel .atlas-stamp > span {
+  width: 5px;
+  height: 5px;
+  border: 1px solid var(--atlas-cyan);
+  transform: rotate(45deg);
+}
+.app-shell .main-content .restored-map-panel .atlas-stamp.is-fixture {
+  color: #ffbaaa;
+}
+.app-shell .main-content .restored-map-panel .atlas-stamp.is-fixture > span {
+  border-color: var(--atlas-coral);
+  background: var(--atlas-coral);
+}
+.app-shell .main-content .restored-map-panel .atlas-editorial > p {
+  white-space: pre-line;
+  color: #b8bcb9;
+  font-size: 11px;
+  line-height: 1.85;
+  margin-top: 22px;
+}
+.app-shell .main-content .restored-map-panel .atlas-tool-spine {
+  position: absolute;
+  left: 28px;
+  top: 355px;
+  display: flex;
+  flex-direction: column;
+  background: #111419f5;
+  border: 1px solid #4a5055;
+  z-index: 7;
+  width: 46px;
+  padding: 4px 0;
+}
+.app-shell .main-content .restored-map-panel .atlas-tool {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: var(--atlas-tool-size);
+  height: 42px;
+  border: 0;
+  color: #c7cbc9;
+  background: transparent;
+}
+.app-shell .main-content .restored-map-panel .atlas-tool:hover {
+  color: var(--atlas-ivory);
+  background: var(--atlas-raised);
+}
+.app-shell .main-content .restored-map-panel .atlas-tool.is-active {
+  color: var(--atlas-coral);
+}
+.app-shell .main-content .restored-map-panel .atlas-tool.is-active::before {
+  content: "";
+  position: absolute;
+  left: -1px;
+  top: 12px;
+  bottom: 12px;
+  width: 2px;
+  background: var(--atlas-coral);
+}
+.app-shell .main-content .restored-map-panel .atlas-tool-label {
+  position: absolute;
+  left: 56px;
+  top: 8px;
+  padding: 7px 10px;
+  font-size: 10px;
+  white-space: nowrap;
+  background: var(--atlas-void);
+  border: 1px solid var(--atlas-line);
+  color: var(--atlas-ivory);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.15s;
+}
+.app-shell .main-content .restored-map-panel .atlas-tool:hover .atlas-tool-label,
+.app-shell .main-content .restored-map-panel .atlas-tool:focus-visible .atlas-tool-label {
+  opacity: 1;
+  visibility: visible;
+}
+.app-shell .main-content .restored-map-panel .tool-divider {
+  display: block;
+  height: 1px;
+  margin: 5px 9px;
+  background: var(--atlas-line);
+}
+.app-shell .main-content .restored-map-panel .atlas-filter-count {
+  position: absolute;
+  top: 3px;
+  right: 2px;
+  font: 8px var(--atlas-mono);
+  color: var(--atlas-coral);
+  pointer-events: none;
+}
+.app-shell .main-content .restored-map-panel .atlas-imagery {
+  position: absolute;
+  z-index: 5;
+  bottom: 184px;
+  left: 28px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 14px;
+  background: #111419f5;
+  border: 1px solid #454c52;
+}
+.app-shell .main-content .restored-map-panel .atlas-imagery > svg {
+  color: var(--atlas-muted);
+}
+.app-shell .main-content .restored-map-panel .atlas-imagery > span {
+  color: var(--atlas-dim);
+  font: 7px var(--atlas-mono);
+  letter-spacing: 1px;
+}
+.app-shell .main-content .restored-map-panel .atlas-imagery button {
+  position: relative;
+  padding: 2px 0;
+  color: #a7b0b2;
+  background: none;
+  border: 0;
+  font-size: 10px;
+}
+.app-shell .main-content .restored-map-panel .atlas-imagery button[aria-pressed="true"] {
+  color: var(--atlas-ivory);
+}
+.app-shell .main-content .restored-map-panel .atlas-imagery button[aria-pressed="true"]::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -11px;
+  height: 2px;
+  background: var(--atlas-coral);
+}
+.app-shell .main-content .restored-map-panel .atlas-view-label {
+  position: absolute;
+  bottom: 242px;
+  left: 30px;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+}
+.app-shell .main-content .restored-map-panel .atlas-view-label > span:first-child {
+  font-size: 6px;
+  color: #c1c4bf;
+}
+.app-shell .main-content .restored-map-panel .atlas-view-label > span:last-child {
+  font: 10px var(--atlas-mono);
+  color: #d0d2cc;
+  letter-spacing: 0.5px;
+}
+.app-shell .main-content .restored-map-panel .atlas-view-label b {
+  font-weight: 400;
+  margin: 0 5px;
+  color: var(--atlas-coral);
+}
+.app-shell .main-content .restored-map-panel .atlas-key {
+  position: absolute;
+  bottom: 157px;
+  left: 30px;
+  right: 30px;
+  display: flex;
+  gap: 16px;
+  z-index: 4;
+  pointer-events: none;
+}
+.app-shell .main-content .restored-map-panel .atlas-key > span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #d6d9d1;
+  font: 8px var(--atlas-mono);
+  text-shadow: 0 1px 4px #000;
+}
+.app-shell .main-content .restored-map-panel .atlas-key i {
+  display: inline-block;
+  height: 5px;
+  width: 5px;
+  border-radius: 50%;
+}
+.app-shell .main-content .restored-map-panel .atlas-key .key-boundary {
+  width: 12px;
+  height: 7px;
+  border: 1px solid var(--atlas-coral);
+  border-radius: 0;
+}
+.app-shell .main-content .restored-map-panel .key-viirs {
+  background: #ffab66;
+}
+.app-shell .main-content .restored-map-panel .key-modis {
+  background: #79d9e7;
+}
+.app-shell .main-content .restored-map-panel .atlas-key .atlas-key-note {
+  color: #b5bdbb;
+  margin-left: 10px;
+  font-size: 7px;
+  letter-spacing: 0.7px;
+}
+.app-shell .main-content .restored-map-panel .atlas-stop {
+  position: absolute;
+  left: 50%;
+  top: 97px;
+  translate: -50% 0;
+  z-index: 6;
+  padding: 9px 14px;
+  background: var(--atlas-void);
+  border: 1px solid var(--atlas-line);
+  color: var(--atlas-ivory);
+  font-size: 10px;
+}
+.app-shell .main-content .restored-map-panel .atlas-stop span {
+  color: var(--atlas-coral);
+  font: 8px var(--atlas-mono);
+  margin-left: 12px;
+}
+.app-shell .main-content .restored-map-panel .atlas-map-error {
+  position: absolute;
+  left: 100px;
+  top: 92px;
+  z-index: 10;
+  max-width: min(400px, 70vw);
+  padding: 13px 16px;
+  background: #321d18;
+  border-left: 2px solid var(--atlas-coral);
+  color: #f4c2b5;
+  font-size: 11px;
+  line-height: 1.7;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.app-shell .main-content .restored-map-panel .atlas-map-error button {
+  background: none;
+  border: 0;
+  color: #f4c2b5;
+}
+.app-shell .main-content .restored-map-panel .atlas-inspector {
+  position: absolute;
+  top: 108px;
+  right: 28px;
+  bottom: 182px;
+  width: 300px;
+  max-width: calc(100vw - 56px);
+  z-index: 6;
+  background: #15181dfa;
+  border-top: 2px solid var(--atlas-coral);
+  border-bottom: 1px solid #4a4e51;
+  box-shadow: -10px 10px 45px #0003;
+  display: flex;
+  flex-direction: column;
+}
+.app-shell .main-content .restored-map-panel .ledger-masthead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 18px 9px 22px;
+}
+.app-shell .main-content .restored-map-panel .ledger-masthead .atlas-overline {
+  color: #d7d7d0;
+  font-size: 8px;
+  letter-spacing: 1.5px;
+}
+.app-shell .main-content .restored-map-panel .ledger-provenance {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 22px;
+  border-bottom: 1px solid var(--atlas-line);
+  padding-bottom: 16px;
+  color: var(--atlas-muted);
+  font: 8px var(--atlas-mono);
+}
+.app-shell .main-content .restored-map-panel .ledger-provenance > svg {
+  color: var(--atlas-cyan);
+}
+.app-shell .main-content .restored-map-panel .ledger-provenance b {
+  color: var(--atlas-dim);
+  font-weight: 400;
+  margin: 0 6px;
+}
+.app-shell .main-content .restored-map-panel .ledger-provenance i {
+  margin-left: auto;
+  width: 4px;
+  height: 4px;
+  background: var(--atlas-cyan);
+}
+.app-shell .main-content .restored-map-panel .ledger-provenance i.is-error {
+  background: var(--atlas-coral);
+}
+.app-shell .main-content .restored-map-panel .ledger-summary {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 13px 16px;
+  border-bottom: 1px solid var(--atlas-line-soft);
+}
+.app-shell .main-content .restored-map-panel .ledger-summary strong {
+  font: 400 39px/1 var(--atlas-display);
+  letter-spacing: -3.5px;
+}
+.app-shell .main-content .restored-map-panel .ledger-summary > span,
+.app-shell .main-content .restored-map-panel .ledger-counts > div > span {
+  font-size: 11px;
+  color: var(--atlas-ivory);
+  line-height: 1.5;
+}
+.app-shell .main-content .restored-map-panel .ledger-summary small {
+  display: block;
+  margin-top: 6px;
+  color: var(--atlas-dim);
+  font: 6px/1.6 var(--atlas-mono);
+  letter-spacing: 0.9px;
+}
+.app-shell .main-content .restored-map-panel .ledger-counts {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.app-shell .main-content .restored-map-panel .ledger-counts > div {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.app-shell .main-content .restored-map-panel .ledger-counts > div > span {
+  color: var(--atlas-cyan);
+}
+.app-shell .main-content .restored-map-panel .ledger-body {
+  min-height: 0;
+  flex: 1;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #4d555d transparent;
+}
+.app-shell .main-content .restored-map-panel .ledger-body:focus-visible {
+  outline-offset: -3px;
+}
+.app-shell .main-content .restored-map-panel .ledger-columns {
+  display: flex;
+  justify-content: space-between;
+  padding: 17px 22px 7px;
+  color: var(--atlas-dim);
+  font: 7px var(--atlas-mono);
+  letter-spacing: 0.6px;
+}
+.app-shell .main-content .restored-map-panel .observation-row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 15px;
+  text-align: left;
+  border: 0;
+  border-bottom: 1px solid var(--atlas-line-soft);
+  border-left: 2px solid transparent;
+  color: var(--atlas-ivory);
+  background: none;
+}
+.app-shell .main-content .restored-map-panel .observation-row:hover {
+  background: #23272b;
+  border-left-color: var(--atlas-coral);
+}
+.app-shell .main-content .restored-map-panel .observation-row:focus-visible {
+  outline-offset: -3px;
+}
+.app-shell .main-content .restored-map-panel .record-index {
+  color: var(--atlas-dim);
+  font: 8px var(--atlas-mono);
+  align-self: flex-start;
+  margin-top: 4px;
+}
+.app-shell .main-content .restored-map-panel .record-data strong {
+  font-size: 12px;
+  font-weight: 450;
+}
+.app-shell .main-content .restored-map-panel .record-data small {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font: 7px var(--atlas-mono);
+  color: #a1adae;
+  margin-top: 8px;
+}
+.app-shell .main-content .restored-map-panel .record-data small > i {
+  height: 4px;
+  width: 4px;
+  border-radius: 50%;
+  background: #ffab66;
+}
+.app-shell .main-content .restored-map-panel .record-data small > i.is-modis {
+  background: #79d9e7;
+}
+.app-shell .main-content .restored-map-panel .record-data small b {
+  font-weight: 400;
+  margin: 0 2px;
+}
+.app-shell .main-content .restored-map-panel .record-frp {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font: 11px var(--atlas-mono);
+  margin-left: auto;
+}
+.app-shell .main-content .restored-map-panel .record-frp svg {
+  color: var(--atlas-dim);
+}
+.app-shell .main-content .restored-map-panel .ledger-more {
+  margin: 17px 22px;
+}
+.app-shell .main-content .restored-map-panel .ledger-empty {
+  padding: 25px 25px 30px;
+}
+.app-shell .main-content .restored-map-panel .empty-orbit {
+  color: var(--atlas-cyan);
+  margin-bottom: 26px;
+  opacity: 0.65;
+}
+.app-shell .main-content .restored-map-panel .ledger-empty .atlas-overline {
+  font-size: 7px;
+  color: var(--atlas-dim);
+}
+.app-shell .main-content .restored-map-panel .ledger-empty h2 {
+  font: 400 28px/1.19 var(--atlas-display);
+  letter-spacing: -1.1px;
+  margin: 13px 0 17px;
+  white-space: pre-line;
+}
+.app-shell .main-content .restored-map-panel .ledger-empty > p {
+  color: #a7afae;
+  font-size: 11px;
+  line-height: 1.9;
+  margin-bottom: 23px;
+}
+.app-shell .main-content .restored-map-panel .ledger-empty .atlas-text-button {
+  font-size: 10px;
+}
+.app-shell .main-content .restored-map-panel .ledger-caveat {
+  padding: 10px 15px;
+  display: flex;
+  gap: 12px;
+  border-top: 1px solid var(--atlas-line);
+  margin-top: auto;
+}
+.app-shell .main-content .restored-map-panel .caveat-mark {
+  border: 1px solid #72736b;
+  color: var(--atlas-coral);
+  width: 14px;
+  height: 14px;
+  display: grid;
+  place-items: center;
+  font: 9px var(--atlas-mono);
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+.app-shell .main-content .restored-map-panel .ledger-caveat p {
+  color: #9da6a6;
+  font-size: 8px;
+  line-height: 1.9;
+  margin: 0;
+}
+.app-shell .main-content .restored-map-panel .ledger-caveat strong {
+  color: var(--atlas-ivory);
+  font-weight: 450;
+}
+.app-shell .main-content .restored-map-panel .ledger-detail {
+  padding: 10px 22px 20px;
+}
+.app-shell .main-content .restored-map-panel .ledger-back {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 0 20px;
+  margin-bottom: 14px;
+  background: none;
+  border: 0;
+  color: var(--atlas-cyan);
+  font-size: 10px;
+}
+.app-shell .main-content .restored-map-panel .ledger-detail > .atlas-overline {
+  font-size: 7px;
+}
+.app-shell .main-content .restored-map-panel .record-power {
+  font: 400 44px/1.1 var(--atlas-display);
+  letter-spacing: -3px;
+  margin: 15px 0 4px;
+}
+.app-shell .main-content .restored-map-panel .record-power small {
+  font: 10px var(--atlas-mono);
+  color: var(--atlas-coral);
+  letter-spacing: 0;
+  margin-left: 10px;
+}
+.app-shell .main-content .restored-map-panel .record-measure {
+  font-size: 9px;
+  color: var(--atlas-muted);
+  margin-bottom: 24px;
+}
+.app-shell .main-content .restored-map-panel .metadata-grid {
+  margin: 0;
+}
+.app-shell .main-content .restored-map-panel .metadata-grid > div {
+  border-top: 1px solid var(--atlas-line-soft);
+  padding: 11px 0;
+  display: grid;
+  grid-template-columns: 98px minmax(0, 1fr);
+  gap: 10px;
+}
+.app-shell .main-content .restored-map-panel .metadata-grid dt {
+  font-size: 8px;
+  line-height: 1.7;
+  color: var(--atlas-dim);
+}
+.app-shell .main-content .restored-map-panel .metadata-grid dd {
+  font-size: 10px;
+  line-height: 1.6;
+  margin: 0;
+  color: var(--atlas-ivory);
+  overflow-wrap: anywhere;
+}
+.app-shell .main-content .restored-map-panel .atlas-filter-panel {
+  position: absolute;
+  top: 160px;
+  bottom: 180px;
+  left: 88px;
+  z-index: 8;
+  width: 324px;
+  max-height: 565px;
+  background: var(--atlas-graphite);
+  border-top: 2px solid var(--atlas-cyan);
+  padding: 20px;
+  box-shadow: 10px 10px 45px #0005;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+.app-shell .main-content .restored-map-panel .atlas-filter-panel > header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 23px;
+}
+.app-shell .main-content .restored-map-panel .atlas-filter-panel > header h2 {
+  font: 400 25px/1.15 var(--atlas-display);
+  letter-spacing: -0.8px;
+  margin: 8px 0 0;
+}
+.app-shell .main-content .restored-map-panel .atlas-filter-panel > header .atlas-overline {
+  font-size: 7px;
+}
+.app-shell .main-content .restored-map-panel .sensor-selector {
+  border: 0;
+  padding: 0;
+  margin: 0 0 20px;
+}
+.app-shell .main-content .restored-map-panel .sensor-selector legend {
+  padding: 0 0 12px;
+  font: 8px var(--atlas-mono);
+  color: var(--atlas-dim);
+  letter-spacing: 1px;
+}
+.app-shell .main-content .restored-map-panel .sensor-selector > label {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-top: 1px solid var(--atlas-line-soft);
+  padding: 16px 0;
+  color: var(--atlas-muted);
+}
+.app-shell .main-content .restored-map-panel .sensor-selector input {
+  width: 11px;
+  height: 11px;
+  accent-color: var(--atlas-cyan);
+  margin: 0;
+}
+.app-shell .main-content .restored-map-panel .sensor-selector > label > span:not(.sensor-code) {
+  font-size: 12px;
+}
+.app-shell .main-content .restored-map-panel .sensor-selector small {
+  display: block;
+  margin-top: 6px;
+  color: var(--atlas-dim);
+  font-size: 8px;
+  line-height: 1.7;
+}
+.app-shell .main-content .restored-map-panel .sensor-selector > label.is-selected {
+  color: var(--atlas-ivory);
+}
+.app-shell .main-content .restored-map-panel .sensor-selector > label.is-selected svg {
+  color: var(--atlas-cyan);
+}
+.app-shell .main-content .restored-map-panel .sensor-selector > label.is-unavailable {
+  cursor: not-allowed;
+  color: #7a8185;
+}
+.app-shell .main-content .restored-map-panel .sensor-code {
+  margin-left: auto;
+  color: var(--atlas-dim);
+  font: 26px var(--atlas-display);
+}
+.app-shell .main-content .restored-map-panel .confidence-control {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.app-shell .main-content .restored-map-panel .confidence-control > span {
+  font: 8px var(--atlas-mono);
+  color: var(--atlas-dim);
+  letter-spacing: 0.6px;
+}
+.app-shell .main-content .restored-map-panel .confidence-control select {
+  background: var(--atlas-raised);
+  border: 1px solid var(--atlas-line);
+  color: var(--atlas-ivory);
+  font-size: 11px;
+  padding: 10px;
+  width: 100%;
+}
+.app-shell .main-content .restored-map-panel .confidence-control select:disabled {
+  opacity: 0.55;
+}
+.app-shell .main-content .restored-map-panel .confidence-control small,
+.app-shell .main-content .restored-map-panel .filter-footnote {
+  color: var(--atlas-muted);
+  font-size: 9px;
+  line-height: 1.8;
+}
+.app-shell .main-content .restored-map-panel .filter-footnote {
+  border-top: 1px solid var(--atlas-line);
+  margin: 20px 0 0;
+  padding-top: 14px;
+}
+.app-shell .main-content .restored-map-panel .atlas-timeline {
+  position: absolute;
+  z-index: 9;
+  bottom: 38px;
+  left: 28px;
+  right: 28px;
+  height: 106px;
+  background: #101216fa;
+  border-top: 1px solid #5e6263;
+  display: flex;
+  align-items: center;
+  gap: 34px;
+  padding: 17px 23px;
+}
+.app-shell .main-content .restored-map-panel .temporal-label {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  flex-shrink: 0;
+}
+.app-shell .main-content .restored-map-panel .temporal-label > svg {
+  color: var(--atlas-coral);
+}
+.app-shell .main-content .restored-map-panel .temporal-label .atlas-overline {
+  font-size: 7px;
+  color: var(--atlas-dim);
+}
+.app-shell .main-content .restored-map-panel .temporal-label h2 {
+  font-size: 12px;
+  font-weight: 450;
+  letter-spacing: -0.2px;
+  margin: 7px 0 0;
+}
+.app-shell .main-content .restored-map-panel .temporal-play {
+  background: none;
+  border: 0;
+  color: var(--atlas-dim);
+  font-size: 21px;
+  margin-left: 10px;
+  opacity: 0.7;
+}
+.app-shell .main-content .restored-map-panel .temporal-workspace {
+  flex: 1;
+  min-width: 0;
+}
+.app-shell .main-content .restored-map-panel .temporal-dates {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+.app-shell .main-content .restored-map-panel .date-chip {
+  position: relative;
+  font: 9px var(--atlas-mono);
+  color: var(--atlas-muted);
+  border: 0;
+  padding: 0 0 9px;
+  background: none;
+  white-space: nowrap;
+}
+.app-shell .main-content .restored-map-panel .date-chip:hover,
+.app-shell .main-content .restored-map-panel .date-chip.is-active {
+  color: var(--atlas-ivory);
+}
+.app-shell .main-content .restored-map-panel .date-chip > i {
+  position: absolute;
+  height: 5px;
+  width: 5px;
+  background: var(--atlas-coral);
+  rotate: 45deg;
+  bottom: -7px;
+  left: calc(50% - 2px);
+  z-index: 1;
+}
+.app-shell .main-content .restored-map-panel .temporal-scrubber {
+  display: block;
+  width: 100%;
+  accent-color: var(--atlas-coral);
+  height: 9px;
+  margin: 0;
+  cursor: ew-resize;
+}
+.app-shell .main-content .restored-map-panel .temporal-scrubber::-webkit-slider-runnable-track {
+  height: 1px;
+  background: #62666a;
+}
+.app-shell .main-content .restored-map-panel .temporal-scrubber::-webkit-slider-thumb {
+  margin-top: -7px;
+}
+.app-shell .main-content .restored-map-panel .temporal-caption {
+  font: 6px var(--atlas-mono);
+  letter-spacing: 1px;
+  color: var(--atlas-dim);
+  display: block;
+  margin-top: 11px;
+}
+.app-shell .main-content .restored-map-panel .temporal-edition {
+  border-left: 1px solid var(--atlas-line);
+  padding-left: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.app-shell .main-content .restored-map-panel .temporal-edition > span {
+  color: var(--atlas-muted);
+  font: 7px var(--atlas-mono);
+  letter-spacing: 1.4px;
+}
+.app-shell .main-content .restored-map-panel .temporal-edition small {
+  color: var(--atlas-dim);
+  font: 6px var(--atlas-mono);
+  letter-spacing: 0.6px;
+}
+.app-shell .main-content .restored-map-panel .temporal-unavailable {
+  color: var(--atlas-muted);
+  font: 8px var(--atlas-mono);
+}
+.app-shell .main-content .restored-map-panel .temporal-empty-line {
+  height: 12px;
+  border-top: 1px solid #3b4249;
+  background: repeating-linear-gradient(
+      90deg,
+      #747c8355 0 1px,
+      transparent 1px 20px
+    )
+    top/100% 6px no-repeat;
+  margin-bottom: 12px;
+}
+.app-shell .main-content .restored-map-panel .temporal-unavailable b {
+  font-weight: 400;
+  color: var(--atlas-coral);
+  padding: 0 6px;
+}
+.app-shell .main-content .restored-map-panel .atlas-footer {
+  position: absolute;
+  bottom: 0;
+  left: 28px;
+  right: 28px;
+  height: 38px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  z-index: 3;
+  background: transparent;
+}
+.app-shell .main-content .restored-map-panel .atlas-footer > span {
+  font: 6px var(--atlas-mono);
+  letter-spacing: 0.8px;
+  white-space: nowrap;
+  color: var(--atlas-muted);
+}
+.app-shell .main-content .restored-map-panel .atlas-footer > span:first-child {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.app-shell .main-content .restored-map-panel .atlas-footer i {
+  width: 4px;
+  height: 4px;
+  background: var(--atlas-cyan);
+  border-radius: 50%;
+}
+.app-shell .main-content .restored-map-panel .atlas-footer p {
+  margin: 0;
+  font-size: 7px;
+  color: var(--atlas-muted);
+}
+.app-shell .main-content .restored-map-panel .atlas-map .maplibregl-ctrl-bottom-right {
+  bottom: 149px;
+  right: 20px;
+}
+.app-shell .main-content .restored-map-panel .atlas-map .maplibregl-ctrl-bottom-left {
+  bottom: 183px;
+  left: 310px;
+}
+.app-shell .main-content .restored-map-panel .atlas-map .maplibregl-ctrl-attrib {
+  font-size: 8px;
+}
+.app-shell .main-content .restored-map-panel .atlas-map .maplibregl-ctrl-scale {
+  color: var(--atlas-ivory);
+  border-color: var(--atlas-ivory);
+  background: #0b0d1066;
+  font: 9px var(--atlas-mono);
+}
+.app-shell .main-content .restored-map-panel .maplibregl-popup-content {
+  background: var(--atlas-graphite);
+  color: var(--atlas-ivory);
+  border-top: 2px solid var(--atlas-coral);
+  border-radius: 0;
+  padding: 22px;
+  min-width: 260px;
+  box-shadow: 0 12px 45px #0007;
+}
+.app-shell .main-content .restored-map-panel .maplibregl-popup-close-button {
+  color: var(--atlas-ivory);
+  font-size: 20px;
+  padding: 3px 9px;
+}
+.app-shell .main-content .restored-map-panel .maplibregl-popup-anchor-bottom .maplibregl-popup-tip {
+  border-top-color: var(--atlas-graphite);
+}
+.app-shell .main-content .restored-map-panel .atlas-popup-kicker {
+  font: 7px var(--atlas-mono);
+  color: var(--atlas-coral);
+  letter-spacing: 1.2px;
+}
+.app-shell .main-content .restored-map-panel .atlas-popup-title {
+  display: block;
+  font: 400 25px var(--atlas-display);
+  letter-spacing: -0.8px;
+  margin: 9px 0 16px;
+}
+.app-shell .main-content .restored-map-panel .atlas-popup-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 22px;
+  border-top: 1px solid var(--atlas-line);
+  padding: 8px 0;
+  font-size: 9px;
+}
+.app-shell .main-content .restored-map-panel .atlas-popup-row span:first-child {
+  color: var(--atlas-muted);
+}
+.app-shell .main-content .restored-map-panel .atlas-popup-row span:last-child {
+  color: var(--atlas-ivory);
+  text-align: right;
+  overflow-wrap: anywhere;
+  max-width: 155px;
+}
+.app-shell .main-content .restored-map-panel .atlas-popup-note {
+  font-size: 8px;
+  line-height: 1.8;
+  color: var(--atlas-muted);
+  margin: 12px 0 0;
+}
+@media (min-width: 1700px) {
+  .app-shell .main-content .restored-map-panel .atlas-inspector {
+    width: 320px;
+    right: 38px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-masthead {
+    padding-left: 38px;
+    gap: 40px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-editorial {
+    left: 42px;
+  }
+}
+@media (max-width: 1250px) {
+  .app-shell .main-content .restored-map-panel .atlas-masthead {
+    grid-template-columns: 172px 132px minmax(170px, 1fr) minmax(170px, 1fr);
+    gap: 18px;
+    padding-right: 145px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-source {
+    display: none;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-editorial {
+    max-width: 280px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-editorial h1 {
+    font-size: 58px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-inspector {
+    width: 292px;
+  }
+  .app-shell .main-content .restored-map-panel .temporal-edition {
+    display: none;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-timeline {
+    gap: 26px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-footer > span:last-child {
+    display: none;
+  }
+}
+@media (max-width: 1000px) {
+  .app-shell .main-content .restored-map-panel .atlas-register {
+    display: none;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-masthead {
+    grid-template-columns: 180px minmax(170px, 1fr) minmax(170px, 1fr);
+    gap: 18px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-editorial h1 {
+    font-size: 54px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-editorial > p {
+    font-size: 10px;
+    max-width: 220px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-inspector {
+    width: 280px;
+    right: 20px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-key .atlas-key-note {
+    display: none;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-filter-panel {
+    width: 300px;
+  }
+}
+@media (max-height: 820px) and (min-width: 761px) {
+  .app-shell .main-content .restored-map-panel .atlas-tool-spine {
+    top: 310px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-filter-panel {
+    top: 180px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-inspector {
+    top: 98px;
+    bottom: 170px;
+  }
+  .app-shell .main-content .restored-map-panel .ledger-summary {
+    padding: 15px 22px;
+  }
+  .app-shell .main-content .restored-map-panel .ledger-summary strong {
+    font-size: 37px;
+  }
+  .app-shell .main-content .restored-map-panel .ledger-empty {
+    padding-top: 18px;
+  }
+  .app-shell .main-content .restored-map-panel .empty-orbit {
+    margin-bottom: 16px;
+  }
+  .app-shell .main-content .restored-map-panel .ledger-empty h2 {
+    font-size: 25px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-editorial {
+    top: 113px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-editorial > p {
+    margin-top: 15px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-timeline {
+    height: 96px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-imagery {
+    bottom: 174px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-key {
+    bottom: 147px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-view-label {
+    bottom: 225px;
+  }
+}
+@media (max-width: 760px) {
+  .app-shell .main-content .restored-map-panel .atlas-screen {
+    min-height: 700px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-map,
+  .app-shell .main-content .restored-map-panel .atlas-vignette {
+    top: 116px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-vignette {
+    background:
+      linear-gradient(
+        180deg,
+        #0b0d10a6,
+        transparent 33%,
+        transparent 60%,
+        #0b0d10e8
+      ),
+      linear-gradient(90deg, #0b0d1066, transparent 50%);
+  }
+  .app-shell .main-content .restored-map-panel .atlas-masthead {
+    height: 116px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 58px 58px;
+    gap: 0 15px;
+    padding: 0 18px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-brand {
+    grid-column: 1 / -1;
+    align-self: center;
+    max-width: 190px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-brand > span {
+    font-size: 18px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-brand > svg {
+    width: 25px;
+    height: 25px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-brand small {
+    font-size: 5px;
+    margin-top: 6px;
+    letter-spacing: 1.5px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-region,
+  .app-shell .main-content .restored-map-panel .atlas-window {
+    gap: 6px;
+    align-self: center;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-region select {
+    font-size: 10px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-window {
+    justify-self: end;
+    text-align: right;
+    align-items: flex-end;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-window strong {
+    font-size: 8px;
+    letter-spacing: -0.15px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-masthead .atlas-overline {
+    font-size: 6px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-editorial {
+    top: 145px;
+    left: 20px;
+    max-width: 290px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-editorial .atlas-overline {
+    font-size: 6px;
+    letter-spacing: 1px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-editorial h1 {
+    font-size: 56px;
+    margin: 8px 0 10px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-editorial > p {
+    display: none;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-stamp {
+    font-size: 6px;
+    letter-spacing: 0.5px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-tool-spine {
+    left: 18px;
+    top: 305px;
+    width: 42px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-tool {
+    width: 40px;
+    height: 38px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-tool > svg {
+    width: 19px;
+    height: 19px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-tool-label {
+    display: none;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-imagery {
+    left: 18px;
+    bottom: 186px;
+    gap: 13px;
+    padding: 10px 12px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-imagery > span {
+    display: none;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-imagery button {
+    font-size: 9px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-view-label {
+    left: auto;
+    right: 18px;
+    bottom: 237px;
+    gap: 7px;
+    text-align: right;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-view-label > span:last-child {
+    font-size: 8px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-view-label > span:first-child {
+    font-size: 5px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-key {
+    bottom: 169px;
+    left: 20px;
+    gap: 12px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-key > span {
+    font-size: 6px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-inspector {
+    left: 76px;
+    right: 18px;
+    top: auto;
+    bottom: 235px;
+    height: min(410px, 47dvh);
+    width: auto;
+    max-width: none;
+    box-shadow: -10px 4px 30px #0005;
+  }
+  .app-shell .main-content .restored-map-panel .ledger-masthead {
+    padding: 8px 10px 3px 16px;
+  }
+  .app-shell .main-content .restored-map-panel .ledger-masthead .atlas-overline {
+    font-size: 7px;
+  }
+  .app-shell .main-content .restored-map-panel .ledger-provenance {
+    margin: 0 16px;
+    font-size: 6px;
+    padding-bottom: 10px;
+  }
+  .app-shell .main-content .restored-map-panel .ledger-summary {
+    padding: 12px 16px;
+    gap: 10px;
+  }
+  .app-shell .main-content .restored-map-panel .ledger-summary strong {
+    font-size: 40px;
+    letter-spacing: -2px;
+  }
+  .app-shell .main-content .restored-map-panel .ledger-summary small {
+    font-size: 5px;
+  }
+  .app-shell .main-content .restored-map-panel .ledger-summary > span,
+  .app-shell .main-content .restored-map-panel .ledger-counts > div > span {
+    font-size: 10px;
+  }
+  .app-shell .main-content .restored-map-panel .ledger-counts > div {
+    gap: 12px;
+  }
+  .app-shell .main-content .restored-map-panel .ledger-caveat {
+    padding: 10px 14px;
+    gap: 8px;
+  }
+  .app-shell .main-content .restored-map-panel .ledger-caveat p {
+    font-size: 7px;
+  }
+  .app-shell .main-content .restored-map-panel .ledger-empty {
+    padding: 16px;
+  }
+  .app-shell .main-content .restored-map-panel .empty-orbit {
+    display: none;
+  }
+  .app-shell .main-content .restored-map-panel .ledger-empty h2 {
+    font-size: 22px;
+    margin: 10px 0 12px;
+  }
+  .app-shell .main-content .restored-map-panel .ledger-empty p {
+    font-size: 10px;
+    line-height: 1.8;
+    margin-bottom: 15px;
+  }
+  .app-shell .main-content .restored-map-panel .observation-row {
+    padding: 14px;
+    gap: 8px;
+  }
+  .app-shell .main-content .restored-map-panel .record-index {
+    font-size: 7px;
+  }
+  .app-shell .main-content .restored-map-panel .record-data strong {
+    font-size: 10px;
+  }
+  .app-shell .main-content .restored-map-panel .record-data small {
+    font-size: 6px;
+    gap: 3px;
+  }
+  .app-shell .main-content .restored-map-panel .record-frp {
+    font-size: 9px;
+    gap: 5px;
+  }
+  .app-shell .main-content .restored-map-panel .record-frp svg {
+    display: none;
+  }
+  .app-shell .main-content .restored-map-panel .ledger-columns {
+    padding: 12px 14px 5px;
+    font-size: 6px;
+  }
+  .app-shell .main-content .restored-map-panel .ledger-detail {
+    padding: 10px 16px;
+  }
+  .app-shell .main-content .restored-map-panel .record-power {
+    font-size: 43px;
+  }
+  .app-shell .main-content .restored-map-panel .metadata-grid > div {
+    grid-template-columns: 85px minmax(0, 1fr);
+  }
+  .app-shell .main-content .restored-map-panel .metadata-grid dt {
+    font-size: 7px;
+  }
+  .app-shell .main-content .restored-map-panel .metadata-grid dd {
+    font-size: 9px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-filter-panel {
+    top: 260px;
+    bottom: 180px;
+    left: 76px;
+    width: calc(100% - 94px);
+    padding: 16px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-filter-panel > header {
+    margin-bottom: 17px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-filter-panel > header h2 {
+    font-size: 23px;
+  }
+  .app-shell .main-content .restored-map-panel .sensor-selector > label {
+    gap: 9px;
+    padding: 13px 0;
+  }
+  .app-shell .main-content .restored-map-panel .sensor-selector > label > span:not(.sensor-code) {
+    font-size: 11px;
+  }
+  .app-shell .main-content .restored-map-panel .sensor-selector small {
+    font-size: 7px;
+  }
+  .app-shell .main-content .restored-map-panel .sensor-code {
+    font-size: 22px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-timeline {
+    bottom: 48px;
+    left: 18px;
+    right: 18px;
+    height: 110px;
+    padding: 13px 15px;
+    display: block;
+  }
+  .app-shell .main-content .restored-map-panel .temporal-label {
+    gap: 9px;
+    align-items: center;
+    margin-bottom: 14px;
+  }
+  .app-shell .main-content .restored-map-panel .temporal-label > svg {
+    width: 15px;
+    height: 15px;
+  }
+  .app-shell .main-content .restored-map-panel .temporal-label > div {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex: 1;
+    gap: 8px;
+  }
+  .app-shell .main-content .restored-map-panel .temporal-label .atlas-overline {
+    font-size: 6px;
+  }
+  .app-shell .main-content .restored-map-panel .temporal-label h2 {
+    margin: 0;
+    font-size: 10px;
+  }
+  .app-shell .main-content .restored-map-panel .temporal-play {
+    font-size: 14px;
+    padding: 0;
+    margin-left: 5px;
+  }
+  .app-shell .main-content .restored-map-panel .temporal-dates {
+    gap: 8px;
+  }
+  .app-shell .main-content .restored-map-panel .date-chip {
+    font-size: 7px;
+    padding-bottom: 6px;
+  }
+  .app-shell .main-content .restored-map-panel .temporal-caption {
+    font-size: 5px;
+    letter-spacing: 0.5px;
+    margin-top: 9px;
+  }
+  .app-shell .main-content .restored-map-panel .temporal-unavailable {
+    font-size: 7px;
+  }
+  .app-shell .main-content .restored-map-panel .temporal-empty-line {
+    margin-bottom: 8px;
+    height: 8px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-footer {
+    height: 48px;
+    left: 18px;
+    right: 18px;
+    align-content: center;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-footer > span {
+    font-size: 5px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-footer > p {
+    font-size: 6px;
+    width: 100%;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-map .maplibregl-ctrl-bottom-left {
+    bottom: 183px;
+    left: auto;
+    right: 12px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-map .maplibregl-ctrl-bottom-right {
+    bottom: 160px;
+    right: 10px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-map .maplibregl-ctrl-attrib {
+    font-size: 6px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-map .maplibregl-ctrl-scale {
+    font-size: 7px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-map-error {
+    top: 127px;
+    left: 18px;
+    right: 18px;
+    max-width: none;
+    font-size: 10px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-stop {
+    top: 275px;
+    right: 18px;
+    left: auto;
+    translate: none;
+    font-size: 9px;
+  }
+  .app-shell .main-content .restored-map-panel .maplibregl-popup-content {
+    min-width: 220px;
+    padding: 18px;
+  }
+}
+/* Rendered-review refinements: readable provenance and a purpose-built temporal ruler. */
+.app-shell .main-content .restored-map-panel .atlas-masthead .atlas-overline {
+  font-size: 8px;
+}
+.app-shell .main-content .restored-map-panel .atlas-brand small {
+  font-size: 7px;
+  letter-spacing: 1.1px;
+}
+.app-shell .main-content .restored-map-panel .atlas-register strong {
+  font-size: 10px;
+}
+.app-shell .main-content .restored-map-panel .atlas-register small {
+  font-size: 7px;
+}
+.app-shell .main-content .restored-map-panel .atlas-region select {
+  font-size: 12px;
+}
+.app-shell .main-content .restored-map-panel .atlas-source strong,
+.app-shell .main-content .restored-map-panel .atlas-window strong {
+  font-size: 11px;
+}
+.app-shell .main-content .restored-map-panel .atlas-stamp {
+  font-size: 8px;
+}
+.app-shell .main-content .restored-map-panel .ledger-provenance {
+  font-size: 9px;
+}
+.app-shell .main-content .restored-map-panel .ledger-empty > p {
+  font-size: 12px;
+}
+.app-shell .main-content .restored-map-panel .ledger-caveat p {
+  font-size: 9px;
+}
+.app-shell .main-content .restored-map-panel .atlas-footer > p {
+  font-size: 9px;
+}
+.app-shell .main-content .restored-map-panel .atlas-footer > span {
+  font-size: 7px;
+}
+.app-shell .main-content .restored-map-panel .date-chip {
+  font-size: 10px;
+}
+.app-shell .main-content .restored-map-panel .date-chip > i {
+  width: 14px;
+  height: 1px;
+  rotate: 0deg;
+  bottom: 2px;
+  left: calc(50% - 7px);
+}
+.app-shell .main-content .restored-map-panel .temporal-caption {
+  font-size: 7px;
+}
+.app-shell .main-content .restored-map-panel .temporal-scrubber {
+  appearance: none;
+  -webkit-appearance: none;
+  height: 17px;
+  background: repeating-linear-gradient(
+      90deg,
+      #68707877 0 1px,
+      transparent 1px 20px
+    )
+    center bottom / 100% 6px no-repeat;
+}
+.app-shell .main-content .restored-map-panel .temporal-scrubber::-webkit-slider-runnable-track {
+  height: 1px;
+  background: #697077;
+  border: 0;
+}
+.app-shell .main-content .restored-map-panel .temporal-scrubber::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 8px;
+  height: 8px;
+  border: 0;
+  border-radius: 0;
+  background: var(--atlas-coral);
+  transform: rotate(45deg);
+  margin-top: -3.5px;
+}
+.app-shell .main-content .restored-map-panel .temporal-scrubber::-moz-range-track {
+  height: 1px;
+  background: #697077;
+  border: 0;
+}
+.app-shell .main-content .restored-map-panel .temporal-scrubber::-moz-range-thumb {
+  width: 8px;
+  height: 8px;
+  border: 0;
+  border-radius: 0;
+  background: var(--atlas-coral);
+  transform: rotate(45deg);
+}
+@media (max-width: 760px) {
+  .app-shell .main-content .restored-map-panel .atlas-masthead .atlas-overline {
+    font-size: 7px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-brand small {
+    font-size: 6px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-region select {
+    font-size: 10px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-window strong {
+    font-size: 8px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-stamp {
+    font-size: 7px;
+  }
+  .app-shell .main-content .restored-map-panel .ledger-provenance {
+    font-size: 7px;
+  }
+  .app-shell .main-content .restored-map-panel .ledger-empty > p {
+    font-size: 11px;
+  }
+  .app-shell .main-content .restored-map-panel .ledger-caveat p {
+    font-size: 8px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-footer > p {
+    font-size: 7px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-footer > span {
+    font-size: 6px;
+  }
+  .app-shell .main-content .restored-map-panel .date-chip {
+    font-size: 8px;
+  }
+  .app-shell .main-content .restored-map-panel .temporal-caption {
+    font-size: 6px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-screen[data-inspector="open"] .atlas-editorial {
+    visibility: hidden;
+  }
+}
+.app-shell .main-content .restored-map-panel .key-viirs,
+.app-shell .main-content .restored-map-panel .record-data small > i {
+  background: var(--atlas-coral);
+}
+.app-shell .main-content .restored-map-panel .key-modis,
+.app-shell .main-content .restored-map-panel .record-data small > i.is-modis {
+  background: var(--atlas-cyan);
+}
+.app-shell .main-content .restored-map-panel .maplibregl-popup-content {
+  max-height: calc(100dvh - 300px);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #505961 transparent;
+}
+.app-shell .main-content .restored-map-panel .atlas-popup-title {
+  font-size: 23px;
+  margin: 8px 0 13px;
+}
+.app-shell .main-content .restored-map-panel .atlas-popup-row {
+  padding: 6px 0;
+}
+.app-shell .main-content .restored-map-panel .atlas-screen {
+  color-scheme: dark;
+}
+.app-shell .main-content .restored-map-panel .atlas-filter-panel {
+  scrollbar-color: #596269 transparent;
+}
+.app-shell .main-content .restored-map-panel .atlas-map .maplibregl-ctrl-attrib {
+  background: #0b0d10e8;
+  color: #c6cdcf;
+  border-radius: 2px;
+}
+.app-shell .main-content .restored-map-panel .atlas-map .maplibregl-ctrl-attrib a {
+  color: #c6cdcf;
+}
+.app-shell .main-content .restored-map-panel .atlas-map .maplibregl-ctrl-attrib-button {
+  filter: invert(1);
+  background-color: transparent;
+}
+
+.app-shell .main-content .restored-map-panel .atlas-filter-panel {
+  max-height: calc(100dvh - 140px);
+  overflow-y: auto;
+}
+.app-shell .main-content .restored-map-panel .atlas-range-filters {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 20px;
+}
+.app-shell .main-content .restored-map-panel .atlas-range-filters label {
+  display: grid;
+  gap: 6px;
+  font: 10px var(--atlas-font);
+  color: var(--atlas-muted);
+}
+.app-shell .main-content .restored-map-panel .atlas-range-filters input {
+  width: 100%;
+  min-width: 0;
+  padding: 8px;
+  background: var(--atlas-void);
+  color: var(--atlas-ivory);
+  border: 1px solid var(--atlas-line);
+}
+.app-shell .main-content .restored-map-panel .atlas-range-filters button,
+.app-shell .main-content .restored-map-panel .atlas-range-filters small,
+.app-shell .main-content .restored-map-panel .atlas-range-filters p {
+  grid-column: 1 / -1;
+}
+.app-shell .main-content .restored-map-panel .atlas-range-filters small {
+  font-size: 10px;
+  color: var(--atlas-muted);
+}
+/* FIREPULSE — Safe timeline layout fix */
+
+@media (min-width: 761px) {
+  .app-shell .main-content .restored-map-panel .atlas-timeline .temporal-workspace {
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .app-shell .main-content .restored-map-panel .atlas-timeline .temporal-dates {
+    justify-content: flex-start;
+    gap: 22px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 8px 2px 14px;
+    scrollbar-width: thin;
+    scrollbar-color: #ff704a #171b21;
+  }
+
+  .app-shell .main-content .restored-map-panel .atlas-timeline .date-chip {
+    flex: 0 0 auto;
+    cursor: pointer;
+  }
+
+  .app-shell .main-content .restored-map-panel .atlas-timeline .temporal-label {
+    max-width: 220px;
+  }
+}
+
+/* FIREPULSE — Inspector legibility and collision safeguards */
+@media (min-width: 761px) {
+  .app-shell .main-content .restored-map-panel .atlas-inspector .ledger-counts > div {
+    gap: 9px;
+    min-width: 0;
+  }
+
+  .app-shell .main-content .restored-map-panel .atlas-inspector .ledger-counts strong {
+    font-size: clamp(29px, 2.5vw, 39px);
+    letter-spacing: -1.5px;
+  }
+
+  .app-shell .main-content .restored-map-panel .atlas-inspector .record-data {
+    min-width: 0;
+  }
+
+  .app-shell .main-content .restored-map-panel .atlas-inspector .record-data small {
+    flex-wrap: wrap;
+  }
+
+  .app-shell .main-content .restored-map-panel .atlas-inspector .record-frp {
+    flex-shrink: 0;
+  }
+}
+
+@media (max-width: 760px) {
+  .app-shell .main-content .restored-map-panel .atlas-inspector .ledger-counts {
+    gap: 12px;
+  }
+}
+
+/* FIREPULSE / Global Explorer navigation — append to atlas.css */
+.app-shell .main-content .restored-map-panel .earth-jump {
+  position: absolute;
+  z-index: 7;
+  top: 166px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: stretch;
+  gap: 2px;
+  padding: 5px;
+  border: 1px solid #ffffff2a;
+  background: #0d1117e8;
+  box-shadow: 0 14px 46px #0008;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  animation: earth-jump-enter 650ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+.app-shell .main-content .restored-map-panel .earth-jump button {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 12px 13px;
+  color: #c2cbd0;
+  border: 1px solid transparent;
+  background: transparent;
+  font: 600 10px/1.2 var(--atlas-mono);
+  letter-spacing: 0.7px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background 220ms ease,
+    color 220ms ease,
+    border-color 220ms ease,
+    transform 220ms ease;
+}
+.app-shell .main-content .restored-map-panel .earth-jump button:hover {
+  color: #fff;
+  background: #ffffff13;
+  transform: translateY(-2px);
+}
+.app-shell .main-content .restored-map-panel .earth-jump button.is-active {
+  color: #fff;
+  background: #ff684820;
+  border-color: #ff68486b;
+}
+.app-shell .main-content .restored-map-panel .earth-jump button:focus-visible {
+  outline: 2px solid #7bcad1;
+  outline-offset: 2px;
+}
+.app-shell .main-content .restored-map-panel .earth-jump-index {
+  color: #ff8064;
+  font-size: 8px;
+}
+.app-shell .main-content .restored-map-panel .earth-jump-status {
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  border-left: 1px solid #ffffff26;
+  color: #8fa3a8;
+  font: 8px/1.4 var(--atlas-mono);
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+@keyframes earth-jump-enter {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -14px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+@media (max-width: 1200px) {
+  .app-shell .main-content .restored-map-panel .earth-jump {
+    top: 160px;
+  }
+  .app-shell .main-content .restored-map-panel .earth-jump-status {
+    display: none;
+  }
+}
+@media (max-width: 760px) {
+  .app-shell .main-content .restored-map-panel .earth-jump {
+    top: 248px;
+    left: 50%;
+    max-width: calc(100% - 30px);
+  }
+  .app-shell .main-content .restored-map-panel .earth-jump button {
+    padding: 10px 8px;
+    gap: 5px;
+    font-size: 8px;
+  }
+  .app-shell .main-content .restored-map-panel .earth-jump-index {
+    font-size: 7px;
+  }
+  .app-shell .main-content .restored-map-panel .atlas-editorial {
+    max-width: 260px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .app-shell .main-content .restored-map-panel .earth-jump {
+    animation: none;
+  }
+  .app-shell .main-content .restored-map-panel .earth-jump button {
+    transition: none;
+  }
+  .app-shell .main-content .restored-map-panel .earth-jump button:hover {
+    transform: none;
+  }
+}
+
+/* Historical exploration: one temporal instrument, clear of the map-tool rail. */
+.app-shell .main-content .restored-map-panel .atlas-imagery { left:88px; bottom:196px; }
+.app-shell .main-content .restored-map-panel .atlas-imagery button { min-height:32px; min-width:44px; }
+.app-shell .main-content .restored-map-panel .atlas-timeline { height:144px; }
+.app-shell .main-content .restored-map-panel .atlas-year-controls { display:flex;align-items:center;gap:10px;margin-bottom:10px;min-width:0; }
+.app-shell .main-content .restored-map-panel .atlas-year-controls>span { font:9px var(--atlas-mono);color:var(--atlas-muted); }
+.app-shell .main-content .restored-map-panel .atlas-year-controls select,.app-shell .main-content .restored-map-panel .atlas-year-controls button { background:#151a20;color:var(--atlas-ivory);border:1px solid var(--atlas-line);min-height:34px;padding:5px 10px; }
+.app-shell .main-content .restored-map-panel .atlas-year-controls button { min-width:34px; }
+.app-shell .main-content .restored-map-panel .atlas-year-controls button:disabled { opacity:.35;cursor:default; }
+.app-shell .main-content .restored-map-panel .atlas-year-controls small,.app-shell .main-content .restored-map-panel .atlas-temporal-status { font-size:9px;color:var(--atlas-muted);margin:0; }
+.app-shell .main-content .restored-map-panel .atlas-temporal-status { margin-bottom:8px; }
+.app-shell .main-content .restored-map-panel .atlas-year-controls :focus-visible { outline:2px solid var(--atlas-cyan);outline-offset:2px; }
+.app-shell .main-content .restored-map-panel .history-comparison-controls { display:flex;flex-wrap:wrap;gap:16px;margin:16px 0; }
+.app-shell .main-content .restored-map-panel .history-comparison-controls label { display:grid;gap:8px; }
+.app-shell .main-content .restored-map-panel .history-comparison-controls select { background:#151a20;color:var(--atlas-ivory);padding:8px;border:1px solid var(--atlas-line); }
+@media(max-width:760px){
+ .app-shell .main-content .restored-map-panel .atlas-imagery { left:68px;bottom:228px;gap:10px; }
+ .app-shell .main-content .restored-map-panel .atlas-imagery button { min-height:40px; }
+ .app-shell .main-content .restored-map-panel .atlas-timeline { height:176px;gap:8px; }
+ .app-shell .main-content .restored-map-panel .atlas-year-controls { gap:6px;flex-wrap:wrap;margin-bottom:8px; }
+ .app-shell .main-content .restored-map-panel .atlas-year-controls>span { font-size:8px; }
+ .app-shell .main-content .restored-map-panel .atlas-year-controls small { flex-basis:100%;font-size:8px; }
+ .app-shell .main-content .restored-map-panel .atlas-year-controls select,.app-shell .main-content .restored-map-panel .atlas-year-controls button { min-height:36px; }
+ .app-shell .main-content .restored-map-panel .temporal-workspace { width:100%;min-width:0; }
+ .app-shell .main-content .restored-map-panel .atlas-temporal-status { font-size:8px; }
+ .app-shell .main-content .restored-map-panel .atlas-view-label { bottom:286px; }
+}
+
+/* Atlas composition: content-measured reservations, never stacking fixes. */
+.app-shell .main-content .restored-map-panel .atlas-screen { --atlas-edge:clamp(12px,2vw,28px);--atlas-gap:12px;--atlas-header-h:76px;--atlas-time-h:106px;--atlas-footer-h:38px;--atlas-style-h:48px;--atlas-reserved:calc(var(--atlas-footer-h) + var(--atlas-time-h) + var(--atlas-gap)*2); }
+.app-shell .main-content .restored-map-panel .atlas-timeline { inset-inline:var(--atlas-edge);bottom:var(--atlas-footer-h);height:auto;min-height:0;padding:10px 16px;gap:20px; }
+.app-shell .main-content .restored-map-panel .atlas-year-controls { margin-bottom:4px;gap:8px; }
+.app-shell .main-content .restored-map-panel .atlas-year-controls select,.app-shell .main-content .restored-map-panel .atlas-year-controls button { min-height:30px;padding:3px 8px; }
+.app-shell .main-content .restored-map-panel .atlas-year-controls small { font-size:8px; }
+.app-shell .main-content .restored-map-panel .atlas-timeline .temporal-dates { padding:3px 2px 7px;gap:16px; }
+.app-shell .main-content .restored-map-panel .atlas-timeline .temporal-caption { margin-top:3px; }
+.app-shell .main-content .restored-map-panel .atlas-timeline .temporal-scrubber { margin:0; }
+.app-shell .main-content .restored-map-panel .atlas-inspector { top:calc(var(--atlas-header-h) + var(--atlas-gap));bottom:var(--atlas-reserved);height:auto;min-height:0;max-height:none;display:grid;grid-template-rows:auto auto auto minmax(0,1fr) auto;overflow:hidden; }
+.app-shell .main-content .restored-map-panel .atlas-inspector .ledger-body { min-height:0;overflow:auto;overscroll-behavior:contain;scrollbar-gutter:stable; }
+.app-shell .main-content .restored-map-panel .atlas-inspector .ledger-masthead,.app-shell .main-content .restored-map-panel .atlas-inspector .ledger-provenance,.app-shell .main-content .restored-map-panel .atlas-inspector .ledger-summary,.app-shell .main-content .restored-map-panel .atlas-inspector .ledger-caveat { min-width:0; }
+.app-shell .main-content .restored-map-panel .atlas-tool-spine { top:calc(var(--atlas-header-h) + var(--atlas-gap));bottom:auto;height:fit-content;max-height:calc(100% - var(--atlas-header-h) - var(--atlas-reserved) - var(--atlas-gap)*2);overflow-y:auto;overflow-x:hidden; }
+.app-shell .main-content .restored-map-panel .atlas-imagery { bottom:var(--atlas-reserved);left:calc(var(--atlas-edge) + 58px);padding:5px 10px;gap:10px; }
+.app-shell .main-content .restored-map-panel .atlas-view-label { bottom:calc(var(--atlas-reserved) + var(--atlas-style-h) + var(--atlas-gap)); }
+.app-shell .main-content .restored-map-panel .atlas-inspector .ledger-summary { padding-block:12px; }
+@media(max-width:1000px){.app-shell .main-content .restored-map-panel .atlas-screen[data-inspector=open] .atlas-editorial{visibility:hidden;}}
+@media(max-width:760px){
+ .app-shell .main-content .restored-map-panel .atlas-screen { --atlas-header-h:116px;--atlas-time-h:130px;--atlas-footer-h:48px;--atlas-gap:10px; }
+ .app-shell .main-content .restored-map-panel .atlas-timeline { padding:8px 10px; }
+ .app-shell .main-content .restored-map-panel .atlas-timeline .temporal-label { margin-bottom:5px; }
+ .app-shell .main-content .restored-map-panel .atlas-timeline .temporal-label .atlas-overline,.app-shell .main-content .restored-map-panel .atlas-timeline .temporal-edition { display:none; }
+ .app-shell .main-content .restored-map-panel .atlas-timeline .temporal-label h2 { font-size:10px; }
+ .app-shell .main-content .restored-map-panel .atlas-year-controls { gap:5px;flex-wrap:nowrap; }
+ .app-shell .main-content .restored-map-panel .atlas-year-controls>span { display:none; }
+ .app-shell .main-content .restored-map-panel .atlas-year-controls small { flex:1;flex-basis:auto;font-size:7px;line-height:1.5; }
+ .app-shell .main-content .restored-map-panel .atlas-year-controls select,.app-shell .main-content .restored-map-panel .atlas-year-controls button { min-height:32px; }
+ .app-shell .main-content .restored-map-panel .atlas-timeline .temporal-caption { font-size:6px; }
+ .app-shell .main-content .restored-map-panel .atlas-inspector { left:76px;right:var(--atlas-edge);top:calc(var(--atlas-header-h) + var(--atlas-gap));bottom:calc(var(--atlas-reserved) + var(--atlas-style-h) + var(--atlas-gap));width:auto; }
+ .app-shell .main-content .restored-map-panel .atlas-inspector .ledger-summary { padding-block:7px; }
+ .app-shell .main-content .restored-map-panel .atlas-inspector .ledger-summary strong { font-size:25px; }
+ .app-shell .main-content .restored-map-panel .atlas-inspector .ledger-caveat { padding:7px 10px; }
+ .app-shell .main-content .restored-map-panel .atlas-inspector .ledger-caveat p { font-size:7px;line-height:1.5; }
+ .app-shell .main-content .restored-map-panel .atlas-imagery { left:76px; }
+ .app-shell .main-content .restored-map-panel .atlas-imagery button { min-height:36px; }
+ .app-shell .main-content .restored-map-panel .atlas-screen[data-inspector=open] .atlas-view-label { visibility:hidden; }
+}
+
+/* Keep attribution, scale and the non-interactive legend in the reserved map gutter. */
+.app-shell .main-content .restored-map-panel .atlas-screen { --atlas-gap:14px; }
+.app-shell .main-content .restored-map-panel .atlas-map .maplibregl-ctrl-bottom-right { bottom:calc(var(--atlas-footer-h) + var(--atlas-time-h) + 3px);right:var(--atlas-edge); }
+.app-shell .main-content .restored-map-panel .atlas-map .maplibregl-ctrl-bottom-left { bottom:calc(var(--atlas-footer-h) + var(--atlas-time-h) + 3px);left:45%;right:auto; }
+.app-shell .main-content .restored-map-panel .atlas-map :is(.maplibregl-ctrl-bottom-left,.maplibregl-ctrl-bottom-right) .maplibregl-ctrl { margin:0; }
+.app-shell .main-content .restored-map-panel .atlas-map .maplibregl-ctrl-attrib { max-height:24px;overflow-y:auto; }
+.app-shell .main-content .restored-map-panel .atlas-key { bottom:calc(var(--atlas-footer-h) + var(--atlas-time-h) + 5px);right:auto;left:var(--atlas-edge);max-width:40%; }
+@media(max-width:760px){.app-shell .main-content .restored-map-panel .atlas-screen{--atlas-gap:10px;}.app-shell .main-content .restored-map-panel .atlas-map .maplibregl-ctrl-bottom-left{left:47%;}.app-shell .main-content .restored-map-panel .atlas-key .atlas-key-note{display:none;}}
+
+@media(max-width:760px){
+ .app-shell .main-content .restored-map-panel .atlas-map .maplibregl-ctrl-bottom-left { left:var(--atlas-edge); }
+ /* Region identity and the detection caveat remain in the header/ledger/footer. */
+ .app-shell .main-content .restored-map-panel .atlas-key { display:none; }
+}
+
+@media(max-width:760px){.app-shell .main-content .restored-map-panel .atlas-screen{--atlas-gap:14px;}}
+
+@media(min-width:761px){.app-shell .main-content .restored-map-panel .atlas-editorial{left:calc(var(--atlas-edge) + 72px);}}
+
+/* Contextual metadata has priority over the noninteractive region headline. */
+.app-shell .main-content .restored-map-panel .atlas-screen[data-observation-selected=true] .atlas-editorial { visibility:hidden; }
+.app-shell .main-content .restored-map-panel .temporal-play:not(:disabled) { cursor:pointer; color:var(--atlas-cyan); }
+.app-shell .main-content .restored-map-panel .temporal-play[aria-pressed=true] { color:var(--atlas-coral); }
+.app-shell .main-content .restored-map-panel .temporal-play:focus-visible { outline:2px solid var(--atlas-cyan);outline-offset:4px; }
+.app-shell .main-content .restored-map-panel .maplibregl-popup[data-viewport-pinned=true] { position:absolute!important;transform:none!important;left:var(--fp-popup-left)!important;top:var(--fp-popup-top)!important; }
+.app-shell .main-content .restored-map-panel .maplibregl-popup[data-viewport-pinned=true] .maplibregl-popup-tip { display:none; }
+
+.app-shell .main-content .restored-map-panel .atlas-screen[data-observation-selected=true] .atlas-view-label { visibility:hidden; }
+.app-shell .main-content .restored-map-panel .temporal-play { min-inline-size:32px;min-block-size:32px; }
+/* Historical full-screen map fitted only to the existing RASAD host. */
+.app-shell .main-content .restored-map-panel .atlas-screen{height:100%!important;min-height:680px;}

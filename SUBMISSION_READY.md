@@ -46,11 +46,9 @@ Next research milestone: native fire masks + valid observation opportunities + g
 
 ## Full Project Link — required link 1
 
-`[FULL_PROJECT_PUBLIC_GITHUB_URL]`
+https://github.com/aboodomari205-gif/FIREPULSE
 
-Existing public source repository: https://github.com/aboodomari205-gif/RASAD
-
-The latest requested destination https://github.com/aboodomari205-gif/FIREPULSE.git returned **Repository not found**. Do not claim the final restoration was uploaded there. Use a verified accessible repository containing the final commit before submission. The full project link is the code/project URL, not the PDF demo link.
+The final source destination is the public FIREPULSE repository. The full project link is the code/project URL, not the PDF demo link. GitHub source hosting is not a deployed application. Original local databases and raw NASA deliveries are excluded.
 
 ## Separate Project Demo Link — required link 2
 

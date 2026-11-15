@@ -19,6 +19,7 @@ import "./intelligence/intelligence.css";
 import "./components/ScientificContext.css";
 import "./design/focused-lab.css";
 import "./design/restored-map.css";
+import "./design/original-map.css";
 import CalibrationRoadmap from './intelligence/CalibrationRoadmap';
 const MapHarmonization = lazy(() => import('./intelligence/MapHarmonization'));
 const ResearchPrototype = lazy(

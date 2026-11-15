@@ -1,6 +1,6 @@
 import { createContext, useContext } from 'react';
 import type { ObservationFilter, RegionId } from '../../shared/model';
-export type MissionScope = ObservationFilter & { region: RegionId; sensor: string; metric: 'count' | 'frp'; calendarMonth: string; activatedArchive?: string; historicalData?:boolean; regionalYears?:Partial<Record<RegionId,string>>; calendarDay?: string | null; seasonYears?: string[] };
+export type MissionScope = ObservationFilter & { region: RegionId; sensor: string; metric: 'count' | 'frp'; calendarMonth: string; selectedUTCDate?:string; activatedArchive?: string; historicalData?:boolean; regionalYears?:Partial<Record<RegionId,string>>; calendarDay?: string | null; seasonYears?: string[] };
 export const MODULES = ['Harmonization Lab','AI Research Lab','Evidence & Methods','Intelligence Map', 'Burning Calendar', 'Fire Season Clock', 'Sensor Intelligence', 'Evidence Engine', 'Fire DNA', 'Anomaly Detection', 'Decision Brief', 'Trust the Signal'] as const;
 /** Four focused public destinations. Legacy routes redirect without exposing retired pages. */
 export const NAVIGATION = [

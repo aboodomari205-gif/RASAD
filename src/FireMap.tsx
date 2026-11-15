@@ -196,9 +196,7 @@ export default function FireMap({
   const { scope, update } = useMission();
   const pendingCalendar = useRef<CalendarMapSelection | null>(null);
   const consumedCalendar = useRef<number | null>(null);
-  const [inspectorOpen, setInspectorOpen] = useState(
-    () => window.innerWidth > 760,
-  );
+  const [inspectorOpen, setInspectorOpen] = useState(false);
   const [filtersOpen, setFiltersOpen] = useState(false);
   const sensor = scope.sensor;
   const setSensor = useCallback(
@@ -218,9 +216,10 @@ export default function FireMap({
   const focusDetails = useRef(false);
   const [listLimit, setListLimit] = useState(50);
   const [evidenceOffset,setEvidenceOffset]=useState(0);
-  useEffect(()=>setEvidenceOffset(0),[scope.region,scope.startDate,scope.endDate,scope.sensor,scope.processing,scope.platform,scope.confidenceRaw,scope.frpMin,scope.frpMax,scope.dayNight]);
+  useEffect(()=>setEvidenceOffset(0),[scope.region,scope.selectedUTCDate,scope.startDate,scope.endDate,scope.sensor,scope.processing,scope.platform,scope.confidenceRaw,scope.frpMin,scope.frpMax,scope.dayNight]);
   const container = useRef<HTMLDivElement>(null);
   const map = useRef<ml.Map | null>(null);
+  useEffect(()=>{if(!container.current)return;const observer=new ResizeObserver(()=>map.current?.resize());observer.observe(container.current);return()=>observer.disconnect();},[]);
   const currentData = useRef<Observations>(EMPTY);
   const currentDatasets = useRef<Dataset[]>([]);
   const boundary = useRef<FeatureCollection<Geometry> | null>(null);
@@ -243,15 +242,15 @@ export default function FireMap({
   const [mapError, setMapError] = useState("");
   const [retry, setRetry] = useState(0);
   const [sourceError, setSourceError] = useState("");
-  const date =
+  const effectiveScope={...scope,startDate:scope.selectedUTCDate??scope.startDate,endDate:scope.selectedUTCDate??scope.endDate};
+  const date = scope.selectedUTCDate??(
     scope.startDate && scope.startDate === scope.endDate
       ? scope.startDate
-      : "all";
+      : "all");
   const setDate = useCallback(
     (value: string) =>
       update({
-        startDate: value === "all" ? undefined : value,
-        endDate: value === "all" ? undefined : value,
+        selectedUTCDate: value === "all" ? undefined : value,
       }),
     [update],
   );
@@ -302,8 +301,10 @@ export default function FireMap({
     const instance = new ml.Map({
       container: container.current,
       style: SATELLITE,
-      center: [-60, -15],
-      zoom: 3,
+      center: [-56, -13],
+      zoom: 7,
+      bounds:[[-57,-14],[-55,-12]],
+      fitBoundsOptions:{padding:window.innerWidth<700?30:65},
       pitch: 0,
       bearing: 0,
       attributionControl: false,
@@ -335,13 +336,13 @@ export default function FireMap({
           id: "south-america-fill",
           type: "fill",
           source: "south-america-boundary",
-          paint: { "fill-color": "#ff6848", "fill-opacity": 0.07 },
+          paint: { "fill-color": "#83aa9d", "fill-opacity": 0.015 },
         });
         instance.addLayer({
           id: "south-america-outline",
           type: "line",
           source: "south-america-boundary",
-          paint: { "line-color": "#ff6848", "line-width": 2 },
+          paint: { "line-color": "#9eb6ae", "line-width": 0.7,"line-opacity":0.4 },
         });
       }
       if (!instance.getSource("observations")) {
@@ -476,7 +477,7 @@ export default function FireMap({
       if(disposed)return;
       boundary.current=result;
       if(instance.getSource('observations'))restore();
-      camera.current?.fit(result,journey.current,false);
+      instance.fitBounds([[-57,-14],[-55,-12]],{padding:window.innerWidth<700?30:65,duration:0});
     }).catch(()=>{if(!disposed)setMapError('Study boundary could not load.');});
     return () => {
       disposed = true;
@@ -503,7 +504,7 @@ export default function FireMap({
       controller.signal,
       Number(requestFromYear),
       Number(requestThroughYear),
-      {from:scope.startDate,to:scope.endDate,filters:scope,offset:evidenceOffset},
+      {from:effectiveScope.startDate,to:effectiveScope.endDate,filters:effectiveScope,offset:evidenceOffset},
     )
       .then((result) => {
         if (controller.signal.aborted) return;
@@ -561,7 +562,7 @@ export default function FireMap({
     setConfidence,
     requestFromYear,
     requestThroughYear,
-    scope.startDate,scope.endDate,scope.sensor,scope.processing,scope.platform,scope.confidenceRaw,scope.frpMin,scope.frpMax,scope.dayNight,scope.bbox,evidenceOffset,
+    scope.selectedUTCDate,scope.startDate,scope.endDate,scope.sensor,scope.processing,scope.platform,scope.confidenceRaw,scope.frpMin,scope.frpMax,scope.dayNight,scope.bbox,evidenceOffset,
   ]);
 
   function changeRegion(next: Region) {
@@ -605,9 +606,9 @@ export default function FireMap({
   const dates = (historicalMetadata?.scalable && Array.isArray(historicalMetadata.availableDates)
     ? historicalMetadata.availableDates.map(String)
     : observedAtlasDates(data as import('../shared/model').ObservationCollection,scope,filterObservationCollection)
-  ).filter(d=>!historical||d.startsWith(selectedYear));
+  ).filter(d=>(!historical||d.startsWith(selectedYear))&&(!scope.startDate||d>=scope.startDate)&&(!scope.endDate||d<=scope.endDate));
   function chooseYear(year: string) {
-    update(selectAtlasYear(year, region, scope.regionalYears));
+    update({...selectAtlasYear(year, region, scope.regionalYears),selectedUTCDate:undefined});
   }
   const confidences = [
     ...new Set(
@@ -621,7 +622,7 @@ export default function FireMap({
         .filter(Boolean),
     ),
   ].sort();
-  const visibleData: Observations = filterObservationCollection(data, scope);
+  const visibleData: Observations = filterObservationCollection(data, effectiveScope);
   const instruments = sensor === "all" ? availableInstruments : [sensor];
   function applyFilters(
     nextDate: string,
@@ -653,7 +654,7 @@ export default function FireMap({
       changeRegion(scope.region);
       return;
     }
-    const filtered = filterObservationCollection(data, scope);
+    const filtered = filterObservationCollection(data, effectiveScope);
     currentData.current = filtered;
     signals.current?.present(filtered);
     // A same-year fetch can finish just after a user opens a valid record.
@@ -678,12 +679,16 @@ export default function FireMap({
     scope.processing,
     scope.startDate,
     scope.endDate,
+    scope.selectedUTCDate,
     scope.confidenceRaw,
     scope.frpMin,
     scope.frpMax,
     data,
   ]);
   function filterDate(next: string) {
+    if (next === "all") {
+      update({selectedUTCDate:undefined});return;
+    }
     if (historical && next === "all") {
       update({
         ...selectAtlasYear(selectedYear, region, scope.regionalYears),
@@ -777,18 +782,19 @@ export default function FireMap({
     scope.processing,
     scope.startDate,
     scope.endDate,
+    scope.selectedUTCDate,
   ]);
   function refit() {
     if (!map.current) return;
     const target = boundary.current;
     journey.current = camera.current?.begin() ?? 0;
-    if (target) camera.current?.fit(target, journey.current);
+    if (target) map.current.fitBounds([[-57,-14],[-55,-12]],{padding:window.innerWidth<700?30:65,duration:500});
   }
   useEffect(() => {
     if (!missionRequest || !camera.current) return;
     journey.current = camera.current.begin();
     const target = boundary.current;
-    if (target) camera.current.fit(target, journey.current);
+    if (target) map.current?.fitBounds([[-57,-14],[-55,-12]],{padding:window.innerWidth<700?30:65,duration:0});
     document.getElementById("enter-mission")?.focus({ preventScroll: true });
   }, [missionRequest]);
   useEffect(() => {
@@ -837,7 +843,7 @@ export default function FireMap({
         source?.setData(next);
         if (camera.current) {
           journey.current = camera.current.begin();
-          camera.current.fit(next, journey.current);
+          map.current?.fitBounds([[-57,-14],[-55,-12]],{padding:window.innerWidth<700?30:65,duration:0});
         }
       })
       .catch(() => setMapError("Regional boundary could not load."));
@@ -874,7 +880,7 @@ export default function FireMap({
   return (
     <section
       className="atlas-screen"
-      data-inspector={inspectorOpen ? "open" : "closed"}
+      data-inspector={inspectorOpen&&selected ? "open" : "closed"}
       data-observation-selected={selected ? "true" : "false"}
       aria-label={t("Mission Atlas")}
     >
@@ -1016,7 +1022,7 @@ export default function FireMap({
           symbol="ledger"
           label={t("Observation ledger")}
           active={inspectorOpen}
-          onClick={() => setInspectorOpen((value) => !value)}
+          onClick={() => {if(selected)setInspectorOpen(value=>!value);else if(visibleData.features[0])inspectObservation(visibleData.features[0]);}}
           aria-expanded={inspectorOpen}
           aria-controls="atlas-inspector"
         />
@@ -1126,7 +1132,7 @@ export default function FireMap({
       )}
       <AnimatePresence>
         {t(
-          inspectorOpen && (
+          inspectorOpen && selected && (
             <AtlasInspector
               data={visibleData}
               instruments={instruments}

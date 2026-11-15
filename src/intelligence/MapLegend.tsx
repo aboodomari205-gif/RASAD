@@ -1,0 +1,2 @@
+import {useLanguage} from '../i18n/useLanguage';
+export default function MapLegend(){const ar=useLanguage()==='ar';return <div className="map-compact-legend" aria-label={ar?'مفتاح الخريطة':'Map legend'}><span>MODIS ~1 km</span><span>VIIRS ~375 m</span><span>{ar?'دعم مشترك H3 / UTC':'Shared H3 / UTC support'}</span><small>{ar?'فرصة الرصد مجهولة · توحيد مكاني وزمني وليس معايرة متحققة':'Opportunity unknown · spatial-temporal harmonization, not validated calibration'}</small></div>;}
