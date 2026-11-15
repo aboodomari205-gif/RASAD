@@ -1,5 +1,9 @@
 # RASAD challenge-core / AI delivery — 2026-11-15
 
+## GitHub delivery completed
+
+The user subsequently requested repository **RASAD**. Authenticated inspection found their existing empty **public** repository at https://github.com/aboodomari205-gif/RASAD. The audited source/model commit `e3cf158` was successfully pushed to `main` using a normal non-force push. The previous FIREPULSE remote is preserved locally as `firepulse-previous`; `origin` now points to RASAD. Earlier FIREPULSE access-blocker statements below are historical and resolved by the new destination. Public application deployment and submission are still not performed.
+
 This is the current delivery evidence and supersedes older statements that no ML model was implemented. Brazil-only scope and the original data/checkpoints are preserved. Full cross-sensor calibration, downscaling and reconstruction remain **NOT VALIDATED**.
 
 ## Status

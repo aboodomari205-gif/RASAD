@@ -6,6 +6,8 @@ RASAD brings authentic MODIS and VIIRS thermal detections onto common spatial an
 
 ## What works
 
+Source delivery: [aboodomari205-gif/RASAD](https://github.com/aboodomari205-gif/RASAD), branch `main`. Public source repository; application hosting/submission is separate and has not been performed.
+
 - **Harmonized Atlas:** actual Brazil observations, source-aware filters, bounded map pages, UTC timeline and original acquisition/FRP/confidence metadata.
 - **Burning Calendar:** full source-stratified historical summaries, seasonal views and descriptive prior same-month comparisons. Missing opportunity stays unknown; conditional percentiles are not validated anomalies.
 - **Sensor Comparison & Trust:** common equal-area 1/2/5 km grids, H3 resolutions 4–8 with actual cell areas, delivered co-detection and source-only patterns, lineage and quality caveats.
