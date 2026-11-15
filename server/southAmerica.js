@@ -8,6 +8,7 @@ import {once} from 'node:events';
 import {Worker} from 'node:worker_threads';
 import {pilotEvidence} from '../shared/pilot.js';
 import {pilotOptions,environmentalStatus} from './pilot.js';
+import {harmonizationLab} from '../shared/harmonizationLab.js';
 const root=new URL('./data/south-america/',import.meta.url);
 const availability={state:'loaded',fixture:false,quality:'complete',coverage:'unknown',reasons:['Detection-only deliveries do not establish clear-sky observation opportunity. NRT is provisional.']};
 let retained=null;
@@ -75,6 +76,7 @@ function* scopedRows(query,s=scope(query),state=context(s)){
 function boundedScope(query){const s=scope(query);const last=southManifest(query).metadata.defaultDate;s.from=s.from??s.to??last;s.to=s.to??s.from;if(!s.from||Date.parse(s.to)-Date.parse(s.from)>30*86400000)throw new RangeError('Select at most 31 UTC days');return s;}
 /** Read-only bounded original-row stream for offline reproducible research. */
 export function researchRows(query={}){const s=boundedScope(query),state=context(s);return {generation:state.generation,rows:scopedRows(query,s,state)};}
+export function southHarmonization(query={}){const s=boundedScope(query),state=context(s);return {...harmonizationLab(scopedRows(query,s,state),{support:query.support??'h3',resolution:Number(query.resolution??6),size:Number(query.size??2000)}),generation:state.generation,from:s.from,to:s.to};}
 export function southPilot(query={}){
  const options=pilotOptions(query),s=boundedScope(query),state=context(s);
  return {...pilotEvidence(scopedRows(query,s,state),{...options,from:s.from,to:s.to}),generation:state.generation,region:'brazil',generatedAt:new Date().toISOString(),environment:environmentalStatus({...options,from:s.from,to:s.to}),model:{status:'NOT VALIDATED',trainingSamples:0,holdoutMetrics:null,reason:'No matched valid-pixel opportunity or independent year/geography holdouts. Downscaling and historical reconstruction disabled.'},responseIntegrations:{crews:'unavailable',evacuation:'unavailable',dispatch:'unavailable'}};
@@ -144,6 +146,7 @@ export function registerSouthAmerica(app){
  app.get('/api/south-america/audit',handle(()=>{const a=JSON.parse(fs.readFileSync(new URL('active.json',root),'utf8'));return JSON.parse(fs.readFileSync(new URL(a.audit,root),'utf8'));}));
  app.get('/api/south-america/grid',async(req,res)=>{try{res.json(await gridOffThread(req.query));}catch(e){res.status(e instanceof RangeError?400:503).json({error:e instanceof RangeError?e.message:'Brazil grid evidence unavailable. Narrow the UTC window or retry.'});}});
  app.get('/api/south-america/pilot',async(req,res)=>{try{res.json(await gridOffThread({...req.query,task:'pilot'}));}catch(e){res.status(e instanceof RangeError?400:503).json({error:e instanceof RangeError?e.message:'Brazil pilot evidence unavailable; narrow the UTC window or retry.'});}});
+ app.get('/api/research/harmonization',async(req,res)=>{try{res.json(await gridOffThread({...req.query,task:'harmonization'}));}catch(e){res.status(e instanceof RangeError?400:503).json({error:e instanceof RangeError?e.message:'Real harmonization evidence unavailable; narrow the UTC window or retry.'});}});
  app.get('/api/south-america/summary.csv',(req,res)=>{
   try{const summary=southSummary({...req.query,summary:req.query.period??'month'});const keys=['period','datasetId','sensor','platform','product','version','processing','source','count','frpSum','frpReported','coverage','lineageStatus'];const cell=v=>'"'+String(v??'').replaceAll('"','""')+'"';res.type('text/csv').set('Content-Disposition',`attachment; filename="rasad-${summary.region}-source-summaries.csv"`).send('\uFEFF'+[['region',...keys],...summary.series.map(r=>[summary.region,...keys.map(k=>r[k])])].map(row=>row.map(cell).join(',')).join('\r\n'));}catch(e){res.status(e instanceof RangeError?400:503).json({error:'Source summary export unavailable.'});}
  });

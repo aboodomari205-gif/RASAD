@@ -1,5 +1,7 @@
 # Full implementation execution status
 
+**Current focused product:** four public sections, direct default `/#harmonization-lab`, dedicated `/#ai-research-lab`. Source-aware harmonization is the deliverable; the unchanged FRP model is an explicitly experimental extension. Latest acceptance: 164 tests pass, build/release and focused bilingual/browser/export/print checks pass. Separate seven-slide PDF is generated and verified. See [current product correction report](RASAD_FOCUSED_PRODUCT_REPORT.md); older five-section/cinematic records below are preserved history.
+
 **GitHub delivery completed:** the user-selected repository https://github.com/aboodomari205-gif/RASAD received the tested source/model delivery on `main`. Earlier FIREPULSE access blockers below are historical. No public application hosting or NASA submission was performed.
 
 ## Final challenge-core / actual AI sprint

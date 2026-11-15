@@ -4,16 +4,18 @@
 
 RASAD brings authentic MODIS and VIIRS thermal detections onto common spatial and UTC supports while retaining sensor, platform, product, processing, confidence and uncertainty. MODIS (~1 km nominal) and VIIRS (~375 m nominal) have different detection sensitivity; adding their raw counts does not create a comparable fire-history series. Hotspots are not unique fires, perimeters or verified ignition events.
 
-## What works
+## Four focused sections
 
-Source delivery: [aboodomari205-gif/RASAD](https://github.com/aboodomari205-gif/RASAD), branch `main`. Public source repository; application hosting/submission is separate and has not been performed.
+The default home is **Harmonization Lab** (`/#harmonization-lab`). There is no cinematic intro or entry gate.
 
-- **Harmonized Atlas:** actual Brazil observations, source-aware filters, bounded map pages, UTC timeline and original acquisition/FRP/confidence metadata.
-- **Burning Calendar:** full source-stratified historical summaries, seasonal views and descriptive prior same-month comparisons. Missing opportunity stays unknown; conditional percentiles are not validated anomalies.
-- **Sensor Comparison & Trust:** common equal-area 1/2/5 km grids, H3 resolutions 4–8 with actual cell areas, delivered co-detection and source-only patterns, lineage and quality caveats.
-- **Research & Export:** real source/day CSV and JSON reports, printable evidence, an actual trained conditional-FRP research prototype and reproducible held-out evaluation.
+1. **Harmonization Lab:** actual side-by-side MODIS/VIIRS pilot positions, shared dates, same-day shortcut, source-specific counts, common H3/equal-area support, source switches, exact pair evidence, provenance and CSV/JSON/print.
+2. **Burning Calendar** (`/#burning-calendar`): authentic source-aware historical calendar and descriptive seasonal references; linked to the selected comparison period and individual days.
+3. **AI Research Lab** (`/#ai-research-lab`): dedicated visible navigation/page for the actual conditional-FRP model, baseline/held-out errors, real example selector, observed versus estimated values, limitations and reports.
+4. **Evidence & Methods** (`/#evidence-methods`): what was proved, what remains unvalidated, source semantics, required calibration inputs and official references.
 
-The existing five sections remain: Mission Atlas, Burning Calendar, Activity Intelligence, Sensor Harmonization, Research & Export. Arabic RTL and English LTR, mobile navigation and the original RASAD logo are retained. The four original workflows use actual detections, explicit environmental availability, detected-cell progression and descriptive evidence reports. No emergency dispatch, fire-risk probability or spread prediction is supplied.
+Arabic RTL/English LTR, mobile navigation and the original RASAD logo remain. Generic risk, dispatch/evacuation, environmental dashboards, redundant analytics pages and decorative Earth entry are unmounted from the visible product. Their source and original data are preserved. Experimental ML is prominently labeled **not validated MODIS-VIIRS calibration, downscaling, reconstruction or wildfire prediction**.
+
+Source delivery: https://github.com/aboodomari205-gif/RASAD. No application hosting or NASA submission was performed.
 
 ## Real data and pilot
 
@@ -66,12 +68,12 @@ Both use fixed dates, H3 support, split and hyperparameters. Sample SHA256: `aec
 
 ## Two-minute demonstration
 
-1. Enter **Mission Atlas**, inspect Brazil, switch MODIS/VIIRS and review actual UTC/FRP/confidence.
-2. Open **Sensor Harmonization**: read the fixed August 2024 Research Prototype, source-pair overlap and mixed held-out results. Select an actual held-out example; observed and estimated FRP are labeled separately.
-3. In the Mato Grosso pilot choose **Inspect August 2024 pilot**, change H3 resolution and inspect source-separated cell/day evidence.
-4. Open **Activity Intelligence**, play daily occupied cells and select a UTC day. This is detected activity, not perimeter growth.
-5. Open **Burning Calendar**, inspect authentic history and qualified same-month comparisons.
-6. Export pilot CSV/JSON and the research evaluation JSON; print the report with limitations.
+1. Open the root URL: **Harmonization Lab** appears directly. Read OBSERVE -> HARMONIZE -> COMPARE & EXPLAIN.
+2. Inspect the real August 2024 side-by-side sources; select **Same-day comparison** or retain the month worked example. Select an original point for source/UTC/FRP/confidence.
+3. Switch MODIS, VIIRS and unified support; change H3 resolution or 1/2/5 km equal-area cells. Inspect exact paired cell-days and the opportunity caveat.
+4. Open the linked **Burning Calendar**; inspect authentic history/day details and return to harmonization.
+5. Choose **AI Research Lab** from the sidebar: see the real target, mixed metrics and actual held-out example estimates, separately labeled from observations.
+6. Export cell-day CSV/JSON, print actual evidence and review **Evidence & Methods**. A separate [seven-slide NASA demo PDF](artifacts/RASAD_NASA_DEMO_7_SLIDES.pdf) and self-contained HTML are provided.
 
 ## Status and missing evidence
 
@@ -95,15 +97,13 @@ npm run build
 npm run lint
 npm run verify:release
 $env:RASAD_TEST_ORIGIN='http://localhost:4173'
-node scripts/verify-rasad-batch1-browser.mjs
-node scripts/verify-rasad-batch1-browser.mjs --research
-node scripts/verify-rasad-batch1-browser.mjs --pilot
+node scripts/verify-focused-product.mjs
 ```
 
-Chrome browser verification currently uses the Windows Chrome path in the harness. Original-data integration tests skip when the private index is absent; that is not a passed original-data validation. Real model labels/artifact tests remain reproducible. [Current release evidence](docs/RASAD_AI_DELIVERY_REPORT.md).
+Chrome browser verification currently uses the Windows Chrome path in the harness. Original-data integration tests skip when the private index is absent; that is not a passed original-data validation. Real model labels/artifact tests remain reproducible. [Current focused-product acceptance](docs/RASAD_FOCUSED_PRODUCT_REPORT.md). Older five-section browser scripts are retained as historical harnesses, not the current acceptance workflow.
 
-![Real research evaluation](docs/screenshots/research-evaluation.png)
+![Focused default Harmonization Lab](docs/screenshots/harmonization-home.png)
 
-[Atlas screenshot](docs/screenshots/mission-atlas.png) · [Calendar](docs/screenshots/burning-calendar.png) · [Arabic mobile research panel](docs/screenshots/research-arabic-mobile.png)
+[Actual sensor comparison](docs/screenshots/sensor-comparison.png) | [Dedicated AI Research Lab](docs/screenshots/ai-research-lab.png) | [Arabic mobile home](docs/screenshots/harmonization-arabic-mobile.png)
 
 No NASA endorsement, calibrated sensor equivalence, verified no-fire coverage or validated prediction is claimed. No paid service or public application deployment was performed.

@@ -1,5 +1,7 @@
 # RASAD challenge-core / AI delivery — 2026-11-15
 
+**Product correction:** the current interface is the four-section focused experience described in [RASAD_FOCUSED_PRODUCT_REPORT.md](RASAD_FOCUSED_PRODUCT_REPORT.md). The model/evaluation below are preserved and unchanged; they do not demonstrate calibrated harmonization accuracy. Current routes are `/#harmonization-lab` and `/#ai-research-lab`.
+
 ## GitHub delivery completed
 
 The user subsequently requested repository **RASAD**. Authenticated inspection found their existing empty **public** repository at https://github.com/aboodomari205-gif/RASAD. The audited source/model commit `e3cf158` was successfully pushed to `main` using a normal non-force push. The previous FIREPULSE remote is preserved locally as `firepulse-previous`; `origin` now points to RASAD. Earlier FIREPULSE access-blocker statements below are historical and resolved by the new destination. Public application deployment and submission are still not performed.

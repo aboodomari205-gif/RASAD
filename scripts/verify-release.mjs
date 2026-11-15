@@ -7,10 +7,11 @@ for (const filename of required) assert.ok(fs.existsSync(filename), `Missing rel
 assert.deepEqual(ACTIVE_REGIONS.map(region=>region.id),['brazil']);
 assert.ok(!fs.existsSync('dist/jordan-adm1.geojson'),'Retired study asset must not be packaged');
 const assets = fs.readdirSync('dist/assets');
-assert.ok(assets.some(name => /^maplibre-gl-worker-.*\.mjs$/.test(name)), 'MapLibre worker must be bundled');
+assert.ok(assets.some(name => /^ResearchPrototype-.*\.js$/.test(name)), 'Dedicated actual AI page must be packaged');
+assert.ok(!assets.some(name=>/^EarthLanding-/.test(name)),'Cinematic landing must not be in the focused default application');
 for (const filename of assets.filter(name => /\.(js|mjs)$/.test(name))) assert.ok(!/FIRMS_MAP_KEY|FIREPULSE_DATA_API_ORIGIN/.test(fs.readFileSync(path.join('dist/assets', filename), 'utf8')), 'Server configuration identifier found in browser bundle');
 const config = JSON.parse(fs.readFileSync('vercel.json', 'utf8'));
 assert.equal(config.framework, 'vite'); assert.equal(config.outputDirectory, 'dist');
 assert.ok(config.functions['api/[...path].js'].excludeFiles.includes('**/.env*'));
 assert.ok(config.functions['api/[...path].js'].excludeFiles.includes('server/data/**'));
-console.log('PASS static release assets, bundled map worker, server/client configuration separation and Function packaging safeguards. Deployment itself is not verified.');
+console.log('PASS Brazil assets, dedicated research bundle, no cinematic entry, server/client configuration separation and Function packaging safeguards. Deployment itself is not verified.');

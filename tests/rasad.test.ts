@@ -2,15 +2,16 @@ import {calendarSVG} from '../src/calendar/visualization.ts';
 import {includesWholeUTCMonth} from '../shared/observedPeriods.ts';
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {NAVIGATION, sectionName} from '../src/state/mission.ts';
+import {NAVIGATION, sectionName,moduleHash} from '../src/state/mission.ts';
 import {southGrid, southCollection, southSummary} from '../server/southAmerica.js';
 import {existsSync} from 'node:fs';
 
-test('five public RASAD sections retain scientific subview membership',()=>{
- assert.deepEqual(NAVIGATION.map(n=>n.name),['Mission Atlas','Burning Calendar','Activity Intelligence','Sensor Harmonization','Research & Export']);
+test('four focused RASAD destinations expose harmonization and actual AI with canonical routes',()=>{
+ assert.deepEqual(NAVIGATION.map(n=>n.name),['Harmonization Lab','Burning Calendar','AI Research Lab','Evidence & Methods']);
  assert.equal(sectionName('Fire DNA'),'Burning Calendar');
- assert.equal(sectionName('Evidence Engine'),'Sensor Harmonization');
- assert.equal(sectionName('Decision Brief'),'Research & Export');
+ assert.equal(sectionName('Evidence Engine'),'Harmonization Lab');
+ assert.equal(sectionName('Decision Brief'),'Evidence & Methods');
+ assert.equal(moduleHash('Harmonization Lab'),'#harmonization-lab');assert.equal(moduleHash('AI Research Lab'),'#ai-research-lab');assert.equal(moduleHash('Evidence & Methods'),'#evidence-methods');
 });
 test('real grid sensitivity reconciles source occupancy and set identities', {skip:!existsSync('server/data/south-america/active.json')},()=>{
  const g=southGrid({mode:'brazil',from:'2026-11-13',to:'2026-11-13',size:'2000'});

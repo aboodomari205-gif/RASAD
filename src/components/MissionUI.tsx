@@ -18,8 +18,8 @@ export function Navigation({ active, onChange }: { active: Module; onChange: (va
     document.addEventListener('keydown',escape,true);return()=>document.removeEventListener('keydown',escape,true);
   },[open,mobile]);
   function close(){setOpen(false);trigger.current?.focus();}
-  const icons=['locate','time','signal','layers','ledger'] as const;
-  const descriptions=['Explore delivered observations','Discover historical seasons','Inspect unusual observed activity','Compare source-aware evidence','Methods, provenance and downloads'];
+  const icons=['layers','time','signal','ledger'] as const;
+  const descriptions=['Observe, harmonize, compare','Discover historical seasons','Experimental FRP, not calibration','Methods, provenance and downloads'];
   return <>
     <header className="rasad-mobile-header"><span className="rasad-mobile-wordmark"><img src="/brand/rasad-source.jpeg" alt={t('Supplied RASAD logo')}/><b>RASAD <span lang="ar">رصد</span><small className="rasad-mobile-section">{t(sectionName(active))}</small></b></span><LanguageSwitch/><button ref={trigger} className="rasad-mobile-toggle" aria-label={t('Open navigation')} aria-expanded={open} aria-controls="rasad-sidebar" onClick={()=>setOpen(v=>!v)}><AtlasGlyph name="index" size={20}/><span>{t('Menu')}</span></button></header>
     {open&&mobile&&<button className="rasad-nav-backdrop" aria-label={t('Close navigation')} onClick={close}/>}
