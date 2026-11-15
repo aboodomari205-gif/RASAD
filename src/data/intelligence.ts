@@ -9,7 +9,7 @@ export class DataFoundationError extends Error {
 /** Typed entry point for Intelligence Lab modules. No baseline or anomaly is invented. */
 export async function fetchIntelligenceData<R extends IntelligenceResource>(resource: R, filter: ObservationFilter, options: { period?: Period; signal?: AbortSignal } = {}): Promise<Extract<IntelligenceResponse, { resource: R }>> {
   validateFilter(filter);
-  const query = new URLSearchParams({ region: filter.region ?? 'ajloun' });
+  const query = new URLSearchParams({ region: filter.region ?? 'brazil' });
   if (filter.datasetIds && filter.datasetIds.length > 1) throw new RangeError('Request one explicit dataset per client call, or query the scoped catalog');
   const values = { frpMin: filter.frpMin?.toString(), frpMax: filter.frpMax?.toString(), sensor: filter.sensor,processing:filter.processing, platform: filter.platform, datasetId: filter.datasetIds?.[0], from: filter.startDate, to: filter.endDate, fromTime: filter.startTime, toTime: filter.endTime, fixture: filter.fixture, confidence: filter.confidenceRaw, bbox: filter.bbox?.join(','), period: options.period };
   for (const [key, value] of Object.entries(values)) if (value !== undefined) query.set(key, value);

@@ -1,0 +1,174 @@
+{
+  "testCount": 152,
+  "fullStoredAudit": {
+    "generation": "86f1f872f7366fe4",
+    "storedRows": 48552057,
+    "dailyGroups": 208203,
+    "activeJordanRows": 0,
+    "geographicExtent": [
+      -81.29187,
+      -55.23397,
+      -34.79571,
+      12.3839
+    ],
+    "standardNrtOverlapDates": [],
+    "polygonClipping": "Every stored row independently checked against its assigned country polygon",
+    "utcAndRawCoordinates": "Every stored row checked against its preserved source values",
+    "dailyCountsAndFrp": "All daily groups reconciled from actual stored rows",
+    "passed": true
+  },
+  "pagesLocalExecution": {
+    "generation": "86f1f872f7366fe4",
+    "localWorkerExecution": true,
+    "hostedCloudflareValidation": false,
+    "totalDelivered": 48552057,
+    "yearlySummaryRows": 69,
+    "streamedModisCSVBytes": 1041308,
+    "routes": [
+      "/api/observations",
+      "/api/observations",
+      "/api/south-america/grid",
+      "/api/observations.csv",
+      "/api/observations"
+    ],
+    "passed": true
+  },
+  "productionBundleScope": {
+    "generation": "86f1f872f7366fe4",
+    "retiredStudyLabels": 0,
+    "retiredVisibleBranding": 0,
+    "artifacts": [
+      {
+        "file": "dist\\assets\\BurningCalendar-BZWbL8Jq.js",
+        "bytes": 37264,
+        "sha256": "cac3df7fe7a1524e3190c54082c1d9bb3b68a0b3988aab9a1cee2d290ffd662e"
+      },
+      {
+        "file": "dist\\assets\\calendar-Cb5nbt6S.css",
+        "bytes": 16197,
+        "sha256": "f12888434c3a95d0b8dff4568d8f6cb031bcc9b87ceb3d85af686d90bbe13887"
+      },
+      {
+        "file": "dist\\assets\\calendar-CPmMj_9H.js",
+        "bytes": 48290,
+        "sha256": "5d2cab0fbe58631d4f88ad09a0b11adf2d2273a391c344970c0ce1307a01f285"
+      },
+      {
+        "file": "dist\\assets\\EarthLanding-85fKrEma.css",
+        "bytes": 6399,
+        "sha256": "bfb9574bbc16247a9b433ff39234d9c4c90980d133842ecf420d54141bb17407"
+      },
+      {
+        "file": "dist\\assets\\EarthLanding-CJ403z3W.js",
+        "bytes": 6301,
+        "sha256": "f507e73a160a3a9f2a49ed632c779346748ebb2a8ec4856afc7cf51b112611bb"
+      },
+      {
+        "file": "dist\\assets\\EarthScene-DvPGD6cZ.js",
+        "bytes": 923933,
+        "sha256": "71b4d1db2721c354861001c0f9a5f6bec13cf1cb3d3802dea50a4e1166a10de6"
+      },
+      {
+        "file": "dist\\assets\\FireMap-CJ9ZA316.css",
+        "bytes": 108916,
+        "sha256": "e7c2c25d5db0a53cf7f64bc337d980a84b18195be581687428504d2be3db9a57"
+      },
+      {
+        "file": "dist\\assets\\FireMap-DIOAa0-p.js",
+        "bytes": 1108985,
+        "sha256": "a4581c644d203d8e763fd88c91dadd5efbddb1a295e77d208de299ef72ec8ae3"
+      },
+      {
+        "file": "dist\\assets\\index-bewfjazz.css",
+        "bytes": 6430,
+        "sha256": "cb421e4cd36254b0c664a07ba9283140223dd6a00ae25bb4aabd64ed85abef61"
+      },
+      {
+        "file": "dist\\assets\\index-CUe4zGy0.js",
+        "bytes": 510280,
+        "sha256": "5cd8ae5fd302602e4edbdf8dbdcc22b135d7e23825170c609a5ebda54f10e2aa"
+      },
+      {
+        "file": "dist\\assets\\IntelligenceWorkspace-BovDQhrv.js",
+        "bytes": 82025,
+        "sha256": "d3f6f7792a090245497931ca334d061c9a24921989654d169da0a02ac023bd41"
+      },
+      {
+        "file": "dist\\assets\\IntelligenceWorkspace-D79i3diE.css",
+        "bytes": 17729,
+        "sha256": "a1bb4593214d0120a444ab16b647e9125a5cc1b79e2a4f46bc9197d8d6d4b204"
+      },
+      {
+        "file": "dist\\assets\\jsx-runtime-Wy9s6hX0.js",
+        "bytes": 8911,
+        "sha256": "bcb9f6586cd973c2fb2faa4a2d38d4b06660e2fe2806aaa0de1c39306ff0f69a"
+      },
+      {
+        "file": "dist\\assets\\LanguageSwitch-Bx30BaDZ.js",
+        "bytes": 793,
+        "sha256": "01e671363fe073ea46bbc4dd57d7a47b028a8b482a918c2f76744dc9d6f02153"
+      },
+      {
+        "file": "dist\\assets\\LanguageSwitch-Dibon-FC.css",
+        "bytes": 5861,
+        "sha256": "e2196e05424f1c75eba6a848b3fe5508fc25a6a5380f26f3ac950608b45a679a"
+      },
+      {
+        "file": "dist\\assets\\ProcessingScope-DdPwhu89.js",
+        "bytes": 628,
+        "sha256": "302acd8089071b12bbccafb2e228638e483d623a4098e460fb473562a7fd3231"
+      },
+      {
+        "file": "dist\\index.html",
+        "bytes": 1048,
+        "sha256": "17aee2d735ebf91ab32ed5c7b2267e38d67f07107b2e9324ae3dad993414a47d"
+      },
+      {
+        "file": "dist\\manifest.webmanifest",
+        "bytes": 241,
+        "sha256": "e72aa9aec119d1f8069572cabd907f84ded35e9c3b5dc1cc3757433a8d903d51"
+      },
+      {
+        "file": "dist\\south-america-countries.geojson",
+        "bytes": 24908,
+        "sha256": "6d2d6154f95c51ade69be0ab44675f0e2b5ffc876a231e9771f7fe999d3b2691"
+      }
+    ],
+    "passed": true
+  },
+  "historicalBrowserPassed": true,
+  "testsPassed": true,
+  "buildPassed": true,
+  "representativeBrowserPassed": true,
+  "independentGrid": {
+    "generation": "86f1f872f7366fe4",
+    "method": "Independent original ZIP csv reader, GEOS polygon, mathematical floor projection and HTTP export reconciliation",
+    "day": "2026-11-13",
+    "region": "brazil",
+    "gridSensitivity": [
+      {
+        "sizeM": 1000,
+        "modisCells": 1429,
+        "viirsCells": 4565,
+        "intersectionCells": 251,
+        "unionCells": 5743
+      },
+      {
+        "sizeM": 2000,
+        "modisCells": 1182,
+        "viirsCells": 3629,
+        "intersectionCells": 291,
+        "unionCells": 4520
+      },
+      {
+        "sizeM": 5000,
+        "modisCells": 946,
+        "viirsCells": 2885,
+        "intersectionCells": 325,
+        "unionCells": 3506
+      }
+    ],
+    "exportRows": 9829,
+    "passed": true
+  }
+}

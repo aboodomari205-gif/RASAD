@@ -8,7 +8,7 @@ export default function ScientificContext({records,datasets,region,thresholds=DE
  const {distanceKm,minutes}=thresholds;
  const result=useMemo(()=>{try{return {data:scientificHarmonization(records,datasets,region,{distanceKm,minutes}),error:false};}catch{return {data:null,error:true};}},[records,datasets,region,distanceKm,minutes]);
  const data=result.data;
- const download=()=>{if(!data)return;const url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download='firepulse-scientific-harmonization.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
+ const download=()=>{if(!data)return;const url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download='rasad-scientific-harmonization.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
  return <details className="research-section scientific-context"><summary>{t('Scientific harmonization / scoped evidence')}</summary>{!data?<p role="alert">{t('Narrow the observation scope before scientific analysis.')}</p>:<>
  <p>{t('Delivered observations are harmonized by UTC, geography and provenance. Detection opportunity, calibrated equivalent counts, exposure-normalized historical median and validated anomalies remain unavailable.')}</p>
  <p><bdi>{data.uniqueDelivered}</bdi> {t('Delivered detections')} / <bdi>{data.strata.length}</bdi> {t('Source strata')} / <bdi>{thresholds.distanceKm} km / {thresholds.minutes} min</bdi></p>

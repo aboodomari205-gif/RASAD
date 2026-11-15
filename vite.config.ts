@@ -2,8 +2,9 @@
 import { defineConfig } from 'vite'
 
 export default defineConfig({
+  define: { __RASAD_ACTIVE_ONLY__: 'true' },
   plugins: [react(), {
-    name: 'firepulse-local-data-api',
+    name: 'firepulse-south-america-data-api',
     apply: 'serve',
     async configureServer(server) {
       // Explicit test/remote proxy overrides retain their existing semantics.

@@ -23,7 +23,7 @@ export function readArchiveCSV(filename) {
   return readLocalFile(filename, path.join(dataRoot, 'archives'));
 }
 export function loadAjlounGeometry() {
-  const boundaries = JSON.parse(fs.readFileSync(new URL('../public/jordan-adm1.geojson', import.meta.url), 'utf8'));
+  const boundaries = JSON.parse(fs.readFileSync(new URL('./legacy-geography/jordan-adm1.geojson', import.meta.url), 'utf8'));
   return boundaries.features.find(feature => feature.properties?.shapeName === 'Ajloun')?.geometry;
 }
 export function loadRegionCollection(region, { allDatasets = false, datasetId, filter, baseline = false } = {}) {

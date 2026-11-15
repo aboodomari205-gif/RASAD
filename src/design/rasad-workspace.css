@@ -1,0 +1,232 @@
+/* RASAD application shell. Logical properties keep the map itself unmirrored. */
+:root {
+  --rasad-sidebar-width: 264px;
+  --atlas-radius: 10px;
+}
+.rasad-sidebar { position:fixed; inset-block:0; inset-inline-start:0; width:var(--rasad-sidebar-width); z-index:40; display:flex; flex-direction:column; padding:24px 18px 18px; background:linear-gradient(160deg,#102c3b 0%,#0c202e 48%,#091b29 100%); border-inline-end:1px solid #2b4651; box-shadow:8px 0 40px #0002; overflow-y:auto; }
+.rasad-sidebar-brand { position:relative; padding:0 6px 22px; }
+.rasad-logo-frame { height:132px; overflow:hidden; display:grid; place-items:center; background:#f7f7f7; border-radius:12px; box-shadow:0 8px 24px #0002; }
+.rasad-logo-frame img { width:350px; max-width:none; height:auto; }
+.rasad-wordmark { display:flex; align-items:center; justify-content:space-between; margin-top:18px; color:#f2f7f5; font:650 24px var(--atlas-display); letter-spacing:3px; }
+.rasad-wordmark span { font:600 26px 'Segoe UI',sans-serif; color:#9ddcbd; letter-spacing:normal; }
+.rasad-brand-lockup p { font:12px/1.8 'Segoe UI',sans-serif; color:#b5cec8; margin:6px 0 0; text-align:start; }
+.rasad-nav-caption { margin:4px 12px 12px; font:10px var(--atlas-mono); letter-spacing:1.5px; color:#8eb0b8; }
+.rasad-nav-links { display:grid; gap:8px; }
+.rasad-nav-links button { display:flex; align-items:center; gap:12px; min-height:73px; width:100%; padding:13px 12px; text-align:start; border:1px solid transparent; border-radius:12px; background:transparent; color:#b8cdd2; }
+.rasad-nav-links button:hover { background:#173b43; color:#f1fbf5; }
+.rasad-nav-links button[aria-current=page] { color:#edfff3; background:linear-gradient(100deg,#1c5946,#173c3c); border-color:#3a7960; box-shadow:0 5px 18px #0002; }
+.rasad-nav-links strong { display:block; font:550 14px/1.4 var(--atlas-font); }
+.rasad-nav-links small { display:block; font:10px/1.6 var(--atlas-font); color:#a2bfc1; margin-top:3px; }
+.rasad-nav-icon { flex:0 0 21px; color:#84b7ac; }
+.rasad-nav-links [aria-current] .rasad-nav-icon { color:#a4edbb; }
+.rasad-nav-marker { margin-inline-start:auto; flex:0 0 4px; height:25px; border-radius:5px; }
+.rasad-nav-links [aria-current] .rasad-nav-marker { background:#8cdfaa; }
+.rasad-sidebar-evidence { margin-top:auto; padding:28px 12px 20px; font-size:12px; color:#c1d4d6; }
+.rasad-status-dot { display:inline-block; width:7px; height:7px; margin-inline-end:8px; background:#8ed9af; border-radius:100%; box-shadow:0 0 0 4px #8ed9af12; }
+.rasad-sidebar-evidence p { margin:9px 0; font-size:11px; }
+.rasad-sidebar-evidence small { display:block; color:#a3bbc2; font-size:11px; line-height:1.8; }
+.rasad-sidebar-footer { display:grid; gap:14px; border-top:1px solid #2b4651; padding:18px 10px 0; }
+.rasad-sidebar-footer > span { font-size:10px; color:#9eb6bd; line-height:1.7; }
+.rasad-sidebar-footer .language-switch { justify-self:start; background:#13323a; border-color:#3a5d60; border-radius:8px; }
+.rasad-mobile-header,.rasad-drawer-close,.rasad-nav-backdrop { display:none; }
+.app-shell .main-content { margin-inline-start:var(--rasad-sidebar-width); width:calc(100% - var(--rasad-sidebar-width)); height:100dvh; min-height:0; overflow:hidden; }
+.app-shell .calendar-map-host { min-height:0; height:100%; }
+.app-shell .main-content .atlas-screen { height:100%; min-height:0; --atlas-edge:24px; --atlas-gap:16px; }
+.app-shell .main-content .burning-calendar { height:100%; min-height:0; background:radial-gradient(ellipse at 90% 0%,#123b3c44,transparent 48%),var(--brand-background); }
+.app-shell .main-content :is(.atlas-masthead,.calendar-masthead) { min-height:88px; height:88px; display:flex; align-items:center; gap:26px; padding-inline:28px; background:#0c202e; border-bottom:1px solid #2a4352; }
+.app-shell .main-content :is(.atlas-masthead,.calendar-masthead) > .language-switch { display:none; }
+.app-shell .main-content :is(.mission-brand,.calendar-brand) { display:none; }
+.app-shell .main-content .atlas-register { flex:0 0 auto; padding:0; border:0; min-width:145px; }
+.app-shell .main-content .atlas-register strong { font-size:13px; letter-spacing:1px; }
+.app-shell .main-content .atlas-register > span { color:#8addb4; }
+.app-shell .main-content .atlas-register small { font-size:8px; color:#a5bdc5; }
+.app-shell .main-content .region-explorer { min-width:160px; flex:1; }
+.app-shell .main-content .region-explorer summary { border:1px solid #32525c; padding:10px 14px; background:#132e3a; border-radius:9px; }
+.app-shell .main-content .atlas-window { min-width:135px; }
+.app-shell .main-content .atlas-source { max-width:210px; }
+.app-shell .main-content .atlas-source strong { font-size:11px; line-height:1.5; }
+.app-shell .main-content .atlas-overline { color:#adc7ca; font-size:9px; }
+.app-shell .main-content .atlas-editorial { top:126px; left:94px; max-width:220px; pointer-events:none; }
+.app-shell .main-content .atlas-editorial h1 { font-size:clamp(28px,3vw,46px); line-height:1.1; letter-spacing:-1.8px; margin-block:12px; }
+.app-shell .main-content .atlas-editorial p { font-size:11px; max-width:25ch; line-height:1.8; }
+.app-shell .main-content .atlas-editorial .atlas-stamp { font-size:8px; }
+.app-shell .main-content .atlas-inspector { width:280px; border:1px solid #34515e; border-top:3px solid #4da17b; border-radius:13px; background:#102330f5; box-shadow:0 14px 50px #0003; }
+.app-shell .main-content .ledger-masthead { padding:18px; }
+.app-shell .main-content .ledger-summary { padding:16px 18px; }
+.app-shell .main-content .ledger-summary strong { font-size:38px; }
+.app-shell .main-content .ledger-caveat { padding:12px 16px; }
+.app-shell .main-content .ledger-caveat p { font-size:10px; line-height:1.6; }
+.app-shell .main-content .observation-row { padding:14px 16px; min-height:68px; }
+.app-shell .main-content .observation-row small { font-size:9px; }
+.app-shell .main-content .atlas-tool-spine { border:1px solid #3b5964; border-radius:12px; background:#102836ed; box-shadow:0 8px 28px #0003; }
+.app-shell .main-content .atlas-tool { min-height:45px; color:#bdd5d8; border-color:#2a4554; }
+.app-shell .main-content .atlas-tool[aria-pressed=true] { color:#a0e4bf; background:#1a493e; }
+.app-shell .main-content .atlas-tool:hover { background:#1a493e; }
+.app-shell .main-content .atlas-filter-panel { background:#102635f7; border:1px solid #3a5964; border-radius:14px; box-shadow:0 12px 44px #0005; }
+.app-shell .main-content .atlas-imagery { background:#0b2330ee; border-color:#37545e; border-radius:10px; }
+.app-shell .main-content .atlas-timeline { display:grid; grid-template-columns:140px minmax(0,1fr); gap:16px; padding:15px 18px; background:#102733f5; border:1px solid #3b5b64; border-top:2px solid #4d9878; border-radius:13px; box-shadow:0 8px 35px #0004; }
+.app-shell .main-content .temporal-workspace { position:relative; min-width:0; }
+.app-shell .main-content .temporal-edition { display:none; }
+.app-shell .main-content .temporal-label { min-width:0; }
+.app-shell .main-content .temporal-label h2 { font-size:13px; color:#edf5f4; }
+.app-shell .main-content .temporal-play { border:1px solid #487565; border-radius:8px; min-height:38px; min-width:38px; background:#1b483d; }
+.app-shell .main-content .atlas-year-controls { gap:8px; padding-inline-end:380px; min-height:40px; margin-bottom:9px; }
+.app-shell .main-content .atlas-year-controls > span { display:none; }
+.app-shell .main-content .atlas-year-controls small { font-size:9px; line-height:1.5; }
+.app-shell .main-content .atlas-year-controls :is(button,select) { border-radius:7px; font-size:12px; background:#163544; border-color:#3c5964; }
+.rasad-date-navigation { position:absolute; inset-block-start:0; inset-inline-end:0; display:flex; align-items:center; gap:7px; }
+.rasad-date-navigation label { display:flex; align-items:center; gap:8px; color:#bad0d4; font-size:10px; }
+.rasad-date-navigation input { color-scheme:dark; width:137px; min-height:36px; color:#eef8f5; border:1px solid #3f646c; background:#173844; border-radius:7px; padding:5px 7px; }
+.rasad-date-navigation button { display:grid; place-items:center; min-height:36px; min-width:31px; background:#173844; border:1px solid #3f646c; color:#c8e6df; border-radius:7px; }
+.rasad-date-navigation button:disabled { opacity:.4; }
+.rasad-date-navigation .rasad-latest-date { display:block; padding-inline:10px; font-size:10px; }
+.app-shell .main-content .date-chip { min-height:32px; padding-inline:9px; font-size:10px; color:#aac3ca; border-radius:6px; }
+.app-shell .main-content .date-chip.is-active { color:#effff5; background:#285e4a; }
+.app-shell .main-content .date-chip.is-active i { display:none; }
+.app-shell .main-content .temporal-caption { font-size:8px; color:#a7c2ca; letter-spacing:.8px; }
+.app-shell .main-content .calendar-masthead > div { border:0; padding:0; gap:6px; }
+.app-shell .main-content .calendar-masthead > div > strong { font-size:14px; letter-spacing:1px; }
+.app-shell .main-content .calendar-masthead > .atlas-text-button { margin-inline-start:auto; margin-inline-end:0; border:1px solid #3a5b63; border-radius:8px; padding:9px 14px; }
+.app-shell .main-content .calendar-heading { margin:34px 32px 28px; }
+.app-shell .main-content .calendar-heading h1 { font:550 clamp(30px,3vw,44px)/1.2 var(--atlas-display); letter-spacing:-1.4px; margin-block:10px; }
+.app-shell .main-content .calendar-heading h1 > span { color:#70c79a; }
+.app-shell .main-content .calendar-heading p { font-size:14px; color:#b3c8ce; }
+.app-shell .main-content :is(.calendar-source-controls,.lab-controls) { background:#112937; border:1px solid #2c4956; border-radius:12px; padding:20px; margin-inline:32px; gap:18px 24px; }
+.app-shell .main-content :is(.calendar-source-controls,.lab-controls) label { font-size:12px; }
+.app-shell .main-content :is(.calendar-source-controls,.lab-controls) :is(select,input) { border:1px solid #47626d; border-radius:7px; min-height:40px; background:#0e2431; font-size:13px; padding:9px 11px; }
+.app-shell .main-content .calendar-source-controls > label { min-width:180px; }
+.app-shell .main-content .calendar-source-controls fieldset label { font-size:12px; }
+.app-shell .main-content .calendar-source-controls fieldset legend { font-size:9px; }
+.app-shell .main-content :is(.calendar-data-notice,.lab-notice) { margin:16px 32px; border:1px solid #29434e; border-radius:9px; background:#0d2531; padding:13px 17px; font-size:12px; line-height:1.7; }
+.app-shell .main-content .rasad-section-tabs { margin:22px 32px 16px; padding:5px; width:fit-content; max-width:calc(100% - 64px); background:#102b36; border:1px solid #2d4c56; border-radius:10px; gap:4px; }
+.app-shell .main-content .rasad-section-tabs button { border:0; border-radius:7px; font-size:12px; min-height:39px; background:transparent; color:#b4cbd0; }
+.app-shell .main-content .rasad-section-tabs [aria-current] { color:#effff5; background:#22523f; box-shadow:none; opacity:1; }
+.app-shell .main-content .processing-scope { margin:16px 32px; font-size:12px; }
+.app-shell .main-content .processing-scope select { border-radius:7px; padding:9px 12px; }
+.app-shell .main-content .calendar-science-note { margin-inline:32px; font-size:12px; color:#adc4ca; line-height:1.7; }
+.app-shell .main-content .calendar-export-actions { margin-inline:32px; gap:12px; flex-wrap:wrap; }
+.app-shell .main-content .calendar-export-actions button { background:#153a3a; border:1px solid #3c665c; border-radius:8px; padding:9px 13px; color:#b2e5ca; font-size:12px; }
+.app-shell .main-content .calendar-layout { margin:25px 32px 32px; gap:20px; grid-template-columns:minmax(0,1fr); }
+.app-shell .main-content #calendar-day-detail { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
+.app-shell .main-content .calendar-month-toolbar { background:#122c3a; border:1px solid #31515d; border-radius:12px; padding:17px; gap:16px; }
+.app-shell .main-content .calendar-month-nav h2 { font-size:25px; min-width:180px; }
+.app-shell .main-content .calendar-nav-button { border-radius:8px; height:38px; width:38px; }
+.app-shell .main-content .calendar-month-selectors select { font-size:12px; border-radius:7px; }
+.app-shell .main-content .calendar-grid { border-collapse:separate; border-spacing:5px; }
+.app-shell .main-content .calendar-grid th { font-size:11px; padding-block:12px; color:#aac4cc; }
+.app-shell .main-content .calendar-day { min-height:110px; border-radius:9px; border-color:#2d4c59; padding:12px; }
+.app-shell .main-content .calendar-day-number { font-size:12px; }
+.app-shell .main-content .calendar-day small { font-size:8px; line-height:1.6; }
+.app-shell .main-content .calendar-cell-value { font-size:23px; }
+.app-shell .main-content .calendar-day-detail { border-radius:12px; border:1px solid #315361; border-top:3px solid #579d7e; background:#102a37; padding:23px; }
+.app-shell .main-content .calendar-footer { font-size:10px; line-height:1.8; background:#0d2330; border-color:#294450; }
+.app-shell .main-content .lab-content { padding:24px 32px 40px; max-width:1400px; }
+.app-shell .main-content .lab-content :is(.research-section,.observed-periods,.decision-report) { border:1px solid #31505c; border-radius:12px; background:#102735; padding:24px; margin-block:20px; }
+.app-shell .main-content .lab-content h2 { font-size:28px; letter-spacing:-.8px; }
+.app-shell .main-content :is(.lab-table,.metadata-grid) { font-size:12px; }
+.app-shell .main-content .lab-table th { background:#153442; color:#c3dfd9; font-size:11px; }
+.app-shell .main-content .lab-table :is(td,th) { padding:13px; border-color:#294652; line-height:1.7; }
+.app-shell .main-content .lab-table-scroll { border-radius:9px; border:1px solid #294652; max-width:100%; }
+.app-shell .main-content .sensor-trust-lens { margin:24px 32px; border:1px solid #416a61; border-inline-start:4px solid #67b38c; border-radius:13px; background:linear-gradient(145deg,#163a3b,#102633); padding:24px; }
+.app-shell .main-content .sensor-trust-lens > summary { cursor:pointer; font-size:14px; line-height:1.7; color:#c7ead7; }
+.app-shell .main-content .sensor-trust-lens label { display:inline-flex; align-items:center; flex-wrap:wrap; gap:10px; margin:8px 22px 16px 0; font-size:12px; }
+.app-shell .main-content .sensor-trust-lens select { border-radius:7px; padding:10px; max-width:100%; }
+.app-shell .main-content .sensor-trust-lens h2 { font-size:28px; }
+.app-shell .main-content .sensor-trust-lens figure { margin:20px 0; }
+.app-shell .main-content .sensor-trust-lens svg { border-radius:10px; border:1px solid #335463; }
+.rasad-intro-logo { width:130px; height:72px; object-fit:contain; background:#f7f7f7; border-radius:9px; }
+@media(min-width:1500px){.app-shell .main-content .calendar-layout{grid-template-columns:minmax(0,1fr) 310px;}.app-shell .main-content #calendar-day-detail{display:block;}}
+@media(max-width:1180px) and (min-width:901px){
+ :root{--rasad-sidebar-width:240px;}.rasad-sidebar{padding-inline:12px;}.rasad-nav-links strong{font-size:13px;}.rasad-nav-links small{font-size:9px;}
+ .app-shell .main-content .atlas-source{display:none;}.app-shell .main-content .atlas-editorial{display:none;}
+ .app-shell .main-content .atlas-year-controls{padding-inline-end:0;}.rasad-date-navigation{position:static;justify-content:flex-start;margin-bottom:10px;}
+}
+@media(max-width:900px){
+ .rasad-mobile-header{position:fixed;inset:0 0 auto;height:64px;z-index:45;display:flex;align-items:center;gap:10px;padding:8px 16px;background:#0d2634;border-bottom:1px solid #34515b;}
+ .rasad-mobile-wordmark{display:flex;align-items:center;gap:9px;flex:1;font-size:15px;letter-spacing:1px;}.rasad-mobile-wordmark img{width:64px;height:45px;object-fit:contain;border-radius:6px;background:#f7f7f7;}.rasad-mobile-wordmark b span{color:#92d3ac;font-family:'Segoe UI',sans-serif;margin-inline-start:5px;}
+ .rasad-mobile-header .language-switch{min-width:0;padding:7px;min-height:38px;border-radius:7px;background:#163843;font-size:11px;}.rasad-mobile-header .language-switch svg{display:none;}
+ .rasad-mobile-toggle{display:flex;align-items:center;gap:7px;color:#e5f6ec;border:1px solid #3d665e;background:#194135;border-radius:8px;padding:9px;font-size:12px;min-height:39px;}
+ .rasad-sidebar{z-index:60;width:280px;max-width:calc(100vw - 40px);transform:translateX(-105%);visibility:hidden;transition:transform .2s,visibility .2s;}
+ html[dir=rtl] .rasad-sidebar{transform:translateX(105%);}.rasad-sidebar[data-open=true],html[dir=rtl] .rasad-sidebar[data-open=true]{visibility:visible;transform:translateX(0);}
+ .rasad-drawer-close{position:absolute;inset-block-start:-8px;inset-inline-end:-7px;display:grid;place-items:center;width:34px;height:34px;background:#153443;color:#fff;border:1px solid #52736f;border-radius:8px;}
+ .rasad-nav-backdrop{display:block;position:fixed;inset:0;z-index:55;background:#020b15ba;border:0;backdrop-filter:blur(4px);}
+ .app-shell .main-content{margin-inline-start:0;margin-block-start:64px;width:100%;height:calc(100dvh - 64px);}
+ .app-shell .main-content :is(.atlas-masthead,.calendar-masthead){height:76px;min-height:76px;padding-inline:18px;gap:16px;}
+ .app-shell .main-content .atlas-register{min-width:115px;}.app-shell .main-content .atlas-register strong{font-size:11px;}.app-shell .main-content .atlas-source{display:none;}.app-shell .main-content .atlas-window{min-width:110px;}
+ .app-shell .main-content .region-explorer{min-width:135px;}.app-shell .main-content .region-explorer summary{padding:9px 11px;}
+ .app-shell .main-content .atlas-editorial{display:none;}.app-shell .main-content .atlas-screen{--atlas-edge:16px;}
+ .app-shell .main-content .calendar-heading{margin:25px 20px;}.app-shell .main-content .calendar-heading h1{font-size:32px;}
+ .app-shell .main-content :is(.calendar-source-controls,.lab-controls){margin-inline:20px;padding:16px;gap:16px;}
+ .app-shell .main-content :is(.lab-notice,.calendar-data-notice,.processing-scope,.calendar-layout,.calendar-science-note,.calendar-export-actions,.sensor-trust-lens){margin-inline:20px;}
+ .app-shell .main-content .lab-content{padding-inline:20px;}.app-shell .main-content .rasad-section-tabs{margin-inline:20px;max-width:calc(100% - 40px);}
+ .app-shell .main-content .atlas-year-controls{padding-inline-end:0;}.rasad-date-navigation{position:static;margin-bottom:10px;}.app-shell .main-content .atlas-timeline{grid-template-columns:100px minmax(0,1fr);gap:12px;padding:12px;}
+}
+@media(max-width:600px){
+ .rasad-mobile-header{padding-inline:10px;gap:7px;}.rasad-mobile-wordmark{font-size:13px;gap:6px;}.rasad-mobile-wordmark img{width:48px;}.rasad-mobile-toggle{gap:4px;padding:8px;}.rasad-mobile-wordmark b span{font-size:14px;}
+ .app-shell .main-content .atlas-window{display:none;}.app-shell .main-content .atlas-register{min-width:106px;}.app-shell .main-content .atlas-register small{font-size:7px;}.app-shell .main-content .region-explorer{min-width:0;}
+ .app-shell .main-content .atlas-masthead{padding-inline:14px;gap:12px;}.app-shell .main-content .region-explorer .atlas-overline{font-size:7px;}.app-shell .main-content .region-explorer strong{font-size:12px;}
+ .app-shell .main-content .atlas-timeline{display:block;padding:10px 12px;}.app-shell .main-content .temporal-label{display:flex;align-items:center;gap:10px;margin-bottom:9px;}.app-shell .main-content .temporal-label>svg{display:none;}.app-shell .main-content .temporal-play{margin-inline-start:auto;min-height:32px;min-width:34px;}.app-shell .main-content .temporal-label h2{font-size:12px;margin:0;}
+ .rasad-date-navigation{gap:6px;}.rasad-date-navigation label{font-size:9px;gap:5px;}.rasad-date-navigation input{width:124px;font-size:11px;min-height:33px;}.rasad-date-navigation button{min-height:33px;min-width:28px;}.rasad-date-navigation .rasad-latest-date{font-size:9px;padding-inline:7px;}
+ .app-shell .main-content .atlas-year-controls{margin-bottom:5px;}.app-shell .main-content .atlas-year-controls small{font-size:8px;}.app-shell .main-content .temporal-caption{font-size:7px;letter-spacing:0;}.app-shell .main-content .atlas-timeline .temporal-dates{gap:8px;padding-block:3px;}.app-shell .main-content .date-chip{font-size:9px;min-height:28px;}
+ .app-shell .main-content .atlas-inspector{width:auto;left:76px;right:16px;}.app-shell .main-content .ledger-summary strong{font-size:29px;}.app-shell .main-content .ledger-caveat p{font-size:9px;}.app-shell .main-content .observation-row{padding:10px 12px;min-height:58px;}
+ .app-shell .main-content .calendar-heading{margin:23px 16px;}.app-shell .main-content .calendar-heading h1{font-size:30px;}.app-shell .main-content .calendar-heading p{font-size:12px;}.app-shell .main-content .calendar-masthead{height:62px;min-height:62px;padding-inline:16px;}.app-shell .main-content .calendar-masthead>div{display:flex;}.app-shell .main-content .calendar-masthead>div>strong{font-size:12px;}
+ .app-shell .main-content :is(.calendar-source-controls,.lab-controls){margin-inline:16px;padding:15px;}.app-shell .main-content :is(.calendar-data-notice,.lab-notice,.processing-scope,.calendar-layout,.calendar-science-note,.calendar-export-actions,.sensor-trust-lens){margin-inline:16px;}.app-shell .main-content .rasad-section-tabs{margin-inline:16px;max-width:calc(100% - 32px);}.app-shell .main-content .rasad-section-tabs button{font-size:11px;padding:8px 10px;}
+ .app-shell .main-content .calendar-month-toolbar{padding:12px;}.app-shell .main-content .calendar-month-nav h2{font-size:21px;min-width:0;}.app-shell .main-content .calendar-month-selectors{gap:7px;}.app-shell .main-content .calendar-month-selectors select{font-size:11px;}.app-shell .main-content .calendar-month-selectors .atlas-text-button{font-size:10px;}
+ .app-shell .main-content .calendar-grid{border-spacing:2px;}.app-shell .main-content .calendar-grid th{font-size:9px;}.app-shell .main-content .calendar-day{padding:7px 3px;min-height:96px;border-radius:6px;}.app-shell .main-content .calendar-day-number{font-size:10px;}.app-shell .main-content .calendar-day small{font-size:7px;}.app-shell .main-content .calendar-cell-value{font-size:17px;}.app-shell .main-content #calendar-day-detail{display:block;}
+ .app-shell .main-content .lab-content{padding-inline:16px;font-size:13px;}.app-shell .main-content .lab-content :is(.research-section,.observed-periods,.decision-report){padding:16px;}.app-shell .main-content .sensor-trust-lens{padding:18px;}.app-shell .main-content .sensor-trust-lens h2{font-size:24px;}.app-shell .main-content .sensor-trust-lens label{margin-inline-end:0;display:flex;}.app-shell .main-content .sensor-trust-lens select{width:100%;}
+ .app-shell .main-content .lab-controls label{min-width:0;flex:1 1 130px;}.app-shell .main-content .calendar-export-actions button{font-size:11px;}.app-shell .main-content .calendar-footer{font-size:9px;}
+ .rasad-intro-logo{width:85px;height:50px;}.earth-header .earth-edition{display:none;}
+}
+
+/* Verified layout corrections: preserve the complete supplied artwork and reserve each ledger row. */
+.rasad-logo-frame { position:relative; }
+.rasad-logo-frame img { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); }
+html[dir=rtl] .rasad-sidebar { box-shadow:-8px 0 40px #0002; }
+.app-shell .main-content :is(.atlas-map,.atlas-vignette) { inset-block-start:var(--atlas-header-h,88px); }
+.app-shell .main-content .atlas-inspector { grid-template-rows:auto auto auto auto minmax(0,1fr) auto; }
+.app-shell .main-content .ledger-page-controls { padding:12px 16px; display:flex; flex-wrap:wrap; gap:6px 12px; border-block:1px solid #2d4955; }
+.app-shell .main-content .ledger-page-controls p { flex-basis:100%; margin:0 0 3px; font-size:11px; line-height:1.7; color:#b6cbd1; }
+.app-shell .main-content .ledger-page-controls :is(a,button) { font-size:10px; line-height:1.6; }
+.app-shell .main-content .calendar-grid td { border:0; background:transparent; }
+.app-shell .main-content .calendar-grid td.calendar-padding { background:#0c202b; border-radius:9px; }
+.app-shell .main-content .calendar-day[data-state=unavailable] { background:repeating-linear-gradient(135deg,#162c37 0 1px,#10232e 1px 12px); }
+.app-shell .main-content .calendar-combined-values { width:100%; gap:8px; }
+.app-shell .main-content .calendar-combined-values small { display:flex; flex-direction:column; gap:6px; font:10px/1.4 var(--atlas-font); letter-spacing:0; }
+.app-shell .main-content .calendar-combined-values strong { font:550 22px/1.3 var(--atlas-display); letter-spacing:-.4px; color:#edf6f4; }
+.app-shell .main-content .calendar-combined-values [data-state=unavailable] strong { font:12px/1.4 var(--atlas-font); color:#97b1bb; letter-spacing:0; }
+.app-shell .main-content .calendar-source-label { color:#9dd6df; font-size:9px; }
+.app-shell .main-content [data-sensor=VIIRS] .calendar-source-label { color:#f5b894; }
+@media(max-width:600px){
+ .app-shell .main-content .calendar-combined-values { gap:5px; }
+ .app-shell .main-content .calendar-combined-values small { gap:1px; }
+ .app-shell .main-content .calendar-combined-values strong { font-size:15px; }
+ .app-shell .main-content .calendar-combined-values [data-state=unavailable] strong { font-size:9px; }
+ .app-shell .main-content .calendar-source-label { font-size:8px; }
+ .app-shell .main-content .ledger-page-controls{padding:8px 12px;}.app-shell .main-content .ledger-page-controls p{font-size:10px;}
+ .app-shell .main-content .region-explorer-panel{inset-block-start:calc(64px + var(--atlas-header-h,76px) + 8px);}
+}
+@media(max-height:850px) and (min-width:901px){
+ .rasad-sidebar{padding-top:16px;}.rasad-logo-frame{height:94px;}.rasad-logo-frame img{width:260px;}.rasad-sidebar-brand{padding-bottom:12px;}.rasad-nav-links button{min-height:63px;padding-block:9px;}.rasad-sidebar-evidence{padding-block:18px 12px;}.rasad-sidebar-footer{gap:8px;padding-top:12px;}
+}
+
+.earth-enter{background:#1d5a41;border-color:#5d9e78;color:#eefbf5;}.earth-wordmark>span{color:#92d3ac;}.app-shell .main-content .atlas-editorial h1>span{color:#84d8a5;}
+
+.rasad-mobile-section{display:block;font:9px/1.3 var(--atlas-font);letter-spacing:0;color:#b9d4cb;max-width:125px;margin-top:3px;white-space:normal;}
+@media(max-width:900px){.rasad-sidebar:not([data-open=true]){display:none;}}
+
+.app-shell .main-content .rasad-section-tabs:empty{display:none;}
+.research-prototype{min-width:0;padding:24px 0;}
+.research-prototype code{overflow-wrap:anywhere;}
+.research-prototype select{max-width:100%;min-width:0;display:block;margin-block:12px;}
+.research-prototype table{min-width:660px;}
+.research-pipeline{display:flex;flex-wrap:wrap;gap:12px;list-style:none;padding:0;margin-block:24px;}
+.research-pipeline li{flex:1 1 150px;padding:14px;border:1px solid var(--atlas-line);border-inline-start:3px solid var(--atlas-cyan);font-size:12px;line-height:1.7;}
+@media print {
+ body[data-rasad-print] .decision-report,body[data-rasad-print] .decision-report *{visibility:hidden!important;}
+ body[data-rasad-print=research] .research-prototype,body[data-rasad-print=research] .research-prototype *,body[data-rasad-print=pilot] .brazil-pilot,body[data-rasad-print=pilot] .brazil-pilot *{visibility:visible!important;color:black!important;background:white!important;}
+ body[data-rasad-print=research] .research-prototype,body[data-rasad-print=pilot] .brazil-pilot{position:absolute!important;inset:0 auto auto 0!important;width:100%!important;padding:20px!important;margin:0!important;box-sizing:border-box;}
+ body[data-rasad-print] :is(.research-prototype,.brazil-pilot) :is(button,select,input){display:none!important;}
+ body[data-rasad-print] :is(.research-prototype,.brazil-pilot) table{min-width:0!important;width:100%;font-size:8pt;overflow-wrap:anywhere;}
+ body[data-rasad-print] :is(.research-prototype,.brazil-pilot) .lab-table-scroll{overflow:visible!important;}
+}
+@media(max-width:600px){.app-shell .main-content .calendar-source-label{font-size:9px;}}

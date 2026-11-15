@@ -1723,7 +1723,7 @@
   font-size: 10px;
   color: var(--atlas-muted);
 }
-/* FIREPULSE — Safe timeline layout fix */
+/* RASAD — Safe timeline layout fix */
 
 @media (min-width: 761px) {
   .atlas-timeline .temporal-workspace {
@@ -1751,7 +1751,7 @@
   }
 }
 
-/* FIREPULSE — Inspector legibility and collision safeguards */
+/* RASAD — Inspector legibility and collision safeguards */
 @media (min-width: 761px) {
   .atlas-inspector .ledger-counts > div {
     gap: 9px;
@@ -1782,7 +1782,7 @@
   }
 }
 
-/* FIREPULSE / Global Explorer navigation — append to atlas.css */
+/* RASAD / Global Explorer navigation — append to atlas.css */
 .earth-jump {
   position: absolute;
   z-index: 7;
@@ -1989,3 +1989,18 @@
 
 .atlas-screen[data-observation-selected=true] .atlas-view-label { visibility:hidden; }
 .temporal-play { min-inline-size:32px;min-block-size:32px; }
+.sensor-trust-lens {
+  margin: 18px 0 28px;
+  padding: clamp(18px, 3vw, 32px);
+  border: 1px solid var(--atlas-line, #34444c);
+  border-inline-start: 3px solid var(--atlas-cyan, #7bcad1);
+  background: var(--atlas-graphite, #111a22);
+  color: var(--atlas-ivory, #eae8e2);
+}
+.sensor-trust-lens h2 { font-size: clamp(20px, 3vw, 30px); line-height: 1.2; margin: 12px 0; }
+.sensor-trust-lens p { max-width: 100ch; font-size: 13px; line-height: 1.7; }
+.sensor-trust-lens select { background: #111a22; color: #eae8e2; padding: 8px; border: 1px solid #52636d; }
+.sensor-trust-lens table { min-width: 680px; }
+.sensor-trust-lens :focus-visible { outline: 2px solid #7bcad1; outline-offset: 3px; }
+.ledger-page-controls { padding: 12px 22px; font-size: 11px; line-height: 1.6; border-bottom: 1px solid var(--atlas-line); }
+.ledger-page-controls button,.ledger-page-controls a { margin-inline-end: 12px; }

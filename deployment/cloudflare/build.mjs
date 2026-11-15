@@ -1,14 +1,2 @@
-import fs from 'node:fs/promises';
-import path from 'node:path';
-import {rolldown} from 'rolldown';
-import {loadRegionCollection} from '../../server/dataCatalog.js';
-const output='releases/cloudflare-pages';
-await fs.mkdir(output,{recursive:true});
-await fs.cp('dist',output,{recursive:true});
-const snapshots=Object.fromEntries(['ajloun','northern-jordan'].map(region=>[region,loadRegionCollection(region)]));
-for(const collection of Object.values(snapshots)) collection.metadata.deployment={mode:'immutable-archive-snapshot',builtAt:new Date().toISOString(),live:false};
-const catalog=`const snapshots=${JSON.stringify(snapshots)}; export function loadRegionCollection(region,{datasetId}={}) { const collection=snapshots[region]; if(!collection) throw new Error('Unsupported region'); if(datasetId&&!collection.metadata.datasets.some(d=>d.id===datasetId)) {const e=new Error('Unknown dataset');e.code='DATASET_NOT_FOUND';throw e;} return collection; }`;
-const bundle=await rolldown({input:'deployment/cloudflare/worker.js',platform:'browser',plugins:[{name:'immutable-public-catalog',resolveId(source,importer){if(source==='./dataCatalog.js'&&importer?.replaceAll('\\','/').endsWith('/server/observations.js'))return '\0archive-snapshot';},load(id){if(id==='\0archive-snapshot')return catalog;}}]});
-await bundle.write({file:path.join(output,'_worker.js'),format:'es',minify:true});await bundle.close();
-await fs.writeFile(path.join(output,'_routes.json'),JSON.stringify({version:1,include:['/api/*'],exclude:[]}));
-console.log(JSON.stringify({output,ajloun:snapshots.ajloun.features.length,northernJordan:snapshots['northern-jordan'].features.length}));
+// Retained command alias: all builds use the Brazil API-backed client.
+import './build-pages.mjs';

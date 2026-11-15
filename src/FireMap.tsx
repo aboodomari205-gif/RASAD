@@ -1,3 +1,5 @@
+import {regionBoundary} from './data/regions';
+import {regionName} from '../shared/regions';
 import { constrainObservationPopup } from "./motion/popupLayout";
 import {
   selectedAtlasYear,
@@ -92,11 +94,7 @@ function metadataPopup(properties: Record<string, unknown>, region: Region) {
   const content = document.createElement("div");
   const kicker = document.createElement("span");
   kicker.className = "atlas-popup-kicker";
-  kicker.textContent = t(
-    region === "northern-jordan"
-      ? "NORTHERN JORDAN / NASA OBSERVATIONS"
-      : "AJLOUN / NASA OBSERVATIONS",
-  );
+  kicker.textContent = t(regionName(region))+' / NASA FIRMS';
   const title = document.createElement("strong");
   title.className = "atlas-popup-title";
   title.textContent = t("Thermal detection.");
@@ -210,63 +208,32 @@ export default function FireMap({
     (value: string) => update({ confidenceRaw: value }),
     [update],
   );
-  const [viewCenter, setViewCenter] = useState([35.75, 32.33]);
+  const [viewCenter, setViewCenter] = useState([-60, -15]);
   const camera = useRef<ReturnType<typeof createMissionCamera> | null>(null);
   const signals = useRef<ReturnType<typeof createSignalMotion> | null>(null);
   const journey = useRef(0);
   const [cameraMoving, setCameraMoving] = useState(false);
   const focusDetails = useRef(false);
   const [listLimit, setListLimit] = useState(50);
+  const [evidenceOffset,setEvidenceOffset]=useState(0);
+  useEffect(()=>setEvidenceOffset(0),[scope.region,scope.startDate,scope.endDate,scope.sensor,scope.processing,scope.platform,scope.confidenceRaw,scope.frpMin,scope.frpMax,scope.dayNight]);
   const container = useRef<HTMLDivElement>(null);
   const map = useRef<ml.Map | null>(null);
   const currentData = useRef<Observations>(EMPTY);
   const currentDatasets = useRef<Dataset[]>([]);
   const boundary = useRef<FeatureCollection<Geometry> | null>(null);
-  const regionRef = useRef<Region>("ajloun");
+  const regionRef = useRef<Region>(scope.region);
   const popup = useRef<ml.Popup | null>(null);
   const selectedObservation = useRef<string | number | undefined>(undefined);
   const region = scope.region;
   const setRegion = (value: Region) => update({ region: value });
   const [cameraContext, setCameraContext] =
-    useState<CameraDestination>("ajloun");
+    useState<CameraDestination>("brazil");
   function exploreCamera(destination: CameraDestination) {
     setCameraContext(destination);
-    journey.current = camera.current?.begin() ?? 0;
-    if (destination !== "earth") {
-      const ticket = journey.current;
-      fetch(
-        destination === "ajloun"
-          ? "/jordan-adm1.geojson"
-          : "/northern-jordan.geojson",
-      )
-        .then((r) => r.json())
-        .then((result) => {
-          if (ticket !== journey.current) return;
-          camera.current?.fit(
-            destination === "ajloun"
-              ? {
-                  type: "FeatureCollection",
-                  features: result.features.filter(
-                    (f: import("geojson").Feature) =>
-                      f.properties?.shapeName === "Ajloun",
-                  ),
-                }
-              : result,
-            ticket,
-          );
-        })
-        .catch(() => setMapError("Regional boundary could not load."));
-      return;
-    }
-    map.current?.setPadding({ top: 0, right: 0, bottom: 0, left: 0 });
-    map.current?.flyTo({
-      center: destination === "earth" ? [35, 24] : [35.85, 32.35],
-      zoom: destination === "earth" ? 1.5 : 8,
-      bearing: 0,
-      pitch: 0,
-      duration: reduced ? 0 : 1800,
-      essential: false,
-    });
+    const ticket = journey.current = camera.current?.begin() ?? 0;
+    if(destination === 'earth') { map.current?.flyTo({center:[-60,-15],zoom:1.5,duration:reduced?0:1200}); return; }
+    regionBoundary(destination).then(result=>{if(ticket===journey.current)camera.current?.fit(result,ticket);}).catch(()=>setMapError('Regional boundary could not load.'));
   }
   const [mode, setMode] = useState<"satellite" | "street">("satellite");
   const [data, setData] = useState<Observations>(EMPTY);
@@ -333,8 +300,8 @@ export default function FireMap({
     const instance = new ml.Map({
       container: container.current,
       style: SATELLITE,
-      center: [35.75, 32.33],
-      zoom: 12,
+      center: [-60, -15],
+      zoom: 3,
       pitch: 0,
       bearing: 0,
       attributionControl: false,
@@ -356,21 +323,21 @@ export default function FireMap({
     let disposed = false;
     let hovered: string | number | undefined;
     const restore = () => {
-      if (boundary.current && !instance.getSource("ajloun-boundary")) {
-        instance.addSource("ajloun-boundary", {
+      if (boundary.current && !instance.getSource("south-america-boundary")) {
+        instance.addSource("south-america-boundary", {
           type: "geojson",
           data: boundary.current,
         });
         instance.addLayer({
-          id: "ajloun-fill",
+          id: "south-america-fill",
           type: "fill",
-          source: "ajloun-boundary",
+          source: "south-america-boundary",
           paint: { "fill-color": "#ff6848", "fill-opacity": 0.07 },
         });
         instance.addLayer({
-          id: "ajloun-outline",
+          id: "south-america-outline",
           type: "line",
-          source: "ajloun-boundary",
+          source: "south-america-boundary",
           paint: { "line-color": "#ff6848", "line-width": 2 },
         });
       }
@@ -502,23 +469,12 @@ export default function FireMap({
       new ml.AttributionControl({ compact: true }),
       "bottom-right",
     );
-    fetch("/jordan-adm1.geojson")
-      .then(async (response) => {
-        if (!response.ok) throw new Error();
-        const result: FeatureCollection = await response.json();
-        const ajloun = result.features.find(
-          (f) => f.properties?.shapeName === "Ajloun",
-        );
-        if (!ajloun) throw new Error();
-        if (disposed || regionRef.current !== "ajloun") return;
-        boundary.current = { type: "FeatureCollection", features: [ajloun] };
-        if (instance.getSource("observations")) restore();
-        if (regionRef.current === "ajloun")
-          camera.current?.fit(boundary.current, journey.current, false);
-      })
-      .catch(() => {
-        if (!disposed) setMapError("Ajloun boundary could not load.");
-      });
+    regionBoundary(regionRef.current).then(result=>{
+      if(disposed)return;
+      boundary.current=result;
+      if(instance.getSource('observations'))restore();
+      camera.current?.fit(result,journey.current,false);
+    }).catch(()=>{if(!disposed)setMapError('Study boundary could not load.');});
     return () => {
       disposed = true;
       signals.current?.dispose();
@@ -543,6 +499,7 @@ export default function FireMap({
       controller.signal,
       Number(requestFromYear),
       Number(requestThroughYear),
+      {from:scope.startDate,to:scope.endDate,filters:scope,offset:evidenceOffset},
     )
       .then((result) => {
         if (controller.signal.aborted) return;
@@ -600,9 +557,11 @@ export default function FireMap({
     setConfidence,
     requestFromYear,
     requestThroughYear,
+    scope.startDate,scope.endDate,scope.sensor,scope.processing,scope.platform,scope.confidenceRaw,scope.frpMin,scope.frpMax,scope.dayNight,evidenceOffset,
   ]);
 
   function changeRegion(next: Region) {
+    setEvidenceOffset(0);
     // Commit shared region before retained-map effects can run.
     if (next !== scope.region) {
       setRegion(next);
@@ -622,7 +581,7 @@ export default function FireMap({
     setData(EMPTY);
     popup.current?.remove();
     signals.current?.present(EMPTY);
-    if (next === "ajloun" && boundary.current)
+    if (next === "brazil" && boundary.current)
       camera.current?.fit(boundary.current, journey.current);
   }
   const availableInstruments = [
@@ -639,11 +598,10 @@ export default function FireMap({
     historical && Array.isArray(historicalMetadata.availableYears)
       ? historicalMetadata.availableYears.map(String)
       : [];
-  const dates = observedAtlasDates(
-    data as import("../shared/model").ObservationCollection,
-    scope,
-    filterObservationCollection,
-  ).filter((d) => !historical || d.startsWith(selectedYear));
+  const dates = (historicalMetadata?.scalable && Array.isArray(historicalMetadata.availableDates)
+    ? historicalMetadata.availableDates.map(String)
+    : observedAtlasDates(data as import('../shared/model').ObservationCollection,scope,filterObservationCollection)
+  ).filter(d=>!historical||d.startsWith(selectedYear));
   function chooseYear(year: string) {
     update(selectAtlasYear(year, region, scope.regionalYears));
   }
@@ -846,10 +804,7 @@ export default function FireMap({
         // Calendar region selection can load while the retained map is hidden.
         // This explicit user handoff starts a fresh, cancellable camera journey.
         journey.current = camera.current?.begin() ?? 0;
-        const target =
-          selection.region === "ajloun"
-            ? boundary.current
-            : filterObservationCollection(data, {
+        const target = filterObservationCollection(data, {
                 ...scope,
                 region: selection.region,
                 sensor: selection.sensor,
@@ -869,24 +824,10 @@ export default function FireMap({
   }, [calendarSelection]);
   useEffect(() => {
     let cancelled = false;
-    fetch(
-      region === "ajloun" ? "/jordan-adm1.geojson" : "/northern-jordan.geojson",
-    )
-      .then((r) => r.json())
-      .then((result) => {
-        if (cancelled) return;
-        const next: FeatureCollection =
-          region === "ajloun"
-            ? {
-                type: "FeatureCollection",
-                features: result.features.filter(
-                  (f: import("geojson").Feature) =>
-                    f.properties?.shapeName === "Ajloun",
-                ),
-              }
-            : result;
+    regionBoundary(region).then((next) => {
+        if(cancelled)return;
         boundary.current = next;
-        const source = map.current?.getSource("ajloun-boundary") as
+        const source = map.current?.getSource("south-america-boundary") as
           | import("maplibre-gl").GeoJSONSource
           | undefined;
         source?.setData(next);
@@ -937,9 +878,7 @@ export default function FireMap({
         className="atlas-map fire-map-canvas"
         ref={container}
         aria-label={t(
-          region === "northern-jordan"
-            ? "Northern Jordan boundary"
-            : "Interactive Ajloun pilot boundary map",
+          regionName(region)+' / polygon study area',
         )}
       />
       <div className="atlas-vignette" aria-hidden="true" />
@@ -952,15 +891,15 @@ export default function FireMap({
         >
           <AtlasGlyph name="orbit" size={31} />
           <span>
-            {t("FIRE")}
-            <span>{t("PULSE")}</span>
+            {t("RASAD")}
+            <span>{t(" | رصد")}</span>
             <small>
               {t(
                 fixture && availableInstruments.length
                   ? availableInstruments.join(" / ") +
                       " · " +
                       satellites.join(", ")
-                  : "EARTH INTELLIGENCE OS",
+                  : "Earth Observation & Burning Activity Intelligence",
               )}
             </small>
           </span>
@@ -1001,20 +940,18 @@ export default function FireMap({
           {t("FIELD STUDY ")}
           <b>/</b>{" "}
           {t(
-            region === "northern-jordan"
-              ? "JO / NORTHERN JORDAN"
-              : "JO / AJLOUN GOVERNORATE",
+            regionName(region).toUpperCase(),
           )}
         </span>
         <h1>
-          {t(region === "northern-jordan" ? "Northern Jordan" : "Ajloun")}
+          {t(regionName(region))}
           <span>.</span>
         </h1>
         <AtlasStamp fixture={fixture} />
         <p>
           {t(
             fixture
-              ? "A local NASA observation fixture.\nA separate view, never Ajloun data."
+              ? "A local NASA observation fixture.\nA separate view, never Brazil archive data."
               : "The landscape is the first layer.\nThe signal comes with context.",
           )}
         </p>
@@ -1085,6 +1022,7 @@ export default function FireMap({
           filtersOpen && (
             <div id="atlas-filters">
               <AtlasFilters
+              platforms={currentDatasets.current.flatMap(d=>d.platform?[d.platform]:[])}
                 sensor={sensor}
                 confidence={confidence}
                 instruments={availableInstruments}
@@ -1140,9 +1078,7 @@ export default function FireMap({
         <span>
           <i className="key-boundary" />
           {t(
-            region === "ajloun"
-              ? "Ajloun boundary"
-              : "Northern Jordan boundary",
+            regionName(region)+' / boundary',
           )}
         </span>
         {t(
@@ -1204,6 +1140,10 @@ export default function FireMap({
                   ?.focus({ preventScroll: true });
               }}
               onMore={() => setListLimit((value) => value + 50)}
+              onNextPage={() => {setEvidenceOffset(value=>value+2000);setListLimit(50);}}
+              onFirstPage={() => setEvidenceOffset(0)}
+              evidenceOffset={evidenceOffset}
+              hasNextPage={Boolean((data as import('../shared/model').ObservationCollection).metadata?.truncated)}
               onClose={() => {
                 setInspectorOpen(false);
                 document.getElementById("atlas-ledger-trigger")?.focus();
@@ -1212,7 +1152,7 @@ export default function FireMap({
                 setStatus("loading");
                 setRetry((value) => value + 1);
               }}
-              onFixture={() => changeRegion("northern-jordan")}
+              onFixture={() => changeRegion("brazil")}
               onClear={() => {
                 update(clearObservationFilters);
                 applyFilters("all", "all", "all");
@@ -1229,7 +1169,7 @@ export default function FireMap({
           ),
         )}
       </AnimatePresence>
-      {cameraContext !== "ajloun" && (
+      {cameraContext !== "brazil" && (
         <p className="camera-scope-note" role="status">
           {t(
             "Exploration view only. Observation coverage remains the selected regional dataset; global data is unavailable.",
@@ -1243,6 +1183,8 @@ export default function FireMap({
           sensor,
           confidence,
           scope.processing,
+          scope.platform,
+          scope.dayNight,
           scope.frpMin,
           scope.frpMax,
         ])}

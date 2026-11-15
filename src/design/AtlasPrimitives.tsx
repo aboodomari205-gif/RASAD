@@ -1,4 +1,3 @@
-import {useMission} from '../state/mission';
 import { t } from '../i18n/translate';
 import type { ButtonHTMLAttributes } from 'react';
 export type AtlasSymbol = 'orbit' | 'satellite' | 'layers' | 'filter' | 'locate' | 'north' | 'plus' | 'minus' | 'ledger' | 'arrow' | 'close' | 'index' | 'back' | 'time' | 'signal';
@@ -22,6 +21,6 @@ export function AtlasGlyph({ name, size = 22 }: { name: AtlasSymbol; size?: numb
 export function AtlasTool({ symbol, label, active, ...props }: ButtonHTMLAttributes<HTMLButtonElement> & { symbol: AtlasSymbol; label: string; active?: boolean }) {
   return <button {...props} className={`atlas-tool ${active ? 'is-active' : ''}`} aria-label={t(label)} title={t(label)} aria-pressed={active}><AtlasGlyph name={symbol} /><span className="atlas-tool-label">{t(label)}</span></button>;
 }
-export function AtlasStamp({ fixture }: { fixture: boolean }) { const {scope}=useMission();
-  return <span className={`atlas-stamp ${fixture ? 'is-fixture' : ''}`}><span />{t(scope.region==='northern-jordan'?'Northern Jordan':fixture?'REGIONAL DATA':'AJLOUN / PILOT REGION')}</span>;
+export function AtlasStamp({ fixture }: { fixture: boolean }) {
+  return <span className={`atlas-stamp ${fixture ? 'is-fixture' : ''}`}><span />{t(fixture?'REGIONAL DATA':'BRAZIL')}</span>;
 }

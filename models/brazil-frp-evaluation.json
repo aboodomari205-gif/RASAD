@@ -1,0 +1,3894 @@
+{
+  "schema": "rasad.research-evaluation/v1",
+  "status": "EXPERIMENTAL_NOT_CALIBRATION",
+  "generation": "86f1f872f7366fe4",
+  "query": {
+    "mode": "brazil",
+    "from": "2024-08-01",
+    "to": "2024-08-31"
+  },
+  "task": "Estimate mean reported FRP MW per source-positive H3 resolution-6 cell-day, conditional on actual detected hotspots with reported FRP. Not forecasting.",
+  "features": [
+    "cell_latitude",
+    "cell_longitude",
+    "season_sin",
+    "season_cos",
+    "source_index"
+  ],
+  "sourceDescriptors": [
+    {
+      "id": "sa-modis-aqua-standard",
+      "sensor": "MODIS",
+      "platform": "Aqua",
+      "product": "FIRMS M-C61 archive",
+      "version": "6.1",
+      "processing": "standard",
+      "lineage": "delivery-declared"
+    },
+    {
+      "id": "sa-modis-terra-standard",
+      "sensor": "MODIS",
+      "platform": "Terra",
+      "product": "FIRMS M-C61 archive",
+      "version": "6.1",
+      "processing": "standard",
+      "lineage": "delivery-declared"
+    },
+    {
+      "id": "sa-n20-noaa20-standard",
+      "sensor": "VIIRS",
+      "platform": "NOAA-20",
+      "product": "FIRMS J1V-C2 archive",
+      "version": "2",
+      "processing": "standard",
+      "lineage": "blocked-lineage"
+    },
+    {
+      "id": "sa-n21-noaa21-standard",
+      "sensor": "VIIRS",
+      "platform": "NOAA-21",
+      "product": "FIRMS J2V-C2 archive",
+      "version": "2",
+      "processing": "standard",
+      "lineage": "blocked-lineage"
+    }
+  ],
+  "inputRows": 6876,
+  "frpMissing": 0,
+  "eligibleCellDays": 988,
+  "excludedNoReportedFRPGroups": 0,
+  "sampleSHA256": "aec28403fca1756c6e230bdeb18e34e3c407031d7e421d389822c58d5a6e59f8",
+  "training": {
+    "count": 282,
+    "cutoff": "2024-08-25",
+    "first": "2024-08-01",
+    "last": "2024-08-24",
+    "heldSpatialBlocks": [
+      "848b84bffffffff",
+      "848b845ffffffff",
+      "848b867ffffffff",
+      "848b80bffffffff",
+      "848b809ffffffff",
+      "848ba27ffffffff"
+    ],
+    "trainingBlocks": [
+      "848b843ffffffff",
+      "848b855ffffffff",
+      "848b86bffffffff",
+      "848b829ffffffff",
+      "848b841ffffffff",
+      "848b865ffffffff",
+      "848b82dffffffff",
+      "848b84dffffffff",
+      "848b863ffffffff",
+      "848b869ffffffff",
+      "848bb1bffffffff",
+      "848b80dffffffff",
+      "848b861ffffffff",
+      "848b86dffffffff",
+      "848b85dffffffff",
+      "848b801ffffffff",
+      "848b805ffffffff",
+      "848b849ffffffff",
+      "848bb17ffffffff",
+      "848bb15ffffffff",
+      "848bb13ffffffff"
+    ],
+    "hyperparameters": {
+      "iterations": 60,
+      "learningRate": 0.06,
+      "depth": 3,
+      "minLeaf": 12
+    },
+    "selection": "Fixed parameters; no tuning on held-out results"
+  },
+  "evaluation": {
+    "temporal": {
+      "count": 306,
+      "baseline": {
+        "maeMW": 24.002715328329842,
+        "rmseMW": 54.77523480719801,
+        "biasMW": -18.754805702872318,
+        "maeLog1p": 0.8106073199163905
+      },
+      "model": {
+        "maeMW": 27.216126922827605,
+        "rmseMW": 59.37007044151035,
+        "biasMW": -25.19293385162865,
+        "maeLog1p": 0.9850470337955894
+      }
+    },
+    "spatial": {
+      "count": 252,
+      "baseline": {
+        "maeMW": 24.854669245566473,
+        "rmseMW": 80.3735850802689,
+        "biasMW": -16.15711480571182,
+        "maeLog1p": 0.8028645847587105
+      },
+      "model": {
+        "maeMW": 23.888643062571028,
+        "rmseMW": 80.52014165651286,
+        "biasMW": -17.48308944441689,
+        "maeLog1p": 0.7729688115834359
+      }
+    },
+    "joint": {
+      "count": 148,
+      "baseline": {
+        "maeMW": 16.560837749795507,
+        "rmseMW": 39.19846126958525,
+        "biasMW": -7.625045335316286,
+        "maeLog1p": 0.7508794038879941
+      },
+      "model": {
+        "maeMW": 16.47178170986723,
+        "rmseMW": 42.44962884243017,
+        "biasMW": -14.353119674098535,
+        "maeLog1p": 0.7809610730584478
+      }
+    }
+  },
+  "uncertainty": "No calibrated prediction interval; empirical held-out errors are not individual uncertainty bounds.",
+  "limitations": [
+    "EXPERIMENTAL conditional mean reported FRP per source-positive H3 cell-day, not future fire prediction.",
+    "No-record days are excluded, never labeled negatives. Labels reflect source-specific selection and reported FRP only.",
+    "VIIRS is not ground truth. Platform/product/processing strata remain separate; NOAA-20/21 Standard lineage is unresolved.",
+    "One-month Brazil pilot; no independent year holdout, no opportunity/cloud/geolocation QA or environmental covariates.",
+    "No calibrated uncertainty interval, downscaling, sensor-equivalent adjustment or historical reconstruction."
+  ],
+  "overlap": {
+    "support": "Source-positive H3 cell-days with reported FRP; source-only is absence of delivered counterpart, not a confirmed negative.",
+    "calibration": "NOT VALIDATED",
+    "pairs": [
+      {
+        "modis": {
+          "id": "sa-modis-aqua-standard",
+          "sensor": "MODIS",
+          "platform": "Aqua",
+          "product": "FIRMS M-C61 archive",
+          "version": "6.1",
+          "processing": "standard",
+          "lineage": "delivery-declared"
+        },
+        "viirs": {
+          "id": "sa-n20-noaa20-standard",
+          "sensor": "VIIRS",
+          "platform": "NOAA-20",
+          "product": "FIRMS J1V-C2 archive",
+          "version": "2",
+          "processing": "standard",
+          "lineage": "blocked-lineage"
+        },
+        "modisPositiveCellDays": 154,
+        "viirsPositiveCellDays": 354,
+        "coDetectedCellDays": 131,
+        "modisOnlyDelivered": 23,
+        "viirsOnlyDelivered": 223,
+        "deliveredJaccard": 0.34748010610079577,
+        "paired": [
+          {
+            "cell": "868b8672fffffff",
+            "date": "2024-08-01",
+            "modisCount": 1,
+            "viirsCount": 2,
+            "modisMeanReportedFRPMW": 14.8,
+            "viirsMeanReportedFRPMW": 6.8
+          },
+          {
+            "cell": "868b82837ffffff",
+            "date": "2024-08-03",
+            "modisCount": 2,
+            "viirsCount": 4,
+            "modisMeanReportedFRPMW": 60.7,
+            "viirsMeanReportedFRPMW": 15.725000000000001
+          },
+          {
+            "cell": "868ba2647ffffff",
+            "date": "2024-08-03",
+            "modisCount": 1,
+            "viirsCount": 6,
+            "modisMeanReportedFRPMW": 28.6,
+            "viirsMeanReportedFRPMW": 12.061666666666667
+          },
+          {
+            "cell": "868ba266fffffff",
+            "date": "2024-08-03",
+            "modisCount": 2,
+            "viirsCount": 1,
+            "modisMeanReportedFRPMW": 85.15,
+            "viirsMeanReportedFRPMW": 16.26
+          },
+          {
+            "cell": "868b84497ffffff",
+            "date": "2024-08-06",
+            "modisCount": 1,
+            "viirsCount": 1,
+            "modisMeanReportedFRPMW": 37.3,
+            "viirsMeanReportedFRPMW": 2.51
+          },
+          {
+            "cell": "868ba262fffffff",
+            "date": "2024-08-06",
+            "modisCount": 1,
+            "viirsCount": 2,
+            "modisMeanReportedFRPMW": 10.8,
+            "viirsMeanReportedFRPMW": 3.2199999999999998
+          },
+          {
+            "cell": "868ba2647ffffff",
+            "date": "2024-08-06",
+            "modisCount": 1,
+            "viirsCount": 3,
+            "modisMeanReportedFRPMW": 28.8,
+            "viirsMeanReportedFRPMW": 9.903333333333334
+          },
+          {
+            "cell": "868bb1a6fffffff",
+            "date": "2024-08-06",
+            "modisCount": 2,
+            "viirsCount": 3,
+            "modisMeanReportedFRPMW": 12.45,
+            "viirsMeanReportedFRPMW": 6.086666666666666
+          },
+          {
+            "cell": "868b84acfffffff",
+            "date": "2024-08-11",
+            "modisCount": 3,
+            "viirsCount": 7,
+            "modisMeanReportedFRPMW": 31.866666666666664,
+            "viirsMeanReportedFRPMW": 14.331428571428571
+          },
+          {
+            "cell": "868b84adfffffff",
+            "date": "2024-08-11",
+            "modisCount": 17,
+            "viirsCount": 59,
+            "modisMeanReportedFRPMW": 77.83529411764705,
+            "viirsMeanReportedFRPMW": 22.58288135593221
+          },
+          {
+            "cell": "868b85d97ffffff",
+            "date": "2024-08-11",
+            "modisCount": 8,
+            "viirsCount": 29,
+            "modisMeanReportedFRPMW": 24.687500000000004,
+            "viirsMeanReportedFRPMW": 6.296206896551724
+          },
+          {
+            "cell": "868ba2647ffffff",
+            "date": "2024-08-11",
+            "modisCount": 1,
+            "viirsCount": 2,
+            "modisMeanReportedFRPMW": 13.5,
+            "viirsMeanReportedFRPMW": 3.76
+          },
+          {
+            "cell": "868b8430fffffff",
+            "date": "2024-08-12",
+            "modisCount": 4,
+            "viirsCount": 40,
+            "modisMeanReportedFRPMW": 162.625,
+            "viirsMeanReportedFRPMW": 15.908250000000004
+          },
+          {
+            "cell": "868b84377ffffff",
+            "date": "2024-08-12",
+            "modisCount": 4,
+            "viirsCount": 3,
+            "modisMeanReportedFRPMW": 146.87499999999997,
+            "viirsMeanReportedFRPMW": 6.829999999999999
+          },
+          {
+            "cell": "868b84ac7ffffff",
+            "date": "2024-08-12",
+            "modisCount": 7,
+            "viirsCount": 63,
+            "modisMeanReportedFRPMW": 1014.6142857142859,
+            "viirsMeanReportedFRPMW": 92.29126984126991
+          },
+          {
+            "cell": "868b84acfffffff",
+            "date": "2024-08-12",
+            "modisCount": 9,
+            "viirsCount": 43,
+            "modisMeanReportedFRPMW": 414.8888888888889,
+            "viirsMeanReportedFRPMW": 45.505348837209304
+          },
+          {
+            "cell": "868b84adfffffff",
+            "date": "2024-08-12",
+            "modisCount": 1,
+            "viirsCount": 76,
+            "modisMeanReportedFRPMW": 422.8,
+            "viirsMeanReportedFRPMW": 8.444605263157895
+          },
+          {
+            "cell": "868b8430fffffff",
+            "date": "2024-08-13",
+            "modisCount": 3,
+            "viirsCount": 26,
+            "modisMeanReportedFRPMW": 29.866666666666664,
+            "viirsMeanReportedFRPMW": 9.893846153846154
+          },
+          {
+            "cell": "868b84357ffffff",
+            "date": "2024-08-13",
+            "modisCount": 2,
+            "viirsCount": 21,
+            "modisMeanReportedFRPMW": 68.19999999999999,
+            "viirsMeanReportedFRPMW": 13.38238095238095
+          },
+          {
+            "cell": "868b84367ffffff",
+            "date": "2024-08-13",
+            "modisCount": 3,
+            "viirsCount": 19,
+            "modisMeanReportedFRPMW": 34.833333333333336,
+            "viirsMeanReportedFRPMW": 8.513684210526316
+          },
+          {
+            "cell": "868b84377ffffff",
+            "date": "2024-08-13",
+            "modisCount": 6,
+            "viirsCount": 30,
+            "modisMeanReportedFRPMW": 119.95,
+            "viirsMeanReportedFRPMW": 26.211666666666666
+          },
+          {
+            "cell": "868b84ac7ffffff",
+            "date": "2024-08-13",
+            "modisCount": 2,
+            "viirsCount": 86,
+            "modisMeanReportedFRPMW": 61.4,
+            "viirsMeanReportedFRPMW": 4.370465116279069
+          },
+          {
+            "cell": "868b84adfffffff",
+            "date": "2024-08-13",
+            "modisCount": 4,
+            "viirsCount": 42,
+            "modisMeanReportedFRPMW": 66.55,
+            "viirsMeanReportedFRPMW": 10.933571428571428
+          },
+          {
+            "cell": "868b84377ffffff",
+            "date": "2024-08-14",
+            "modisCount": 4,
+            "viirsCount": 42,
+            "modisMeanReportedFRPMW": 54.474999999999994,
+            "viirsMeanReportedFRPMW": 10.693333333333337
+          },
+          {
+            "cell": "868b84487ffffff",
+            "date": "2024-08-14",
+            "modisCount": 1,
+            "viirsCount": 2,
+            "modisMeanReportedFRPMW": 26.2,
+            "viirsMeanReportedFRPMW": 30.635
+          },
+          {
+            "cell": "868b84adfffffff",
+            "date": "2024-08-14",
+            "modisCount": 1,
+            "viirsCount": 7,
+            "modisMeanReportedFRPMW": 136.8,
+            "viirsMeanReportedFRPMW": 22.75714285714286
+          },
+          {
+            "cell": "868b84aefffffff",
+            "date": "2024-08-14",
+            "modisCount": 1,
+            "viirsCount": 5,
+            "modisMeanReportedFRPMW": 89,
+            "viirsMeanReportedFRPMW": 3.466
+          },
+          {
+            "cell": "868b84b97ffffff",
+            "date": "2024-08-16",
+            "modisCount": 1,
+            "viirsCount": 3,
+            "modisMeanReportedFRPMW": 12.6,
+            "viirsMeanReportedFRPMW": 2.953333333333333
+          },
+          {
+            "cell": "868b85d97ffffff",
+            "date": "2024-08-16",
+            "modisCount": 1,
+            "viirsCount": 1,
+            "modisMeanReportedFRPMW": 33.3,
+            "viirsMeanReportedFRPMW": 1.74
+          },
+          {
+            "cell": "868b82807ffffff",
+            "date": "2024-08-18",
+            "modisCount": 2,
+            "viirsCount": 2,
+            "modisMeanReportedFRPMW": 16.2,
+            "viirsMeanReportedFRPMW": 55.459999999999994
+          },
+          {
+            "cell": "868b84107ffffff",
+            "date": "2024-08-18",
+            "modisCount": 1,
+            "viirsCount": 10,
+            "modisMeanReportedFRPMW": 34.3,
+            "viirsMeanReportedFRPMW": 45.688
+          },
+          {
+            "cell": "868b84127ffffff",
+            "date": "2024-08-18",
+            "modisCount": 2,
+            "viirsCount": 1,
+            "modisMeanReportedFRPMW": 43,
+            "viirsMeanReportedFRPMW": 168.26
+          },
+          {
+            "cell": "868b84367ffffff",
+            "date": "2024-08-18",
+            "modisCount": 6,
+            "viirsCount": 29,
+            "modisMeanReportedFRPMW": 128.56666666666666,
+            "viirsMeanReportedFRPMW": 36.02034482758621
+          },
+          {
+            "cell": "868b84377ffffff",
+            "date": "2024-08-18",
+            "modisCount": 3,
+            "viirsCount": 6,
+            "modisMeanReportedFRPMW": 36.03333333333333,
+            "viirsMeanReportedFRPMW": 16.321666666666665
+          },
+          {
+            "cell": "868b84847ffffff",
+            "date": "2024-08-18",
+            "modisCount": 7,
+            "viirsCount": 34,
+            "modisMeanReportedFRPMW": 179.6142857142857,
+            "viirsMeanReportedFRPMW": 64.16411764705883
+          },
+          {
+            "cell": "868b84857ffffff",
+            "date": "2024-08-18",
+            "modisCount": 1,
+            "viirsCount": 2,
+            "modisMeanReportedFRPMW": 33.4,
+            "viirsMeanReportedFRPMW": 27.06
+          },
+          {
+            "cell": "868b84acfffffff",
+            "date": "2024-08-18",
+            "modisCount": 3,
+            "viirsCount": 1,
+            "modisMeanReportedFRPMW": 67.63333333333333,
+            "viirsMeanReportedFRPMW": 41.79
+          },
+          {
+            "cell": "868b84adfffffff",
+            "date": "2024-08-18",
+            "modisCount": 1,
+            "viirsCount": 4,
+            "modisMeanReportedFRPMW": 79.1,
+            "viirsMeanReportedFRPMW": 19.535
+          },
+          {
+            "cell": "868b84ba7ffffff",
+            "date": "2024-08-18",
+            "modisCount": 4,
+            "viirsCount": 4,
+            "modisMeanReportedFRPMW": 152.9,
+            "viirsMeanReportedFRPMW": 15.1875
+          },
+          {
+            "cell": "868b84bb7ffffff",
+            "date": "2024-08-18",
+            "modisCount": 4,
+            "viirsCount": 5,
+            "modisMeanReportedFRPMW": 76.8,
+            "viirsMeanReportedFRPMW": 10.462
+          },
+          {
+            "cell": "868b85d97ffffff",
+            "date": "2024-08-18",
+            "modisCount": 1,
+            "viirsCount": 9,
+            "modisMeanReportedFRPMW": 94.3,
+            "viirsMeanReportedFRPMW": 23.156666666666663
+          },
+          {
+            "cell": "868ba262fffffff",
+            "date": "2024-08-18",
+            "modisCount": 1,
+            "viirsCount": 3,
+            "modisMeanReportedFRPMW": 18.9,
+            "viirsMeanReportedFRPMW": 3.52
+          },
+          {
+            "cell": "868b84367ffffff",
+            "date": "2024-08-19",
+            "modisCount": 6,
+            "viirsCount": 19,
+            "modisMeanReportedFRPMW": 103.39999999999998,
+            "viirsMeanReportedFRPMW": 4.366315789473684
+          },
+          {
+            "cell": "868b84377ffffff",
+            "date": "2024-08-19",
+            "modisCount": 2,
+            "viirsCount": 14,
+            "modisMeanReportedFRPMW": 210.75,
+            "viirsMeanReportedFRPMW": 54.580714285714286
+          },
+          {
+            "cell": "868b84ba7ffffff",
+            "date": "2024-08-19",
+            "modisCount": 1,
+            "viirsCount": 3,
+            "modisMeanReportedFRPMW": 34.2,
+            "viirsMeanReportedFRPMW": 1.3699999999999999
+          },
+          {
+            "cell": "868b84bb7ffffff",
+            "date": "2024-08-19",
+            "modisCount": 1,
+            "viirsCount": 13,
+            "modisMeanReportedFRPMW": 37.2,
+            "viirsMeanReportedFRPMW": 5.691538461538462
+          },
+          {
+            "cell": "868ba262fffffff",
+            "date": "2024-08-19",
+            "modisCount": 4,
+            "viirsCount": 8,
+            "modisMeanReportedFRPMW": 79.45,
+            "viirsMeanReportedFRPMW": 17.45125
+          },
+          {
+            "cell": "868b84367ffffff",
+            "date": "2024-08-20",
+            "modisCount": 3,
+            "viirsCount": 17,
+            "modisMeanReportedFRPMW": 88.26666666666667,
+            "viirsMeanReportedFRPMW": 19.693529411764704
+          },
+          {
+            "cell": "868b84377ffffff",
+            "date": "2024-08-20",
+            "modisCount": 6,
+            "viirsCount": 31,
+            "modisMeanReportedFRPMW": 155.51666666666665,
+            "viirsMeanReportedFRPMW": 18.82677419354839
+          },
+          {
+            "cell": "868b84bb7ffffff",
+            "date": "2024-08-20",
+            "modisCount": 4,
+            "viirsCount": 18,
+            "modisMeanReportedFRPMW": 93.775,
+            "viirsMeanReportedFRPMW": 12.754999999999999
+          },
+          {
+            "cell": "868bb1a47ffffff",
+            "date": "2024-08-20",
+            "modisCount": 1,
+            "viirsCount": 4,
+            "modisMeanReportedFRPMW": 35.4,
+            "viirsMeanReportedFRPMW": 10.265
+          },
+          {
+            "cell": "868b80aafffffff",
+            "date": "2024-08-21",
+            "modisCount": 2,
+            "viirsCount": 1,
+            "modisMeanReportedFRPMW": 35.15,
+            "viirsMeanReportedFRPMW": 6.85
+          },
+          {
+            "cell": "868b84367ffffff",
+            "date": "2024-08-21",
+            "modisCount": 8,
+            "viirsCount": 41,
+            "modisMeanReportedFRPMW": 37.5375,
+            "viirsMeanReportedFRPMW": 6.2190243902438995
+          },
+          {
+            "cell": "868b84377ffffff",
+            "date": "2024-08-21",
+            "modisCount": 5,
+            "viirsCount": 53,
+            "modisMeanReportedFRPMW": 49.32,
+            "viirsMeanReportedFRPMW": 5.269433962264152
+          },
+          {
+            "cell": "868b84acfffffff",
+            "date": "2024-08-21",
+            "modisCount": 4,
+            "viirsCount": 12,
+            "modisMeanReportedFRPMW": 72.825,
+            "viirsMeanReportedFRPMW": 7.640833333333333
+          },
+          {
+            "cell": "868b84adfffffff",
+            "date": "2024-08-21",
+            "modisCount": 2,
+            "viirsCount": 8,
+            "modisMeanReportedFRPMW": 82.7,
+            "viirsMeanReportedFRPMW": 21.105
+          },
+          {
+            "cell": "868b84b8fffffff",
+            "date": "2024-08-21",
+            "modisCount": 1,
+            "viirsCount": 5,
+            "modisMeanReportedFRPMW": 12.5,
+            "viirsMeanReportedFRPMW": 3.812
+          },
+          {
+            "cell": "868b84bb7ffffff",
+            "date": "2024-08-21",
+            "modisCount": 1,
+            "viirsCount": 6,
+            "modisMeanReportedFRPMW": 7.8,
+            "viirsMeanReportedFRPMW": 1.6333333333333335
+          },
+          {
+            "cell": "868b86b27ffffff",
+            "date": "2024-08-21",
+            "modisCount": 1,
+            "viirsCount": 1,
+            "modisMeanReportedFRPMW": 15.7,
+            "viirsMeanReportedFRPMW": 5.33
+          },
+          {
+            "cell": "868ba262fffffff",
+            "date": "2024-08-21",
+            "modisCount": 3,
+            "viirsCount": 2,
+            "modisMeanReportedFRPMW": 23.53333333333333,
+            "viirsMeanReportedFRPMW": 10.64
+          },
+          {
+            "cell": "868bb14c7ffffff",
+            "date": "2024-08-21",
+            "modisCount": 2,
+            "viirsCount": 8,
+            "modisMeanReportedFRPMW": 46.150000000000006,
+            "viirsMeanReportedFRPMW": 38.701249999999995
+          },
+          {
+            "cell": "868bb1557ffffff",
+            "date": "2024-08-21",
+            "modisCount": 4,
+            "viirsCount": 21,
+            "modisMeanReportedFRPMW": 21.75,
+            "viirsMeanReportedFRPMW": 16.485714285714284
+          },
+          {
+            "cell": "868b80aafffffff",
+            "date": "2024-08-23",
+            "modisCount": 2,
+            "viirsCount": 17,
+            "modisMeanReportedFRPMW": 14.75,
+            "viirsMeanReportedFRPMW": 3.0470588235294116
+          },
+          {
+            "cell": "868b84367ffffff",
+            "date": "2024-08-23",
+            "modisCount": 5,
+            "viirsCount": 7,
+            "modisMeanReportedFRPMW": 44.68,
+            "viirsMeanReportedFRPMW": 8.564285714285713
+          },
+          {
+            "cell": "868b84377ffffff",
+            "date": "2024-08-23",
+            "modisCount": 5,
+            "viirsCount": 14,
+            "modisMeanReportedFRPMW": 34.56,
+            "viirsMeanReportedFRPMW": 4.9278571428571425
+          },
+          {
+            "cell": "868b84acfffffff",
+            "date": "2024-08-23",
+            "modisCount": 1,
+            "viirsCount": 1,
+            "modisMeanReportedFRPMW": 13.7,
+            "viirsMeanReportedFRPMW": 12.85
+          },
+          {
+            "cell": "868b84adfffffff",
+            "date": "2024-08-23",
+            "modisCount": 4,
+            "viirsCount": 4,
+            "modisMeanReportedFRPMW": 69.45,
+            "viirsMeanReportedFRPMW": 214.9875
+          },
+          {
+            "cell": "868b85527ffffff",
+            "date": "2024-08-23",
+            "modisCount": 1,
+            "viirsCount": 3,
+            "modisMeanReportedFRPMW": 21.9,
+            "viirsMeanReportedFRPMW": 2.8966666666666665
+          },
+          {
+            "cell": "868b85537ffffff",
+            "date": "2024-08-23",
+            "modisCount": 8,
+            "viirsCount": 25,
+            "modisMeanReportedFRPMW": 46.5375,
+            "viirsMeanReportedFRPMW": 12.6652
+          },
+          {
+            "cell": "868b86637ffffff",
+            "date": "2024-08-23",
+            "modisCount": 1,
+            "viirsCount": 3,
+            "modisMeanReportedFRPMW": 11.5,
+            "viirsMeanReportedFRPMW": 8.38
+          },
+          {
+            "cell": "868ba262fffffff",
+            "date": "2024-08-23",
+            "modisCount": 4,
+            "viirsCount": 20,
+            "modisMeanReportedFRPMW": 11.675,
+            "viirsMeanReportedFRPMW": 4.563999999999999
+          },
+          {
+            "cell": "868b84adfffffff",
+            "date": "2024-08-24",
+            "modisCount": 1,
+            "viirsCount": 7,
+            "modisMeanReportedFRPMW": 44.6,
+            "viirsMeanReportedFRPMW": 1.3314285714285714
+          },
+          {
+            "cell": "868b85537ffffff",
+            "date": "2024-08-24",
+            "modisCount": 1,
+            "viirsCount": 8,
+            "modisMeanReportedFRPMW": 91.8,
+            "viirsMeanReportedFRPMW": 3.7112499999999997
+          },
+          {
+            "cell": "868b8450fffffff",
+            "date": "2024-08-25",
+            "modisCount": 1,
+            "viirsCount": 26,
+            "modisMeanReportedFRPMW": 69.4,
+            "viirsMeanReportedFRPMW": 75.6676923076923
+          },
+          {
+            "cell": "868b84adfffffff",
+            "date": "2024-08-25",
+            "modisCount": 1,
+            "viirsCount": 21,
+            "modisMeanReportedFRPMW": 41.4,
+            "viirsMeanReportedFRPMW": 3.084761904761905
+          },
+          {
+            "cell": "868bb1607ffffff",
+            "date": "2024-08-25",
+            "modisCount": 7,
+            "viirsCount": 39,
+            "modisMeanReportedFRPMW": 40.75714285714286,
+            "viirsMeanReportedFRPMW": 11.469487179487178
+          },
+          {
+            "cell": "868bb160fffffff",
+            "date": "2024-08-25",
+            "modisCount": 5,
+            "viirsCount": 25,
+            "modisMeanReportedFRPMW": 45.52,
+            "viirsMeanReportedFRPMW": 16.480000000000004
+          },
+          {
+            "cell": "868bb1617ffffff",
+            "date": "2024-08-25",
+            "modisCount": 5,
+            "viirsCount": 22,
+            "modisMeanReportedFRPMW": 47.9,
+            "viirsMeanReportedFRPMW": 38.704545454545446
+          },
+          {
+            "cell": "868bb161fffffff",
+            "date": "2024-08-25",
+            "modisCount": 4,
+            "viirsCount": 5,
+            "modisMeanReportedFRPMW": 173.125,
+            "viirsMeanReportedFRPMW": 15.818000000000001
+          },
+          {
+            "cell": "868bb1627ffffff",
+            "date": "2024-08-25",
+            "modisCount": 5,
+            "viirsCount": 10,
+            "modisMeanReportedFRPMW": 213.4,
+            "viirsMeanReportedFRPMW": 12.681999999999999
+          },
+          {
+            "cell": "868bb1637ffffff",
+            "date": "2024-08-25",
+            "modisCount": 10,
+            "viirsCount": 110,
+            "modisMeanReportedFRPMW": 145.27,
+            "viirsMeanReportedFRPMW": 13.495636363636368
+          },
+          {
+            "cell": "868bb171fffffff",
+            "date": "2024-08-25",
+            "modisCount": 6,
+            "viirsCount": 20,
+            "modisMeanReportedFRPMW": 149.59999999999997,
+            "viirsMeanReportedFRPMW": 18.467000000000002
+          },
+          {
+            "cell": "868bb178fffffff",
+            "date": "2024-08-25",
+            "modisCount": 4,
+            "viirsCount": 4,
+            "modisMeanReportedFRPMW": 25.225,
+            "viirsMeanReportedFRPMW": 10.7775
+          },
+          {
+            "cell": "868b84367ffffff",
+            "date": "2024-08-26",
+            "modisCount": 3,
+            "viirsCount": 3,
+            "modisMeanReportedFRPMW": 15.033333333333333,
+            "viirsMeanReportedFRPMW": 8.666666666666666
+          },
+          {
+            "cell": "868b84377ffffff",
+            "date": "2024-08-26",
+            "modisCount": 1,
+            "viirsCount": 11,
+            "modisMeanReportedFRPMW": 174.6,
+            "viirsMeanReportedFRPMW": 11.201818181818181
+          },
+          {
+            "cell": "868b84adfffffff",
+            "date": "2024-08-26",
+            "modisCount": 3,
+            "viirsCount": 14,
+            "modisMeanReportedFRPMW": 43.9,
+            "viirsMeanReportedFRPMW": 11.551428571428572
+          },
+          {
+            "cell": "868b85527ffffff",
+            "date": "2024-08-26",
+            "modisCount": 1,
+            "viirsCount": 4,
+            "modisMeanReportedFRPMW": 56.5,
+            "viirsMeanReportedFRPMW": 10.6875
+          },
+          {
+            "cell": "868b85587ffffff",
+            "date": "2024-08-26",
+            "modisCount": 1,
+            "viirsCount": 4,
+            "modisMeanReportedFRPMW": 21.3,
+            "viirsMeanReportedFRPMW": 6.815
+          },
+          {
+            "cell": "868ba260fffffff",
+            "date": "2024-08-26",
+            "modisCount": 2,
+            "viirsCount": 2,
+            "modisMeanReportedFRPMW": 22.950000000000003,
+            "viirsMeanReportedFRPMW": 3.88
+          },
+          {
+            "cell": "868bb1367ffffff",
+            "date": "2024-08-26",
+            "modisCount": 3,
+            "viirsCount": 30,
+            "modisMeanReportedFRPMW": 68.10000000000001,
+            "viirsMeanReportedFRPMW": 16.32266666666667
+          },
+          {
+            "cell": "868bb1607ffffff",
+            "date": "2024-08-26",
+            "modisCount": 3,
+            "viirsCount": 19,
+            "modisMeanReportedFRPMW": 36.23333333333333,
+            "viirsMeanReportedFRPMW": 8.919473684210525
+          },
+          {
+            "cell": "868bb160fffffff",
+            "date": "2024-08-26",
+            "modisCount": 3,
+            "viirsCount": 16,
+            "modisMeanReportedFRPMW": 40.53333333333334,
+            "viirsMeanReportedFRPMW": 6.255000000000001
+          },
+          {
+            "cell": "868bb1617ffffff",
+            "date": "2024-08-26",
+            "modisCount": 1,
+            "viirsCount": 28,
+            "modisMeanReportedFRPMW": 70.9,
+            "viirsMeanReportedFRPMW": 10.345
+          },
+          {
+            "cell": "868bb161fffffff",
+            "date": "2024-08-26",
+            "modisCount": 2,
+            "viirsCount": 21,
+            "modisMeanReportedFRPMW": 74.5,
+            "viirsMeanReportedFRPMW": 4.060952380952382
+          },
+          {
+            "cell": "868bb1627ffffff",
+            "date": "2024-08-26",
+            "modisCount": 1,
+            "viirsCount": 19,
+            "modisMeanReportedFRPMW": 51,
+            "viirsMeanReportedFRPMW": 7.363684210526316
+          },
+          {
+            "cell": "868bb162fffffff",
+            "date": "2024-08-26",
+            "modisCount": 1,
+            "viirsCount": 17,
+            "modisMeanReportedFRPMW": 72.4,
+            "viirsMeanReportedFRPMW": 7.443529411764706
+          },
+          {
+            "cell": "868bb1637ffffff",
+            "date": "2024-08-26",
+            "modisCount": 3,
+            "viirsCount": 8,
+            "modisMeanReportedFRPMW": 40.766666666666666,
+            "viirsMeanReportedFRPMW": 7.675000000000001
+          },
+          {
+            "cell": "868bb1637ffffff",
+            "date": "2024-08-27",
+            "modisCount": 3,
+            "viirsCount": 2,
+            "modisMeanReportedFRPMW": 87.73333333333333,
+            "viirsMeanReportedFRPMW": 10.584999999999999
+          },
+          {
+            "cell": "868b80af7ffffff",
+            "date": "2024-08-28",
+            "modisCount": 2,
+            "viirsCount": 16,
+            "modisMeanReportedFRPMW": 12.75,
+            "viirsMeanReportedFRPMW": 6.67125
+          },
+          {
+            "cell": "868b84347ffffff",
+            "date": "2024-08-28",
+            "modisCount": 2,
+            "viirsCount": 3,
+            "modisMeanReportedFRPMW": 51.150000000000006,
+            "viirsMeanReportedFRPMW": 72.91
+          },
+          {
+            "cell": "868b84367ffffff",
+            "date": "2024-08-28",
+            "modisCount": 8,
+            "viirsCount": 12,
+            "modisMeanReportedFRPMW": 69.625,
+            "viirsMeanReportedFRPMW": 55.29583333333334
+          },
+          {
+            "cell": "868b84377ffffff",
+            "date": "2024-08-28",
+            "modisCount": 7,
+            "viirsCount": 22,
+            "modisMeanReportedFRPMW": 50.971428571428575,
+            "viirsMeanReportedFRPMW": 19.47227272727273
+          },
+          {
+            "cell": "868b85527ffffff",
+            "date": "2024-08-28",
+            "modisCount": 2,
+            "viirsCount": 12,
+            "modisMeanReportedFRPMW": 8.45,
+            "viirsMeanReportedFRPMW": 1.4999999999999998
+          },
+          {
+            "cell": "868bb1607ffffff",
+            "date": "2024-08-28",
+            "modisCount": 11,
+            "viirsCount": 20,
+            "modisMeanReportedFRPMW": 147.67272727272726,
+            "viirsMeanReportedFRPMW": 9.469
+          },
+          {
+            "cell": "868bb160fffffff",
+            "date": "2024-08-28",
+            "modisCount": 2,
+            "viirsCount": 2,
+            "modisMeanReportedFRPMW": 97.45,
+            "viirsMeanReportedFRPMW": 1.67
+          },
+          {
+            "cell": "868bb161fffffff",
+            "date": "2024-08-28",
+            "modisCount": 3,
+            "viirsCount": 40,
+            "modisMeanReportedFRPMW": 33.56666666666666,
+            "viirsMeanReportedFRPMW": 7.699999999999998
+          },
+          {
+            "cell": "868bb16e7ffffff",
+            "date": "2024-08-28",
+            "modisCount": 1,
+            "viirsCount": 9,
+            "modisMeanReportedFRPMW": 14.9,
+            "viirsMeanReportedFRPMW": 6.853333333333333
+          },
+          {
+            "cell": "868b84367ffffff",
+            "date": "2024-08-29",
+            "modisCount": 3,
+            "viirsCount": 9,
+            "modisMeanReportedFRPMW": 215.53333333333333,
+            "viirsMeanReportedFRPMW": 20.843333333333334
+          },
+          {
+            "cell": "868b84377ffffff",
+            "date": "2024-08-29",
+            "modisCount": 3,
+            "viirsCount": 15,
+            "modisMeanReportedFRPMW": 177.23333333333335,
+            "viirsMeanReportedFRPMW": 25.039333333333335
+          },
+          {
+            "cell": "868bb160fffffff",
+            "date": "2024-08-29",
+            "modisCount": 3,
+            "viirsCount": 14,
+            "modisMeanReportedFRPMW": 154.7,
+            "viirsMeanReportedFRPMW": 31.60928571428571
+          },
+          {
+            "cell": "868b80857ffffff",
+            "date": "2024-08-30",
+            "modisCount": 1,
+            "viirsCount": 2,
+            "modisMeanReportedFRPMW": 51.8,
+            "viirsMeanReportedFRPMW": 73.31
+          },
+          {
+            "cell": "868b8085fffffff",
+            "date": "2024-08-30",
+            "modisCount": 1,
+            "viirsCount": 1,
+            "modisMeanReportedFRPMW": 34.4,
+            "viirsMeanReportedFRPMW": 6.09
+          },
+          {
+            "cell": "868b80a1fffffff",
+            "date": "2024-08-30",
+            "modisCount": 4,
+            "viirsCount": 5,
+            "modisMeanReportedFRPMW": 38.15,
+            "viirsMeanReportedFRPMW": 5.7379999999999995
+          },
+          {
+            "cell": "868b82927ffffff",
+            "date": "2024-08-30",
+            "modisCount": 2,
+            "viirsCount": 1,
+            "modisMeanReportedFRPMW": 52.3,
+            "viirsMeanReportedFRPMW": 4.15
+          },
+          {
+            "cell": "868b84347ffffff",
+            "date": "2024-08-30",
+            "modisCount": 1,
+            "viirsCount": 7,
+            "modisMeanReportedFRPMW": 89.4,
+            "viirsMeanReportedFRPMW": 26.685714285714287
+          },
+          {
+            "cell": "868b84367ffffff",
+            "date": "2024-08-30",
+            "modisCount": 10,
+            "viirsCount": 22,
+            "modisMeanReportedFRPMW": 77.15,
+            "viirsMeanReportedFRPMW": 9.95590909090909
+          },
+          {
+            "cell": "868b84377ffffff",
+            "date": "2024-08-30",
+            "modisCount": 4,
+            "viirsCount": 13,
+            "modisMeanReportedFRPMW": 42.9,
+            "viirsMeanReportedFRPMW": 6.948461538461539
+          },
+          {
+            "cell": "868b84acfffffff",
+            "date": "2024-08-30",
+            "modisCount": 2,
+            "viirsCount": 6,
+            "modisMeanReportedFRPMW": 247.89999999999998,
+            "viirsMeanReportedFRPMW": 214.27499999999998
+          },
+          {
+            "cell": "868b85c97ffffff",
+            "date": "2024-08-30",
+            "modisCount": 4,
+            "viirsCount": 15,
+            "modisMeanReportedFRPMW": 172.72500000000002,
+            "viirsMeanReportedFRPMW": 22.730666666666664
+          },
+          {
+            "cell": "868b85db7ffffff",
+            "date": "2024-08-30",
+            "modisCount": 2,
+            "viirsCount": 6,
+            "modisMeanReportedFRPMW": 413.45,
+            "viirsMeanReportedFRPMW": 106.69833333333332
+          },
+          {
+            "cell": "868ba22e7ffffff",
+            "date": "2024-08-30",
+            "modisCount": 20,
+            "viirsCount": 69,
+            "modisMeanReportedFRPMW": 61.335,
+            "viirsMeanReportedFRPMW": 15.941304347826085
+          },
+          {
+            "cell": "868ba260fffffff",
+            "date": "2024-08-30",
+            "modisCount": 1,
+            "viirsCount": 4,
+            "modisMeanReportedFRPMW": 31.6,
+            "viirsMeanReportedFRPMW": 10.9175
+          },
+          {
+            "cell": "868bb1607ffffff",
+            "date": "2024-08-30",
+            "modisCount": 2,
+            "viirsCount": 6,
+            "modisMeanReportedFRPMW": 22,
+            "viirsMeanReportedFRPMW": 10.61
+          },
+          {
+            "cell": "868bb162fffffff",
+            "date": "2024-08-30",
+            "modisCount": 1,
+            "viirsCount": 4,
+            "modisMeanReportedFRPMW": 65.5,
+            "viirsMeanReportedFRPMW": 16.775
+          },
+          {
+            "cell": "868b84367ffffff",
+            "date": "2024-08-31",
+            "modisCount": 1,
+            "viirsCount": 9,
+            "modisMeanReportedFRPMW": 17.1,
+            "viirsMeanReportedFRPMW": 3.2677777777777774
+          },
+          {
+            "cell": "868b84acfffffff",
+            "date": "2024-08-31",
+            "modisCount": 2,
+            "viirsCount": 29,
+            "modisMeanReportedFRPMW": 23.35,
+            "viirsMeanReportedFRPMW": 14.681724137931035
+          },
+          {
+            "cell": "868b84aefffffff",
+            "date": "2024-08-31",
+            "modisCount": 6,
+            "viirsCount": 20,
+            "modisMeanReportedFRPMW": 165.51666666666665,
+            "viirsMeanReportedFRPMW": 57.8515
+          },
+          {
+            "cell": "868ba22e7ffffff",
+            "date": "2024-08-31",
+            "modisCount": 9,
+            "viirsCount": 42,
+            "modisMeanReportedFRPMW": 71.21111111111111,
+            "viirsMeanReportedFRPMW": 11.422380952380953
+          },
+          {
+            "cell": "868ba2607ffffff",
+            "date": "2024-08-31",
+            "modisCount": 1,
+            "viirsCount": 4,
+            "modisMeanReportedFRPMW": 19.7,
+            "viirsMeanReportedFRPMW": 5.7075
+          },
+          {
+            "cell": "868bb1627ffffff",
+            "date": "2024-08-31",
+            "modisCount": 2,
+            "viirsCount": 7,
+            "modisMeanReportedFRPMW": 116.64999999999999,
+            "viirsMeanReportedFRPMW": 8.035714285714286
+          },
+          {
+            "cell": "868bb162fffffff",
+            "date": "2024-08-31",
+            "modisCount": 1,
+            "viirsCount": 1,
+            "modisMeanReportedFRPMW": 34,
+            "viirsMeanReportedFRPMW": 0.94
+          }
+        ]
+      },
+      {
+        "modis": {
+          "id": "sa-modis-aqua-standard",
+          "sensor": "MODIS",
+          "platform": "Aqua",
+          "product": "FIRMS M-C61 archive",
+          "version": "6.1",
+          "processing": "standard",
+          "lineage": "delivery-declared"
+        },
+        "viirs": {
+          "id": "sa-n21-noaa21-standard",
+          "sensor": "VIIRS",
+          "platform": "NOAA-21",
+          "product": "FIRMS J2V-C2 archive",
+          "version": "2",
+          "processing": "standard",
+          "lineage": "blocked-lineage"
+        },
+        "modisPositiveCellDays": 154,
+        "viirsPositiveCellDays": 374,
+        "coDetectedCellDays": 131,
+        "modisOnlyDelivered": 23,
+        "viirsOnlyDelivered": 243,
+        "deliveredJaccard": 0.32997481108312343,
+        "paired": [
+          {
+            "cell": "868b8672fffffff",
+            "date": "2024-08-01",
+            "modisCount": 1,
+            "viirsCount": 4,
+            "modisMeanReportedFRPMW": 14.8,
+            "viirsMeanReportedFRPMW": 5.1325
+          },
+          {
+            "cell": "868b82837ffffff",
+            "date": "2024-08-03",
+            "modisCount": 2,
+            "viirsCount": 3,
+            "modisMeanReportedFRPMW": 60.7,
+            "viirsMeanReportedFRPMW": 16.393333333333334
+          },
+          {
+            "cell": "868ba2647ffffff",
+            "date": "2024-08-03",
+            "modisCount": 1,
+            "viirsCount": 6,
+            "modisMeanReportedFRPMW": 28.6,
+            "viirsMeanReportedFRPMW": 26.40833333333333
+          },
+          {
+            "cell": "868b8080fffffff",
+            "date": "2024-08-04",
+            "modisCount": 1,
+            "viirsCount": 2,
+            "modisMeanReportedFRPMW": 64.2,
+            "viirsMeanReportedFRPMW": 92.865
+          },
+          {
+            "cell": "868b86adfffffff",
+            "date": "2024-08-04",
+            "modisCount": 1,
+            "viirsCount": 1,
+            "modisMeanReportedFRPMW": 17.2,
+            "viirsMeanReportedFRPMW": 0.99
+          },
+          {
+            "cell": "868ba2647ffffff",
+            "date": "2024-08-04",
+            "modisCount": 1,
+            "viirsCount": 2,
+            "modisMeanReportedFRPMW": 13.4,
+            "viirsMeanReportedFRPMW": 5.75
+          },
+          {
+            "cell": "868ba262fffffff",
+            "date": "2024-08-06",
+            "modisCount": 1,
+            "viirsCount": 2,
+            "modisMeanReportedFRPMW": 10.8,
+            "viirsMeanReportedFRPMW": 6.555
+          },
+          {
+            "cell": "868ba2647ffffff",
+            "date": "2024-08-06",
+            "modisCount": 1,
+            "viirsCount": 3,
+            "modisMeanReportedFRPMW": 28.8,
+            "viirsMeanReportedFRPMW": 12.13
+          },
+          {
+            "cell": "868b84acfffffff",
+            "date": "2024-08-11",
+            "modisCount": 3,
+            "viirsCount": 6,
+            "modisMeanReportedFRPMW": 31.866666666666664,
+            "viirsMeanReportedFRPMW": 49.815
+          },
+          {
+            "cell": "868b84adfffffff",
+            "date": "2024-08-11",
+            "modisCount": 17,
+            "viirsCount": 38,
+            "modisMeanReportedFRPMW": 77.83529411764705,
+            "viirsMeanReportedFRPMW": 34.04815789473685
+          },
+          {
+            "cell": "868b85d97ffffff",
+            "date": "2024-08-11",
+            "modisCount": 8,
+            "viirsCount": 17,
+            "modisMeanReportedFRPMW": 24.687500000000004,
+            "viirsMeanReportedFRPMW": 7.1782352941176475
+          },
+          {
+            "cell": "868b8430fffffff",
+            "date": "2024-08-12",
+            "modisCount": 4,
+            "viirsCount": 17,
+            "modisMeanReportedFRPMW": 162.625,
+            "viirsMeanReportedFRPMW": 21.580000000000002
+          },
+          {
+            "cell": "868b84ac7ffffff",
+            "date": "2024-08-12",
+            "modisCount": 7,
+            "viirsCount": 54,
+            "modisMeanReportedFRPMW": 1014.6142857142859,
+            "viirsMeanReportedFRPMW": 176.40370370370368
+          },
+          {
+            "cell": "868b84acfffffff",
+            "date": "2024-08-12",
+            "modisCount": 9,
+            "viirsCount": 70,
+            "modisMeanReportedFRPMW": 414.8888888888889,
+            "viirsMeanReportedFRPMW": 91.42442857142858
+          },
+          {
+            "cell": "868b84adfffffff",
+            "date": "2024-08-12",
+            "modisCount": 1,
+            "viirsCount": 65,
+            "modisMeanReportedFRPMW": 422.8,
+            "viirsMeanReportedFRPMW": 11.035076923076922
+          },
+          {
+            "cell": "868b8430fffffff",
+            "date": "2024-08-13",
+            "modisCount": 3,
+            "viirsCount": 40,
+            "modisMeanReportedFRPMW": 29.866666666666664,
+            "viirsMeanReportedFRPMW": 5.847500000000002
+          },
+          {
+            "cell": "868b84357ffffff",
+            "date": "2024-08-13",
+            "modisCount": 2,
+            "viirsCount": 28,
+            "modisMeanReportedFRPMW": 68.19999999999999,
+            "viirsMeanReportedFRPMW": 6.665357142857142
+          },
+          {
+            "cell": "868b84367ffffff",
+            "date": "2024-08-13",
+            "modisCount": 3,
+            "viirsCount": 20,
+            "modisMeanReportedFRPMW": 34.833333333333336,
+            "viirsMeanReportedFRPMW": 5.45
+          },
+          {
+            "cell": "868b84377ffffff",
+            "date": "2024-08-13",
+            "modisCount": 6,
+            "viirsCount": 32,
+            "modisMeanReportedFRPMW": 119.95,
+            "viirsMeanReportedFRPMW": 12.865625
+          },
+          {
+            "cell": "868b84ac7ffffff",
+            "date": "2024-08-13",
+            "modisCount": 2,
+            "viirsCount": 91,
+            "modisMeanReportedFRPMW": 61.4,
+            "viirsMeanReportedFRPMW": 3.285164835164837
+          },
+          {
+            "cell": "868b84adfffffff",
+            "date": "2024-08-13",
+            "modisCount": 4,
+            "viirsCount": 66,
+            "modisMeanReportedFRPMW": 66.55,
+            "viirsMeanReportedFRPMW": 4.8569696969696965
+          },
+          {
+            "cell": "868b84377ffffff",
+            "date": "2024-08-14",
+            "modisCount": 4,
+            "viirsCount": 38,
+            "modisMeanReportedFRPMW": 54.474999999999994,
+            "viirsMeanReportedFRPMW": 6.233684210526316
+          },
+          {
+            "cell": "868b84adfffffff",
+            "date": "2024-08-14",
+            "modisCount": 1,
+            "viirsCount": 23,
+            "modisMeanReportedFRPMW": 136.8,
+            "viirsMeanReportedFRPMW": 16.702608695652174
+          },
+          {
+            "cell": "868b84aefffffff",
+            "date": "2024-08-14",
+            "modisCount": 1,
+            "viirsCount": 2,
+            "modisMeanReportedFRPMW": 89,
+            "viirsMeanReportedFRPMW": 15.49
+          },
+          {
+            "cell": "868b82807ffffff",
+            "date": "2024-08-18",
+            "modisCount": 2,
+            "viirsCount": 3,
+            "modisMeanReportedFRPMW": 16.2,
+            "viirsMeanReportedFRPMW": 68.23666666666668
+          },
+          {
+            "cell": "868b84107ffffff",
+            "date": "2024-08-18",
+            "modisCount": 1,
+            "viirsCount": 4,
+            "modisMeanReportedFRPMW": 34.3,
+            "viirsMeanReportedFRPMW": 16.46
+          },
+          {
+            "cell": "868b84127ffffff",
+            "date": "2024-08-18",
+            "modisCount": 2,
+            "viirsCount": 1,
+            "modisMeanReportedFRPMW": 43,
+            "viirsMeanReportedFRPMW": 13.09
+          },
+          {
+            "cell": "868b84367ffffff",
+            "date": "2024-08-18",
+            "modisCount": 6,
+            "viirsCount": 24,
+            "modisMeanReportedFRPMW": 128.56666666666666,
+            "viirsMeanReportedFRPMW": 25.08375
+          },
+          {
+            "cell": "868b84377ffffff",
+            "date": "2024-08-18",
+            "modisCount": 3,
+            "viirsCount": 7,
+            "modisMeanReportedFRPMW": 36.03333333333333,
+            "viirsMeanReportedFRPMW": 10.02714285714286
+          },
+          {
+            "cell": "868b84847ffffff",
+            "date": "2024-08-18",
+            "modisCount": 7,
+            "viirsCount": 23,
+            "modisMeanReportedFRPMW": 179.6142857142857,
+            "viirsMeanReportedFRPMW": 29.174782608695658
+          },
+          {
+            "cell": "868b84857ffffff",
+            "date": "2024-08-18",
+            "modisCount": 1,
+            "viirsCount": 3,
+            "modisMeanReportedFRPMW": 33.4,
+            "viirsMeanReportedFRPMW": 25.103333333333335
+          },
+          {
+            "cell": "868b84acfffffff",
+            "date": "2024-08-18",
+            "modisCount": 3,
+            "viirsCount": 3,
+            "modisMeanReportedFRPMW": 67.63333333333333,
+            "viirsMeanReportedFRPMW": 29.603333333333335
+          },
+          {
+            "cell": "868b84adfffffff",
+            "date": "2024-08-18",
+            "modisCount": 1,
+            "viirsCount": 3,
+            "modisMeanReportedFRPMW": 79.1,
+            "viirsMeanReportedFRPMW": 21.473333333333333
+          },
+          {
+            "cell": "868b84ba7ffffff",
+            "date": "2024-08-18",
+            "modisCount": 4,
+            "viirsCount": 12,
+            "modisMeanReportedFRPMW": 152.9,
+            "viirsMeanReportedFRPMW": 74.3525
+          },
+          {
+            "cell": "868b84bb7ffffff",
+            "date": "2024-08-18",
+            "modisCount": 4,
+            "viirsCount": 14,
+            "modisMeanReportedFRPMW": 76.8,
+            "viirsMeanReportedFRPMW": 97.56857142857142
+          },
+          {
+            "cell": "868b85d97ffffff",
+            "date": "2024-08-18",
+            "modisCount": 1,
+            "viirsCount": 8,
+            "modisMeanReportedFRPMW": 94.3,
+            "viirsMeanReportedFRPMW": 17.647499999999997
+          },
+          {
+            "cell": "868b84367ffffff",
+            "date": "2024-08-19",
+            "modisCount": 6,
+            "viirsCount": 39,
+            "modisMeanReportedFRPMW": 103.39999999999998,
+            "viirsMeanReportedFRPMW": 14.154871794871793
+          },
+          {
+            "cell": "868b84377ffffff",
+            "date": "2024-08-19",
+            "modisCount": 2,
+            "viirsCount": 26,
+            "modisMeanReportedFRPMW": 210.75,
+            "viirsMeanReportedFRPMW": 12.415384615384616
+          },
+          {
+            "cell": "868b84ba7ffffff",
+            "date": "2024-08-19",
+            "modisCount": 1,
+            "viirsCount": 4,
+            "modisMeanReportedFRPMW": 34.2,
+            "viirsMeanReportedFRPMW": 1.2
+          },
+          {
+            "cell": "868b84bb7ffffff",
+            "date": "2024-08-19",
+            "modisCount": 1,
+            "viirsCount": 18,
+            "modisMeanReportedFRPMW": 37.2,
+            "viirsMeanReportedFRPMW": 5.91
+          },
+          {
+            "cell": "868ba262fffffff",
+            "date": "2024-08-19",
+            "modisCount": 4,
+            "viirsCount": 14,
+            "modisMeanReportedFRPMW": 79.45,
+            "viirsMeanReportedFRPMW": 25.86857142857142
+          },
+          {
+            "cell": "868b84367ffffff",
+            "date": "2024-08-20",
+            "modisCount": 3,
+            "viirsCount": 29,
+            "modisMeanReportedFRPMW": 88.26666666666667,
+            "viirsMeanReportedFRPMW": 11.19
+          },
+          {
+            "cell": "868b84377ffffff",
+            "date": "2024-08-20",
+            "modisCount": 6,
+            "viirsCount": 36,
+            "modisMeanReportedFRPMW": 155.51666666666665,
+            "viirsMeanReportedFRPMW": 26.98888888888889
+          },
+          {
+            "cell": "868b84bb7ffffff",
+            "date": "2024-08-20",
+            "modisCount": 4,
+            "viirsCount": 18,
+            "modisMeanReportedFRPMW": 93.775,
+            "viirsMeanReportedFRPMW": 54.17944444444444
+          },
+          {
+            "cell": "868bb1a47ffffff",
+            "date": "2024-08-20",
+            "modisCount": 1,
+            "viirsCount": 1,
+            "modisMeanReportedFRPMW": 35.4,
+            "viirsMeanReportedFRPMW": 64.95
+          },
+          {
+            "cell": "868b80aafffffff",
+            "date": "2024-08-21",
+            "modisCount": 2,
+            "viirsCount": 2,
+            "modisMeanReportedFRPMW": 35.15,
+            "viirsMeanReportedFRPMW": 15.399999999999999
+          },
+          {
+            "cell": "868b84367ffffff",
+            "date": "2024-08-21",
+            "modisCount": 8,
+            "viirsCount": 12,
+            "modisMeanReportedFRPMW": 37.5375,
+            "viirsMeanReportedFRPMW": 8.914999999999997
+          },
+          {
+            "cell": "868b84377ffffff",
+            "date": "2024-08-21",
+            "modisCount": 5,
+            "viirsCount": 24,
+            "modisMeanReportedFRPMW": 49.32,
+            "viirsMeanReportedFRPMW": 12.637083333333331
+          },
+          {
+            "cell": "868b84acfffffff",
+            "date": "2024-08-21",
+            "modisCount": 4,
+            "viirsCount": 5,
+            "modisMeanReportedFRPMW": 72.825,
+            "viirsMeanReportedFRPMW": 52.815999999999995
+          },
+          {
+            "cell": "868b84adfffffff",
+            "date": "2024-08-21",
+            "modisCount": 2,
+            "viirsCount": 3,
+            "modisMeanReportedFRPMW": 82.7,
+            "viirsMeanReportedFRPMW": 9.696666666666667
+          },
+          {
+            "cell": "868b84b8fffffff",
+            "date": "2024-08-21",
+            "modisCount": 1,
+            "viirsCount": 4,
+            "modisMeanReportedFRPMW": 12.5,
+            "viirsMeanReportedFRPMW": 30.27
+          },
+          {
+            "cell": "868b84bb7ffffff",
+            "date": "2024-08-21",
+            "modisCount": 1,
+            "viirsCount": 6,
+            "modisMeanReportedFRPMW": 7.8,
+            "viirsMeanReportedFRPMW": 2.146666666666667
+          },
+          {
+            "cell": "868b84d37ffffff",
+            "date": "2024-08-21",
+            "modisCount": 1,
+            "viirsCount": 1,
+            "modisMeanReportedFRPMW": 8,
+            "viirsMeanReportedFRPMW": 11.05
+          },
+          {
+            "cell": "868ba262fffffff",
+            "date": "2024-08-21",
+            "modisCount": 3,
+            "viirsCount": 8,
+            "modisMeanReportedFRPMW": 23.53333333333333,
+            "viirsMeanReportedFRPMW": 27.468750000000004
+          },
+          {
+            "cell": "868bb14c7ffffff",
+            "date": "2024-08-21",
+            "modisCount": 2,
+            "viirsCount": 3,
+            "modisMeanReportedFRPMW": 46.150000000000006,
+            "viirsMeanReportedFRPMW": 70.99
+          },
+          {
+            "cell": "868bb1557ffffff",
+            "date": "2024-08-21",
+            "modisCount": 4,
+            "viirsCount": 8,
+            "modisMeanReportedFRPMW": 21.75,
+            "viirsMeanReportedFRPMW": 9.13
+          },
+          {
+            "cell": "868b80aafffffff",
+            "date": "2024-08-23",
+            "modisCount": 2,
+            "viirsCount": 5,
+            "modisMeanReportedFRPMW": 14.75,
+            "viirsMeanReportedFRPMW": 4.488
+          },
+          {
+            "cell": "868b84367ffffff",
+            "date": "2024-08-23",
+            "modisCount": 5,
+            "viirsCount": 8,
+            "modisMeanReportedFRPMW": 44.68,
+            "viirsMeanReportedFRPMW": 10.36875
+          },
+          {
+            "cell": "868b84377ffffff",
+            "date": "2024-08-23",
+            "modisCount": 5,
+            "viirsCount": 8,
+            "modisMeanReportedFRPMW": 34.56,
+            "viirsMeanReportedFRPMW": 5.5775
+          },
+          {
+            "cell": "868b84acfffffff",
+            "date": "2024-08-23",
+            "modisCount": 1,
+            "viirsCount": 2,
+            "modisMeanReportedFRPMW": 13.7,
+            "viirsMeanReportedFRPMW": 6.07
+          },
+          {
+            "cell": "868b84adfffffff",
+            "date": "2024-08-23",
+            "modisCount": 4,
+            "viirsCount": 16,
+            "modisMeanReportedFRPMW": 69.45,
+            "viirsMeanReportedFRPMW": 23.496249999999996
+          },
+          {
+            "cell": "868b85527ffffff",
+            "date": "2024-08-23",
+            "modisCount": 1,
+            "viirsCount": 5,
+            "modisMeanReportedFRPMW": 21.9,
+            "viirsMeanReportedFRPMW": 7.215999999999999
+          },
+          {
+            "cell": "868b85537ffffff",
+            "date": "2024-08-23",
+            "modisCount": 8,
+            "viirsCount": 22,
+            "modisMeanReportedFRPMW": 46.5375,
+            "viirsMeanReportedFRPMW": 11.63136363636364
+          },
+          {
+            "cell": "868b86637ffffff",
+            "date": "2024-08-23",
+            "modisCount": 1,
+            "viirsCount": 5,
+            "modisMeanReportedFRPMW": 11.5,
+            "viirsMeanReportedFRPMW": 115.35799999999999
+          },
+          {
+            "cell": "868b84adfffffff",
+            "date": "2024-08-24",
+            "modisCount": 1,
+            "viirsCount": 13,
+            "modisMeanReportedFRPMW": 44.6,
+            "viirsMeanReportedFRPMW": 7.236153846153846
+          },
+          {
+            "cell": "868b85527ffffff",
+            "date": "2024-08-24",
+            "modisCount": 1,
+            "viirsCount": 1,
+            "modisMeanReportedFRPMW": 62.2,
+            "viirsMeanReportedFRPMW": 1.47
+          },
+          {
+            "cell": "868b85537ffffff",
+            "date": "2024-08-24",
+            "modisCount": 1,
+            "viirsCount": 11,
+            "modisMeanReportedFRPMW": 91.8,
+            "viirsMeanReportedFRPMW": 4.7318181818181815
+          },
+          {
+            "cell": "868b84427ffffff",
+            "date": "2024-08-25",
+            "modisCount": 1,
+            "viirsCount": 4,
+            "modisMeanReportedFRPMW": 21,
+            "viirsMeanReportedFRPMW": 49.940000000000005
+          },
+          {
+            "cell": "868b8450fffffff",
+            "date": "2024-08-25",
+            "modisCount": 1,
+            "viirsCount": 4,
+            "modisMeanReportedFRPMW": 69.4,
+            "viirsMeanReportedFRPMW": 11.045000000000002
+          },
+          {
+            "cell": "868b84557ffffff",
+            "date": "2024-08-25",
+            "modisCount": 1,
+            "viirsCount": 3,
+            "modisMeanReportedFRPMW": 293.5,
+            "viirsMeanReportedFRPMW": 109.12
+          },
+          {
+            "cell": "868b84adfffffff",
+            "date": "2024-08-25",
+            "modisCount": 1,
+            "viirsCount": 26,
+            "modisMeanReportedFRPMW": 41.4,
+            "viirsMeanReportedFRPMW": 4.214615384615384
+          },
+          {
+            "cell": "868bb1607ffffff",
+            "date": "2024-08-25",
+            "modisCount": 7,
+            "viirsCount": 30,
+            "modisMeanReportedFRPMW": 40.75714285714286,
+            "viirsMeanReportedFRPMW": 9.524666666666665
+          },
+          {
+            "cell": "868bb160fffffff",
+            "date": "2024-08-25",
+            "modisCount": 5,
+            "viirsCount": 28,
+            "modisMeanReportedFRPMW": 45.52,
+            "viirsMeanReportedFRPMW": 15.101785714285707
+          },
+          {
+            "cell": "868bb1617ffffff",
+            "date": "2024-08-25",
+            "modisCount": 5,
+            "viirsCount": 10,
+            "modisMeanReportedFRPMW": 47.9,
+            "viirsMeanReportedFRPMW": 19.212
+          },
+          {
+            "cell": "868bb161fffffff",
+            "date": "2024-08-25",
+            "modisCount": 4,
+            "viirsCount": 13,
+            "modisMeanReportedFRPMW": 173.125,
+            "viirsMeanReportedFRPMW": 112.64692307692309
+          },
+          {
+            "cell": "868bb1627ffffff",
+            "date": "2024-08-25",
+            "modisCount": 5,
+            "viirsCount": 11,
+            "modisMeanReportedFRPMW": 213.4,
+            "viirsMeanReportedFRPMW": 27.986363636363627
+          },
+          {
+            "cell": "868bb1637ffffff",
+            "date": "2024-08-25",
+            "modisCount": 10,
+            "viirsCount": 82,
+            "modisMeanReportedFRPMW": 145.27,
+            "viirsMeanReportedFRPMW": 42.581951219512185
+          },
+          {
+            "cell": "868bb171fffffff",
+            "date": "2024-08-25",
+            "modisCount": 6,
+            "viirsCount": 20,
+            "modisMeanReportedFRPMW": 149.59999999999997,
+            "viirsMeanReportedFRPMW": 23.8245
+          },
+          {
+            "cell": "868bb178fffffff",
+            "date": "2024-08-25",
+            "modisCount": 4,
+            "viirsCount": 8,
+            "modisMeanReportedFRPMW": 25.225,
+            "viirsMeanReportedFRPMW": 6.70875
+          },
+          {
+            "cell": "868b84367ffffff",
+            "date": "2024-08-26",
+            "modisCount": 3,
+            "viirsCount": 7,
+            "modisMeanReportedFRPMW": 15.033333333333333,
+            "viirsMeanReportedFRPMW": 15.86142857142857
+          },
+          {
+            "cell": "868b84377ffffff",
+            "date": "2024-08-26",
+            "modisCount": 1,
+            "viirsCount": 10,
+            "modisMeanReportedFRPMW": 174.6,
+            "viirsMeanReportedFRPMW": 17.853
+          },
+          {
+            "cell": "868b84adfffffff",
+            "date": "2024-08-26",
+            "modisCount": 3,
+            "viirsCount": 6,
+            "modisMeanReportedFRPMW": 43.9,
+            "viirsMeanReportedFRPMW": 7.885000000000001
+          },
+          {
+            "cell": "868b85527ffffff",
+            "date": "2024-08-26",
+            "modisCount": 1,
+            "viirsCount": 4,
+            "modisMeanReportedFRPMW": 56.5,
+            "viirsMeanReportedFRPMW": 21.97
+          },
+          {
+            "cell": "868b85587ffffff",
+            "date": "2024-08-26",
+            "modisCount": 1,
+            "viirsCount": 1,
+            "modisMeanReportedFRPMW": 21.3,
+            "viirsMeanReportedFRPMW": 4.17
+          },
+          {
+            "cell": "868ba260fffffff",
+            "date": "2024-08-26",
+            "modisCount": 2,
+            "viirsCount": 2,
+            "modisMeanReportedFRPMW": 22.950000000000003,
+            "viirsMeanReportedFRPMW": 49.17
+          },
+          {
+            "cell": "868ba2627ffffff",
+            "date": "2024-08-26",
+            "modisCount": 2,
+            "viirsCount": 3,
+            "modisMeanReportedFRPMW": 14.05,
+            "viirsMeanReportedFRPMW": 5.783333333333334
+          },
+          {
+            "cell": "868ba2757ffffff",
+            "date": "2024-08-26",
+            "modisCount": 1,
+            "viirsCount": 1,
+            "modisMeanReportedFRPMW": 10.7,
+            "viirsMeanReportedFRPMW": 4.18
+          },
+          {
+            "cell": "868bb1367ffffff",
+            "date": "2024-08-26",
+            "modisCount": 3,
+            "viirsCount": 16,
+            "modisMeanReportedFRPMW": 68.10000000000001,
+            "viirsMeanReportedFRPMW": 19.736875000000005
+          },
+          {
+            "cell": "868bb1607ffffff",
+            "date": "2024-08-26",
+            "modisCount": 3,
+            "viirsCount": 12,
+            "modisMeanReportedFRPMW": 36.23333333333333,
+            "viirsMeanReportedFRPMW": 19.472499999999997
+          },
+          {
+            "cell": "868bb160fffffff",
+            "date": "2024-08-26",
+            "modisCount": 3,
+            "viirsCount": 17,
+            "modisMeanReportedFRPMW": 40.53333333333334,
+            "viirsMeanReportedFRPMW": 10.580588235294117
+          },
+          {
+            "cell": "868bb1617ffffff",
+            "date": "2024-08-26",
+            "modisCount": 1,
+            "viirsCount": 23,
+            "modisMeanReportedFRPMW": 70.9,
+            "viirsMeanReportedFRPMW": 14.836086956521738
+          },
+          {
+            "cell": "868bb161fffffff",
+            "date": "2024-08-26",
+            "modisCount": 2,
+            "viirsCount": 26,
+            "modisMeanReportedFRPMW": 74.5,
+            "viirsMeanReportedFRPMW": 5.400384615384615
+          },
+          {
+            "cell": "868bb1627ffffff",
+            "date": "2024-08-26",
+            "modisCount": 1,
+            "viirsCount": 11,
+            "modisMeanReportedFRPMW": 51,
+            "viirsMeanReportedFRPMW": 7.954545454545454
+          },
+          {
+            "cell": "868bb162fffffff",
+            "date": "2024-08-26",
+            "modisCount": 1,
+            "viirsCount": 15,
+            "modisMeanReportedFRPMW": 72.4,
+            "viirsMeanReportedFRPMW": 13.392000000000001
+          },
+          {
+            "cell": "868bb1637ffffff",
+            "date": "2024-08-26",
+            "modisCount": 3,
+            "viirsCount": 4,
+            "modisMeanReportedFRPMW": 40.766666666666666,
+            "viirsMeanReportedFRPMW": 4.5024999999999995
+          },
+          {
+            "cell": "868bb1637ffffff",
+            "date": "2024-08-27",
+            "modisCount": 3,
+            "viirsCount": 5,
+            "modisMeanReportedFRPMW": 87.73333333333333,
+            "viirsMeanReportedFRPMW": 7.5280000000000005
+          },
+          {
+            "cell": "868b80af7ffffff",
+            "date": "2024-08-28",
+            "modisCount": 2,
+            "viirsCount": 2,
+            "modisMeanReportedFRPMW": 12.75,
+            "viirsMeanReportedFRPMW": 9.925
+          },
+          {
+            "cell": "868b84347ffffff",
+            "date": "2024-08-28",
+            "modisCount": 2,
+            "viirsCount": 9,
+            "modisMeanReportedFRPMW": 51.150000000000006,
+            "viirsMeanReportedFRPMW": 21.93
+          },
+          {
+            "cell": "868b84367ffffff",
+            "date": "2024-08-28",
+            "modisCount": 8,
+            "viirsCount": 14,
+            "modisMeanReportedFRPMW": 69.625,
+            "viirsMeanReportedFRPMW": 22.822857142857146
+          },
+          {
+            "cell": "868b84377ffffff",
+            "date": "2024-08-28",
+            "modisCount": 7,
+            "viirsCount": 20,
+            "modisMeanReportedFRPMW": 50.971428571428575,
+            "viirsMeanReportedFRPMW": 18.219
+          },
+          {
+            "cell": "868b84adfffffff",
+            "date": "2024-08-28",
+            "modisCount": 2,
+            "viirsCount": 3,
+            "modisMeanReportedFRPMW": 26.75,
+            "viirsMeanReportedFRPMW": 8.33
+          },
+          {
+            "cell": "868b85527ffffff",
+            "date": "2024-08-28",
+            "modisCount": 2,
+            "viirsCount": 6,
+            "modisMeanReportedFRPMW": 8.45,
+            "viirsMeanReportedFRPMW": 1.776666666666667
+          },
+          {
+            "cell": "868bb1607ffffff",
+            "date": "2024-08-28",
+            "modisCount": 11,
+            "viirsCount": 32,
+            "modisMeanReportedFRPMW": 147.67272727272726,
+            "viirsMeanReportedFRPMW": 53.865937499999994
+          },
+          {
+            "cell": "868bb161fffffff",
+            "date": "2024-08-28",
+            "modisCount": 3,
+            "viirsCount": 18,
+            "modisMeanReportedFRPMW": 33.56666666666666,
+            "viirsMeanReportedFRPMW": 8.231666666666666
+          },
+          {
+            "cell": "868bb16e7ffffff",
+            "date": "2024-08-28",
+            "modisCount": 1,
+            "viirsCount": 2,
+            "modisMeanReportedFRPMW": 14.9,
+            "viirsMeanReportedFRPMW": 8.18
+          },
+          {
+            "cell": "868b8085fffffff",
+            "date": "2024-08-29",
+            "modisCount": 1,
+            "viirsCount": 19,
+            "modisMeanReportedFRPMW": 71.8,
+            "viirsMeanReportedFRPMW": 21.002105263157897
+          },
+          {
+            "cell": "868b84367ffffff",
+            "date": "2024-08-29",
+            "modisCount": 3,
+            "viirsCount": 32,
+            "modisMeanReportedFRPMW": 215.53333333333333,
+            "viirsMeanReportedFRPMW": 13.048124999999999
+          },
+          {
+            "cell": "868b84377ffffff",
+            "date": "2024-08-29",
+            "modisCount": 3,
+            "viirsCount": 23,
+            "modisMeanReportedFRPMW": 177.23333333333335,
+            "viirsMeanReportedFRPMW": 12.286521739130434
+          },
+          {
+            "cell": "868bb160fffffff",
+            "date": "2024-08-29",
+            "modisCount": 3,
+            "viirsCount": 6,
+            "modisMeanReportedFRPMW": 154.7,
+            "viirsMeanReportedFRPMW": 4.301666666666667
+          },
+          {
+            "cell": "868b80857ffffff",
+            "date": "2024-08-30",
+            "modisCount": 1,
+            "viirsCount": 1,
+            "modisMeanReportedFRPMW": 51.8,
+            "viirsMeanReportedFRPMW": 4.37
+          },
+          {
+            "cell": "868b8085fffffff",
+            "date": "2024-08-30",
+            "modisCount": 1,
+            "viirsCount": 6,
+            "modisMeanReportedFRPMW": 34.4,
+            "viirsMeanReportedFRPMW": 25.31833333333333
+          },
+          {
+            "cell": "868b80a1fffffff",
+            "date": "2024-08-30",
+            "modisCount": 4,
+            "viirsCount": 24,
+            "modisMeanReportedFRPMW": 38.15,
+            "viirsMeanReportedFRPMW": 3.6166666666666667
+          },
+          {
+            "cell": "868b82927ffffff",
+            "date": "2024-08-30",
+            "modisCount": 2,
+            "viirsCount": 1,
+            "modisMeanReportedFRPMW": 52.3,
+            "viirsMeanReportedFRPMW": 19.45
+          },
+          {
+            "cell": "868b84347ffffff",
+            "date": "2024-08-30",
+            "modisCount": 1,
+            "viirsCount": 9,
+            "modisMeanReportedFRPMW": 89.4,
+            "viirsMeanReportedFRPMW": 20.533333333333335
+          },
+          {
+            "cell": "868b84367ffffff",
+            "date": "2024-08-30",
+            "modisCount": 10,
+            "viirsCount": 26,
+            "modisMeanReportedFRPMW": 77.15,
+            "viirsMeanReportedFRPMW": 11.421153846153844
+          },
+          {
+            "cell": "868b84377ffffff",
+            "date": "2024-08-30",
+            "modisCount": 4,
+            "viirsCount": 21,
+            "modisMeanReportedFRPMW": 42.9,
+            "viirsMeanReportedFRPMW": 6.370952380952381
+          },
+          {
+            "cell": "868b84acfffffff",
+            "date": "2024-08-30",
+            "modisCount": 2,
+            "viirsCount": 9,
+            "modisMeanReportedFRPMW": 247.89999999999998,
+            "viirsMeanReportedFRPMW": 125.86444444444444
+          },
+          {
+            "cell": "868b85c97ffffff",
+            "date": "2024-08-30",
+            "modisCount": 4,
+            "viirsCount": 12,
+            "modisMeanReportedFRPMW": 172.72500000000002,
+            "viirsMeanReportedFRPMW": 20.169166666666666
+          },
+          {
+            "cell": "868b85db7ffffff",
+            "date": "2024-08-30",
+            "modisCount": 2,
+            "viirsCount": 5,
+            "modisMeanReportedFRPMW": 413.45,
+            "viirsMeanReportedFRPMW": 73.59400000000001
+          },
+          {
+            "cell": "868ba22e7ffffff",
+            "date": "2024-08-30",
+            "modisCount": 20,
+            "viirsCount": 54,
+            "modisMeanReportedFRPMW": 61.335,
+            "viirsMeanReportedFRPMW": 20.638148148148147
+          },
+          {
+            "cell": "868ba260fffffff",
+            "date": "2024-08-30",
+            "modisCount": 1,
+            "viirsCount": 17,
+            "modisMeanReportedFRPMW": 31.6,
+            "viirsMeanReportedFRPMW": 6.195882352941177
+          },
+          {
+            "cell": "868bb1607ffffff",
+            "date": "2024-08-30",
+            "modisCount": 2,
+            "viirsCount": 9,
+            "modisMeanReportedFRPMW": 22,
+            "viirsMeanReportedFRPMW": 5.23
+          },
+          {
+            "cell": "868bb162fffffff",
+            "date": "2024-08-30",
+            "modisCount": 1,
+            "viirsCount": 7,
+            "modisMeanReportedFRPMW": 65.5,
+            "viirsMeanReportedFRPMW": 12.23
+          },
+          {
+            "cell": "868bb1b97ffffff",
+            "date": "2024-08-30",
+            "modisCount": 4,
+            "viirsCount": 6,
+            "modisMeanReportedFRPMW": 312,
+            "viirsMeanReportedFRPMW": 97.01166666666666
+          },
+          {
+            "cell": "868b84367ffffff",
+            "date": "2024-08-31",
+            "modisCount": 1,
+            "viirsCount": 12,
+            "modisMeanReportedFRPMW": 17.1,
+            "viirsMeanReportedFRPMW": 5.741666666666666
+          },
+          {
+            "cell": "868b84acfffffff",
+            "date": "2024-08-31",
+            "modisCount": 2,
+            "viirsCount": 27,
+            "modisMeanReportedFRPMW": 23.35,
+            "viirsMeanReportedFRPMW": 17.227407407407405
+          },
+          {
+            "cell": "868b84aefffffff",
+            "date": "2024-08-31",
+            "modisCount": 6,
+            "viirsCount": 10,
+            "modisMeanReportedFRPMW": 165.51666666666665,
+            "viirsMeanReportedFRPMW": 44.44700000000001
+          },
+          {
+            "cell": "868ba22e7ffffff",
+            "date": "2024-08-31",
+            "modisCount": 9,
+            "viirsCount": 29,
+            "modisMeanReportedFRPMW": 71.21111111111111,
+            "viirsMeanReportedFRPMW": 15.32206896551724
+          },
+          {
+            "cell": "868ba2607ffffff",
+            "date": "2024-08-31",
+            "modisCount": 1,
+            "viirsCount": 3,
+            "modisMeanReportedFRPMW": 19.7,
+            "viirsMeanReportedFRPMW": 5.666666666666667
+          },
+          {
+            "cell": "868bb1627ffffff",
+            "date": "2024-08-31",
+            "modisCount": 2,
+            "viirsCount": 4,
+            "modisMeanReportedFRPMW": 116.64999999999999,
+            "viirsMeanReportedFRPMW": 8.9925
+          },
+          {
+            "cell": "868bb162fffffff",
+            "date": "2024-08-31",
+            "modisCount": 1,
+            "viirsCount": 6,
+            "modisMeanReportedFRPMW": 34,
+            "viirsMeanReportedFRPMW": 1.7466666666666668
+          }
+        ]
+      },
+      {
+        "modis": {
+          "id": "sa-modis-terra-standard",
+          "sensor": "MODIS",
+          "platform": "Terra",
+          "product": "FIRMS M-C61 archive",
+          "version": "6.1",
+          "processing": "standard",
+          "lineage": "delivery-declared"
+        },
+        "viirs": {
+          "id": "sa-n20-noaa20-standard",
+          "sensor": "VIIRS",
+          "platform": "NOAA-20",
+          "product": "FIRMS J1V-C2 archive",
+          "version": "2",
+          "processing": "standard",
+          "lineage": "blocked-lineage"
+        },
+        "modisPositiveCellDays": 106,
+        "viirsPositiveCellDays": 354,
+        "coDetectedCellDays": 94,
+        "modisOnlyDelivered": 12,
+        "viirsOnlyDelivered": 260,
+        "deliveredJaccard": 0.2568306010928962,
+        "paired": [
+          {
+            "cell": "868b8672fffffff",
+            "date": "2024-08-01",
+            "modisCount": 2,
+            "viirsCount": 2,
+            "modisMeanReportedFRPMW": 27.75,
+            "viirsMeanReportedFRPMW": 6.8
+          },
+          {
+            "cell": "868b8672fffffff",
+            "date": "2024-08-02",
+            "modisCount": 1,
+            "viirsCount": 1,
+            "modisMeanReportedFRPMW": 14.2,
+            "viirsMeanReportedFRPMW": 10.79
+          },
+          {
+            "cell": "868ba2647ffffff",
+            "date": "2024-08-02",
+            "modisCount": 1,
+            "viirsCount": 5,
+            "modisMeanReportedFRPMW": 6.4,
+            "viirsMeanReportedFRPMW": 18.842000000000002
+          },
+          {
+            "cell": "868b84367ffffff",
+            "date": "2024-08-11",
+            "modisCount": 1,
+            "viirsCount": 1,
+            "modisMeanReportedFRPMW": 51.7,
+            "viirsMeanReportedFRPMW": 11.64
+          },
+          {
+            "cell": "868b84acfffffff",
+            "date": "2024-08-11",
+            "modisCount": 2,
+            "viirsCount": 7,
+            "modisMeanReportedFRPMW": 115.35,
+            "viirsMeanReportedFRPMW": 14.331428571428571
+          },
+          {
+            "cell": "868b84adfffffff",
+            "date": "2024-08-11",
+            "modisCount": 8,
+            "viirsCount": 59,
+            "modisMeanReportedFRPMW": 35.35,
+            "viirsMeanReportedFRPMW": 22.58288135593221
+          },
+          {
+            "cell": "868b85d97ffffff",
+            "date": "2024-08-11",
+            "modisCount": 3,
+            "viirsCount": 29,
+            "modisMeanReportedFRPMW": 35.63333333333333,
+            "viirsMeanReportedFRPMW": 6.296206896551724
+          },
+          {
+            "cell": "868b8430fffffff",
+            "date": "2024-08-12",
+            "modisCount": 3,
+            "viirsCount": 40,
+            "modisMeanReportedFRPMW": 8.933333333333334,
+            "viirsMeanReportedFRPMW": 15.908250000000004
+          },
+          {
+            "cell": "868b84acfffffff",
+            "date": "2024-08-12",
+            "modisCount": 2,
+            "viirsCount": 43,
+            "modisMeanReportedFRPMW": 20.35,
+            "viirsMeanReportedFRPMW": 45.505348837209304
+          },
+          {
+            "cell": "868b84adfffffff",
+            "date": "2024-08-12",
+            "modisCount": 6,
+            "viirsCount": 76,
+            "modisMeanReportedFRPMW": 13.583333333333334,
+            "viirsMeanReportedFRPMW": 8.444605263157895
+          },
+          {
+            "cell": "868b85d97ffffff",
+            "date": "2024-08-12",
+            "modisCount": 1,
+            "viirsCount": 20,
+            "modisMeanReportedFRPMW": 45.1,
+            "viirsMeanReportedFRPMW": 7.4925000000000015
+          },
+          {
+            "cell": "868b84357ffffff",
+            "date": "2024-08-13",
+            "modisCount": 2,
+            "viirsCount": 21,
+            "modisMeanReportedFRPMW": 26.4,
+            "viirsMeanReportedFRPMW": 13.38238095238095
+          },
+          {
+            "cell": "868b84adfffffff",
+            "date": "2024-08-13",
+            "modisCount": 1,
+            "viirsCount": 42,
+            "modisMeanReportedFRPMW": 14.7,
+            "viirsMeanReportedFRPMW": 10.933571428571428
+          },
+          {
+            "cell": "868b84357ffffff",
+            "date": "2024-08-14",
+            "modisCount": 1,
+            "viirsCount": 7,
+            "modisMeanReportedFRPMW": 14,
+            "viirsMeanReportedFRPMW": 1.58
+          },
+          {
+            "cell": "868b84377ffffff",
+            "date": "2024-08-14",
+            "modisCount": 5,
+            "viirsCount": 42,
+            "modisMeanReportedFRPMW": 11.76,
+            "viirsMeanReportedFRPMW": 10.693333333333337
+          },
+          {
+            "cell": "868b8448fffffff",
+            "date": "2024-08-14",
+            "modisCount": 1,
+            "viirsCount": 2,
+            "modisMeanReportedFRPMW": 6.5,
+            "viirsMeanReportedFRPMW": 32.34
+          },
+          {
+            "cell": "868b84ac7ffffff",
+            "date": "2024-08-14",
+            "modisCount": 1,
+            "viirsCount": 11,
+            "modisMeanReportedFRPMW": 10.5,
+            "viirsMeanReportedFRPMW": 8.417272727272728
+          },
+          {
+            "cell": "868b84adfffffff",
+            "date": "2024-08-14",
+            "modisCount": 1,
+            "viirsCount": 7,
+            "modisMeanReportedFRPMW": 9.2,
+            "viirsMeanReportedFRPMW": 22.75714285714286
+          },
+          {
+            "cell": "868b84aefffffff",
+            "date": "2024-08-14",
+            "modisCount": 1,
+            "viirsCount": 5,
+            "modisMeanReportedFRPMW": 7.4,
+            "viirsMeanReportedFRPMW": 3.466
+          },
+          {
+            "cell": "868b84107ffffff",
+            "date": "2024-08-15",
+            "modisCount": 1,
+            "viirsCount": 3,
+            "modisMeanReportedFRPMW": 45.3,
+            "viirsMeanReportedFRPMW": 3.7899999999999996
+          },
+          {
+            "cell": "868b8412fffffff",
+            "date": "2024-08-15",
+            "modisCount": 1,
+            "viirsCount": 3,
+            "modisMeanReportedFRPMW": 23.2,
+            "viirsMeanReportedFRPMW": 3.9899999999999998
+          },
+          {
+            "cell": "868b84367ffffff",
+            "date": "2024-08-16",
+            "modisCount": 1,
+            "viirsCount": 6,
+            "modisMeanReportedFRPMW": 9.5,
+            "viirsMeanReportedFRPMW": 1.1366666666666667
+          },
+          {
+            "cell": "868b84adfffffff",
+            "date": "2024-08-16",
+            "modisCount": 1,
+            "viirsCount": 1,
+            "modisMeanReportedFRPMW": 12.3,
+            "viirsMeanReportedFRPMW": 0.81
+          },
+          {
+            "cell": "868b86327ffffff",
+            "date": "2024-08-16",
+            "modisCount": 1,
+            "viirsCount": 2,
+            "modisMeanReportedFRPMW": 18.7,
+            "viirsMeanReportedFRPMW": 7.475
+          },
+          {
+            "cell": "868b84127ffffff",
+            "date": "2024-08-19",
+            "modisCount": 4,
+            "viirsCount": 5,
+            "modisMeanReportedFRPMW": 12.875,
+            "viirsMeanReportedFRPMW": 2.944
+          },
+          {
+            "cell": "868b84367ffffff",
+            "date": "2024-08-19",
+            "modisCount": 3,
+            "viirsCount": 19,
+            "modisMeanReportedFRPMW": 17.2,
+            "viirsMeanReportedFRPMW": 4.366315789473684
+          },
+          {
+            "cell": "868b84377ffffff",
+            "date": "2024-08-19",
+            "modisCount": 3,
+            "viirsCount": 14,
+            "modisMeanReportedFRPMW": 14.633333333333333,
+            "viirsMeanReportedFRPMW": 54.580714285714286
+          },
+          {
+            "cell": "868b84acfffffff",
+            "date": "2024-08-19",
+            "modisCount": 4,
+            "viirsCount": 2,
+            "modisMeanReportedFRPMW": 15.350000000000001,
+            "viirsMeanReportedFRPMW": 4.1850000000000005
+          },
+          {
+            "cell": "868b84bb7ffffff",
+            "date": "2024-08-19",
+            "modisCount": 3,
+            "viirsCount": 13,
+            "modisMeanReportedFRPMW": 10.133333333333333,
+            "viirsMeanReportedFRPMW": 5.691538461538462
+          },
+          {
+            "cell": "868b85d97ffffff",
+            "date": "2024-08-19",
+            "modisCount": 1,
+            "viirsCount": 5,
+            "modisMeanReportedFRPMW": 15,
+            "viirsMeanReportedFRPMW": 1.8559999999999999
+          },
+          {
+            "cell": "868b84367ffffff",
+            "date": "2024-08-20",
+            "modisCount": 4,
+            "viirsCount": 17,
+            "modisMeanReportedFRPMW": 25.074999999999996,
+            "viirsMeanReportedFRPMW": 19.693529411764704
+          },
+          {
+            "cell": "868b84377ffffff",
+            "date": "2024-08-20",
+            "modisCount": 1,
+            "viirsCount": 31,
+            "modisMeanReportedFRPMW": 24.9,
+            "viirsMeanReportedFRPMW": 18.82677419354839
+          },
+          {
+            "cell": "868b84377ffffff",
+            "date": "2024-08-21",
+            "modisCount": 3,
+            "viirsCount": 53,
+            "modisMeanReportedFRPMW": 20.666666666666668,
+            "viirsMeanReportedFRPMW": 5.269433962264152
+          },
+          {
+            "cell": "868bb1557ffffff",
+            "date": "2024-08-21",
+            "modisCount": 1,
+            "viirsCount": 21,
+            "modisMeanReportedFRPMW": 18,
+            "viirsMeanReportedFRPMW": 16.485714285714284
+          },
+          {
+            "cell": "868bb1557ffffff",
+            "date": "2024-08-22",
+            "modisCount": 1,
+            "viirsCount": 4,
+            "modisMeanReportedFRPMW": 13.1,
+            "viirsMeanReportedFRPMW": 3.5974999999999997
+          },
+          {
+            "cell": "868b80aafffffff",
+            "date": "2024-08-23",
+            "modisCount": 1,
+            "viirsCount": 17,
+            "modisMeanReportedFRPMW": 22.5,
+            "viirsMeanReportedFRPMW": 3.0470588235294116
+          },
+          {
+            "cell": "868b85527ffffff",
+            "date": "2024-08-23",
+            "modisCount": 1,
+            "viirsCount": 3,
+            "modisMeanReportedFRPMW": 11.6,
+            "viirsMeanReportedFRPMW": 2.8966666666666665
+          },
+          {
+            "cell": "868b85537ffffff",
+            "date": "2024-08-23",
+            "modisCount": 1,
+            "viirsCount": 25,
+            "modisMeanReportedFRPMW": 18.6,
+            "viirsMeanReportedFRPMW": 12.6652
+          },
+          {
+            "cell": "868b80aafffffff",
+            "date": "2024-08-24",
+            "modisCount": 1,
+            "viirsCount": 4,
+            "modisMeanReportedFRPMW": 13,
+            "viirsMeanReportedFRPMW": 6.58
+          },
+          {
+            "cell": "868b84367ffffff",
+            "date": "2024-08-24",
+            "modisCount": 2,
+            "viirsCount": 16,
+            "modisMeanReportedFRPMW": 7.6,
+            "viirsMeanReportedFRPMW": 3.029375
+          },
+          {
+            "cell": "868b84377ffffff",
+            "date": "2024-08-24",
+            "modisCount": 1,
+            "viirsCount": 7,
+            "modisMeanReportedFRPMW": 6.8,
+            "viirsMeanReportedFRPMW": 2.9442857142857144
+          },
+          {
+            "cell": "868b84adfffffff",
+            "date": "2024-08-24",
+            "modisCount": 2,
+            "viirsCount": 7,
+            "modisMeanReportedFRPMW": 13.05,
+            "viirsMeanReportedFRPMW": 1.3314285714285714
+          },
+          {
+            "cell": "868b85537ffffff",
+            "date": "2024-08-24",
+            "modisCount": 3,
+            "viirsCount": 8,
+            "modisMeanReportedFRPMW": 9.2,
+            "viirsMeanReportedFRPMW": 3.7112499999999997
+          },
+          {
+            "cell": "868ba2627ffffff",
+            "date": "2024-08-24",
+            "modisCount": 1,
+            "viirsCount": 1,
+            "modisMeanReportedFRPMW": 4.1,
+            "viirsMeanReportedFRPMW": 9.05
+          },
+          {
+            "cell": "868ba262fffffff",
+            "date": "2024-08-24",
+            "modisCount": 2,
+            "viirsCount": 5,
+            "modisMeanReportedFRPMW": 6.3,
+            "viirsMeanReportedFRPMW": 3.8859999999999992
+          },
+          {
+            "cell": "868bb1607ffffff",
+            "date": "2024-08-25",
+            "modisCount": 8,
+            "viirsCount": 39,
+            "modisMeanReportedFRPMW": 138.78750000000002,
+            "viirsMeanReportedFRPMW": 11.469487179487178
+          },
+          {
+            "cell": "868bb160fffffff",
+            "date": "2024-08-25",
+            "modisCount": 8,
+            "viirsCount": 25,
+            "modisMeanReportedFRPMW": 68.075,
+            "viirsMeanReportedFRPMW": 16.480000000000004
+          },
+          {
+            "cell": "868bb1617ffffff",
+            "date": "2024-08-25",
+            "modisCount": 2,
+            "viirsCount": 22,
+            "modisMeanReportedFRPMW": 58.3,
+            "viirsMeanReportedFRPMW": 38.704545454545446
+          },
+          {
+            "cell": "868bb161fffffff",
+            "date": "2024-08-25",
+            "modisCount": 3,
+            "viirsCount": 5,
+            "modisMeanReportedFRPMW": 41.9,
+            "viirsMeanReportedFRPMW": 15.818000000000001
+          },
+          {
+            "cell": "868bb1627ffffff",
+            "date": "2024-08-25",
+            "modisCount": 2,
+            "viirsCount": 10,
+            "modisMeanReportedFRPMW": 144.85,
+            "viirsMeanReportedFRPMW": 12.681999999999999
+          },
+          {
+            "cell": "868bb1637ffffff",
+            "date": "2024-08-25",
+            "modisCount": 12,
+            "viirsCount": 110,
+            "modisMeanReportedFRPMW": 181.51666666666665,
+            "viirsMeanReportedFRPMW": 13.495636363636368
+          },
+          {
+            "cell": "868bb171fffffff",
+            "date": "2024-08-25",
+            "modisCount": 2,
+            "viirsCount": 20,
+            "modisMeanReportedFRPMW": 189.45,
+            "viirsMeanReportedFRPMW": 18.467000000000002
+          },
+          {
+            "cell": "868bb178fffffff",
+            "date": "2024-08-25",
+            "modisCount": 3,
+            "viirsCount": 4,
+            "modisMeanReportedFRPMW": 157.76666666666668,
+            "viirsMeanReportedFRPMW": 10.7775
+          },
+          {
+            "cell": "868b84adfffffff",
+            "date": "2024-08-26",
+            "modisCount": 2,
+            "viirsCount": 14,
+            "modisMeanReportedFRPMW": 19.45,
+            "viirsMeanReportedFRPMW": 11.551428571428572
+          },
+          {
+            "cell": "868bb1367ffffff",
+            "date": "2024-08-26",
+            "modisCount": 2,
+            "viirsCount": 30,
+            "modisMeanReportedFRPMW": 18.3,
+            "viirsMeanReportedFRPMW": 16.32266666666667
+          },
+          {
+            "cell": "868bb1607ffffff",
+            "date": "2024-08-26",
+            "modisCount": 2,
+            "viirsCount": 19,
+            "modisMeanReportedFRPMW": 440.4,
+            "viirsMeanReportedFRPMW": 8.919473684210525
+          },
+          {
+            "cell": "868bb160fffffff",
+            "date": "2024-08-26",
+            "modisCount": 2,
+            "viirsCount": 16,
+            "modisMeanReportedFRPMW": 35.7,
+            "viirsMeanReportedFRPMW": 6.255000000000001
+          },
+          {
+            "cell": "868bb1617ffffff",
+            "date": "2024-08-26",
+            "modisCount": 8,
+            "viirsCount": 28,
+            "modisMeanReportedFRPMW": 32.262499999999996,
+            "viirsMeanReportedFRPMW": 10.345
+          },
+          {
+            "cell": "868bb1627ffffff",
+            "date": "2024-08-26",
+            "modisCount": 3,
+            "viirsCount": 19,
+            "modisMeanReportedFRPMW": 27.600000000000005,
+            "viirsMeanReportedFRPMW": 7.363684210526316
+          },
+          {
+            "cell": "868bb162fffffff",
+            "date": "2024-08-26",
+            "modisCount": 3,
+            "viirsCount": 17,
+            "modisMeanReportedFRPMW": 149.6,
+            "viirsMeanReportedFRPMW": 7.443529411764706
+          },
+          {
+            "cell": "868bb1637ffffff",
+            "date": "2024-08-26",
+            "modisCount": 3,
+            "viirsCount": 8,
+            "modisMeanReportedFRPMW": 20.3,
+            "viirsMeanReportedFRPMW": 7.675000000000001
+          },
+          {
+            "cell": "868b84367ffffff",
+            "date": "2024-08-27",
+            "modisCount": 1,
+            "viirsCount": 15,
+            "modisMeanReportedFRPMW": 10.4,
+            "viirsMeanReportedFRPMW": 4.569999999999999
+          },
+          {
+            "cell": "868b84377ffffff",
+            "date": "2024-08-27",
+            "modisCount": 2,
+            "viirsCount": 22,
+            "modisMeanReportedFRPMW": 13.850000000000001,
+            "viirsMeanReportedFRPMW": 6.027727272727273
+          },
+          {
+            "cell": "868b85527ffffff",
+            "date": "2024-08-27",
+            "modisCount": 2,
+            "viirsCount": 29,
+            "modisMeanReportedFRPMW": 27.95,
+            "viirsMeanReportedFRPMW": 17.990344827586206
+          },
+          {
+            "cell": "868bb1607ffffff",
+            "date": "2024-08-27",
+            "modisCount": 2,
+            "viirsCount": 16,
+            "modisMeanReportedFRPMW": 13.35,
+            "viirsMeanReportedFRPMW": 5.250624999999999
+          },
+          {
+            "cell": "868bb1617ffffff",
+            "date": "2024-08-27",
+            "modisCount": 3,
+            "viirsCount": 21,
+            "modisMeanReportedFRPMW": 105.43333333333334,
+            "viirsMeanReportedFRPMW": 4.722380952380953
+          },
+          {
+            "cell": "868ba2627ffffff",
+            "date": "2024-08-28",
+            "modisCount": 1,
+            "viirsCount": 5,
+            "modisMeanReportedFRPMW": 8.1,
+            "viirsMeanReportedFRPMW": 3.178
+          },
+          {
+            "cell": "868bb1607ffffff",
+            "date": "2024-08-28",
+            "modisCount": 2,
+            "viirsCount": 20,
+            "modisMeanReportedFRPMW": 48.75,
+            "viirsMeanReportedFRPMW": 9.469
+          },
+          {
+            "cell": "868b80a8fffffff",
+            "date": "2024-08-29",
+            "modisCount": 3,
+            "viirsCount": 3,
+            "modisMeanReportedFRPMW": 13.633333333333333,
+            "viirsMeanReportedFRPMW": 6.75
+          },
+          {
+            "cell": "868b80aafffffff",
+            "date": "2024-08-29",
+            "modisCount": 2,
+            "viirsCount": 5,
+            "modisMeanReportedFRPMW": 6.5,
+            "viirsMeanReportedFRPMW": 8.03
+          },
+          {
+            "cell": "868b80af7ffffff",
+            "date": "2024-08-29",
+            "modisCount": 4,
+            "viirsCount": 3,
+            "modisMeanReportedFRPMW": 7.074999999999999,
+            "viirsMeanReportedFRPMW": 21.366666666666664
+          },
+          {
+            "cell": "868b84367ffffff",
+            "date": "2024-08-29",
+            "modisCount": 2,
+            "viirsCount": 9,
+            "modisMeanReportedFRPMW": 17.95,
+            "viirsMeanReportedFRPMW": 20.843333333333334
+          },
+          {
+            "cell": "868b84377ffffff",
+            "date": "2024-08-29",
+            "modisCount": 1,
+            "viirsCount": 15,
+            "modisMeanReportedFRPMW": 17.6,
+            "viirsMeanReportedFRPMW": 25.039333333333335
+          },
+          {
+            "cell": "868ba260fffffff",
+            "date": "2024-08-29",
+            "modisCount": 1,
+            "viirsCount": 2,
+            "modisMeanReportedFRPMW": 5.2,
+            "viirsMeanReportedFRPMW": 6.385
+          },
+          {
+            "cell": "868ba262fffffff",
+            "date": "2024-08-29",
+            "modisCount": 1,
+            "viirsCount": 7,
+            "modisMeanReportedFRPMW": 5.8,
+            "viirsMeanReportedFRPMW": 4.147142857142858
+          },
+          {
+            "cell": "868bb1607ffffff",
+            "date": "2024-08-29",
+            "modisCount": 7,
+            "viirsCount": 22,
+            "modisMeanReportedFRPMW": 15.728571428571426,
+            "viirsMeanReportedFRPMW": 25.75681818181818
+          },
+          {
+            "cell": "868bb161fffffff",
+            "date": "2024-08-29",
+            "modisCount": 1,
+            "viirsCount": 2,
+            "modisMeanReportedFRPMW": 7.5,
+            "viirsMeanReportedFRPMW": 1.6
+          },
+          {
+            "cell": "868bb1637ffffff",
+            "date": "2024-08-29",
+            "modisCount": 1,
+            "viirsCount": 7,
+            "modisMeanReportedFRPMW": 8.1,
+            "viirsMeanReportedFRPMW": 17.934285714285714
+          },
+          {
+            "cell": "868b80a1fffffff",
+            "date": "2024-08-30",
+            "modisCount": 2,
+            "viirsCount": 5,
+            "modisMeanReportedFRPMW": 12.899999999999999,
+            "viirsMeanReportedFRPMW": 5.7379999999999995
+          },
+          {
+            "cell": "868b8434fffffff",
+            "date": "2024-08-30",
+            "modisCount": 2,
+            "viirsCount": 3,
+            "modisMeanReportedFRPMW": 49.15,
+            "viirsMeanReportedFRPMW": 10.23
+          },
+          {
+            "cell": "868b85c97ffffff",
+            "date": "2024-08-30",
+            "modisCount": 2,
+            "viirsCount": 15,
+            "modisMeanReportedFRPMW": 73.05000000000001,
+            "viirsMeanReportedFRPMW": 22.730666666666664
+          },
+          {
+            "cell": "868ba22e7ffffff",
+            "date": "2024-08-30",
+            "modisCount": 7,
+            "viirsCount": 69,
+            "modisMeanReportedFRPMW": 173.5142857142857,
+            "viirsMeanReportedFRPMW": 15.941304347826085
+          },
+          {
+            "cell": "868bb160fffffff",
+            "date": "2024-08-30",
+            "modisCount": 1,
+            "viirsCount": 2,
+            "modisMeanReportedFRPMW": 11.9,
+            "viirsMeanReportedFRPMW": 2.64
+          },
+          {
+            "cell": "868b8085fffffff",
+            "date": "2024-08-31",
+            "modisCount": 2,
+            "viirsCount": 5,
+            "modisMeanReportedFRPMW": 13.649999999999999,
+            "viirsMeanReportedFRPMW": 17.798
+          },
+          {
+            "cell": "868b80a1fffffff",
+            "date": "2024-08-31",
+            "modisCount": 1,
+            "viirsCount": 5,
+            "modisMeanReportedFRPMW": 18,
+            "viirsMeanReportedFRPMW": 3.976
+          },
+          {
+            "cell": "868b84347ffffff",
+            "date": "2024-08-31",
+            "modisCount": 1,
+            "viirsCount": 8,
+            "modisMeanReportedFRPMW": 30.2,
+            "viirsMeanReportedFRPMW": 1.4249999999999998
+          },
+          {
+            "cell": "868b84367ffffff",
+            "date": "2024-08-31",
+            "modisCount": 2,
+            "viirsCount": 9,
+            "modisMeanReportedFRPMW": 35.45,
+            "viirsMeanReportedFRPMW": 3.2677777777777774
+          },
+          {
+            "cell": "868b84acfffffff",
+            "date": "2024-08-31",
+            "modisCount": 2,
+            "viirsCount": 29,
+            "modisMeanReportedFRPMW": 34.65,
+            "viirsMeanReportedFRPMW": 14.681724137931035
+          },
+          {
+            "cell": "868b84aefffffff",
+            "date": "2024-08-31",
+            "modisCount": 2,
+            "viirsCount": 20,
+            "modisMeanReportedFRPMW": 29.9,
+            "viirsMeanReportedFRPMW": 57.8515
+          },
+          {
+            "cell": "868b85db7ffffff",
+            "date": "2024-08-31",
+            "modisCount": 3,
+            "viirsCount": 9,
+            "modisMeanReportedFRPMW": 72.00000000000001,
+            "viirsMeanReportedFRPMW": 4.843333333333335
+          },
+          {
+            "cell": "868ba22e7ffffff",
+            "date": "2024-08-31",
+            "modisCount": 10,
+            "viirsCount": 42,
+            "modisMeanReportedFRPMW": 40.58,
+            "viirsMeanReportedFRPMW": 11.422380952380953
+          },
+          {
+            "cell": "868bb1627ffffff",
+            "date": "2024-08-31",
+            "modisCount": 2,
+            "viirsCount": 7,
+            "modisMeanReportedFRPMW": 21.75,
+            "viirsMeanReportedFRPMW": 8.035714285714286
+          },
+          {
+            "cell": "868bb162fffffff",
+            "date": "2024-08-31",
+            "modisCount": 1,
+            "viirsCount": 1,
+            "modisMeanReportedFRPMW": 72.3,
+            "viirsMeanReportedFRPMW": 0.94
+          },
+          {
+            "cell": "868bb1b97ffffff",
+            "date": "2024-08-31",
+            "modisCount": 2,
+            "viirsCount": 14,
+            "modisMeanReportedFRPMW": 23.5,
+            "viirsMeanReportedFRPMW": 3.4878571428571434
+          }
+        ]
+      },
+      {
+        "modis": {
+          "id": "sa-modis-terra-standard",
+          "sensor": "MODIS",
+          "platform": "Terra",
+          "product": "FIRMS M-C61 archive",
+          "version": "6.1",
+          "processing": "standard",
+          "lineage": "delivery-declared"
+        },
+        "viirs": {
+          "id": "sa-n21-noaa21-standard",
+          "sensor": "VIIRS",
+          "platform": "NOAA-21",
+          "product": "FIRMS J2V-C2 archive",
+          "version": "2",
+          "processing": "standard",
+          "lineage": "blocked-lineage"
+        },
+        "modisPositiveCellDays": 106,
+        "viirsPositiveCellDays": 374,
+        "coDetectedCellDays": 96,
+        "modisOnlyDelivered": 10,
+        "viirsOnlyDelivered": 278,
+        "deliveredJaccard": 0.25,
+        "paired": [
+          {
+            "cell": "868b8672fffffff",
+            "date": "2024-08-01",
+            "modisCount": 2,
+            "viirsCount": 4,
+            "modisMeanReportedFRPMW": 27.75,
+            "viirsMeanReportedFRPMW": 5.1325
+          },
+          {
+            "cell": "868b8672fffffff",
+            "date": "2024-08-02",
+            "modisCount": 1,
+            "viirsCount": 2,
+            "modisMeanReportedFRPMW": 14.2,
+            "viirsMeanReportedFRPMW": 5.695
+          },
+          {
+            "cell": "868ba2647ffffff",
+            "date": "2024-08-02",
+            "modisCount": 1,
+            "viirsCount": 5,
+            "modisMeanReportedFRPMW": 6.4,
+            "viirsMeanReportedFRPMW": 17.048000000000002
+          },
+          {
+            "cell": "868b84367ffffff",
+            "date": "2024-08-11",
+            "modisCount": 1,
+            "viirsCount": 1,
+            "modisMeanReportedFRPMW": 51.7,
+            "viirsMeanReportedFRPMW": 19.33
+          },
+          {
+            "cell": "868b84acfffffff",
+            "date": "2024-08-11",
+            "modisCount": 2,
+            "viirsCount": 6,
+            "modisMeanReportedFRPMW": 115.35,
+            "viirsMeanReportedFRPMW": 49.815
+          },
+          {
+            "cell": "868b84adfffffff",
+            "date": "2024-08-11",
+            "modisCount": 8,
+            "viirsCount": 38,
+            "modisMeanReportedFRPMW": 35.35,
+            "viirsMeanReportedFRPMW": 34.04815789473685
+          },
+          {
+            "cell": "868b85d97ffffff",
+            "date": "2024-08-11",
+            "modisCount": 3,
+            "viirsCount": 17,
+            "modisMeanReportedFRPMW": 35.63333333333333,
+            "viirsMeanReportedFRPMW": 7.1782352941176475
+          },
+          {
+            "cell": "868b8430fffffff",
+            "date": "2024-08-12",
+            "modisCount": 3,
+            "viirsCount": 17,
+            "modisMeanReportedFRPMW": 8.933333333333334,
+            "viirsMeanReportedFRPMW": 21.580000000000002
+          },
+          {
+            "cell": "868b84acfffffff",
+            "date": "2024-08-12",
+            "modisCount": 2,
+            "viirsCount": 70,
+            "modisMeanReportedFRPMW": 20.35,
+            "viirsMeanReportedFRPMW": 91.42442857142858
+          },
+          {
+            "cell": "868b84adfffffff",
+            "date": "2024-08-12",
+            "modisCount": 6,
+            "viirsCount": 65,
+            "modisMeanReportedFRPMW": 13.583333333333334,
+            "viirsMeanReportedFRPMW": 11.035076923076922
+          },
+          {
+            "cell": "868b85d97ffffff",
+            "date": "2024-08-12",
+            "modisCount": 1,
+            "viirsCount": 5,
+            "modisMeanReportedFRPMW": 45.1,
+            "viirsMeanReportedFRPMW": 3.944
+          },
+          {
+            "cell": "868b84357ffffff",
+            "date": "2024-08-13",
+            "modisCount": 2,
+            "viirsCount": 28,
+            "modisMeanReportedFRPMW": 26.4,
+            "viirsMeanReportedFRPMW": 6.665357142857142
+          },
+          {
+            "cell": "868b84adfffffff",
+            "date": "2024-08-13",
+            "modisCount": 1,
+            "viirsCount": 66,
+            "modisMeanReportedFRPMW": 14.7,
+            "viirsMeanReportedFRPMW": 4.8569696969696965
+          },
+          {
+            "cell": "868b84357ffffff",
+            "date": "2024-08-14",
+            "modisCount": 1,
+            "viirsCount": 9,
+            "modisMeanReportedFRPMW": 14,
+            "viirsMeanReportedFRPMW": 1.0166666666666666
+          },
+          {
+            "cell": "868b84377ffffff",
+            "date": "2024-08-14",
+            "modisCount": 5,
+            "viirsCount": 38,
+            "modisMeanReportedFRPMW": 11.76,
+            "viirsMeanReportedFRPMW": 6.233684210526316
+          },
+          {
+            "cell": "868b8448fffffff",
+            "date": "2024-08-14",
+            "modisCount": 1,
+            "viirsCount": 3,
+            "modisMeanReportedFRPMW": 6.5,
+            "viirsMeanReportedFRPMW": 1.7533333333333332
+          },
+          {
+            "cell": "868b84ac7ffffff",
+            "date": "2024-08-14",
+            "modisCount": 1,
+            "viirsCount": 18,
+            "modisMeanReportedFRPMW": 10.5,
+            "viirsMeanReportedFRPMW": 3.295
+          },
+          {
+            "cell": "868b84adfffffff",
+            "date": "2024-08-14",
+            "modisCount": 1,
+            "viirsCount": 23,
+            "modisMeanReportedFRPMW": 9.2,
+            "viirsMeanReportedFRPMW": 16.702608695652174
+          },
+          {
+            "cell": "868b84aefffffff",
+            "date": "2024-08-14",
+            "modisCount": 1,
+            "viirsCount": 2,
+            "modisMeanReportedFRPMW": 7.4,
+            "viirsMeanReportedFRPMW": 15.49
+          },
+          {
+            "cell": "868b84107ffffff",
+            "date": "2024-08-15",
+            "modisCount": 1,
+            "viirsCount": 1,
+            "modisMeanReportedFRPMW": 45.3,
+            "viirsMeanReportedFRPMW": 1.87
+          },
+          {
+            "cell": "868b8412fffffff",
+            "date": "2024-08-15",
+            "modisCount": 1,
+            "viirsCount": 5,
+            "modisMeanReportedFRPMW": 23.2,
+            "viirsMeanReportedFRPMW": 19.034
+          },
+          {
+            "cell": "868b84367ffffff",
+            "date": "2024-08-16",
+            "modisCount": 1,
+            "viirsCount": 8,
+            "modisMeanReportedFRPMW": 9.5,
+            "viirsMeanReportedFRPMW": 16.38375
+          },
+          {
+            "cell": "868b86327ffffff",
+            "date": "2024-08-16",
+            "modisCount": 1,
+            "viirsCount": 1,
+            "modisMeanReportedFRPMW": 18.7,
+            "viirsMeanReportedFRPMW": 3.43
+          },
+          {
+            "cell": "868b80467ffffff",
+            "date": "2024-08-18",
+            "modisCount": 1,
+            "viirsCount": 1,
+            "modisMeanReportedFRPMW": 24,
+            "viirsMeanReportedFRPMW": 7.48
+          },
+          {
+            "cell": "868b84127ffffff",
+            "date": "2024-08-19",
+            "modisCount": 4,
+            "viirsCount": 11,
+            "modisMeanReportedFRPMW": 12.875,
+            "viirsMeanReportedFRPMW": 2.105454545454546
+          },
+          {
+            "cell": "868b84367ffffff",
+            "date": "2024-08-19",
+            "modisCount": 3,
+            "viirsCount": 39,
+            "modisMeanReportedFRPMW": 17.2,
+            "viirsMeanReportedFRPMW": 14.154871794871793
+          },
+          {
+            "cell": "868b84377ffffff",
+            "date": "2024-08-19",
+            "modisCount": 3,
+            "viirsCount": 26,
+            "modisMeanReportedFRPMW": 14.633333333333333,
+            "viirsMeanReportedFRPMW": 12.415384615384616
+          },
+          {
+            "cell": "868b84acfffffff",
+            "date": "2024-08-19",
+            "modisCount": 4,
+            "viirsCount": 14,
+            "modisMeanReportedFRPMW": 15.350000000000001,
+            "viirsMeanReportedFRPMW": 2.4464285714285716
+          },
+          {
+            "cell": "868b84adfffffff",
+            "date": "2024-08-19",
+            "modisCount": 1,
+            "viirsCount": 1,
+            "modisMeanReportedFRPMW": 7.8,
+            "viirsMeanReportedFRPMW": 1.39
+          },
+          {
+            "cell": "868b84bb7ffffff",
+            "date": "2024-08-19",
+            "modisCount": 3,
+            "viirsCount": 18,
+            "modisMeanReportedFRPMW": 10.133333333333333,
+            "viirsMeanReportedFRPMW": 5.91
+          },
+          {
+            "cell": "868b85d97ffffff",
+            "date": "2024-08-19",
+            "modisCount": 1,
+            "viirsCount": 8,
+            "modisMeanReportedFRPMW": 15,
+            "viirsMeanReportedFRPMW": 1.54375
+          },
+          {
+            "cell": "868b84367ffffff",
+            "date": "2024-08-20",
+            "modisCount": 4,
+            "viirsCount": 29,
+            "modisMeanReportedFRPMW": 25.074999999999996,
+            "viirsMeanReportedFRPMW": 11.19
+          },
+          {
+            "cell": "868b84377ffffff",
+            "date": "2024-08-20",
+            "modisCount": 1,
+            "viirsCount": 36,
+            "modisMeanReportedFRPMW": 24.9,
+            "viirsMeanReportedFRPMW": 26.98888888888889
+          },
+          {
+            "cell": "868b84377ffffff",
+            "date": "2024-08-21",
+            "modisCount": 3,
+            "viirsCount": 24,
+            "modisMeanReportedFRPMW": 20.666666666666668,
+            "viirsMeanReportedFRPMW": 12.637083333333331
+          },
+          {
+            "cell": "868bb1557ffffff",
+            "date": "2024-08-21",
+            "modisCount": 1,
+            "viirsCount": 8,
+            "modisMeanReportedFRPMW": 18,
+            "viirsMeanReportedFRPMW": 9.13
+          },
+          {
+            "cell": "868bb1557ffffff",
+            "date": "2024-08-22",
+            "modisCount": 1,
+            "viirsCount": 3,
+            "modisMeanReportedFRPMW": 13.1,
+            "viirsMeanReportedFRPMW": 6.963333333333334
+          },
+          {
+            "cell": "868b80aafffffff",
+            "date": "2024-08-23",
+            "modisCount": 1,
+            "viirsCount": 5,
+            "modisMeanReportedFRPMW": 22.5,
+            "viirsMeanReportedFRPMW": 4.488
+          },
+          {
+            "cell": "868b85527ffffff",
+            "date": "2024-08-23",
+            "modisCount": 1,
+            "viirsCount": 5,
+            "modisMeanReportedFRPMW": 11.6,
+            "viirsMeanReportedFRPMW": 7.215999999999999
+          },
+          {
+            "cell": "868b85537ffffff",
+            "date": "2024-08-23",
+            "modisCount": 1,
+            "viirsCount": 22,
+            "modisMeanReportedFRPMW": 18.6,
+            "viirsMeanReportedFRPMW": 11.63136363636364
+          },
+          {
+            "cell": "868b80aafffffff",
+            "date": "2024-08-24",
+            "modisCount": 1,
+            "viirsCount": 7,
+            "modisMeanReportedFRPMW": 13,
+            "viirsMeanReportedFRPMW": 3.494285714285714
+          },
+          {
+            "cell": "868b84367ffffff",
+            "date": "2024-08-24",
+            "modisCount": 2,
+            "viirsCount": 10,
+            "modisMeanReportedFRPMW": 7.6,
+            "viirsMeanReportedFRPMW": 1.54
+          },
+          {
+            "cell": "868b84377ffffff",
+            "date": "2024-08-24",
+            "modisCount": 1,
+            "viirsCount": 5,
+            "modisMeanReportedFRPMW": 6.8,
+            "viirsMeanReportedFRPMW": 1.366
+          },
+          {
+            "cell": "868b84adfffffff",
+            "date": "2024-08-24",
+            "modisCount": 2,
+            "viirsCount": 13,
+            "modisMeanReportedFRPMW": 13.05,
+            "viirsMeanReportedFRPMW": 7.236153846153846
+          },
+          {
+            "cell": "868b85537ffffff",
+            "date": "2024-08-24",
+            "modisCount": 3,
+            "viirsCount": 11,
+            "modisMeanReportedFRPMW": 9.2,
+            "viirsMeanReportedFRPMW": 4.7318181818181815
+          },
+          {
+            "cell": "868b86637ffffff",
+            "date": "2024-08-24",
+            "modisCount": 1,
+            "viirsCount": 1,
+            "modisMeanReportedFRPMW": 7.7,
+            "viirsMeanReportedFRPMW": 2.3
+          },
+          {
+            "cell": "868ba262fffffff",
+            "date": "2024-08-24",
+            "modisCount": 2,
+            "viirsCount": 8,
+            "modisMeanReportedFRPMW": 6.3,
+            "viirsMeanReportedFRPMW": 4.37625
+          },
+          {
+            "cell": "868bb1607ffffff",
+            "date": "2024-08-25",
+            "modisCount": 8,
+            "viirsCount": 30,
+            "modisMeanReportedFRPMW": 138.78750000000002,
+            "viirsMeanReportedFRPMW": 9.524666666666665
+          },
+          {
+            "cell": "868bb160fffffff",
+            "date": "2024-08-25",
+            "modisCount": 8,
+            "viirsCount": 28,
+            "modisMeanReportedFRPMW": 68.075,
+            "viirsMeanReportedFRPMW": 15.101785714285707
+          },
+          {
+            "cell": "868bb1617ffffff",
+            "date": "2024-08-25",
+            "modisCount": 2,
+            "viirsCount": 10,
+            "modisMeanReportedFRPMW": 58.3,
+            "viirsMeanReportedFRPMW": 19.212
+          },
+          {
+            "cell": "868bb161fffffff",
+            "date": "2024-08-25",
+            "modisCount": 3,
+            "viirsCount": 13,
+            "modisMeanReportedFRPMW": 41.9,
+            "viirsMeanReportedFRPMW": 112.64692307692309
+          },
+          {
+            "cell": "868bb1627ffffff",
+            "date": "2024-08-25",
+            "modisCount": 2,
+            "viirsCount": 11,
+            "modisMeanReportedFRPMW": 144.85,
+            "viirsMeanReportedFRPMW": 27.986363636363627
+          },
+          {
+            "cell": "868bb1637ffffff",
+            "date": "2024-08-25",
+            "modisCount": 12,
+            "viirsCount": 82,
+            "modisMeanReportedFRPMW": 181.51666666666665,
+            "viirsMeanReportedFRPMW": 42.581951219512185
+          },
+          {
+            "cell": "868bb171fffffff",
+            "date": "2024-08-25",
+            "modisCount": 2,
+            "viirsCount": 20,
+            "modisMeanReportedFRPMW": 189.45,
+            "viirsMeanReportedFRPMW": 23.8245
+          },
+          {
+            "cell": "868bb178fffffff",
+            "date": "2024-08-25",
+            "modisCount": 3,
+            "viirsCount": 8,
+            "modisMeanReportedFRPMW": 157.76666666666668,
+            "viirsMeanReportedFRPMW": 6.70875
+          },
+          {
+            "cell": "868b848d7ffffff",
+            "date": "2024-08-26",
+            "modisCount": 1,
+            "viirsCount": 2,
+            "modisMeanReportedFRPMW": 15.8,
+            "viirsMeanReportedFRPMW": 0.86
+          },
+          {
+            "cell": "868b84adfffffff",
+            "date": "2024-08-26",
+            "modisCount": 2,
+            "viirsCount": 6,
+            "modisMeanReportedFRPMW": 19.45,
+            "viirsMeanReportedFRPMW": 7.885000000000001
+          },
+          {
+            "cell": "868bb1367ffffff",
+            "date": "2024-08-26",
+            "modisCount": 2,
+            "viirsCount": 16,
+            "modisMeanReportedFRPMW": 18.3,
+            "viirsMeanReportedFRPMW": 19.736875000000005
+          },
+          {
+            "cell": "868bb1607ffffff",
+            "date": "2024-08-26",
+            "modisCount": 2,
+            "viirsCount": 12,
+            "modisMeanReportedFRPMW": 440.4,
+            "viirsMeanReportedFRPMW": 19.472499999999997
+          },
+          {
+            "cell": "868bb160fffffff",
+            "date": "2024-08-26",
+            "modisCount": 2,
+            "viirsCount": 17,
+            "modisMeanReportedFRPMW": 35.7,
+            "viirsMeanReportedFRPMW": 10.580588235294117
+          },
+          {
+            "cell": "868bb1617ffffff",
+            "date": "2024-08-26",
+            "modisCount": 8,
+            "viirsCount": 23,
+            "modisMeanReportedFRPMW": 32.262499999999996,
+            "viirsMeanReportedFRPMW": 14.836086956521738
+          },
+          {
+            "cell": "868bb1627ffffff",
+            "date": "2024-08-26",
+            "modisCount": 3,
+            "viirsCount": 11,
+            "modisMeanReportedFRPMW": 27.600000000000005,
+            "viirsMeanReportedFRPMW": 7.954545454545454
+          },
+          {
+            "cell": "868bb162fffffff",
+            "date": "2024-08-26",
+            "modisCount": 3,
+            "viirsCount": 15,
+            "modisMeanReportedFRPMW": 149.6,
+            "viirsMeanReportedFRPMW": 13.392000000000001
+          },
+          {
+            "cell": "868bb1637ffffff",
+            "date": "2024-08-26",
+            "modisCount": 3,
+            "viirsCount": 4,
+            "modisMeanReportedFRPMW": 20.3,
+            "viirsMeanReportedFRPMW": 4.5024999999999995
+          },
+          {
+            "cell": "868b84367ffffff",
+            "date": "2024-08-27",
+            "modisCount": 1,
+            "viirsCount": 9,
+            "modisMeanReportedFRPMW": 10.4,
+            "viirsMeanReportedFRPMW": 10.500000000000002
+          },
+          {
+            "cell": "868b84377ffffff",
+            "date": "2024-08-27",
+            "modisCount": 2,
+            "viirsCount": 12,
+            "modisMeanReportedFRPMW": 13.850000000000001,
+            "viirsMeanReportedFRPMW": 13.233333333333334
+          },
+          {
+            "cell": "868b85527ffffff",
+            "date": "2024-08-27",
+            "modisCount": 2,
+            "viirsCount": 15,
+            "modisMeanReportedFRPMW": 27.95,
+            "viirsMeanReportedFRPMW": 35.315333333333335
+          },
+          {
+            "cell": "868bb1607ffffff",
+            "date": "2024-08-27",
+            "modisCount": 2,
+            "viirsCount": 17,
+            "modisMeanReportedFRPMW": 13.35,
+            "viirsMeanReportedFRPMW": 12.184705882352942
+          },
+          {
+            "cell": "868bb1617ffffff",
+            "date": "2024-08-27",
+            "modisCount": 3,
+            "viirsCount": 21,
+            "modisMeanReportedFRPMW": 105.43333333333334,
+            "viirsMeanReportedFRPMW": 4.917619047619048
+          },
+          {
+            "cell": "868bb178fffffff",
+            "date": "2024-08-27",
+            "modisCount": 1,
+            "viirsCount": 1,
+            "modisMeanReportedFRPMW": 114.6,
+            "viirsMeanReportedFRPMW": 1.46
+          },
+          {
+            "cell": "868ba2627ffffff",
+            "date": "2024-08-28",
+            "modisCount": 1,
+            "viirsCount": 2,
+            "modisMeanReportedFRPMW": 8.1,
+            "viirsMeanReportedFRPMW": 6.535
+          },
+          {
+            "cell": "868bb1607ffffff",
+            "date": "2024-08-28",
+            "modisCount": 2,
+            "viirsCount": 32,
+            "modisMeanReportedFRPMW": 48.75,
+            "viirsMeanReportedFRPMW": 53.865937499999994
+          },
+          {
+            "cell": "868b80a8fffffff",
+            "date": "2024-08-29",
+            "modisCount": 3,
+            "viirsCount": 5,
+            "modisMeanReportedFRPMW": 13.633333333333333,
+            "viirsMeanReportedFRPMW": 3.4899999999999998
+          },
+          {
+            "cell": "868b80af7ffffff",
+            "date": "2024-08-29",
+            "modisCount": 4,
+            "viirsCount": 5,
+            "modisMeanReportedFRPMW": 7.074999999999999,
+            "viirsMeanReportedFRPMW": 15.27
+          },
+          {
+            "cell": "868b84367ffffff",
+            "date": "2024-08-29",
+            "modisCount": 2,
+            "viirsCount": 32,
+            "modisMeanReportedFRPMW": 17.95,
+            "viirsMeanReportedFRPMW": 13.048124999999999
+          },
+          {
+            "cell": "868b84377ffffff",
+            "date": "2024-08-29",
+            "modisCount": 1,
+            "viirsCount": 23,
+            "modisMeanReportedFRPMW": 17.6,
+            "viirsMeanReportedFRPMW": 12.286521739130434
+          },
+          {
+            "cell": "868ba260fffffff",
+            "date": "2024-08-29",
+            "modisCount": 1,
+            "viirsCount": 2,
+            "modisMeanReportedFRPMW": 5.2,
+            "viirsMeanReportedFRPMW": 1.2850000000000001
+          },
+          {
+            "cell": "868ba262fffffff",
+            "date": "2024-08-29",
+            "modisCount": 1,
+            "viirsCount": 2,
+            "modisMeanReportedFRPMW": 5.8,
+            "viirsMeanReportedFRPMW": 1.9849999999999999
+          },
+          {
+            "cell": "868bb1607ffffff",
+            "date": "2024-08-29",
+            "modisCount": 7,
+            "viirsCount": 17,
+            "modisMeanReportedFRPMW": 15.728571428571426,
+            "viirsMeanReportedFRPMW": 7.955882352941177
+          },
+          {
+            "cell": "868bb1637ffffff",
+            "date": "2024-08-29",
+            "modisCount": 1,
+            "viirsCount": 7,
+            "modisMeanReportedFRPMW": 8.1,
+            "viirsMeanReportedFRPMW": 6.355714285714286
+          },
+          {
+            "cell": "868b80a1fffffff",
+            "date": "2024-08-30",
+            "modisCount": 2,
+            "viirsCount": 24,
+            "modisMeanReportedFRPMW": 12.899999999999999,
+            "viirsMeanReportedFRPMW": 3.6166666666666667
+          },
+          {
+            "cell": "868b8434fffffff",
+            "date": "2024-08-30",
+            "modisCount": 2,
+            "viirsCount": 20,
+            "modisMeanReportedFRPMW": 49.15,
+            "viirsMeanReportedFRPMW": 2.7729999999999997
+          },
+          {
+            "cell": "868b85c97ffffff",
+            "date": "2024-08-30",
+            "modisCount": 2,
+            "viirsCount": 12,
+            "modisMeanReportedFRPMW": 73.05000000000001,
+            "viirsMeanReportedFRPMW": 20.169166666666666
+          },
+          {
+            "cell": "868ba22e7ffffff",
+            "date": "2024-08-30",
+            "modisCount": 7,
+            "viirsCount": 54,
+            "modisMeanReportedFRPMW": 173.5142857142857,
+            "viirsMeanReportedFRPMW": 20.638148148148147
+          },
+          {
+            "cell": "868bb160fffffff",
+            "date": "2024-08-30",
+            "modisCount": 1,
+            "viirsCount": 14,
+            "modisMeanReportedFRPMW": 11.9,
+            "viirsMeanReportedFRPMW": 5.3549999999999995
+          },
+          {
+            "cell": "868b8085fffffff",
+            "date": "2024-08-31",
+            "modisCount": 2,
+            "viirsCount": 7,
+            "modisMeanReportedFRPMW": 13.649999999999999,
+            "viirsMeanReportedFRPMW": 9.77
+          },
+          {
+            "cell": "868b80a1fffffff",
+            "date": "2024-08-31",
+            "modisCount": 1,
+            "viirsCount": 20,
+            "modisMeanReportedFRPMW": 18,
+            "viirsMeanReportedFRPMW": 5.363999999999999
+          },
+          {
+            "cell": "868b80af7ffffff",
+            "date": "2024-08-31",
+            "modisCount": 1,
+            "viirsCount": 5,
+            "modisMeanReportedFRPMW": 11.1,
+            "viirsMeanReportedFRPMW": 5.216
+          },
+          {
+            "cell": "868b84347ffffff",
+            "date": "2024-08-31",
+            "modisCount": 1,
+            "viirsCount": 14,
+            "modisMeanReportedFRPMW": 30.2,
+            "viirsMeanReportedFRPMW": 3.2107142857142854
+          },
+          {
+            "cell": "868b84367ffffff",
+            "date": "2024-08-31",
+            "modisCount": 2,
+            "viirsCount": 12,
+            "modisMeanReportedFRPMW": 35.45,
+            "viirsMeanReportedFRPMW": 5.741666666666666
+          },
+          {
+            "cell": "868b84acfffffff",
+            "date": "2024-08-31",
+            "modisCount": 2,
+            "viirsCount": 27,
+            "modisMeanReportedFRPMW": 34.65,
+            "viirsMeanReportedFRPMW": 17.227407407407405
+          },
+          {
+            "cell": "868b84aefffffff",
+            "date": "2024-08-31",
+            "modisCount": 2,
+            "viirsCount": 10,
+            "modisMeanReportedFRPMW": 29.9,
+            "viirsMeanReportedFRPMW": 44.44700000000001
+          },
+          {
+            "cell": "868b85db7ffffff",
+            "date": "2024-08-31",
+            "modisCount": 3,
+            "viirsCount": 25,
+            "modisMeanReportedFRPMW": 72.00000000000001,
+            "viirsMeanReportedFRPMW": 4.4364
+          },
+          {
+            "cell": "868ba22e7ffffff",
+            "date": "2024-08-31",
+            "modisCount": 10,
+            "viirsCount": 29,
+            "modisMeanReportedFRPMW": 40.58,
+            "viirsMeanReportedFRPMW": 15.32206896551724
+          },
+          {
+            "cell": "868bb1627ffffff",
+            "date": "2024-08-31",
+            "modisCount": 2,
+            "viirsCount": 4,
+            "modisMeanReportedFRPMW": 21.75,
+            "viirsMeanReportedFRPMW": 8.9925
+          },
+          {
+            "cell": "868bb162fffffff",
+            "date": "2024-08-31",
+            "modisCount": 1,
+            "viirsCount": 6,
+            "modisMeanReportedFRPMW": 72.3,
+            "viirsMeanReportedFRPMW": 1.7466666666666668
+          },
+          {
+            "cell": "868bb1b97ffffff",
+            "date": "2024-08-31",
+            "modisCount": 2,
+            "viirsCount": 25,
+            "modisMeanReportedFRPMW": 23.5,
+            "viirsMeanReportedFRPMW": 4.7703999999999995
+          }
+        ]
+      }
+    ]
+  }
+}

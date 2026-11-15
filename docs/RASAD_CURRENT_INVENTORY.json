@@ -1,0 +1,455 @@
+{
+  "active": {
+    "generation": "86f1f872f7366fe4",
+    "filename": "86f1f872f7366fe4.sqlite",
+    "audit": "86f1f872f7366fe4-audit.json"
+  },
+  "acceptedRows": 48552057,
+  "sources": [
+    {
+      "dataset": "sa-modis-aqua-nrt",
+      "count": 103363,
+      "first": "2026-09-01",
+      "last": "2026-11-13"
+    },
+    {
+      "dataset": "sa-modis-aqua-standard",
+      "count": 10772150,
+      "first": "2002-07-04",
+      "last": "2026-08-31"
+    },
+    {
+      "dataset": "sa-modis-terra-nrt",
+      "count": 63818,
+      "first": "2026-09-01",
+      "last": "2026-11-13"
+    },
+    {
+      "dataset": "sa-modis-terra-standard",
+      "count": 6662456,
+      "first": "2000-11-01",
+      "last": "2026-08-31"
+    },
+    {
+      "dataset": "sa-n20-noaa20-nrt",
+      "count": 847502,
+      "first": "2026-08-01",
+      "last": "2026-11-14"
+    },
+    {
+      "dataset": "sa-n20-noaa20-standard",
+      "count": 21090900,
+      "first": "2018-04-01",
+      "last": "2026-07-31"
+    },
+    {
+      "dataset": "sa-n21-noaa21-nrt",
+      "count": 817659,
+      "first": "2026-08-01",
+      "last": "2026-11-14"
+    },
+    {
+      "dataset": "sa-n21-noaa21-standard",
+      "count": 8194209,
+      "first": "2023-03-01",
+      "last": "2026-07-31"
+    }
+  ],
+  "yearly": [
+    {
+      "year": "2000",
+      "dataset": "sa-modis-terra-standard",
+      "count": 31506
+    },
+    {
+      "year": "2001",
+      "dataset": "sa-modis-terra-standard",
+      "count": 256615
+    },
+    {
+      "year": "2002",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 454509
+    },
+    {
+      "year": "2002",
+      "dataset": "sa-modis-terra-standard",
+      "count": 296163
+    },
+    {
+      "year": "2003",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 622333
+    },
+    {
+      "year": "2003",
+      "dataset": "sa-modis-terra-standard",
+      "count": 293940
+    },
+    {
+      "year": "2004",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 659343
+    },
+    {
+      "year": "2004",
+      "dataset": "sa-modis-terra-standard",
+      "count": 336786
+    },
+    {
+      "year": "2005",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 618965
+    },
+    {
+      "year": "2005",
+      "dataset": "sa-modis-terra-standard",
+      "count": 334393
+    },
+    {
+      "year": "2006",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 465706
+    },
+    {
+      "year": "2006",
+      "dataset": "sa-modis-terra-standard",
+      "count": 233853
+    },
+    {
+      "year": "2007",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 688337
+    },
+    {
+      "year": "2007",
+      "dataset": "sa-modis-terra-standard",
+      "count": 384990
+    },
+    {
+      "year": "2008",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 436832
+    },
+    {
+      "year": "2008",
+      "dataset": "sa-modis-terra-standard",
+      "count": 234350
+    },
+    {
+      "year": "2009",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 332040
+    },
+    {
+      "year": "2009",
+      "dataset": "sa-modis-terra-standard",
+      "count": 176658
+    },
+    {
+      "year": "2010",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 595563
+    },
+    {
+      "year": "2010",
+      "dataset": "sa-modis-terra-standard",
+      "count": 347418
+    },
+    {
+      "year": "2011",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 333532
+    },
+    {
+      "year": "2011",
+      "dataset": "sa-modis-terra-standard",
+      "count": 194211
+    },
+    {
+      "year": "2012",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 391900
+    },
+    {
+      "year": "2012",
+      "dataset": "sa-modis-terra-standard",
+      "count": 242715
+    },
+    {
+      "year": "2013",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 294090
+    },
+    {
+      "year": "2013",
+      "dataset": "sa-modis-terra-standard",
+      "count": 177887
+    },
+    {
+      "year": "2014",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 317939
+    },
+    {
+      "year": "2014",
+      "dataset": "sa-modis-terra-standard",
+      "count": 200162
+    },
+    {
+      "year": "2015",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 383234
+    },
+    {
+      "year": "2015",
+      "dataset": "sa-modis-terra-standard",
+      "count": 257319
+    },
+    {
+      "year": "2016",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 381608
+    },
+    {
+      "year": "2016",
+      "dataset": "sa-modis-terra-standard",
+      "count": 233041
+    },
+    {
+      "year": "2017",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 395211
+    },
+    {
+      "year": "2017",
+      "dataset": "sa-modis-terra-standard",
+      "count": 256385
+    },
+    {
+      "year": "2018",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 304129
+    },
+    {
+      "year": "2018",
+      "dataset": "sa-modis-terra-standard",
+      "count": 185028
+    },
+    {
+      "year": "2018",
+      "dataset": "sa-n20-noaa20-standard",
+      "count": 1475982
+    },
+    {
+      "year": "2019",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 415380
+    },
+    {
+      "year": "2019",
+      "dataset": "sa-modis-terra-standard",
+      "count": 273982
+    },
+    {
+      "year": "2019",
+      "dataset": "sa-n20-noaa20-standard",
+      "count": 2679936
+    },
+    {
+      "year": "2020",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 500270
+    },
+    {
+      "year": "2020",
+      "dataset": "sa-modis-terra-standard",
+      "count": 331537
+    },
+    {
+      "year": "2020",
+      "dataset": "sa-n20-noaa20-standard",
+      "count": 3297336
+    },
+    {
+      "year": "2021",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 367113
+    },
+    {
+      "year": "2021",
+      "dataset": "sa-modis-terra-standard",
+      "count": 241152
+    },
+    {
+      "year": "2021",
+      "dataset": "sa-n20-noaa20-standard",
+      "count": 2326676
+    },
+    {
+      "year": "2022",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 418664
+    },
+    {
+      "year": "2022",
+      "dataset": "sa-modis-terra-standard",
+      "count": 263589
+    },
+    {
+      "year": "2022",
+      "dataset": "sa-n20-noaa20-standard",
+      "count": 2726831
+    },
+    {
+      "year": "2023",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 399000
+    },
+    {
+      "year": "2023",
+      "dataset": "sa-modis-terra-standard",
+      "count": 270918
+    },
+    {
+      "year": "2023",
+      "dataset": "sa-n20-noaa20-standard",
+      "count": 2481026
+    },
+    {
+      "year": "2023",
+      "dataset": "sa-n21-noaa21-standard",
+      "count": 2227123
+    },
+    {
+      "year": "2024",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 598183
+    },
+    {
+      "year": "2024",
+      "dataset": "sa-modis-terra-standard",
+      "count": 389865
+    },
+    {
+      "year": "2024",
+      "dataset": "sa-n20-noaa20-standard",
+      "count": 3906776
+    },
+    {
+      "year": "2024",
+      "dataset": "sa-n21-noaa21-standard",
+      "count": 3823133
+    },
+    {
+      "year": "2025",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 278905
+    },
+    {
+      "year": "2025",
+      "dataset": "sa-modis-terra-standard",
+      "count": 155797
+    },
+    {
+      "year": "2025",
+      "dataset": "sa-n20-noaa20-standard",
+      "count": 1652838
+    },
+    {
+      "year": "2025",
+      "dataset": "sa-n21-noaa21-standard",
+      "count": 1610855
+    },
+    {
+      "year": "2026",
+      "dataset": "sa-modis-aqua-nrt",
+      "count": 103363
+    },
+    {
+      "year": "2026",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 119364
+    },
+    {
+      "year": "2026",
+      "dataset": "sa-modis-terra-nrt",
+      "count": 63818
+    },
+    {
+      "year": "2026",
+      "dataset": "sa-modis-terra-standard",
+      "count": 62196
+    },
+    {
+      "year": "2026",
+      "dataset": "sa-n20-noaa20-nrt",
+      "count": 847502
+    },
+    {
+      "year": "2026",
+      "dataset": "sa-n20-noaa20-standard",
+      "count": 543499
+    },
+    {
+      "year": "2026",
+      "dataset": "sa-n21-noaa21-nrt",
+      "count": 817659
+    },
+    {
+      "year": "2026",
+      "dataset": "sa-n21-noaa21-standard",
+      "count": 533098
+    }
+  ],
+  "files": [
+    {
+      "path": "server\\data\\incoming\\DL_FIRE_J1V-C2_844721.zip",
+      "bytes": 124002
+    },
+    {
+      "path": "server\\data\\incoming\\DL_FIRE_J2V-C2_844723.zip",
+      "bytes": 52349
+    },
+    {
+      "path": "server\\data\\incoming\\DL_FIRE_M-C61_844700.zip",
+      "bytes": 37715
+    },
+    {
+      "path": "server\\data\\incoming\\DL_FIRE_SV-C2_844716.zip",
+      "bytes": 188633
+    },
+    {
+      "path": "server\\data\\incoming\\J2_VIIRS_C2_South_America_VJ214IMGTDL_NRT_2026318.txt",
+      "bytes": 299537
+    },
+    {
+      "path": "server\\data\\incoming\\MOIDS.zip",
+      "bytes": 719765
+    },
+    {
+      "path": "server\\data\\incoming\\viirs.zip",
+      "bytes": 2018920
+    },
+    {
+      "path": "server\\data\\incoming\\viirs1.zip",
+      "bytes": 2096103
+    },
+    {
+      "path": "server\\data\\incoming\\historical\\DL_FIRE_J1V-C2_847873old.zip",
+      "bytes": 398122984
+    },
+    {
+      "path": "server\\data\\incoming\\historical\\DL_FIRE_J2V-C2_847874old.zip",
+      "bytes": 162028564
+    },
+    {
+      "path": "server\\data\\incoming\\historical\\DL_FIRE_M-C61_847869old.zip",
+      "bytes": 318814733
+    }
+  ],
+  "environmentalRasterFiles": [],
+  "databaseBytes": 4473511936,
+  "rawBytes": 884503305,
+  "logoPresent": true
+}

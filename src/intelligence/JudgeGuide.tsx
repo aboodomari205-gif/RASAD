@@ -4,7 +4,7 @@ import { t } from '../i18n/translate';
 import type { Observation } from '../../shared/model';
 const steps=[
   ['The problem','Two sensors sample thermal activity differently. Counts and confidence scales are not interchangeable.'],
-  ['Real Ajloun observations','Original source observations retain their actual platform and processing stage. The selected UTC window is bounded; coverage remains unknown. Return through Evidence Engine after inspecting a source.'],
+  ['Real Brazil observations','Original source observations retain their actual platform and processing stage. The selected UTC window is bounded; coverage remains unknown. Return through Evidence Engine after inspecting a source.'],
   ['Harmonization','Inspect candidate edges and their distance / UTC deltas. Connected groups are not confirmed events.'],
   ['Sensitivity','Select a threshold setting in the chart. Compare pairs, participating observations and groups.'],
   ['Evidence verdict','Read the coverage gate: descriptive evidence does not establish validated anomalies.'],
@@ -17,7 +17,7 @@ export default function JudgeGuide({records,onInspect,onExport,onResearch,onStar
   useEffect(()=>{try{sessionStorage.setItem('firepulse.guide.step',String(step));}catch{/* Optional session persistence. */}if(step>=0)heading.current?.focus({preventScroll:true});},[step]);
   const jump=(id:string)=>{const target=document.getElementById(id);if(target instanceof HTMLDetailsElement)target.open=true;target?.scrollIntoView({block:'start'});target?.focus({preventScroll:true});};
   return <aside className="judge-guide" aria-label={t('Guided demonstration')}>
-    {step<0?<><span className="atlas-overline">{t('90-SECOND FIELD GUIDE')}</span><button id="start-judge-guide" onClick={start}>{t('Start guided demonstration')}</button><p>{t('Starting the guide opens a delivered Ajloun comparison year with candidate associations. This is an example, not a baseline.')}</p></>:<>
+    {step<0?<><span className="atlas-overline">{t('90-SECOND FIELD GUIDE')}</span><button id="start-judge-guide" onClick={start}>{t('Start guided demonstration')}</button><p>{t('Starting the guide opens a delivered Brazil comparison year with candidate associations. This is an example, not a baseline.')}</p></>:<>
       <div className="guide-progress" aria-hidden="true">{steps.map((_,i)=><span key={i} data-active={i<=step}/>)}</div>
       <motion.div key={step} initial={{opacity:.5}} animate={{opacity:1}}><span className="atlas-overline">{step+1} / 6 · {t('Self-paced • approximately 90 seconds')}</span><h3 ref={heading} tabIndex={-1}>{t(steps[step][0])}</h3><p>{t(steps[step][1])}</p></motion.div>
       <div className="guide-action">

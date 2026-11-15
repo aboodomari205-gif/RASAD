@@ -1,0 +1,9 @@
+# RASAD observed-condition validation
+
+Implemented: conditional same-calendar-month comparisons against preceding observed years of the exact eligible Standard source/platform/product/collection/confidence stratum. Minimum 3–10 prior observed years is an explicit software support rule. NRT, fixtures, unknown lineage and unresolved NOAA-20/21 Standard lineage do not qualify.
+
+Outputs: exact reference years/counts, median, difference from median, competition rank, denominator, ties, unrepresented prior years, prior maximum and empirical midrank percentile = 100 × (prior values below candidate + 0.5 × ties) / reference count. Candidate values never enter their own reference. Even-sample medians average the middle two values. Missing months and unsupported/zero-only evidence are not imputed. Insufficient support returns null scores, not zero anomalies.
+
+These are positive-delivery conditional references, subject to selection bias, unknown acquisition opportunity, cloud/sampling changes and multiple screening. They are not unbiased historical climatology, calibrated probabilities, verified wildfire predictions or emergency scores. Incomplete current months are not treated as completed full-month baselines; eligible supplied MODIS Standard reference months end before current NRT deliveries. No exposure-normalized robust z-score or spatial anomaly significance map is claimed.
+
+Validation: `tests/observedPeriods.test.ts` verifies chronology, missing years, source separation, minimum support, ties, odd/even medians and no candidate leakage. The independent database audit and historical browser tests provide additional data/interaction checks; the final report records exact executed outcomes. Scientific exposure-aware anomaly validation remains blocked by absent opportunity inputs.

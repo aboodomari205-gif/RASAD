@@ -1,3 +1,4 @@
+import {equalAreaPoint,equalAreaCell,GRID_METHOD} from './equalArea.ts';
 import type { Availability, Observation } from './model.ts';
 import { validUTCDate } from './observations.ts';
 export type MatchOptions = { distanceKm: number; minutes: number };
@@ -95,9 +96,9 @@ export function comparePeriods(input: readonly Observation[], a: EvidencePeriod,
 }
 export function thermalFingerprint(input:readonly Observation[]) {
   const records=unique(input).records.filter(o=>!o.provenance.fixture);
-  const cells=new Map<string,{key:string;sensor:string;datasetId:string;west:number;south:number;ids:string[];dates:string[]}>();
-  for(const o of records){const west=Math.floor(o.longitude/0.02)*0.02,south=Math.floor(o.latitude/0.02)*0.02;const key=groupKey(o)+':'+west+':'+south;const cell=cells.get(key)??{key,sensor:o.sensor,datasetId:o.datasetId,west,south,ids:[],dates:[]};cell.ids.push(o.id);if(!cell.dates.includes(o.utcDate))cell.dates.push(o.utcDate);cells.set(key,cell);}
-  return {methodology:'firepulse.descriptive-spatial-bins/v1',cellSizeDegrees:0.02,meaning:'Fixed longitude/latitude bins, not fire perimeters, geolocation accuracy or equal-area density',cells:[...cells.values()].sort((a,b)=>b.ids.length-a.ids.length),years:[...new Set(records.map(o=>o.utcDate.slice(0,4)))].sort()};
+  const cells=new Map<string,{key:string;sensor:string;datasetId:string;xM:number;yM:number;ids:string[];dates:string[]}>();
+  for(const o of records){const [x,y]=equalAreaPoint(o.longitude,o.latitude),xM=Math.floor(x/2000)*2000,yM=Math.floor(y/2000)*2000;const key=groupKey(o)+':'+equalAreaCell(o.longitude,o.latitude,2000);const cell=cells.get(key)??{key,sensor:o.sensor,datasetId:o.datasetId,xM,yM,ids:[],dates:[]};cell.ids.push(o.id);if(!cell.dates.includes(o.utcDate))cell.dates.push(o.utcDate);cells.set(key,cell);}
+  return {methodology:'rasad.equal-area-fingerprint/v1',grid:{...GRID_METHOD,sizeM:2000},meaning:'Source-separated 2 km equal-area cells on the declared authalic sphere, not fire events, perimeters or burned area',cells:[...cells.values()].sort((a,b)=>b.ids.length-a.ids.length),years:[...new Set(records.map(o=>o.utcDate.slice(0,4)))].sort()};
 }
 export function evidenceVerdicts(records: readonly Observation[], availability: Availability, pairs: readonly {modisId:string;viirsId:string}[]) {
   return [

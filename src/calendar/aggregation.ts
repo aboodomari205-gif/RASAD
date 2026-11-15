@@ -10,6 +10,21 @@ export type DailyActivity = { date: string; status: 'observed' | 'verified-zero'
 export type CalendarMapSelection = { id: number; region: ObservationRegion; date: string; sensor: Instrument; observationId?: string };
 export function aggregateDailyObservations(collection: ObservationCollection, options: { region: ObservationRegion; instrument: Instrument; coverage?: readonly VerifiedDayCoverage[] }) {
   const normalized = normalizeCollection(collection, { region: options.region, sensor: options.instrument });
+  if(collection.metadata?.scalable && Array.isArray(collection.metadata.dailySummary)){
+    const days=new Map<string,DailyActivity>();
+    type SummaryRow={datasetId:string;sensor:string;platform:string;processing:string;period:string;count:number;frpSum:number|null;frpReported:number};
+    for(const row of collection.metadata.dailySummary as SummaryRow[]){
+      if(row.sensor!==options.instrument)continue;
+      const day=days.get(row.period)??{date:row.period,status:'observed',observations:[],count:0,frpSum:null,frpReported:0,frpComplete:false,coverageSources:[],contributions:[]};
+      day.count+=row.count;day.frpReported+=row.frpReported;
+      if(row.frpSum!==null)day.frpSum=(day.frpSum??0)+row.frpSum;
+      day.frpComplete=day.count===day.frpReported;
+      day.contributions!.push({key:row.datasetId,label:[row.sensor,row.platform,row.processing].join(' / '),count:row.count,frpSum:row.frpSum,frpReported:row.frpReported});
+      days.set(row.period,day);
+    }
+    for(const o of normalized.observations){const day=days.get(o.utcDate);if(day)day.observations.push({feature:o.feature,date:o.utcDate,acquiredAt:o.acquiredAt,instrument:options.instrument,frp:o.frp});}
+    return {days,duplicatesRemoved:0,rejectedRecords:0,sensorExcluded:0,regionMismatch:normalized.regionMismatch};
+  }
   const ids=[...new Set(normalized.observations.map(o=>o.datasetId))];
   const reviewed=normalized.datasets.every(d=>d.kind==='archive'&&d.source==='NASA FIRMS'&&typeof (d as unknown as Record<string,unknown>).deliveryProfile==='string');
   const groups=ids.length>1&&reviewed?ids.map(id=>aggregateDays(normalized.observations.filter(o=>o.datasetId===id),{region:options.region,sensor:options.instrument,availability:normalized.availability,coverage:[],datasetIds:[id]})): [aggregateDays(normalized.observations,{region:options.region,sensor:options.instrument,availability:normalized.availability,coverage:normalized.regionMismatch?[]:options.coverage,datasetIds:normalized.datasets.map(d=>d.id)})];

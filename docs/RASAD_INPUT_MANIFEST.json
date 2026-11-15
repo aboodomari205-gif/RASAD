@@ -1,0 +1,3747 @@
+{
+  "generation": "86f1f872f7366fe4",
+  "filename": "86f1f872f7366fe4.sqlite",
+  "audit": "86f1f872f7366fe4-audit.json",
+  "deliveryDateDiagnostics": {
+    "MOIDS.zip": {
+      "comparisonSpanUTC": [
+        "2026-10-31",
+        "2026-11-14"
+      ],
+      "availableAcquisitionDates": [
+        "2026-10-31",
+        "2026-11-01",
+        "2026-11-02",
+        "2026-11-04",
+        "2026-11-05",
+        "2026-11-06",
+        "2026-11-07",
+        "2026-11-08",
+        "2026-11-09",
+        "2026-11-10",
+        "2026-11-11",
+        "2026-11-12",
+        "2026-11-13"
+      ],
+      "datesWithoutSuppliedRecords": [
+        "2026-11-03",
+        "2026-11-14"
+      ],
+      "filenameDateMismatches": [],
+      "meaning": "Dates are parsed from actual acquisition columns across supplied members. An absent positive-record date is not verified zero, a missing swath or proof of a missing physical file. The comparison span is the union of supplied daily-ZIP dates, not an assumed delivery contract."
+    },
+    "viirs.zip": {
+      "comparisonSpanUTC": [
+        "2026-10-31",
+        "2026-11-14"
+      ],
+      "availableAcquisitionDates": [
+        "2026-10-31",
+        "2026-11-01",
+        "2026-11-02",
+        "2026-11-03",
+        "2026-11-04",
+        "2026-11-05",
+        "2026-11-06",
+        "2026-11-07",
+        "2026-11-08",
+        "2026-11-09",
+        "2026-11-10",
+        "2026-11-11",
+        "2026-11-12",
+        "2026-11-13",
+        "2026-11-14"
+      ],
+      "datesWithoutSuppliedRecords": [],
+      "filenameDateMismatches": [
+        {
+          "member": "viirs/J2_VIIRS_C2_South_America_VJ214IMGTDL_NRT_2026318.txt",
+          "filenameDate": "2026-11-14",
+          "actualAcquisitionDates": [
+            "2026-11-01"
+          ]
+        }
+      ],
+      "meaning": "Dates are parsed from actual acquisition columns across supplied members. An absent positive-record date is not verified zero, a missing swath or proof of a missing physical file. The comparison span is the union of supplied daily-ZIP dates, not an assumed delivery contract."
+    },
+    "viirs1.zip": {
+      "comparisonSpanUTC": [
+        "2026-10-31",
+        "2026-11-14"
+      ],
+      "availableAcquisitionDates": [
+        "2026-10-31",
+        "2026-11-01",
+        "2026-11-02",
+        "2026-11-03",
+        "2026-11-04",
+        "2026-11-05",
+        "2026-11-06",
+        "2026-11-07",
+        "2026-11-08",
+        "2026-11-09",
+        "2026-11-10",
+        "2026-11-11",
+        "2026-11-12",
+        "2026-11-13",
+        "2026-11-14"
+      ],
+      "datesWithoutSuppliedRecords": [],
+      "filenameDateMismatches": [],
+      "meaning": "Dates are parsed from actual acquisition columns across supplied members. An absent positive-record date is not verified zero, a missing swath or proof of a missing physical file. The comparison span is the union of supplied daily-ZIP dates, not an assumed delivery contract."
+    }
+  },
+  "quarantineRecords": [
+    {
+      "delivery": "aedf016dd9d14e7afccfdfa00503f4194eabceebd094ccd5fa4e761e5897eb61:fire_archive_M-C61_847869.csv",
+      "line": 5075932,
+      "reason": "FRP",
+      "originalValues": {
+        "latitude": "-12.8738",
+        "longitude": "-50.5948",
+        "brightness": "361.7",
+        "scan": "1",
+        "track": "1",
+        "acq_date": "2007-08-30",
+        "acq_time": "1709",
+        "satellite": "Aqua",
+        "instrument": "MODIS",
+        "confidence": "0",
+        "version": "6.03",
+        "bright_t31": "315.2",
+        "frp": "-21",
+        "daynight": "D",
+        "type": "0"
+      }
+    },
+    {
+      "delivery": "aedf016dd9d14e7afccfdfa00503f4194eabceebd094ccd5fa4e761e5897eb61:fire_archive_M-C61_847869.csv",
+      "line": 14191793,
+      "reason": "FRP",
+      "originalValues": {
+        "latitude": "-17.0616",
+        "longitude": "-58.3027",
+        "brightness": "324.1",
+        "scan": "1.1",
+        "track": "1.1",
+        "acq_date": "2021-08-18",
+        "acq_time": "0508",
+        "satellite": "Aqua",
+        "instrument": "MODIS",
+        "confidence": "0",
+        "version": "6.03",
+        "bright_t31": "298.5",
+        "frp": "-1.3",
+        "daynight": "N",
+        "type": "0"
+      }
+    }
+  ],
+  "rawRows": 48952994,
+  "acceptedRows": 48552057,
+  "excluded": 379274,
+  "duplicates": 21661,
+  "quarantined": 2,
+  "sources": [
+    {
+      "dataset": "sa-modis-aqua-nrt",
+      "count": 103363,
+      "first": "2026-09-01",
+      "last": "2026-11-13",
+      "positiveDates": 73
+    },
+    {
+      "dataset": "sa-modis-aqua-standard",
+      "count": 10772150,
+      "first": "2002-07-04",
+      "last": "2026-08-31",
+      "positiveDates": 8798
+    },
+    {
+      "dataset": "sa-modis-terra-nrt",
+      "count": 63818,
+      "first": "2026-09-01",
+      "last": "2026-11-13",
+      "positiveDates": 73
+    },
+    {
+      "dataset": "sa-modis-terra-standard",
+      "count": 6662456,
+      "first": "2000-11-01",
+      "last": "2026-08-31",
+      "positiveDates": 9369
+    },
+    {
+      "dataset": "sa-n20-noaa20-nrt",
+      "count": 847502,
+      "first": "2026-08-01",
+      "last": "2026-11-14",
+      "positiveDates": 106
+    },
+    {
+      "dataset": "sa-n20-noaa20-standard",
+      "count": 21090900,
+      "first": "2018-04-01",
+      "last": "2026-07-31",
+      "positiveDates": 3038
+    },
+    {
+      "dataset": "sa-n21-noaa21-nrt",
+      "count": 817659,
+      "first": "2026-08-01",
+      "last": "2026-11-14",
+      "positiveDates": 106
+    },
+    {
+      "dataset": "sa-n21-noaa21-standard",
+      "count": 8194209,
+      "first": "2023-03-01",
+      "last": "2026-07-31",
+      "positiveDates": 1247
+    }
+  ],
+  "coverageMatrix": [
+    {
+      "year": "2000",
+      "dataset": "sa-modis-terra-standard",
+      "count": 31506,
+      "positiveDates": 61,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2001",
+      "dataset": "sa-modis-terra-standard",
+      "count": 256615,
+      "positiveDates": 347,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2002",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 454509,
+      "positiveDates": 170,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2002",
+      "dataset": "sa-modis-terra-standard",
+      "count": 296163,
+      "positiveDates": 355,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2003",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 622333,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2003",
+      "dataset": "sa-modis-terra-standard",
+      "count": 293940,
+      "positiveDates": 357,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2004",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 659343,
+      "positiveDates": 366,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2004",
+      "dataset": "sa-modis-terra-standard",
+      "count": 336786,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2005",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 618965,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2005",
+      "dataset": "sa-modis-terra-standard",
+      "count": 334393,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2006",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 465706,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2006",
+      "dataset": "sa-modis-terra-standard",
+      "count": 233853,
+      "positiveDates": 363,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2007",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 688337,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2007",
+      "dataset": "sa-modis-terra-standard",
+      "count": 384990,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2008",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 436832,
+      "positiveDates": 366,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2008",
+      "dataset": "sa-modis-terra-standard",
+      "count": 234350,
+      "positiveDates": 363,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2009",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 332040,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2009",
+      "dataset": "sa-modis-terra-standard",
+      "count": 176658,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2010",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 595563,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2010",
+      "dataset": "sa-modis-terra-standard",
+      "count": 347418,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2011",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 333532,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2011",
+      "dataset": "sa-modis-terra-standard",
+      "count": 194211,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2012",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 391900,
+      "positiveDates": 366,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2012",
+      "dataset": "sa-modis-terra-standard",
+      "count": 242715,
+      "positiveDates": 366,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2013",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 294090,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2013",
+      "dataset": "sa-modis-terra-standard",
+      "count": 177887,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2014",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 317939,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2014",
+      "dataset": "sa-modis-terra-standard",
+      "count": 200162,
+      "positiveDates": 364,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2015",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 383234,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2015",
+      "dataset": "sa-modis-terra-standard",
+      "count": 257319,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2016",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 381608,
+      "positiveDates": 366,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2016",
+      "dataset": "sa-modis-terra-standard",
+      "count": 233041,
+      "positiveDates": 357,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2017",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 395211,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2017",
+      "dataset": "sa-modis-terra-standard",
+      "count": 256385,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2018",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 304129,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2018",
+      "dataset": "sa-modis-terra-standard",
+      "count": 185028,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2018",
+      "dataset": "sa-n20-noaa20-standard",
+      "count": 1475982,
+      "positiveDates": 275,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2019",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 415380,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2019",
+      "dataset": "sa-modis-terra-standard",
+      "count": 273982,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2019",
+      "dataset": "sa-n20-noaa20-standard",
+      "count": 2679936,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2020",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 500270,
+      "positiveDates": 366,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2020",
+      "dataset": "sa-modis-terra-standard",
+      "count": 331537,
+      "positiveDates": 366,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2020",
+      "dataset": "sa-n20-noaa20-standard",
+      "count": 3297336,
+      "positiveDates": 366,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2021",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 367113,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2021",
+      "dataset": "sa-modis-terra-standard",
+      "count": 241152,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2021",
+      "dataset": "sa-n20-noaa20-standard",
+      "count": 2326676,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2022",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 418664,
+      "positiveDates": 349,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2022",
+      "dataset": "sa-modis-terra-standard",
+      "count": 263589,
+      "positiveDates": 353,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2022",
+      "dataset": "sa-n20-noaa20-standard",
+      "count": 2726831,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2023",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 399000,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2023",
+      "dataset": "sa-modis-terra-standard",
+      "count": 270918,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2023",
+      "dataset": "sa-n20-noaa20-standard",
+      "count": 2481026,
+      "positiveDates": 360,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2023",
+      "dataset": "sa-n21-noaa21-standard",
+      "count": 2227123,
+      "positiveDates": 306,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2024",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 598183,
+      "positiveDates": 366,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2024",
+      "dataset": "sa-modis-terra-standard",
+      "count": 389865,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2024",
+      "dataset": "sa-n20-noaa20-standard",
+      "count": 3906776,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2024",
+      "dataset": "sa-n21-noaa21-standard",
+      "count": 3823133,
+      "positiveDates": 364,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2025",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 278905,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2025",
+      "dataset": "sa-modis-terra-standard",
+      "count": 155797,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2025",
+      "dataset": "sa-n20-noaa20-standard",
+      "count": 1652838,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2025",
+      "dataset": "sa-n21-noaa21-standard",
+      "count": 1610855,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2026",
+      "dataset": "sa-modis-aqua-nrt",
+      "count": 103363,
+      "positiveDates": 73,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2026",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 119364,
+      "positiveDates": 243,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2026",
+      "dataset": "sa-modis-terra-nrt",
+      "count": 63818,
+      "positiveDates": 73,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2026",
+      "dataset": "sa-modis-terra-standard",
+      "count": 62196,
+      "positiveDates": 242,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2026",
+      "dataset": "sa-n20-noaa20-nrt",
+      "count": 847502,
+      "positiveDates": 106,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2026",
+      "dataset": "sa-n20-noaa20-standard",
+      "count": 543499,
+      "positiveDates": 212,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2026",
+      "dataset": "sa-n21-noaa21-nrt",
+      "count": 817659,
+      "positiveDates": 106,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2026",
+      "dataset": "sa-n21-noaa21-standard",
+      "count": 533098,
+      "positiveDates": 212,
+      "opportunity": "unknown"
+    }
+  ],
+  "inputs": [
+    {
+      "file": "server/data/incoming/historical/DL_FIRE_J1V-C2_847873old.zip",
+      "sha256": "207b020d5ff1282c6d35bcc5e2f843fde9d281562616e9750b38b30425e7caa7",
+      "bytes": 398122984,
+      "members": [
+        {
+          "name": "fire_archive_J1V-C2_847873.csv",
+          "bytes": 1738895527,
+          "compressedBytes": 384727687,
+          "schema": [
+            "latitude",
+            "longitude",
+            "brightness",
+            "scan",
+            "track",
+            "acq_date",
+            "acq_time",
+            "satellite",
+            "instrument",
+            "confidence",
+            "version",
+            "bright_t31",
+            "frp",
+            "daynight",
+            "type"
+          ],
+          "rowCount": 21281290,
+          "acceptedCount": 21090900,
+          "duplicates": 0,
+          "quarantined": 0,
+          "outsidePolygon": 190390,
+          "dateRange": [
+            "2018-04-01",
+            "2026-07-31"
+          ],
+          "acceptedGeographicExtent": [
+            -81.29187,
+            -55.23397,
+            -34.79571,
+            12.30081
+          ],
+          "memberSHA256": "1bbbe35c1a25484654117bf52774a2f2220da27339c75e29bae1ed4214fc96eb",
+          "sources": [
+            {
+              "id": "sa-n20-noaa20-standard",
+              "title": "NOAA-20 VIIRS standard",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "VIIRS",
+              "platform": "NOAA-20",
+              "product": "FIRMS J1V-C2 archive",
+              "version": "2",
+              "processing": "standard",
+              "deliveryProfile": "N20",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved",
+                "historicalReference": "blocked-lineage",
+                "processingValidation": "Delivery-declared Standard; current NASA documentation conflicts. Supplier clarification required."
+              }
+            }
+          ]
+        },
+        {
+          "name": "fire_nrt_J1V-C2_847873.csv",
+          "bytes": 62895401,
+          "compressedBytes": 13394682,
+          "schema": [
+            "latitude",
+            "longitude",
+            "brightness",
+            "scan",
+            "track",
+            "acq_date",
+            "acq_time",
+            "satellite",
+            "instrument",
+            "confidence",
+            "version",
+            "bright_t31",
+            "frp",
+            "daynight"
+          ],
+          "rowCount": 742861,
+          "acceptedCount": 739469,
+          "duplicates": 0,
+          "quarantined": 0,
+          "outsidePolygon": 3392,
+          "dateRange": [
+            "2026-08-01",
+            "2026-10-31"
+          ],
+          "acceptedGeographicExtent": [
+            -81.28978,
+            -54.45819,
+            -34.81322,
+            11.95078
+          ],
+          "memberSHA256": "91322cb71fe082aed07979abd3b27a45ea32b743e32d05f19bdc13ee6dfa5df3",
+          "sources": [
+            {
+              "id": "sa-n20-noaa20-nrt",
+              "title": "NOAA-20 VIIRS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "VIIRS",
+              "platform": "NOAA-20",
+              "product": "VJ114IMGTDL_NRT",
+              "version": "2",
+              "processing": "nrt",
+              "deliveryProfile": "N20",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Readme.txt",
+          "bytes": 89,
+          "compressedBytes": 77,
+          "processingClass": "archive documentation / not an observation table"
+        }
+      ]
+    },
+    {
+      "file": "server/data/incoming/historical/DL_FIRE_J2V-C2_847874old.zip",
+      "sha256": "8a6da30662a1e3d5a41d4cd43ba50dfa71434276a33fe976de40da57bd79c02b",
+      "bytes": 162028564,
+      "members": [
+        {
+          "name": "fire_archive_J2V-C2_847874.csv",
+          "bytes": 675758258,
+          "compressedBytes": 149098102,
+          "schema": [
+            "latitude",
+            "longitude",
+            "brightness",
+            "scan",
+            "track",
+            "acq_date",
+            "acq_time",
+            "satellite",
+            "instrument",
+            "confidence",
+            "version",
+            "bright_t31",
+            "frp",
+            "daynight",
+            "type"
+          ],
+          "rowCount": 8272381,
+          "acceptedCount": 8194209,
+          "duplicates": 0,
+          "quarantined": 0,
+          "outsidePolygon": 78172,
+          "dateRange": [
+            "2023-03-01",
+            "2026-07-31"
+          ],
+          "acceptedGeographicExtent": [
+            -81.29063,
+            -54.83468,
+            -34.79864,
+            12.25717
+          ],
+          "memberSHA256": "9b02b8a123306cf0320cf2aae8f4dc49cc506115d22ff3df4865a8c8b2078e97",
+          "sources": [
+            {
+              "id": "sa-n21-noaa21-standard",
+              "title": "NOAA-21 VIIRS standard",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "VIIRS",
+              "platform": "NOAA-21",
+              "product": "FIRMS J2V-C2 archive",
+              "version": "2",
+              "processing": "standard",
+              "deliveryProfile": "N21",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved",
+                "historicalReference": "blocked-lineage",
+                "processingValidation": "Delivery-declared Standard; current NASA documentation conflicts. Supplier clarification required."
+              }
+            }
+          ]
+        },
+        {
+          "name": "fire_nrt_J2V-C2_847874.csv",
+          "bytes": 60864138,
+          "compressedBytes": 12929847,
+          "schema": [
+            "latitude",
+            "longitude",
+            "brightness",
+            "scan",
+            "track",
+            "acq_date",
+            "acq_time",
+            "satellite",
+            "instrument",
+            "confidence",
+            "version",
+            "bright_t31",
+            "frp",
+            "daynight"
+          ],
+          "rowCount": 718794,
+          "acceptedCount": 715339,
+          "duplicates": 0,
+          "quarantined": 0,
+          "outsidePolygon": 3455,
+          "dateRange": [
+            "2026-08-01",
+            "2026-10-31"
+          ],
+          "acceptedGeographicExtent": [
+            -81.28662,
+            -54.45951,
+            -34.80922,
+            11.96036
+          ],
+          "memberSHA256": "a89c57c294a78ba7ef8b2307a56363455ad1673daf39175d9e61fa7f3f8176e8",
+          "sources": [
+            {
+              "id": "sa-n21-noaa21-nrt",
+              "title": "NOAA-21 VIIRS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "VIIRS",
+              "platform": "NOAA-21",
+              "product": "VJ214IMGTDL_NRT",
+              "version": "2",
+              "processing": "nrt",
+              "deliveryProfile": "N21",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Readme.txt",
+          "bytes": 89,
+          "compressedBytes": 77,
+          "processingClass": "archive documentation / not an observation table"
+        }
+      ]
+    },
+    {
+      "file": "server/data/incoming/historical/DL_FIRE_M-C61_847869old.zip",
+      "sha256": "aedf016dd9d14e7afccfdfa00503f4194eabceebd094ccd5fa4e761e5897eb61",
+      "bytes": 318814733,
+      "members": [
+        {
+          "name": "fire_archive_M-C61_847869.csv",
+          "bytes": 1400342867,
+          "compressedBytes": 315783262,
+          "schema": [
+            "latitude",
+            "longitude",
+            "brightness",
+            "scan",
+            "track",
+            "acq_date",
+            "acq_time",
+            "satellite",
+            "instrument",
+            "confidence",
+            "version",
+            "bright_t31",
+            "frp",
+            "daynight",
+            "type"
+          ],
+          "rowCount": 17535420,
+          "acceptedCount": 17434606,
+          "duplicates": 0,
+          "quarantined": 2,
+          "outsidePolygon": 100812,
+          "dateRange": [
+            "2000-11-01",
+            "2026-08-31"
+          ],
+          "acceptedGeographicExtent": [
+            -81.2774,
+            -54.9,
+            -34.8078,
+            12.3839
+          ],
+          "memberSHA256": "d684db2ab110f3a2726c81e0f1d1cf99f2f536b27f76f01987ce45a987631d77",
+          "sources": [
+            {
+              "id": "sa-modis-terra-standard",
+              "title": "Terra MODIS standard",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "MODIS",
+              "platform": "Terra",
+              "product": "FIRMS M-C61 archive",
+              "version": "6.1",
+              "processing": "standard",
+              "deliveryProfile": "MODIS",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            },
+            {
+              "id": "sa-modis-aqua-standard",
+              "title": "Aqua MODIS standard",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "MODIS",
+              "platform": "Aqua",
+              "product": "FIRMS M-C61 archive",
+              "version": "6.1",
+              "processing": "standard",
+              "deliveryProfile": "MODIS",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            }
+          ]
+        },
+        {
+          "name": "fire_nrt_M-C61_847869.csv",
+          "bytes": 11985084,
+          "compressedBytes": 3030860,
+          "schema": [
+            "latitude",
+            "longitude",
+            "brightness",
+            "scan",
+            "track",
+            "acq_date",
+            "acq_time",
+            "satellite",
+            "instrument",
+            "confidence",
+            "version",
+            "bright_t31",
+            "frp",
+            "daynight"
+          ],
+          "rowCount": 137509,
+          "acceptedCount": 137068,
+          "duplicates": 0,
+          "quarantined": 0,
+          "outsidePolygon": 441,
+          "dateRange": [
+            "2026-09-01",
+            "2026-10-31"
+          ],
+          "acceptedGeographicExtent": [
+            -81.11674,
+            -48.30951,
+            -34.81877,
+            11.74618
+          ],
+          "memberSHA256": "edd7fc8f5b53cb0e504ba16743a2e5b072bf1165fc7a33599c802c679541605b",
+          "sources": [
+            {
+              "id": "sa-modis-terra-nrt",
+              "title": "Terra MODIS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "MODIS",
+              "platform": "Terra",
+              "product": "MCD14DL_NRT",
+              "version": "6.1",
+              "processing": "nrt",
+              "deliveryProfile": "MODIS",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            },
+            {
+              "id": "sa-modis-aqua-nrt",
+              "title": "Aqua MODIS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "MODIS",
+              "platform": "Aqua",
+              "product": "MCD14DL_NRT",
+              "version": "6.1",
+              "processing": "nrt",
+              "deliveryProfile": "MODIS",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Readme.txt",
+          "bytes": 89,
+          "compressedBytes": 77,
+          "processingClass": "archive documentation / not an observation table"
+        }
+      ]
+    },
+    {
+      "file": "server/data/incoming/J2_VIIRS_C2_South_America_VJ214IMGTDL_NRT_2026318.txt",
+      "sha256": "d6f5fc805700db5ce3f1308941019bae348471f3a5408df294c2e320d2a2918d",
+      "bytes": 299537,
+      "members": [
+        {
+          "name": "J2_VIIRS_C2_South_America_VJ214IMGTDL_NRT_2026318.txt",
+          "bytes": 299537,
+          "schema": [
+            "latitude",
+            "longitude",
+            "bright_ti4",
+            "scan",
+            "track",
+            "acq_date",
+            "acq_time",
+            "satellite",
+            "confidence",
+            "version",
+            "bright_ti5",
+            "frp",
+            "daynight"
+          ],
+          "rowCount": 3512,
+          "acceptedCount": 3469,
+          "duplicates": 0,
+          "quarantined": 0,
+          "outsidePolygon": 43,
+          "dateRange": [
+            "2026-11-14",
+            "2026-11-14"
+          ],
+          "acceptedGeographicExtent": [
+            -80.62656,
+            -46.78733,
+            -35.68546,
+            11.75097
+          ],
+          "memberSHA256": "d6f5fc805700db5ce3f1308941019bae348471f3a5408df294c2e320d2a2918d",
+          "sources": [
+            {
+              "id": "sa-n21-noaa21-nrt",
+              "title": "NOAA-21 VIIRS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "VIIRS",
+              "platform": "NOAA-21",
+              "product": "VJ214IMGTDL_NRT",
+              "version": "2",
+              "processing": "nrt",
+              "deliveryProfile": "N21",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "server/data/incoming/MOIDS.zip",
+      "sha256": "6c4aee6ee7de5307017bed4e9dded499f5d4013fa06370caf73f2d729e201082",
+      "bytes": 719765,
+      "members": [
+        {
+          "name": "MOIDS/MODIS_C6_1_South_America_MCD14DL_NRT_2026304.txt",
+          "bytes": 194658,
+          "compressedBytes": 54673,
+          "schema": [
+            "latitude",
+            "longitude",
+            "brightness",
+            "scan",
+            "track",
+            "acq_date",
+            "acq_time",
+            "satellite",
+            "confidence",
+            "version",
+            "bright_t31",
+            "frp",
+            "daynight"
+          ],
+          "rowCount": 2471,
+          "acceptedCount": 0,
+          "duplicates": 2464,
+          "quarantined": 0,
+          "outsidePolygon": 7,
+          "dateRange": [
+            null,
+            null
+          ],
+          "acceptedGeographicExtent": [
+            180,
+            90,
+            -180,
+            -90
+          ],
+          "memberSHA256": "94e61e699b83f709d861335c7796d83b091216d7adeaa9432894ea032833391a",
+          "sources": []
+        },
+        {
+          "name": "MOIDS/MODIS_C6_1_South_America_MCD14DL_NRT_2026305.txt",
+          "bytes": 218152,
+          "compressedBytes": 60052,
+          "schema": [
+            "latitude",
+            "longitude",
+            "brightness",
+            "scan",
+            "track",
+            "acq_date",
+            "acq_time",
+            "satellite",
+            "confidence",
+            "version",
+            "bright_t31",
+            "frp",
+            "daynight"
+          ],
+          "rowCount": 2772,
+          "acceptedCount": 2734,
+          "duplicates": 0,
+          "quarantined": 0,
+          "outsidePolygon": 38,
+          "dateRange": [
+            "2026-11-01",
+            "2026-11-01"
+          ],
+          "acceptedGeographicExtent": [
+            -75.54701,
+            -39.72061,
+            -35.68931,
+            10.52582
+          ],
+          "memberSHA256": "3b9007610b853ce67abebfd2ec8e9b72d830530d65770199d83af35b4c469e39",
+          "sources": [
+            {
+              "id": "sa-modis-terra-nrt",
+              "title": "Terra MODIS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "MODIS",
+              "platform": "Terra",
+              "product": "MCD14DL_NRT",
+              "version": "6.1",
+              "processing": "nrt",
+              "deliveryProfile": "MODIS",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            },
+            {
+              "id": "sa-modis-aqua-nrt",
+              "title": "Aqua MODIS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "MODIS",
+              "platform": "Aqua",
+              "product": "MCD14DL_NRT",
+              "version": "6.1",
+              "processing": "nrt",
+              "deliveryProfile": "MODIS",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            }
+          ]
+        },
+        {
+          "name": "MOIDS/MODIS_C6_1_South_America_MCD14DL_NRT_2026306.txt",
+          "bytes": 132009,
+          "compressedBytes": 37091,
+          "schema": [
+            "latitude",
+            "longitude",
+            "brightness",
+            "scan",
+            "track",
+            "acq_date",
+            "acq_time",
+            "satellite",
+            "confidence",
+            "version",
+            "bright_t31",
+            "frp",
+            "daynight"
+          ],
+          "rowCount": 1686,
+          "acceptedCount": 1674,
+          "duplicates": 0,
+          "quarantined": 0,
+          "outsidePolygon": 12,
+          "dateRange": [
+            "2026-11-02",
+            "2026-11-02"
+          ],
+          "acceptedGeographicExtent": [
+            -79.65095,
+            -38.79379,
+            -34.90708,
+            11.23674
+          ],
+          "memberSHA256": "7a4511fecd4a32857cb474db29dce46157980eb31798e4e121f964e9872e0c40",
+          "sources": [
+            {
+              "id": "sa-modis-terra-nrt",
+              "title": "Terra MODIS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "MODIS",
+              "platform": "Terra",
+              "product": "MCD14DL_NRT",
+              "version": "6.1",
+              "processing": "nrt",
+              "deliveryProfile": "MODIS",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            },
+            {
+              "id": "sa-modis-aqua-nrt",
+              "title": "Aqua MODIS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "MODIS",
+              "platform": "Aqua",
+              "product": "MCD14DL_NRT",
+              "version": "6.1",
+              "processing": "nrt",
+              "deliveryProfile": "MODIS",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            }
+          ]
+        },
+        {
+          "name": "MOIDS/MODIS_C6_1_South_America_MCD14DL_NRT_2026308.txt",
+          "bytes": 193884,
+          "compressedBytes": 53124,
+          "schema": [
+            "latitude",
+            "longitude",
+            "brightness",
+            "scan",
+            "track",
+            "acq_date",
+            "acq_time",
+            "satellite",
+            "confidence",
+            "version",
+            "bright_t31",
+            "frp",
+            "daynight"
+          ],
+          "rowCount": 2471,
+          "acceptedCount": 2445,
+          "duplicates": 0,
+          "quarantined": 0,
+          "outsidePolygon": 26,
+          "dateRange": [
+            "2026-11-04",
+            "2026-11-04"
+          ],
+          "acceptedGeographicExtent": [
+            -78.7765,
+            -51.33421,
+            -34.99202,
+            11.74307
+          ],
+          "memberSHA256": "d689806ee47d71fdaeec140e124228c0a044203d7391a2281697091dd93113e8",
+          "sources": [
+            {
+              "id": "sa-modis-terra-nrt",
+              "title": "Terra MODIS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "MODIS",
+              "platform": "Terra",
+              "product": "MCD14DL_NRT",
+              "version": "6.1",
+              "processing": "nrt",
+              "deliveryProfile": "MODIS",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            },
+            {
+              "id": "sa-modis-aqua-nrt",
+              "title": "Aqua MODIS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "MODIS",
+              "platform": "Aqua",
+              "product": "MCD14DL_NRT",
+              "version": "6.1",
+              "processing": "nrt",
+              "deliveryProfile": "MODIS",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            }
+          ]
+        },
+        {
+          "name": "MOIDS/MODIS_C6_1_South_America_MCD14DL_NRT_2026309.txt",
+          "bytes": 221018,
+          "compressedBytes": 61860,
+          "schema": [
+            "latitude",
+            "longitude",
+            "brightness",
+            "scan",
+            "track",
+            "acq_date",
+            "acq_time",
+            "satellite",
+            "confidence",
+            "version",
+            "bright_t31",
+            "frp",
+            "daynight"
+          ],
+          "rowCount": 2804,
+          "acceptedCount": 2791,
+          "duplicates": 0,
+          "quarantined": 0,
+          "outsidePolygon": 13,
+          "dateRange": [
+            "2026-11-05",
+            "2026-11-05"
+          ],
+          "acceptedGeographicExtent": [
+            -79.28554,
+            -39.6283,
+            -34.92658,
+            10.31798
+          ],
+          "memberSHA256": "bed5e242d9468616d45c1c9665d9442f01bb851c5886cc8f413cf4cc39521c12",
+          "sources": [
+            {
+              "id": "sa-modis-terra-nrt",
+              "title": "Terra MODIS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "MODIS",
+              "platform": "Terra",
+              "product": "MCD14DL_NRT",
+              "version": "6.1",
+              "processing": "nrt",
+              "deliveryProfile": "MODIS",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            },
+            {
+              "id": "sa-modis-aqua-nrt",
+              "title": "Aqua MODIS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "MODIS",
+              "platform": "Aqua",
+              "product": "MCD14DL_NRT",
+              "version": "6.1",
+              "processing": "nrt",
+              "deliveryProfile": "MODIS",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            }
+          ]
+        },
+        {
+          "name": "MOIDS/MODIS_C6_1_South_America_MCD14DL_NRT_2026310.txt",
+          "bytes": 328643,
+          "compressedBytes": 89823,
+          "schema": [
+            "latitude",
+            "longitude",
+            "brightness",
+            "scan",
+            "track",
+            "acq_date",
+            "acq_time",
+            "satellite",
+            "confidence",
+            "version",
+            "bright_t31",
+            "frp",
+            "daynight"
+          ],
+          "rowCount": 4174,
+          "acceptedCount": 4141,
+          "duplicates": 0,
+          "quarantined": 0,
+          "outsidePolygon": 33,
+          "dateRange": [
+            "2026-11-06",
+            "2026-11-06"
+          ],
+          "acceptedGeographicExtent": [
+            -78.01151,
+            -41.99661,
+            -37.60606,
+            10.5275
+          ],
+          "memberSHA256": "d2ac07ec3fad0e34b48b0096c79692cdbeafa3126dceaee4cef492ae4bebe559",
+          "sources": [
+            {
+              "id": "sa-modis-terra-nrt",
+              "title": "Terra MODIS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "MODIS",
+              "platform": "Terra",
+              "product": "MCD14DL_NRT",
+              "version": "6.1",
+              "processing": "nrt",
+              "deliveryProfile": "MODIS",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            },
+            {
+              "id": "sa-modis-aqua-nrt",
+              "title": "Aqua MODIS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "MODIS",
+              "platform": "Aqua",
+              "product": "MCD14DL_NRT",
+              "version": "6.1",
+              "processing": "nrt",
+              "deliveryProfile": "MODIS",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            }
+          ]
+        },
+        {
+          "name": "MOIDS/MODIS_C6_1_South_America_MCD14DL_NRT_2026311.txt",
+          "bytes": 197457,
+          "compressedBytes": 54717,
+          "schema": [
+            "latitude",
+            "longitude",
+            "brightness",
+            "scan",
+            "track",
+            "acq_date",
+            "acq_time",
+            "satellite",
+            "confidence",
+            "version",
+            "bright_t31",
+            "frp",
+            "daynight"
+          ],
+          "rowCount": 2535,
+          "acceptedCount": 2525,
+          "duplicates": 0,
+          "quarantined": 0,
+          "outsidePolygon": 10,
+          "dateRange": [
+            "2026-11-07",
+            "2026-11-07"
+          ],
+          "acceptedGeographicExtent": [
+            -78.90068,
+            -38.7448,
+            -35.11526,
+            11.73658
+          ],
+          "memberSHA256": "af3878e01551405cb7706af6b3978a46ede2603f4f12e90ff62ab9955770be84",
+          "sources": [
+            {
+              "id": "sa-modis-terra-nrt",
+              "title": "Terra MODIS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "MODIS",
+              "platform": "Terra",
+              "product": "MCD14DL_NRT",
+              "version": "6.1",
+              "processing": "nrt",
+              "deliveryProfile": "MODIS",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            },
+            {
+              "id": "sa-modis-aqua-nrt",
+              "title": "Aqua MODIS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "MODIS",
+              "platform": "Aqua",
+              "product": "MCD14DL_NRT",
+              "version": "6.1",
+              "processing": "nrt",
+              "deliveryProfile": "MODIS",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            }
+          ]
+        },
+        {
+          "name": "MOIDS/MODIS_C6_1_South_America_MCD14DL_NRT_2026312.txt",
+          "bytes": 202617,
+          "compressedBytes": 56782,
+          "schema": [
+            "latitude",
+            "longitude",
+            "brightness",
+            "scan",
+            "track",
+            "acq_date",
+            "acq_time",
+            "satellite",
+            "confidence",
+            "version",
+            "bright_t31",
+            "frp",
+            "daynight"
+          ],
+          "rowCount": 2579,
+          "acceptedCount": 2577,
+          "duplicates": 0,
+          "quarantined": 0,
+          "outsidePolygon": 2,
+          "dateRange": [
+            "2026-11-08",
+            "2026-11-08"
+          ],
+          "acceptedGeographicExtent": [
+            -74.02287,
+            -38.98799,
+            -35.06473,
+            10.70055
+          ],
+          "memberSHA256": "405e6c1a6b69533b706d1543f186cf2288617da57414ff760878479c24229306",
+          "sources": [
+            {
+              "id": "sa-modis-terra-nrt",
+              "title": "Terra MODIS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "MODIS",
+              "platform": "Terra",
+              "product": "MCD14DL_NRT",
+              "version": "6.1",
+              "processing": "nrt",
+              "deliveryProfile": "MODIS",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            },
+            {
+              "id": "sa-modis-aqua-nrt",
+              "title": "Aqua MODIS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "MODIS",
+              "platform": "Aqua",
+              "product": "MCD14DL_NRT",
+              "version": "6.1",
+              "processing": "nrt",
+              "deliveryProfile": "MODIS",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            }
+          ]
+        },
+        {
+          "name": "MOIDS/MODIS_C6_1_South_America_MCD14DL_NRT_2026313.txt",
+          "bytes": 128151,
+          "compressedBytes": 35716,
+          "schema": [
+            "latitude",
+            "longitude",
+            "brightness",
+            "scan",
+            "track",
+            "acq_date",
+            "acq_time",
+            "satellite",
+            "confidence",
+            "version",
+            "bright_t31",
+            "frp",
+            "daynight"
+          ],
+          "rowCount": 1637,
+          "acceptedCount": 1611,
+          "duplicates": 0,
+          "quarantined": 0,
+          "outsidePolygon": 26,
+          "dateRange": [
+            "2026-11-09",
+            "2026-11-09"
+          ],
+          "acceptedGeographicExtent": [
+            -79.89169,
+            -43.00101,
+            -35.08447,
+            11.7395
+          ],
+          "memberSHA256": "633b7e4c298ada3b4f4542efce348fb3fea672884587c27fd5a5bfd6acab56d1",
+          "sources": [
+            {
+              "id": "sa-modis-terra-nrt",
+              "title": "Terra MODIS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "MODIS",
+              "platform": "Terra",
+              "product": "MCD14DL_NRT",
+              "version": "6.1",
+              "processing": "nrt",
+              "deliveryProfile": "MODIS",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            },
+            {
+              "id": "sa-modis-aqua-nrt",
+              "title": "Aqua MODIS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "MODIS",
+              "platform": "Aqua",
+              "product": "MCD14DL_NRT",
+              "version": "6.1",
+              "processing": "nrt",
+              "deliveryProfile": "MODIS",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            }
+          ]
+        },
+        {
+          "name": "MOIDS/MODIS_C6_1_South_America_MCD14DL_NRT_2026314.txt",
+          "bytes": 192104,
+          "compressedBytes": 53441,
+          "schema": [
+            "latitude",
+            "longitude",
+            "brightness",
+            "scan",
+            "track",
+            "acq_date",
+            "acq_time",
+            "satellite",
+            "confidence",
+            "version",
+            "bright_t31",
+            "frp",
+            "daynight"
+          ],
+          "rowCount": 2441,
+          "acceptedCount": 2437,
+          "duplicates": 0,
+          "quarantined": 0,
+          "outsidePolygon": 4,
+          "dateRange": [
+            "2026-11-10",
+            "2026-11-10"
+          ],
+          "acceptedGeographicExtent": [
+            -81.12849,
+            -51.64205,
+            -34.88954,
+            11.07539
+          ],
+          "memberSHA256": "d8f1d0df052d80be4ea66e8437bb86003160963a15a1f5e65b6641f7691c6e18",
+          "sources": [
+            {
+              "id": "sa-modis-terra-nrt",
+              "title": "Terra MODIS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "MODIS",
+              "platform": "Terra",
+              "product": "MCD14DL_NRT",
+              "version": "6.1",
+              "processing": "nrt",
+              "deliveryProfile": "MODIS",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            },
+            {
+              "id": "sa-modis-aqua-nrt",
+              "title": "Aqua MODIS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "MODIS",
+              "platform": "Aqua",
+              "product": "MCD14DL_NRT",
+              "version": "6.1",
+              "processing": "nrt",
+              "deliveryProfile": "MODIS",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            }
+          ]
+        },
+        {
+          "name": "MOIDS/MODIS_C6_1_South_America_MCD14DL_NRT_2026315.txt",
+          "bytes": 228734,
+          "compressedBytes": 63208,
+          "schema": [
+            "latitude",
+            "longitude",
+            "brightness",
+            "scan",
+            "track",
+            "acq_date",
+            "acq_time",
+            "satellite",
+            "confidence",
+            "version",
+            "bright_t31",
+            "frp",
+            "daynight"
+          ],
+          "rowCount": 2904,
+          "acceptedCount": 2881,
+          "duplicates": 0,
+          "quarantined": 0,
+          "outsidePolygon": 23,
+          "dateRange": [
+            "2026-11-11",
+            "2026-11-11"
+          ],
+          "acceptedGeographicExtent": [
+            -77.65951,
+            -47.93194,
+            -36.32366,
+            11.74149
+          ],
+          "memberSHA256": "da38514e8f1152de2e36cf488baa2414b9e0a968a83ab0d625719eab4739fd99",
+          "sources": [
+            {
+              "id": "sa-modis-terra-nrt",
+              "title": "Terra MODIS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "MODIS",
+              "platform": "Terra",
+              "product": "MCD14DL_NRT",
+              "version": "6.1",
+              "processing": "nrt",
+              "deliveryProfile": "MODIS",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            },
+            {
+              "id": "sa-modis-aqua-nrt",
+              "title": "Aqua MODIS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "MODIS",
+              "platform": "Aqua",
+              "product": "MCD14DL_NRT",
+              "version": "6.1",
+              "processing": "nrt",
+              "deliveryProfile": "MODIS",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            }
+          ]
+        },
+        {
+          "name": "MOIDS/MODIS_C6_1_South_America_MCD14DL_NRT_2026316.txt",
+          "bytes": 130346,
+          "compressedBytes": 36767,
+          "schema": [
+            "latitude",
+            "longitude",
+            "brightness",
+            "scan",
+            "track",
+            "acq_date",
+            "acq_time",
+            "satellite",
+            "confidence",
+            "version",
+            "bright_t31",
+            "frp",
+            "daynight"
+          ],
+          "rowCount": 1659,
+          "acceptedCount": 1652,
+          "duplicates": 0,
+          "quarantined": 0,
+          "outsidePolygon": 7,
+          "dateRange": [
+            "2026-11-12",
+            "2026-11-12"
+          ],
+          "acceptedGeographicExtent": [
+            -79.70831,
+            -39.50018,
+            -34.98719,
+            11.74358
+          ],
+          "memberSHA256": "24d88a36d9a054ddc0dc4813659821d75a9c4e3a63d38023b134128637acbe23",
+          "sources": [
+            {
+              "id": "sa-modis-terra-nrt",
+              "title": "Terra MODIS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "MODIS",
+              "platform": "Terra",
+              "product": "MCD14DL_NRT",
+              "version": "6.1",
+              "processing": "nrt",
+              "deliveryProfile": "MODIS",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            },
+            {
+              "id": "sa-modis-aqua-nrt",
+              "title": "Aqua MODIS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "MODIS",
+              "platform": "Aqua",
+              "product": "MCD14DL_NRT",
+              "version": "6.1",
+              "processing": "nrt",
+              "deliveryProfile": "MODIS",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            }
+          ]
+        },
+        {
+          "name": "MOIDS/MODIS_C6_1_South_America_MCD14DL_NRT_2026317.txt",
+          "bytes": 209440,
+          "compressedBytes": 59017,
+          "schema": [
+            "latitude",
+            "longitude",
+            "brightness",
+            "scan",
+            "track",
+            "acq_date",
+            "acq_time",
+            "satellite",
+            "confidence",
+            "version",
+            "bright_t31",
+            "frp",
+            "daynight"
+          ],
+          "rowCount": 2654,
+          "acceptedCount": 2645,
+          "duplicates": 0,
+          "quarantined": 0,
+          "outsidePolygon": 9,
+          "dateRange": [
+            "2026-11-13",
+            "2026-11-13"
+          ],
+          "acceptedGeographicExtent": [
+            -78.33866,
+            -45.57929,
+            -34.9076,
+            11.7314
+          ],
+          "memberSHA256": "9dff467c46f17cde9769e5efad64accadf42b041a6308cfb4f7ed7afc9201fa0",
+          "sources": [
+            {
+              "id": "sa-modis-terra-nrt",
+              "title": "Terra MODIS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "MODIS",
+              "platform": "Terra",
+              "product": "MCD14DL_NRT",
+              "version": "6.1",
+              "processing": "nrt",
+              "deliveryProfile": "MODIS",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            },
+            {
+              "id": "sa-modis-aqua-nrt",
+              "title": "Aqua MODIS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "MODIS",
+              "platform": "Aqua",
+              "product": "MCD14DL_NRT",
+              "version": "6.1",
+              "processing": "nrt",
+              "deliveryProfile": "MODIS",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "server/data/incoming/viirs.zip",
+      "sha256": "fd42158e32a181bbac9f5f293d2c809944e72b63783a6d66582d45101545caa0",
+      "bytes": 2018920,
+      "members": [
+        {
+          "name": "viirs/J2_VIIRS_C2_South_America_VJ214IMGTDL_NRT_2026304.txt",
+          "bytes": 718778,
+          "compressedBytes": 153441,
+          "schema": [
+            "latitude",
+            "longitude",
+            "bright_ti4",
+            "scan",
+            "track",
+            "acq_date",
+            "acq_time",
+            "satellite",
+            "confidence",
+            "version",
+            "bright_ti5",
+            "frp",
+            "daynight"
+          ],
+          "rowCount": 8460,
+          "acceptedCount": 0,
+          "duplicates": 8365,
+          "quarantined": 0,
+          "outsidePolygon": 95,
+          "dateRange": [
+            null,
+            null
+          ],
+          "acceptedGeographicExtent": [
+            180,
+            90,
+            -180,
+            -90
+          ],
+          "memberSHA256": "33b7bf672077a335058515bfc51abfdbf9842893393646a57521ad6d5a1ac245",
+          "sources": []
+        },
+        {
+          "name": "viirs/J2_VIIRS_C2_South_America_VJ214IMGTDL_NRT_2026306.txt",
+          "bytes": 599900,
+          "compressedBytes": 127229,
+          "schema": [
+            "latitude",
+            "longitude",
+            "bright_ti4",
+            "scan",
+            "track",
+            "acq_date",
+            "acq_time",
+            "satellite",
+            "confidence",
+            "version",
+            "bright_ti5",
+            "frp",
+            "daynight"
+          ],
+          "rowCount": 7046,
+          "acceptedCount": 6975,
+          "duplicates": 0,
+          "quarantined": 0,
+          "outsidePolygon": 71,
+          "dateRange": [
+            "2026-11-02",
+            "2026-11-02"
+          ],
+          "acceptedGeographicExtent": [
+            -77.28707,
+            -51.64441,
+            -34.84333,
+            11.75134
+          ],
+          "memberSHA256": "d281976cceff87d1e94b3b8172011ec257260cd708cec09e71e5e9ccf0343c65",
+          "sources": [
+            {
+              "id": "sa-n21-noaa21-nrt",
+              "title": "NOAA-21 VIIRS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "VIIRS",
+              "platform": "NOAA-21",
+              "product": "VJ214IMGTDL_NRT",
+              "version": "2",
+              "processing": "nrt",
+              "deliveryProfile": "N21",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            }
+          ]
+        },
+        {
+          "name": "viirs/J2_VIIRS_C2_South_America_VJ214IMGTDL_NRT_2026307.txt",
+          "bytes": 675385,
+          "compressedBytes": 142467,
+          "schema": [
+            "latitude",
+            "longitude",
+            "bright_ti4",
+            "scan",
+            "track",
+            "acq_date",
+            "acq_time",
+            "satellite",
+            "confidence",
+            "version",
+            "bright_ti5",
+            "frp",
+            "daynight"
+          ],
+          "rowCount": 7930,
+          "acceptedCount": 7859,
+          "duplicates": 0,
+          "quarantined": 0,
+          "outsidePolygon": 71,
+          "dateRange": [
+            "2026-11-03",
+            "2026-11-03"
+          ],
+          "acceptedGeographicExtent": [
+            -79.23452,
+            -51.32709,
+            -34.84304,
+            11.75017
+          ],
+          "memberSHA256": "c1866a84c785b6270d6d491e826f95794296b35e8c09891c21b0279fe1c162cc",
+          "sources": [
+            {
+              "id": "sa-n21-noaa21-nrt",
+              "title": "NOAA-21 VIIRS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "VIIRS",
+              "platform": "NOAA-21",
+              "product": "VJ214IMGTDL_NRT",
+              "version": "2",
+              "processing": "nrt",
+              "deliveryProfile": "N21",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            }
+          ]
+        },
+        {
+          "name": "viirs/J2_VIIRS_C2_South_America_VJ214IMGTDL_NRT_2026308.txt",
+          "bytes": 370364,
+          "compressedBytes": 78428,
+          "schema": [
+            "latitude",
+            "longitude",
+            "bright_ti4",
+            "scan",
+            "track",
+            "acq_date",
+            "acq_time",
+            "satellite",
+            "confidence",
+            "version",
+            "bright_ti5",
+            "frp",
+            "daynight"
+          ],
+          "rowCount": 4340,
+          "acceptedCount": 4247,
+          "duplicates": 0,
+          "quarantined": 0,
+          "outsidePolygon": 93,
+          "dateRange": [
+            "2026-11-04",
+            "2026-11-04"
+          ],
+          "acceptedGeographicExtent": [
+            -79.13721,
+            -51.33222,
+            -34.88363,
+            11.74988
+          ],
+          "memberSHA256": "7f607b2f6c75cc6291ef99634f0d3f18e50265b028a0b21ee3366f7f6ab83044",
+          "sources": [
+            {
+              "id": "sa-n21-noaa21-nrt",
+              "title": "NOAA-21 VIIRS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "VIIRS",
+              "platform": "NOAA-21",
+              "product": "VJ214IMGTDL_NRT",
+              "version": "2",
+              "processing": "nrt",
+              "deliveryProfile": "N21",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            }
+          ]
+        },
+        {
+          "name": "viirs/J2_VIIRS_C2_South_America_VJ214IMGTDL_NRT_2026309.txt",
+          "bytes": 792188,
+          "compressedBytes": 168342,
+          "schema": [
+            "latitude",
+            "longitude",
+            "bright_ti4",
+            "scan",
+            "track",
+            "acq_date",
+            "acq_time",
+            "satellite",
+            "confidence",
+            "version",
+            "bright_ti5",
+            "frp",
+            "daynight"
+          ],
+          "rowCount": 9316,
+          "acceptedCount": 9131,
+          "duplicates": 0,
+          "quarantined": 0,
+          "outsidePolygon": 185,
+          "dateRange": [
+            "2026-11-05",
+            "2026-11-05"
+          ],
+          "acceptedGeographicExtent": [
+            -79.27556,
+            -40.23653,
+            -34.90908,
+            11.75001
+          ],
+          "memberSHA256": "425d31ae390de5552a603f1b665d10cbe32647158c0ecb24dd1e6453bbe29834",
+          "sources": [
+            {
+              "id": "sa-n21-noaa21-nrt",
+              "title": "NOAA-21 VIIRS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "VIIRS",
+              "platform": "NOAA-21",
+              "product": "VJ214IMGTDL_NRT",
+              "version": "2",
+              "processing": "nrt",
+              "deliveryProfile": "N21",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            }
+          ]
+        },
+        {
+          "name": "viirs/J2_VIIRS_C2_South_America_VJ214IMGTDL_NRT_2026310.txt",
+          "bytes": 730061,
+          "compressedBytes": 156731,
+          "schema": [
+            "latitude",
+            "longitude",
+            "bright_ti4",
+            "scan",
+            "track",
+            "acq_date",
+            "acq_time",
+            "satellite",
+            "confidence",
+            "version",
+            "bright_ti5",
+            "frp",
+            "daynight"
+          ],
+          "rowCount": 8586,
+          "acceptedCount": 8470,
+          "duplicates": 0,
+          "quarantined": 0,
+          "outsidePolygon": 116,
+          "dateRange": [
+            "2026-11-06",
+            "2026-11-06"
+          ],
+          "acceptedGeographicExtent": [
+            -79.46939,
+            -40.72474,
+            -34.91397,
+            11.7379
+          ],
+          "memberSHA256": "5123dc8a3e98cf543ca305ac5b234e0eb811a6de8c742d3f514e8e4124ed6bd7",
+          "sources": [
+            {
+              "id": "sa-n21-noaa21-nrt",
+              "title": "NOAA-21 VIIRS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "VIIRS",
+              "platform": "NOAA-21",
+              "product": "VJ214IMGTDL_NRT",
+              "version": "2",
+              "processing": "nrt",
+              "deliveryProfile": "N21",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            }
+          ]
+        },
+        {
+          "name": "viirs/J2_VIIRS_C2_South_America_VJ214IMGTDL_NRT_2026311.txt",
+          "bytes": 891491,
+          "compressedBytes": 187828,
+          "schema": [
+            "latitude",
+            "longitude",
+            "bright_ti4",
+            "scan",
+            "track",
+            "acq_date",
+            "acq_time",
+            "satellite",
+            "confidence",
+            "version",
+            "bright_ti5",
+            "frp",
+            "daynight"
+          ],
+          "rowCount": 10486,
+          "acceptedCount": 10397,
+          "duplicates": 0,
+          "quarantined": 0,
+          "outsidePolygon": 89,
+          "dateRange": [
+            "2026-11-07",
+            "2026-11-07"
+          ],
+          "acceptedGeographicExtent": [
+            -79.46913,
+            -42.16196,
+            -34.8839,
+            11.74956
+          ],
+          "memberSHA256": "81df8b4d0e0b9fe4a4c7a2494eba25dd550b76350f32afe1c7111a43af4847e0",
+          "sources": [
+            {
+              "id": "sa-n21-noaa21-nrt",
+              "title": "NOAA-21 VIIRS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "VIIRS",
+              "platform": "NOAA-21",
+              "product": "VJ214IMGTDL_NRT",
+              "version": "2",
+              "processing": "nrt",
+              "deliveryProfile": "N21",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            }
+          ]
+        },
+        {
+          "name": "viirs/J2_VIIRS_C2_South_America_VJ214IMGTDL_NRT_2026312.txt",
+          "bytes": 843289,
+          "compressedBytes": 173385,
+          "schema": [
+            "latitude",
+            "longitude",
+            "bright_ti4",
+            "scan",
+            "track",
+            "acq_date",
+            "acq_time",
+            "satellite",
+            "confidence",
+            "version",
+            "bright_ti5",
+            "frp",
+            "daynight"
+          ],
+          "rowCount": 9943,
+          "acceptedCount": 9886,
+          "duplicates": 0,
+          "quarantined": 0,
+          "outsidePolygon": 57,
+          "dateRange": [
+            "2026-11-08",
+            "2026-11-08"
+          ],
+          "acceptedGeographicExtent": [
+            -80.72787,
+            -40.75988,
+            -34.81885,
+            11.74949
+          ],
+          "memberSHA256": "aa05edbb86f51f70335bb4d946cd2e49d1f990bb4a518b3b7d28ab2fa1966efd",
+          "sources": [
+            {
+              "id": "sa-n21-noaa21-nrt",
+              "title": "NOAA-21 VIIRS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "VIIRS",
+              "platform": "NOAA-21",
+              "product": "VJ214IMGTDL_NRT",
+              "version": "2",
+              "processing": "nrt",
+              "deliveryProfile": "N21",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            }
+          ]
+        },
+        {
+          "name": "viirs/J2_VIIRS_C2_South_America_VJ214IMGTDL_NRT_2026313.txt",
+          "bytes": 615074,
+          "compressedBytes": 129409,
+          "schema": [
+            "latitude",
+            "longitude",
+            "bright_ti4",
+            "scan",
+            "track",
+            "acq_date",
+            "acq_time",
+            "satellite",
+            "confidence",
+            "version",
+            "bright_ti5",
+            "frp",
+            "daynight"
+          ],
+          "rowCount": 7243,
+          "acceptedCount": 7169,
+          "duplicates": 0,
+          "quarantined": 0,
+          "outsidePolygon": 74,
+          "dateRange": [
+            "2026-11-09",
+            "2026-11-09"
+          ],
+          "acceptedGeographicExtent": [
+            -80.72652,
+            -51.78503,
+            -34.97394,
+            11.74944
+          ],
+          "memberSHA256": "ddb10b55d48d7d1d8ad0dccdac964a3819942363295d0bd58bc8d34948fade2e",
+          "sources": [
+            {
+              "id": "sa-n21-noaa21-nrt",
+              "title": "NOAA-21 VIIRS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "VIIRS",
+              "platform": "NOAA-21",
+              "product": "VJ214IMGTDL_NRT",
+              "version": "2",
+              "processing": "nrt",
+              "deliveryProfile": "N21",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            }
+          ]
+        },
+        {
+          "name": "viirs/J2_VIIRS_C2_South_America_VJ214IMGTDL_NRT_2026314.txt",
+          "bytes": 653059,
+          "compressedBytes": 139411,
+          "schema": [
+            "latitude",
+            "longitude",
+            "bright_ti4",
+            "scan",
+            "track",
+            "acq_date",
+            "acq_time",
+            "satellite",
+            "confidence",
+            "version",
+            "bright_ti5",
+            "frp",
+            "daynight"
+          ],
+          "rowCount": 7674,
+          "acceptedCount": 7628,
+          "duplicates": 0,
+          "quarantined": 0,
+          "outsidePolygon": 46,
+          "dateRange": [
+            "2026-11-10",
+            "2026-11-10"
+          ],
+          "acceptedGeographicExtent": [
+            -80.73646,
+            -52.52673,
+            -35.13072,
+            11.75187
+          ],
+          "memberSHA256": "469ad984b727c7ec25882f9729d108a88b8007cad01235c50e7c4111b6821b10",
+          "sources": [
+            {
+              "id": "sa-n21-noaa21-nrt",
+              "title": "NOAA-21 VIIRS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "VIIRS",
+              "platform": "NOAA-21",
+              "product": "VJ214IMGTDL_NRT",
+              "version": "2",
+              "processing": "nrt",
+              "deliveryProfile": "N21",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            }
+          ]
+        },
+        {
+          "name": "viirs/J2_VIIRS_C2_South_America_VJ214IMGTDL_NRT_2026315.txt",
+          "bytes": 557655,
+          "compressedBytes": 120228,
+          "schema": [
+            "latitude",
+            "longitude",
+            "bright_ti4",
+            "scan",
+            "track",
+            "acq_date",
+            "acq_time",
+            "satellite",
+            "confidence",
+            "version",
+            "bright_ti5",
+            "frp",
+            "daynight"
+          ],
+          "rowCount": 6545,
+          "acceptedCount": 6468,
+          "duplicates": 0,
+          "quarantined": 0,
+          "outsidePolygon": 77,
+          "dateRange": [
+            "2026-11-11",
+            "2026-11-11"
+          ],
+          "acceptedGeographicExtent": [
+            -79.74529,
+            -53.20235,
+            -34.94767,
+            11.75108
+          ],
+          "memberSHA256": "c1d815b1764c66414d3ab452f47e15b3c4fcf03aa7d477a3649899b990bc7ea3",
+          "sources": [
+            {
+              "id": "sa-n21-noaa21-nrt",
+              "title": "NOAA-21 VIIRS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "VIIRS",
+              "platform": "NOAA-21",
+              "product": "VJ214IMGTDL_NRT",
+              "version": "2",
+              "processing": "nrt",
+              "deliveryProfile": "N21",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            }
+          ]
+        },
+        {
+          "name": "viirs/J2_VIIRS_C2_South_America_VJ214IMGTDL_NRT_2026316.txt",
+          "bytes": 592075,
+          "compressedBytes": 126430,
+          "schema": [
+            "latitude",
+            "longitude",
+            "bright_ti4",
+            "scan",
+            "track",
+            "acq_date",
+            "acq_time",
+            "satellite",
+            "confidence",
+            "version",
+            "bright_ti5",
+            "frp",
+            "daynight"
+          ],
+          "rowCount": 6953,
+          "acceptedCount": 6893,
+          "duplicates": 0,
+          "quarantined": 0,
+          "outsidePolygon": 60,
+          "dateRange": [
+            "2026-11-12",
+            "2026-11-12"
+          ],
+          "acceptedGeographicExtent": [
+            -79.89532,
+            -52.52493,
+            -35.03904,
+            11.7507
+          ],
+          "memberSHA256": "abcfe29eebb1432dee1956c7887113b648194e0b3a6bd2fa6350ae9ba52b0d11",
+          "sources": [
+            {
+              "id": "sa-n21-noaa21-nrt",
+              "title": "NOAA-21 VIIRS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "VIIRS",
+              "platform": "NOAA-21",
+              "product": "VJ214IMGTDL_NRT",
+              "version": "2",
+              "processing": "nrt",
+              "deliveryProfile": "N21",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            }
+          ]
+        },
+        {
+          "name": "viirs/J2_VIIRS_C2_South_America_VJ214IMGTDL_NRT_2026317.txt",
+          "bytes": 607696,
+          "compressedBytes": 129093,
+          "schema": [
+            "latitude",
+            "longitude",
+            "bright_ti4",
+            "scan",
+            "track",
+            "acq_date",
+            "acq_time",
+            "satellite",
+            "confidence",
+            "version",
+            "bright_ti5",
+            "frp",
+            "daynight"
+          ],
+          "rowCount": 7149,
+          "acceptedCount": 7068,
+          "duplicates": 0,
+          "quarantined": 0,
+          "outsidePolygon": 81,
+          "dateRange": [
+            "2026-11-13",
+            "2026-11-13"
+          ],
+          "acceptedGeographicExtent": [
+            -80.79633,
+            -39.63112,
+            -34.84111,
+            11.7494
+          ],
+          "memberSHA256": "df706b4af0b8e70081d2d3fd3ba7f2ab856bf96dda599df006992d8b2b5c0c18",
+          "sources": [
+            {
+              "id": "sa-n21-noaa21-nrt",
+              "title": "NOAA-21 VIIRS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "VIIRS",
+              "platform": "NOAA-21",
+              "product": "VJ214IMGTDL_NRT",
+              "version": "2",
+              "processing": "nrt",
+              "deliveryProfile": "N21",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            }
+          ]
+        },
+        {
+          "name": "viirs/J2_VIIRS_C2_South_America_VJ214IMGTDL_NRT_2026318 (1).txt",
+          "bytes": 299537,
+          "compressedBytes": 60304,
+          "schema": [
+            "latitude",
+            "longitude",
+            "bright_ti4",
+            "scan",
+            "track",
+            "acq_date",
+            "acq_time",
+            "satellite",
+            "confidence",
+            "version",
+            "bright_ti5",
+            "frp",
+            "daynight"
+          ],
+          "rowCount": 3512,
+          "acceptedCount": 0,
+          "duplicates": 3469,
+          "quarantined": 0,
+          "outsidePolygon": 43,
+          "dateRange": [
+            null,
+            null
+          ],
+          "acceptedGeographicExtent": [
+            180,
+            90,
+            -180,
+            -90
+          ],
+          "memberSHA256": "d6f5fc805700db5ce3f1308941019bae348471f3a5408df294c2e320d2a2918d",
+          "sources": []
+        },
+        {
+          "name": "viirs/J2_VIIRS_C2_South_America_VJ214IMGTDL_NRT_2026318.txt",
+          "bytes": 569827,
+          "compressedBytes": 122030,
+          "schema": [
+            "latitude",
+            "longitude",
+            "bright_ti4",
+            "scan",
+            "track",
+            "acq_date",
+            "acq_time",
+            "satellite",
+            "confidence",
+            "version",
+            "bright_ti5",
+            "frp",
+            "daynight"
+          ],
+          "rowCount": 6706,
+          "acceptedCount": 6660,
+          "duplicates": 0,
+          "quarantined": 0,
+          "outsidePolygon": 46,
+          "dateRange": [
+            "2026-11-01",
+            "2026-11-01"
+          ],
+          "acceptedGeographicExtent": [
+            -81.22977,
+            -46.80098,
+            -34.98174,
+            11.74087
+          ],
+          "memberSHA256": "4dc52966ef744f09d326e36116a491732a3b05c86b8ac3ac159f9a85bef4ee46",
+          "sources": [
+            {
+              "id": "sa-n21-noaa21-nrt",
+              "title": "NOAA-21 VIIRS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "VIIRS",
+              "platform": "NOAA-21",
+              "product": "VJ214IMGTDL_NRT",
+              "version": "2",
+              "processing": "nrt",
+              "deliveryProfile": "N21",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "server/data/incoming/viirs1.zip",
+      "sha256": "2e89e19e4680d4c38dafd3bfc9b11fa125501102f42ef32192f62bab3b28ada7",
+      "bytes": 2096103,
+      "members": [
+        {
+          "name": "viirs1/J1_VIIRS_C2_South_America_VJ114IMGTDL_NRT_2026304.txt",
+          "bytes": 630479,
+          "compressedBytes": 134406,
+          "schema": [
+            "latitude",
+            "longitude",
+            "bright_ti4",
+            "scan",
+            "track",
+            "acq_date",
+            "acq_time",
+            "satellite",
+            "confidence",
+            "version",
+            "bright_ti5",
+            "frp",
+            "daynight"
+          ],
+          "rowCount": 7424,
+          "acceptedCount": 0,
+          "duplicates": 7363,
+          "quarantined": 0,
+          "outsidePolygon": 61,
+          "dateRange": [
+            null,
+            null
+          ],
+          "acceptedGeographicExtent": [
+            180,
+            90,
+            -180,
+            -90
+          ],
+          "memberSHA256": "b453b2d0136ec79a154ec5ef8b88d038b53fcfa583faf356c32f04e3da807b08",
+          "sources": []
+        },
+        {
+          "name": "viirs1/J1_VIIRS_C2_South_America_VJ114IMGTDL_NRT_2026305.txt",
+          "bytes": 723577,
+          "compressedBytes": 150582,
+          "schema": [
+            "latitude",
+            "longitude",
+            "bright_ti4",
+            "scan",
+            "track",
+            "acq_date",
+            "acq_time",
+            "satellite",
+            "confidence",
+            "version",
+            "bright_ti5",
+            "frp",
+            "daynight"
+          ],
+          "rowCount": 8512,
+          "acceptedCount": 8432,
+          "duplicates": 0,
+          "quarantined": 0,
+          "outsidePolygon": 80,
+          "dateRange": [
+            "2026-11-01",
+            "2026-11-01"
+          ],
+          "acceptedGeographicExtent": [
+            -81.28618,
+            -39.06918,
+            -34.85883,
+            11.74936
+          ],
+          "memberSHA256": "d716f4702408542d88c5ec588252900ed309df81b43e6cf3494834980e3c0c64",
+          "sources": [
+            {
+              "id": "sa-n20-noaa20-nrt",
+              "title": "NOAA-20 VIIRS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "VIIRS",
+              "platform": "NOAA-20",
+              "product": "VJ114IMGTDL_NRT",
+              "version": "2",
+              "processing": "nrt",
+              "deliveryProfile": "N20",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            }
+          ]
+        },
+        {
+          "name": "viirs1/J1_VIIRS_C2_South_America_VJ114IMGTDL_NRT_2026306.txt",
+          "bytes": 665627,
+          "compressedBytes": 140437,
+          "schema": [
+            "latitude",
+            "longitude",
+            "bright_ti4",
+            "scan",
+            "track",
+            "acq_date",
+            "acq_time",
+            "satellite",
+            "confidence",
+            "version",
+            "bright_ti5",
+            "frp",
+            "daynight"
+          ],
+          "rowCount": 7826,
+          "acceptedCount": 7709,
+          "duplicates": 0,
+          "quarantined": 0,
+          "outsidePolygon": 117,
+          "dateRange": [
+            "2026-11-02",
+            "2026-11-02"
+          ],
+          "acceptedGeographicExtent": [
+            -79.9144,
+            -51.64408,
+            -34.80654,
+            11.75028
+          ],
+          "memberSHA256": "cd711825e1d508c8a5c9d6ca0aec58057b54c30200ed339a71a37697ba0fef42",
+          "sources": [
+            {
+              "id": "sa-n20-noaa20-nrt",
+              "title": "NOAA-20 VIIRS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "VIIRS",
+              "platform": "NOAA-20",
+              "product": "VJ114IMGTDL_NRT",
+              "version": "2",
+              "processing": "nrt",
+              "deliveryProfile": "N20",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            }
+          ]
+        },
+        {
+          "name": "viirs1/J1_VIIRS_C2_South_America_VJ114IMGTDL_NRT_2026307.txt",
+          "bytes": 630479,
+          "compressedBytes": 135105,
+          "schema": [
+            "latitude",
+            "longitude",
+            "bright_ti4",
+            "scan",
+            "track",
+            "acq_date",
+            "acq_time",
+            "satellite",
+            "confidence",
+            "version",
+            "bright_ti5",
+            "frp",
+            "daynight"
+          ],
+          "rowCount": 7384,
+          "acceptedCount": 7312,
+          "duplicates": 0,
+          "quarantined": 0,
+          "outsidePolygon": 72,
+          "dateRange": [
+            "2026-11-03",
+            "2026-11-03"
+          ],
+          "acceptedGeographicExtent": [
+            -78.62464,
+            -51.32729,
+            -34.89679,
+            11.78118
+          ],
+          "memberSHA256": "823a17e35e5cac2606e36b1b7a6cb9dc2cba91764a6e63255d5764ee4cfe0252",
+          "sources": [
+            {
+              "id": "sa-n20-noaa20-nrt",
+              "title": "NOAA-20 VIIRS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "VIIRS",
+              "platform": "NOAA-20",
+              "product": "VJ114IMGTDL_NRT",
+              "version": "2",
+              "processing": "nrt",
+              "deliveryProfile": "N20",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            }
+          ]
+        },
+        {
+          "name": "viirs1/J1_VIIRS_C2_South_America_VJ114IMGTDL_NRT_2026308.txt",
+          "bytes": 847448,
+          "compressedBytes": 179921,
+          "schema": [
+            "latitude",
+            "longitude",
+            "bright_ti4",
+            "scan",
+            "track",
+            "acq_date",
+            "acq_time",
+            "satellite",
+            "confidence",
+            "version",
+            "bright_ti5",
+            "frp",
+            "daynight"
+          ],
+          "rowCount": 9914,
+          "acceptedCount": 9814,
+          "duplicates": 0,
+          "quarantined": 0,
+          "outsidePolygon": 100,
+          "dateRange": [
+            "2026-11-04",
+            "2026-11-04"
+          ],
+          "acceptedGeographicExtent": [
+            -79.00707,
+            -51.3296,
+            -34.89634,
+            10.61961
+          ],
+          "memberSHA256": "238230cb22784157b39fb3ec09c5e7c9d873cce44c04da4d0ecb4d12f08ae02f",
+          "sources": [
+            {
+              "id": "sa-n20-noaa20-nrt",
+              "title": "NOAA-20 VIIRS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "VIIRS",
+              "platform": "NOAA-20",
+              "product": "VJ114IMGTDL_NRT",
+              "version": "2",
+              "processing": "nrt",
+              "deliveryProfile": "N20",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            }
+          ]
+        },
+        {
+          "name": "viirs1/J1_VIIRS_C2_South_America_VJ114IMGTDL_NRT_2026309.txt",
+          "bytes": 352409,
+          "compressedBytes": 70043,
+          "schema": [
+            "latitude",
+            "longitude",
+            "bright_ti4",
+            "scan",
+            "track",
+            "acq_date",
+            "acq_time",
+            "satellite",
+            "confidence",
+            "version",
+            "bright_ti5",
+            "frp",
+            "daynight"
+          ],
+          "rowCount": 4125,
+          "acceptedCount": 4084,
+          "duplicates": 0,
+          "quarantined": 0,
+          "outsidePolygon": 41,
+          "dateRange": [
+            "2026-11-05",
+            "2026-11-05"
+          ],
+          "acceptedGeographicExtent": [
+            -79.26668,
+            -40.23766,
+            -34.84431,
+            11.73897
+          ],
+          "memberSHA256": "a020cf768043ff8c379ab83c48a5b5cf2aadc29f8c1e7aac31e5ea0df2bde607",
+          "sources": [
+            {
+              "id": "sa-n20-noaa20-nrt",
+              "title": "NOAA-20 VIIRS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "VIIRS",
+              "platform": "NOAA-20",
+              "product": "VJ114IMGTDL_NRT",
+              "version": "2",
+              "processing": "nrt",
+              "deliveryProfile": "N20",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            }
+          ]
+        },
+        {
+          "name": "viirs1/J1_VIIRS_C2_South_America_VJ114IMGTDL_NRT_2026310.txt",
+          "bytes": 869827,
+          "compressedBytes": 180651,
+          "schema": [
+            "latitude",
+            "longitude",
+            "bright_ti4",
+            "scan",
+            "track",
+            "acq_date",
+            "acq_time",
+            "satellite",
+            "confidence",
+            "version",
+            "bright_ti5",
+            "frp",
+            "daynight"
+          ],
+          "rowCount": 10229,
+          "acceptedCount": 10141,
+          "duplicates": 0,
+          "quarantined": 0,
+          "outsidePolygon": 88,
+          "dateRange": [
+            "2026-11-06",
+            "2026-11-06"
+          ],
+          "acceptedGeographicExtent": [
+            -79.26485,
+            -40.72466,
+            -34.89959,
+            11.75137
+          ],
+          "memberSHA256": "c61c5596bd9a0864674b2f5f0e6af2d0f9583c903707b820627c2e7884c76064",
+          "sources": [
+            {
+              "id": "sa-n20-noaa20-nrt",
+              "title": "NOAA-20 VIIRS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "VIIRS",
+              "platform": "NOAA-20",
+              "product": "VJ114IMGTDL_NRT",
+              "version": "2",
+              "processing": "nrt",
+              "deliveryProfile": "N20",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            }
+          ]
+        },
+        {
+          "name": "viirs1/J1_VIIRS_C2_South_America_VJ114IMGTDL_NRT_2026311.txt",
+          "bytes": 1053427,
+          "compressedBytes": 221388,
+          "schema": [
+            "latitude",
+            "longitude",
+            "bright_ti4",
+            "scan",
+            "track",
+            "acq_date",
+            "acq_time",
+            "satellite",
+            "confidence",
+            "version",
+            "bright_ti5",
+            "frp",
+            "daynight"
+          ],
+          "rowCount": 12391,
+          "acceptedCount": 12278,
+          "duplicates": 0,
+          "quarantined": 0,
+          "outsidePolygon": 113,
+          "dateRange": [
+            "2026-11-07",
+            "2026-11-07"
+          ],
+          "acceptedGeographicExtent": [
+            -81.28535,
+            -40.72327,
+            -34.80907,
+            11.75236
+          ],
+          "memberSHA256": "d30121bbda972cf188eb396ced1e29aefc1c44190f8410efee1e18ac73e5ddb4",
+          "sources": [
+            {
+              "id": "sa-n20-noaa20-nrt",
+              "title": "NOAA-20 VIIRS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "VIIRS",
+              "platform": "NOAA-20",
+              "product": "VJ114IMGTDL_NRT",
+              "version": "2",
+              "processing": "nrt",
+              "deliveryProfile": "N20",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            }
+          ]
+        },
+        {
+          "name": "viirs1/J1_VIIRS_C2_South_America_VJ114IMGTDL_NRT_2026312.txt",
+          "bytes": 789660,
+          "compressedBytes": 166170,
+          "schema": [
+            "latitude",
+            "longitude",
+            "bright_ti4",
+            "scan",
+            "track",
+            "acq_date",
+            "acq_time",
+            "satellite",
+            "confidence",
+            "version",
+            "bright_ti5",
+            "frp",
+            "daynight"
+          ],
+          "rowCount": 9298,
+          "acceptedCount": 9224,
+          "duplicates": 0,
+          "quarantined": 0,
+          "outsidePolygon": 74,
+          "dateRange": [
+            "2026-11-08",
+            "2026-11-08"
+          ],
+          "acceptedGeographicExtent": [
+            -79.90955,
+            -40.06618,
+            -34.8964,
+            11.75313
+          ],
+          "memberSHA256": "9486846ae6332aea77ae53f8d227796d9e6af5e31dbeed9c150c694869f774f1",
+          "sources": [
+            {
+              "id": "sa-n20-noaa20-nrt",
+              "title": "NOAA-20 VIIRS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "VIIRS",
+              "platform": "NOAA-20",
+              "product": "VJ114IMGTDL_NRT",
+              "version": "2",
+              "processing": "nrt",
+              "deliveryProfile": "N20",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            }
+          ]
+        },
+        {
+          "name": "viirs1/J1_VIIRS_C2_South_America_VJ114IMGTDL_NRT_2026313.txt",
+          "bytes": 579875,
+          "compressedBytes": 124606,
+          "schema": [
+            "latitude",
+            "longitude",
+            "bright_ti4",
+            "scan",
+            "track",
+            "acq_date",
+            "acq_time",
+            "satellite",
+            "confidence",
+            "version",
+            "bright_ti5",
+            "frp",
+            "daynight"
+          ],
+          "rowCount": 6825,
+          "acceptedCount": 6738,
+          "duplicates": 0,
+          "quarantined": 0,
+          "outsidePolygon": 87,
+          "dateRange": [
+            "2026-11-09",
+            "2026-11-09"
+          ],
+          "acceptedGeographicExtent": [
+            -80.73901,
+            -51.78605,
+            -34.94261,
+            11.74996
+          ],
+          "memberSHA256": "16b41ea84acc5b31f40b6b37afe416421bc559c60d95d1f3ff878e10ed8baeaa",
+          "sources": [
+            {
+              "id": "sa-n20-noaa20-nrt",
+              "title": "NOAA-20 VIIRS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "VIIRS",
+              "platform": "NOAA-20",
+              "product": "VJ114IMGTDL_NRT",
+              "version": "2",
+              "processing": "nrt",
+              "deliveryProfile": "N20",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            }
+          ]
+        },
+        {
+          "name": "viirs1/J1_VIIRS_C2_South_America_VJ114IMGTDL_NRT_2026314.txt",
+          "bytes": 660222,
+          "compressedBytes": 139551,
+          "schema": [
+            "latitude",
+            "longitude",
+            "bright_ti4",
+            "scan",
+            "track",
+            "acq_date",
+            "acq_time",
+            "satellite",
+            "confidence",
+            "version",
+            "bright_ti5",
+            "frp",
+            "daynight"
+          ],
+          "rowCount": 7750,
+          "acceptedCount": 7707,
+          "duplicates": 0,
+          "quarantined": 0,
+          "outsidePolygon": 43,
+          "dateRange": [
+            "2026-11-10",
+            "2026-11-10"
+          ],
+          "acceptedGeographicExtent": [
+            -81.28541,
+            -51.64376,
+            -35.00864,
+            11.78225
+          ],
+          "memberSHA256": "ee9768ef41027d75e1efc56551977859d2ad9b8d16941012507990a2e8ee2872",
+          "sources": [
+            {
+              "id": "sa-n20-noaa20-nrt",
+              "title": "NOAA-20 VIIRS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "VIIRS",
+              "platform": "NOAA-20",
+              "product": "VJ114IMGTDL_NRT",
+              "version": "2",
+              "processing": "nrt",
+              "deliveryProfile": "N20",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            }
+          ]
+        },
+        {
+          "name": "viirs1/J1_VIIRS_C2_South_America_VJ114IMGTDL_NRT_2026315.txt",
+          "bytes": 590014,
+          "compressedBytes": 125382,
+          "schema": [
+            "latitude",
+            "longitude",
+            "bright_ti4",
+            "scan",
+            "track",
+            "acq_date",
+            "acq_time",
+            "satellite",
+            "confidence",
+            "version",
+            "bright_ti5",
+            "frp",
+            "daynight"
+          ],
+          "rowCount": 6934,
+          "acceptedCount": 6874,
+          "duplicates": 0,
+          "quarantined": 0,
+          "outsidePolygon": 60,
+          "dateRange": [
+            "2026-11-11",
+            "2026-11-11"
+          ],
+          "acceptedGeographicExtent": [
+            -80.73475,
+            -52.52525,
+            -34.83224,
+            11.74044
+          ],
+          "memberSHA256": "b7370d852acb14ffb8c628f45d494dea55e1806d8178ef767ccacc791f40c045",
+          "sources": [
+            {
+              "id": "sa-n20-noaa20-nrt",
+              "title": "NOAA-20 VIIRS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "VIIRS",
+              "platform": "NOAA-20",
+              "product": "VJ114IMGTDL_NRT",
+              "version": "2",
+              "processing": "nrt",
+              "deliveryProfile": "N20",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            }
+          ]
+        },
+        {
+          "name": "viirs1/J1_VIIRS_C2_South_America_VJ114IMGTDL_NRT_2026316.txt",
+          "bytes": 655188,
+          "compressedBytes": 138954,
+          "schema": [
+            "latitude",
+            "longitude",
+            "bright_ti4",
+            "scan",
+            "track",
+            "acq_date",
+            "acq_time",
+            "satellite",
+            "confidence",
+            "version",
+            "bright_ti5",
+            "frp",
+            "daynight"
+          ],
+          "rowCount": 7695,
+          "acceptedCount": 7636,
+          "duplicates": 0,
+          "quarantined": 0,
+          "outsidePolygon": 59,
+          "dateRange": [
+            "2026-11-12",
+            "2026-11-12"
+          ],
+          "acceptedGeographicExtent": [
+            -80.73237,
+            -52.52825,
+            -34.94196,
+            11.75154
+          ],
+          "memberSHA256": "d9e3c55c894edf5fcbb23d4e911251e08171a4231b3d25d2e8ea478fe416ca53",
+          "sources": [
+            {
+              "id": "sa-n20-noaa20-nrt",
+              "title": "NOAA-20 VIIRS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "VIIRS",
+              "platform": "NOAA-20",
+              "product": "VJ114IMGTDL_NRT",
+              "version": "2",
+              "processing": "nrt",
+              "deliveryProfile": "N20",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            }
+          ]
+        },
+        {
+          "name": "viirs1/J1_VIIRS_C2_South_America_VJ114IMGTDL_NRT_2026317.txt",
+          "bytes": 704770,
+          "compressedBytes": 149914,
+          "schema": [
+            "latitude",
+            "longitude",
+            "bright_ti4",
+            "scan",
+            "track",
+            "acq_date",
+            "acq_time",
+            "satellite",
+            "confidence",
+            "version",
+            "bright_ti5",
+            "frp",
+            "daynight"
+          ],
+          "rowCount": 8282,
+          "acceptedCount": 8149,
+          "duplicates": 0,
+          "quarantined": 0,
+          "outsidePolygon": 133,
+          "dateRange": [
+            "2026-11-13",
+            "2026-11-13"
+          ],
+          "acceptedGeographicExtent": [
+            -79.83385,
+            -51.64845,
+            -34.83891,
+            11.75029
+          ],
+          "memberSHA256": "7ccf13c92796a334f83b46be292d5313ec234673f877835a9d2f0011b56fd218",
+          "sources": [
+            {
+              "id": "sa-n20-noaa20-nrt",
+              "title": "NOAA-20 VIIRS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "VIIRS",
+              "platform": "NOAA-20",
+              "product": "VJ114IMGTDL_NRT",
+              "version": "2",
+              "processing": "nrt",
+              "deliveryProfile": "N20",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            }
+          ]
+        },
+        {
+          "name": "viirs1/J1_VIIRS_C2_South_America_VJ114IMGTDL_NRT_2026318.txt",
+          "bytes": 167339,
+          "compressedBytes": 34805,
+          "schema": [
+            "latitude",
+            "longitude",
+            "bright_ti4",
+            "scan",
+            "track",
+            "acq_date",
+            "acq_time",
+            "satellite",
+            "confidence",
+            "version",
+            "bright_ti5",
+            "frp",
+            "daynight"
+          ],
+          "rowCount": 1962,
+          "acceptedCount": 1935,
+          "duplicates": 0,
+          "quarantined": 0,
+          "outsidePolygon": 27,
+          "dateRange": [
+            "2026-11-14",
+            "2026-11-14"
+          ],
+          "acceptedGeographicExtent": [
+            -73.47221,
+            -46.78657,
+            -35.11063,
+            11.75296
+          ],
+          "memberSHA256": "ed9f66eba441f4f1f39059797b3fbaa4ae04ea172fbeb0832b995c9594a1eaae",
+          "sources": [
+            {
+              "id": "sa-n20-noaa20-nrt",
+              "title": "NOAA-20 VIIRS nrt",
+              "regionId": "south-america",
+              "kind": "archive",
+              "source": "NASA FIRMS",
+              "sensor": "VIIRS",
+              "platform": "NOAA-20",
+              "product": "VJ114IMGTDL_NRT",
+              "version": "2",
+              "processing": "nrt",
+              "deliveryProfile": "N20",
+              "partial": false,
+              "fieldSemantics": {
+                "brightness": "Preserved original column label; export channel aliases are not assumed",
+                "collection": "Delivery family M-C61 or VIIRS C2; raw version separately preserved"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "calibration": "NOT_VALIDATED",
+  "observationOpportunity": "unknown"
+}

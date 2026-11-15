@@ -1,218 +1,43 @@
 {
-  "schema": "firepulse.static-snapshot/v1",
-  "revision": "f3cb30006dd2f0ff02df206024189da7757d40cd02e6708c2e5374f03a73910f",
+  "schema": "firepulse.static-snapshot/v2",
+  "purpose": "Summaries only; interactive evidence requires the indexed same-origin API.",
+  "revision": "86f1f872f7366fe4",
   "regions": {
-    "ajloun": 143,
-    "northern-jordan": 6859
+    "south-america": 48552057,
+    "brazil": 26419602
   },
   "files": {
-    "archive-data/ajloun/2006.json": {
-      "bytes": 30630,
-      "sha256": "9a627f617cca6231c14f00080c47c72076b0541af291b9e17acb9e0409e844b3"
+    "archive-data/south-america.json": {
+      "bytes": 130198,
+      "sha256": "10c57498e92771f3d8bb982439e3fc55807651f28535615ffcc18d88135b3b6b"
     },
-    "archive-data/ajloun/2010.json": {
-      "bytes": 29754,
-      "sha256": "e8759cab2a8a36c46dd83051ec3d82c533f802fb315d1d34a2504655d7018d05"
+    "archive-data/south-america/summaries-year.json": {
+      "bytes": 23590,
+      "sha256": "fa63358b9f2c285d80e36a6f0681b2a4a9095afae2ed870d3076136bca100741"
     },
-    "archive-data/ajloun/2012.json": {
-      "bytes": 29750,
-      "sha256": "8f03b1ffbc6bff2052340fd7495378d7501f439202bbd71df8a5b3cef5d1821c"
+    "archive-data/south-america/summaries-month.json": {
+      "bytes": 256539,
+      "sha256": "34b7c76007497f044eef0e78808990c35a2f1bc68c90b1872ef9998d0701901c"
     },
-    "archive-data/ajloun/2014.json": {
-      "bytes": 29749,
-      "sha256": "d5df3bdcc2478538e47c9abd70cc833bab6df17b2c16dfab906e02d4be608e32"
+    "archive-data/south-america/summaries-day.json": {
+      "bytes": 7797723,
+      "sha256": "d15b73238be099f2ea9dbaadc8d2338f2a57e8ae8710305700dbc0664788c242"
     },
-    "archive-data/ajloun/2015.json": {
-      "bytes": 33279,
-      "sha256": "594b6326afec2749598a7a5e951c66787f691495a377c51aeff95465ce36c797"
+    "archive-data/brazil.json": {
+      "bytes": 129918,
+      "sha256": "9921b0af4d7ac708af5aa711938d4e4c33ac80e981cc217d23b9b887e871e415"
     },
-    "archive-data/ajloun/2016.json": {
-      "bytes": 31514,
-      "sha256": "f57f0a0b55c3cc067fa58483459688bce30e50738632086b00708c31780582ff"
+    "archive-data/brazil/summaries-year.json": {
+      "bytes": 23655,
+      "sha256": "45f9ee719f4bd2c75a5e539416cc9206454c118aa405c117c06fae9c6cd97644"
     },
-    "archive-data/ajloun/2017.json": {
-      "bytes": 30633,
-      "sha256": "84a4625f9015fa95a6e9ce60cd39a27a8900533344c16a2e2291ebe922cad8e1"
+    "archive-data/brazil/summaries-month.json": {
+      "bytes": 256296,
+      "sha256": "377d51b15f00e5ef5094859e2265a48c60829f634c37aba7affe7f676aabffe1"
     },
-    "archive-data/ajloun/2018.json": {
-      "bytes": 31513,
-      "sha256": "96fbbb45d8cd842870d52cadca557b841c847f5de329ea21e2c077f273e5fe99"
-    },
-    "archive-data/ajloun/2019.json": {
-      "bytes": 41196,
-      "sha256": "69ab4bc50082ffdd51c5da7aa49438e32d601fffcfb047273a4d5681976e9f64"
-    },
-    "archive-data/ajloun/2020.json": {
-      "bytes": 34159,
-      "sha256": "65f7f72ced260697d948473aaef2152a7ce43d41f8b4306a6180b11e3183296d"
-    },
-    "archive-data/ajloun/2021.json": {
-      "bytes": 40291,
-      "sha256": "92c379b89d6eaeca8b7d1bfea5e6839956ced30faaf112659dd46987838194a2"
-    },
-    "archive-data/ajloun/2022.json": {
-      "bytes": 31510,
-      "sha256": "3db2576aa53f33b92ea6751de7286b42c3e76028bbf38cc2152205f93c75d930"
-    },
-    "archive-data/ajloun/2023.json": {
-      "bytes": 48236,
-      "sha256": "3dbe8ea2ef3f3f66714582c7837f1e9580d710fd18855ab321d35c36382191f3"
-    },
-    "archive-data/ajloun/2024.json": {
-      "bytes": 55288,
-      "sha256": "b37a1d7ed7d5729d92aa7f6143d487f2d6b4c526ab3d85873983f945e8ff3b25"
-    },
-    "archive-data/ajloun/2025.json": {
-      "bytes": 52639,
-      "sha256": "1a624c13c8f299c3e71e7fa2fb82777e00bd2c6c119f7602c979db9c5dce2881"
-    },
-    "archive-data/ajloun/2026.json": {
-      "bytes": 37506,
-      "sha256": "a0e04ca07be00222f0b4076ce13ab2e95b5dde1f5107e58c8372031b63b23500"
-    },
-    "archive-data/ajloun/summaries-day.json": {
-      "bytes": 29524,
-      "sha256": "05ca4d809a2b43f29de5d7538163c8b701a4082275f79912e453037969dee896"
-    },
-    "archive-data/ajloun/summaries-month.json": {
-      "bytes": 22083,
-      "sha256": "44abe38aa5827aa206e740de09c95bc0bcbde79a56c108b1db3eb7ce60913dc1"
-    },
-    "archive-data/ajloun/summaries-year.json": {
-      "bytes": 10384,
-      "sha256": "94424bf89781b31fe3e1348a4f8a5de7a7ac4e0e3001f76011c7118fa5a482ec"
-    },
-    "archive-data/ajloun/summaries.json": {
-      "bytes": 61595,
-      "sha256": "c9908852523125e1c5c1bfcd009afad3e2a8dfe818b8aede4ab611793a8561f4"
-    },
-    "archive-data/ajloun.json": {
-      "bytes": 28855,
-      "sha256": "604f91ec0f62a85e95d8ac8f84eae3c28ca4347d1edc405520df8a9d8e37013d"
-    },
-    "archive-data/northern-jordan/2001.json": {
-      "bytes": 32096,
-      "sha256": "880947b4987db6804e78952ca5f3363369acd82eccee3a27e810405626d41965"
-    },
-    "archive-data/northern-jordan/2002.json": {
-      "bytes": 32086,
-      "sha256": "f41ac3042bcbbb159e0b3397adcbaa97efab5d425aa497b9782d0fd9bf927738"
-    },
-    "archive-data/northern-jordan/2003.json": {
-      "bytes": 40150,
-      "sha256": "8924e7ec53ebef54dcd58d14cb710856cad112fb9e6c55d04ecb879a0517b3f1"
-    },
-    "archive-data/northern-jordan/2004.json": {
-      "bytes": 39249,
-      "sha256": "62d3c31a4e34f3651cf3b449aa25004bd710bc3cce5e122aeedcaa4ee3793720"
-    },
-    "archive-data/northern-jordan/2005.json": {
-      "bytes": 36592,
-      "sha256": "136cd590becc7743773048683719c84d0f4675200a49fc6ab7f123fae4542fd8"
-    },
-    "archive-data/northern-jordan/2006.json": {
-      "bytes": 43728,
-      "sha256": "08b0b65fbd4c0756d6368db78517161a61c746ad0cb311a6086cab63d99fe136"
-    },
-    "archive-data/northern-jordan/2007.json": {
-      "bytes": 37438,
-      "sha256": "fede30109f158c835a248030ba8e4acdbe0d0f070135ed9bc6b63b81966b43a7"
-    },
-    "archive-data/northern-jordan/2008.json": {
-      "bytes": 41034,
-      "sha256": "3f5e53e9a7a958aa9d040a177ec9293cbe9f68e8d6d37bf27395878def8cfe5a"
-    },
-    "archive-data/northern-jordan/2009.json": {
-      "bytes": 35640,
-      "sha256": "31ead04542746c579b9d8216c3e64e34da02d1dcdf4825960b03f54410209c28"
-    },
-    "archive-data/northern-jordan/2010.json": {
-      "bytes": 40179,
-      "sha256": "952e421a484b7c828516f2ffc95f4ac495b5a6c40ebb5332b61237cea1d02500"
-    },
-    "archive-data/northern-jordan/2011.json": {
-      "bytes": 47339,
-      "sha256": "214e23a0a8366b22c3e498d28ba14d743978875f023244ac54333de02585e124"
-    },
-    "archive-data/northern-jordan/2012.json": {
-      "bytes": 251169,
-      "sha256": "b0e82bb8b26461df8ba7164639ce6edf2d2d7b19df9703b284174e0f8b31d4e5"
-    },
-    "archive-data/northern-jordan/2013.json": {
-      "bytes": 241373,
-      "sha256": "cc44ddf2acf2e1d951dda4114231651cd8a1c2f24bafb8e320b819cfa776d79d"
-    },
-    "archive-data/northern-jordan/2014.json": {
-      "bytes": 205352,
-      "sha256": "5fd1c0048888d15b4078a610af99573b192213d6def7d4b13b41ef43ee62f91f"
-    },
-    "archive-data/northern-jordan/2015.json": {
-      "bytes": 264688,
-      "sha256": "96878f9b64c601f32f6eccf340714ba18b26f4427a8c1aef2d1876485bda4364"
-    },
-    "archive-data/northern-jordan/2016.json": {
-      "bytes": 172205,
-      "sha256": "5c57f9032e435cb884c99062de68f2b853b371841cc944ee31ec18199fb1a1e8"
-    },
-    "archive-data/northern-jordan/2017.json": {
-      "bytes": 191912,
-      "sha256": "28543851ecb4d377c1fb5907c313b77d73669a230fb947837a305e89c2f070e7"
-    },
-    "archive-data/northern-jordan/2018.json": {
-      "bytes": 337447,
-      "sha256": "9911ba76cd8a310069826ca71fef200ac1dd30dfc97cff3f4a74a16a8a580e66"
-    },
-    "archive-data/northern-jordan/2019.json": {
-      "bytes": 488136,
-      "sha256": "dba07b43e79f56a653570db402cb6ace3f03fcd52166ab88a38c4aa4d1e23dd5"
-    },
-    "archive-data/northern-jordan/2020.json": {
-      "bytes": 627483,
-      "sha256": "8ad71a48bfa4247f595fa5342827b3129e214f5ac35cb48052a0c7e33c552686"
-    },
-    "archive-data/northern-jordan/2021.json": {
-      "bytes": 561099,
-      "sha256": "76dc4cc735e7a730215f150ff58c1d7ae147c36b200e2003440a164b4796db04"
-    },
-    "archive-data/northern-jordan/2022.json": {
-      "bytes": 438130,
-      "sha256": "6d7d79a704bfa5a78a63419066f3c6d4f877e914f1845f1903a85aefb4de4876"
-    },
-    "archive-data/northern-jordan/2023.json": {
-      "bytes": 611480,
-      "sha256": "84aa1a5662e09ebc553fa972ad7ad98ee2a57d64bd57b4a40216916eb0c95c95"
-    },
-    "archive-data/northern-jordan/2024.json": {
-      "bytes": 799262,
-      "sha256": "8d41f1a1b8adaec8da0ffb21d1172b0f98eb37542e71b0536bb3ae16c499d66f"
-    },
-    "archive-data/northern-jordan/2025.json": {
-      "bytes": 580697,
-      "sha256": "42314e22f478861b2452ec6782ddd741fe171ceab87cccb628401718ae49586c"
-    },
-    "archive-data/northern-jordan/2026.json": {
-      "bytes": 745706,
-      "sha256": "a32f356846888035962d2c049e5dabbd6dbceef2a34ccdf91be77750cb02c0f3"
-    },
-    "archive-data/northern-jordan/summaries-day.json": {
-      "bytes": 1234053,
-      "sha256": "a26bc195632931285e96714d275a1d1738a31394e3b0906770f948688b7a9627"
-    },
-    "archive-data/northern-jordan/summaries-month.json": {
-      "bytes": 146398,
-      "sha256": "667349f5bd8c30a376a6a44db5ecad1999447c1d95910e1de9e5160efe7770de"
-    },
-    "archive-data/northern-jordan/summaries-year.json": {
-      "bytes": 24539,
-      "sha256": "1f7c6ffb8f1a562c5a9594fad88968ae625f9a76d0f49e7358e33cf9a2fac788"
-    },
-    "archive-data/northern-jordan/summaries.json": {
-      "bytes": 1404576,
-      "sha256": "50bf336b861cf550f51c37d155460ae9c55f7aa77acfe8ad7d0b4103f705690b"
-    },
-    "archive-data/northern-jordan.json": {
-      "bytes": 30281,
-      "sha256": "c717cd9e136196abd6c7bfa09b62691ca5203920af151c0a7f8c2bf800037f2a"
+    "archive-data/brazil/summaries-day.json": {
+      "bytes": 7789464,
+      "sha256": "ae61170ad204198633e1ea1528657628659074dddb427731f0a96ce4c520ce6d"
     }
   }
 }

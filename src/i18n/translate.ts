@@ -1,4 +1,5 @@
 import { evidenceArabic } from './evidence-ar.ts';
+import {southAmericaArabic} from './south-america-ar.ts';
 import { arabic, templates } from './ar.ts';
 
 export type Language = 'en' | 'ar';
@@ -7,7 +8,7 @@ let language: Language = 'en';
 try { if (typeof window !== 'undefined' && window.localStorage.getItem(LANGUAGE_KEY) === 'ar') language = 'ar'; } catch { /* Storage is optional. */ }
 const listeners = new Set<() => void>();
 const normalize = (text: string) => text.replace(/\s+/g, ' ').trim().toLowerCase();
-const dictionary = new Map(Object.entries({ ...arabic, ...evidenceArabic }).map(([key, value]) => [normalize(key), value]));
+const dictionary = new Map(Object.entries({ ...arabic, ...evidenceArabic,...southAmericaArabic }).map(([key, value]) => [normalize(key), value]));
 const patterns = Object.entries(templates).map(([key, value]) => ({
   pattern: new RegExp('^' + key.split(/\{\d+\}/).map(s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('([\\s\\S]*?)') + '$', 'i'), value,
 }));
@@ -18,7 +19,7 @@ function documentLanguage() {
   if (typeof document === 'undefined') return;
   document.documentElement.lang = language;
   document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
-  document.title = language === 'ar' ? 'FIREPULSE — ذكاء رصد الأرض' : 'FIREPULSE — Earth Intelligence';
+  document.title = language === 'ar' ? 'رصد | RASAD — الرصد والمتابعة الشاملة' : 'RASAD | رصد — Earth Observation & Burning Activity Intelligence';
 }
 documentLanguage();
 export function setLanguage(next: Language) {

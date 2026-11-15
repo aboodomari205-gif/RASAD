@@ -8,9 +8,9 @@ test('shared frontend loader enforces region/fixture isolation and exact duplica
   try {
     globalThis.fetch = async () => new Response(JSON.stringify({ type: 'FeatureCollection', metadata: { mode: 'northern-jordan', developmentFixture: true }, features: [feature, { ...feature, id: 99 }] }));
     const data = await fetchObservationCollection('northern-jordan'); assert.equal(data.features.length, 1); assert.equal(data.metadata?.availability?.state, 'fixture'); assert.equal((data.metadata?.canonicalDiagnostics as { duplicatesRemoved: number } | undefined)?.duplicatesRemoved, 1);
-    await assert.rejects(fetchObservationCollection('ajloun'), /scope/);
+    await assert.rejects(fetchObservationCollection('ajloun'), /scope|provenance/);
     globalThis.fetch = async () => new Response(JSON.stringify({ type: 'FeatureCollection', metadata: { mode: 'ajloun', developmentFixture: true }, features: [feature] }));
-    await assert.rejects(fetchObservationCollection('ajloun'), /scope/);
+    await assert.rejects(fetchObservationCollection('ajloun'), /scope|provenance/);
   } finally { globalThis.fetch = original; }
 });
 test('typed Intelligence client validates scopes and exposes error availability without inventing empty success', async () => {

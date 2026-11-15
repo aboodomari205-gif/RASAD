@@ -1,9 +1,10 @@
 {
-  "name": "firepulse",
+  "name": "rasad",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "train:research": "node scripts/train-research.mjs",
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "oxlint",
@@ -15,15 +16,23 @@
     "verify:release": "node scripts/verify-release.mjs",
     "verify:deployment": "node scripts/verify-deployment.mjs",
     "prepare:data": "node deployment/cloudflare/prepare-data.mjs",
-    "build:cloudflare": "tsc -b && node deployment/cloudflare/build-pages.mjs && node scripts/verify-prepared-static.mjs",
+    "build:cloudflare": "tsc -b && node deployment/cloudflare/build-pages.mjs",
     "preview:cloudflare": "node deployment/cloudflare/serve-static.mjs dist",
     "verify:static": "node scripts/verify-prepared-static.mjs",
-    "test:static": "node scripts/verify-pages-preview.mjs"
+    "test:static": "node scripts/verify-pages-preview.mjs",
+    "serve": "node server/serveProduction.js",
+    "import:south-america": "python scripts/import-south-america.py",
+    "audit:south-america": "python scripts/audit-south-america.py",
+    "test:south-america": "node --test tests/southAmerica.test.ts",
+    "test:south-america:browser": "node scripts/verify-south-america-browser.mjs",
+    "verify:rasad:grid": "python scripts/verify-rasad-grid-independent.py",
+    "report:rasad": "python scripts/report-rasad.py"
   },
   "dependencies": {
     "@noble/hashes": "^2.4.0",
     "@react-three/drei": "^10.7.9",
     "@react-three/fiber": "^9.8.2",
+    "h3-js": "^4.5.0",
     "maplibre-gl": "^6.16.0",
     "motion": "^14.12.0",
     "react": "^19.3.1",

@@ -1,0 +1,98 @@
+{
+  "schema": "firepulse.nasa-acquisition-request/v1",
+  "status": "NOT_ACQUIRED_NOT_CALIBRATED",
+  "aoi": {
+    "name": "South America",
+    "searchBBox": [
+      -82,
+      -56,
+      -34,
+      13
+    ],
+    "membership": "Natural Earth 5.1.2 polygon union, not bounding-box country classification"
+  },
+  "pilotWindowUTC": [
+    "2024-08-01T00:00:00Z",
+    "2024-08-31T23:59:59Z"
+  ],
+  "selection": "All intersecting swaths and overpasses, including valid no-detection pixels; do not select only hotspot-positive granules. Exact granule IDs/versions/SHA must be verified at acquisition. A pilot does not validate long-term calibration.",
+  "products": [
+    {
+      "products": [
+        "MOD14",
+        "MYD14"
+      ],
+      "collection": "6.1",
+      "purpose": "L2 complete fire masks, valid/non-fire/cloud classes, detection flags",
+      "reference": "https://ladsweb.modaps.eosdis.nasa.gov/missions-and-measurements/products/MOD14/"
+    },
+    {
+      "products": [
+        "MOD03",
+        "MYD03"
+      ],
+      "collection": "6.1; verify each granule matches fire-mask acquisition",
+      "purpose": "Pixel geolocation, footprints, view geometry"
+    },
+    {
+      "products": [
+        "MOD35_L2",
+        "MYD35_L2"
+      ],
+      "collection": "6.1",
+      "purpose": "Cloud mask/QA; verify spatial/temporal matching",
+      "reference": "https://modarch.gsfc.nasa.gov/data/dataprod/mod35.php"
+    },
+    {
+      "products": [
+        "VNP14IMG",
+        "VJ114IMG",
+        "VJ214IMG"
+      ],
+      "collection": "2 / LAADS 5200; verify per-platform granules",
+      "purpose": "VIIRS full 375m L2 fire masks and QA",
+      "reference": "https://ladsweb.modaps.eosdis.nasa.gov/missions-and-measurements/products/VJ214IMG/"
+    },
+    {
+      "products": [
+        "VNP03IMG",
+        "VJ103IMG",
+        "VJ203IMG"
+      ],
+      "collection": "matching Collection 2 granules; verify catalog availability",
+      "purpose": "375m geolocation/geometry; do not assume uniform swath exposure"
+    },
+    {
+      "products": [
+        "CLDMSK_L2_VIIRS_SNPP",
+        "CLDMSK_L2_VIIRS_NOAA20",
+        "CLDMSK_L2_VIIRS_NOAA21"
+      ],
+      "collection": "product-specific continuity cloud-mask collection; NOAA21 documented v1.0/5110, not assumed equal to fire C2",
+      "purpose": "Cloud/valid-pixel opportunity screen with verified co-registration",
+      "reference": "https://ladsweb.modaps.eosdis.nasa.gov/missions-and-measurements/products/CLDMSK_L2_VIIRS_NOAA21"
+    }
+  ],
+  "missingHistoricalArchive": {
+    "source": "VIIRS S-NPP C2 Standard / FIRMS SV-C2",
+    "years": [
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025,
+      2026
+    ],
+    "note": "No South America files supplied; acquire only actual platform-available dates through the verified last product date. 2026 is partial. Do not invent post-cessation data."
+  },
+  "independentValidation": "Required spatially and temporally held-out opportunity units plus independently documented fire truth suitable for the target estimand. None supplied."
+}

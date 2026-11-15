@@ -3,9 +3,9 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {pointInRegion} from '../shared/observations.ts';
 import {loadRegionCollection} from '../server/dataCatalog.js';
-const source=JSON.parse(fs.readFileSync('public/jordan-adm1.geojson','utf8'));
+const source=JSON.parse(fs.readFileSync('server/legacy-geography/jordan-adm1.geojson','utf8'));
 const members=source.features.filter(f=>['Irbid','Ajloun','Jerash','Mafraq'].includes(f.properties.shapeName));
-const union=JSON.parse(fs.readFileSync('public/northern-jordan.geojson','utf8')).features[0].geometry;
+const union=JSON.parse(fs.readFileSync('server/legacy-geography/northern-jordan.geojson','utf8')).features[0].geometry;
 test('Northern Jordan union matches exact member inclusion across a deterministic geographic grid',()=>{
  assert.equal(members.length,4);assert.equal(union.type,'MultiPolygon');
  for(let x=35.4;x<39.4;x+=.07)for(let y=31.8;y<33.5;y+=.07)assert.equal(pointInRegion(x,y,union),members.some(f=>pointInRegion(x,y,f.geometry)),`${x},${y}`);

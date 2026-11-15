@@ -1,83 +1,107 @@
-# FIREPULSE — Earth Intelligence OS
+﻿# RASAD | رصد
 
-A regional research application for NASA FIRMS MODIS/VIIRS thermal detections: a shared UTC/source model, an interactive burning-activity calendar and transparent exploratory cross-sensor associations. **Detections and candidate groups are not confirmed wildfires.**
+**Brazil-only research demonstration for NASA Space Apps: “Harmonization of MODIS and VIIRS Hot Spots.”**
 
-Current activated observations: **Ajloun 143** (11 MODIS / 132 VIIRS), **Northern Jordan 6859** (352 / 6507). Ajloun is contained in Northern Jordan; never add these totals. Detection-date extents are 2006-12-03–2026-09-04 and 2001-05-20–2026-11-10 respectively, not continuous verified acquisition coverage. All five platforms are represented in the activated catalog; every individual record retains its own provenance.
+RASAD brings authentic MODIS and VIIRS thermal detections onto common spatial and UTC supports while retaining sensor, platform, product, processing, confidence and uncertainty. MODIS (~1 km nominal) and VIIRS (~375 m nominal) have different detection sensitivity; adding their raw counts does not create a comparable fire-history series. Hotspots are not unique fires, perimeters or verified ignition events.
 
-Start with [final acceptance](docs/FIREPULSE_FINAL_ACCEPTANCE.md), [three-minute demo](docs/THREE_MINUTE_DEMO.md) and [exact requirement traceability](docs/OFFICIAL_REQUIREMENTS_TRACEABILITY.md). Some older reports deliberately preserve an earlier 36-record pilot; those counts are not the active catalog.
+## What works
 
-## Cloudflare Pages / source-only preview
+- **Harmonized Atlas:** actual Brazil observations, source-aware filters, bounded map pages, UTC timeline and original acquisition/FRP/confidence metadata.
+- **Burning Calendar:** full source-stratified historical summaries, seasonal views and descriptive prior same-month comparisons. Missing opportunity stays unknown; conditional percentiles are not validated anomalies.
+- **Sensor Comparison & Trust:** common equal-area 1/2/5 km grids, H3 resolutions 4–8 with actual cell areas, delivered co-detection and source-only patterns, lineage and quality caveats.
+- **Research & Export:** real source/day CSV and JSON reports, printable evidence, an actual trained conditional-FRP research prototype and reproducible held-out evaluation.
 
-The current historical application supports a fully static deployment. Include the reviewed `deployment/static-data/` JSON snapshot in the future GitHub commit; keep original SQLite, input ZIP/CSV files and checkpoints excluded. No NASA key, runtime environment variables, Express or SQLite is required for this build.
+The existing five sections remain: Mission Atlas, Burning Calendar, Activity Intelligence, Sensor Harmonization, Research & Export. Arabic RTL and English LTR, mobile navigation and the original RASAD logo are retained. The four original workflows use actual detections, explicit environmental availability, detected-cell progression and descriptive evidence reports. No emergency dispatch, fire-risk probability or spread prediction is supplied.
+
+## Real data and pilot
+
+Indexed Brazil observations: **26,419,602** in local generation `86f1f872f7366fe4`. MODIS Terra/Aqua history spans delivered dates from 2000/2002; declared NOAA-20/21 starts in 2018/2023, with NRT through 2026-11-14. These are delivered extents, not verified acquisition coverage. NOAA-20/21 Standard lineage needs supplier clarification; no activated Brazil S-NPP history exists.
+
+Pilot: **Mato Grosso, W −57, S −14, E −55, N −12**, EPSG:4326. August 2024 contains **6,876 real detections, 152 occupied H3 resolution-6 cells, 988 source-positive cell-days with reported FRP**. Original NASA archives and databases are preserved locally and excluded from Git. [Source/year inventory](docs/RASAD_BRAZIL_INVENTORY.md), [original input manifest](docs/RASAD_INPUT_MANIFEST.json).
+
+## Actual experimental ML
+
+Task: estimate **mean reported FRP MW conditional on a source-positive H3 cell-day**. It is descriptive estimation, not forecasting, sensor calibration or VIIRS-equivalent reconstruction. No absent-hotspot record becomes a negative label. No environmental feature was invented.
+
+A deterministic Node implementation trains 60 gradient-boosted depth-3 regression trees on `log1p(mean reported FRP)`. Features are H3 center coordinates, calendar sine/cosine and exact source stratum. Baseline: per-source training mean in log space. Fixed parameters; no holdout tuning.
+
+| Holdout | Samples | Baseline MAE MW | Model MAE MW | Baseline RMSE MW | Model RMSE MW |
+|---|---:|---:|---:|---:|---:|
+| Later dates, training geography | 306 | 24.003 | 27.216 | 54.775 | 59.370 |
+| Unseen H3 parent blocks, earlier dates | 252 | 24.855 | 23.889 | 80.374 | 80.520 |
+| Later dates AND unseen blocks | 148 | 16.561 | 16.472 | 39.198 | 42.450 |
+
+Training: **282** positive cell-days before 2024-08-25, excluding six held-out H3 resolution-4 blocks. The four partitions total 988. **Results are mixed: temporal performance is worse than baseline; joint MAE is marginally lower but RMSE is worse.** There is no independent year validation or calibrated prediction interval. This does not establish scientific calibration or useful generalization. See [method/evaluation](docs/RASAD_RESEARCH_MODEL.md) and [machine-readable results](models/brazil-frp-evaluation.json).
+
+## Run on Windows
+
+Node 24+ recommended (development verified on Node 26.13.0). In PowerShell:
 
 ```powershell
 npm ci
-npm run build:cloudflare
-npm run preview:cloudflare
+npm ci --prefix server
+npm run build
+npm run serve
 ```
 
-Open http://127.0.0.1:5179/#mission-atlas. Cloudflare Pages settings: repository root, build command `npm run build:cloudflare`, output directory `dist`. `.node-version` selects Node 24. [Current deployment readiness and exact verification](docs/PRODUCTION_DEPLOYMENT_READINESS.md) supersedes earlier provider blocker reports. Nothing has been pushed or deployed.
+Open http://localhost:4173 and enter the workspace. Development: `npm run dev` at http://localhost:5173; the Vite plugin serves the local API in the same process, so no separate backend is needed.
 
-## Install and run locally
+**Data availability matters:** the multi-GB private local index and raw deliveries are not distributed in GitHub. Full maps/history require importing the original delivered FIRMS files with `npm run import:south-america`, then `npm run prepare:data`. Despite the legacy script names, active application/API scope is Brazil only. Python numpy/shapely are required for original-file import; they are not required for model replay. See [import documentation](docs/SOUTH_AMERICA_IMPORT_REPORT.md).
 
-Tested runtime: Node v26.13.0, npm and Python 3 for independent stdlib checks. See package engines for supported ranges; rerun acceptance when changing runtime. Existing archive demonstration needs no NASA API key or .env. Never share credentials, commit raw archives/SQLite or edit secrets to run the historical demo.
-
-For a fresh authorized source checkout with its lockfiles:
+The small committed `models/brazil-pilot-samples.json` contains actual derived source-positive cell-day labels, not original hotspot positions or a complete Brazil archive. It supports reproducible model training without the private database:
 
 ```powershell
-npm ci
-npm --prefix server ci
-npm run dev
+node scripts/train-research.mjs --from-bundled
 ```
 
-Open http://localhost:5173/#mission-atlas and select Start Mission. Vite mounts Express on the same origin; no separate port 3001 process is needed. Do not run multiple development servers on 5173. No installation is needed when dependencies already exist.
-
-Original archive inputs and activated SQLite are intentionally excluded from version control. The reviewed public JSON snapshot supports the complete static historical experience above. Running the local Express ingestion/development API additionally requires the operator to restore the verified SQLite generation, active-history pointer, referenced activation report and summaries from their authorized local scientific archive. Do not create fake empty datasets or run an import to hide missing files. [Scientific methodology](docs/SCIENTIFIC_HARMONIZATION_ENGINE.md) and [archive procedures](ARCHIVE_INGESTION.md) document integrity requirements.
-
-## What to demonstrate
-
-Choose Ajloun and year 2023: **22 observations** (2 MODIS Aqua / 20 VIIRS). Open Burning Calendar, July 2023: **18 records** (2 / 16); July 14 contains 2 / 11. CSV and standalone SVG export the displayed filtered month, preserving original IDs/source metadata; CSV includes coordinates. Missing contributions stay unknown.
-
-Atlas playback visits the available observed dates only. Play/pause, Escape and manual date selection stop it; the last date ends the sequence. It does not interpolate dates, prove coverage or loop the camera. Keyboard range navigation and reduced motion remain supported.
-
-In Evidence Engine, Start Guide restores its explicit Ajloun 2023 scope. Exploratory 1 km/60 min matching gives **12 candidate edges, 13 participating IDs, 1 connected group**; 1 km/7 min gives **5/6/1**. These are different graph quantities, not events or probabilities. Inspect source metadata and export Research Brief. Delivered history offers source-consistent matched-month comparisons; raw count differences are not calibrated trends or anomalies.
-
-## Architecture and scientific limits
-
-React/Vite/TypeScript renders the intro, MapLibre Atlas, Calendar and Intelligence experiences. Express serves region manifests/year shards and source-separated history contracts from immutable read-only SQLite. Shared canonical/filter/aggregation/matching/research utilities keep scopes consistent. Local production simulations and a separate immutable static transport exist; development middleware must not be mistaken for production routing.
-
-Original confidence semantics, UTC acquisition values, FRP and source/platform/product/version/processing strata are retained. Standard and NRT are not silently equated. The 1 km/60 min radius/time rule is exploratory, not a NASA-prescribed calibration. NOAA-20/21 upstream lineage remains unresolved. Valid-pixel acquisition opportunity, sensor sensitivity calibration, verified zero days, historical medians and validated anomalies are not established. Official full challenge detail/resource retrieval remains incomplete; do not claim 100% compliance or NASA endorsement.
-
-## Verification
+To rebuild labels from the original indexed records instead:
 
 ```powershell
+npm run train:research
+```
+
+Both use fixed dates, H3 support, split and hyperparameters. Sample SHA256: `aec28403fca1756c6e230bdeb18e34e3c407031d7e421d389822c58d5a6e59f8`. The research panel/API can show the committed real model without the full archive, explicitly reporting archive availability; it never supplies fabricated map observations.
+
+## Two-minute demonstration
+
+1. Enter **Mission Atlas**, inspect Brazil, switch MODIS/VIIRS and review actual UTC/FRP/confidence.
+2. Open **Sensor Harmonization**: read the fixed August 2024 Research Prototype, source-pair overlap and mixed held-out results. Select an actual held-out example; observed and estimated FRP are labeled separately.
+3. In the Mato Grosso pilot choose **Inspect August 2024 pilot**, change H3 resolution and inspect source-separated cell/day evidence.
+4. Open **Activity Intelligence**, play daily occupied cells and select a UTC day. This is detected activity, not perimeter growth.
+5. Open **Burning Calendar**, inspect authentic history and qualified same-month comparisons.
+6. Export pilot CSV/JSON and the research evaluation JSON; print the report with limitations.
+
+## Status and missing evidence
+
+| Component | Status |
+|---|---|
+| Brazil Atlas, common grids/H3, calendar, source trust, exports | DONE for delivered observations |
+| Cross-sensor co-detection / source-only analysis | DONE descriptive; not opportunity-normalized |
+| Real conditional-on-detection ML | EXPERIMENTAL; actual artifacts, held-outs and bounded inference |
+| Environmental point import/context | PARTIAL; actual raster inputs/extraction runtime missing |
+| Opportunity-normalized calibration / validated anomaly | BLOCKED: full fire masks, valid-pixel/cloud QA, geolocation, independent validation |
+| AI downscaling / historical reconstruction | NOT VALIDATED; no modeled historical hotspot maps |
+| Full public hosting / submission | Not performed; GitHub delivery is separate from deployment |
+
+[Smallest missing-data checklist](docs/RASAD_BRAZIL_MISSING_CHECKLIST.md) specifies one pilot bbox/month, exact products, official links, folders and authentication. Do not download all Brazil. Store credentials only in ignored local configuration; never commit them.
+
+## Verification and screenshots
+
+```powershell
+npm test
 npm run build
 npm run lint
-npm test
-npm run test:e2e
-npm run test:language
-node scripts/verify-final-workflows.mjs
-node scripts/verify-claim-audit.mjs
-node scripts/verify-historical-explorer.mjs
-node scripts/verify-scientific-browser.mjs
-node scripts/verify-atlas-layout.mjs
-node scripts/verify-exploration-panel.mjs
-node scripts/verify-historical-api.mjs
-node scripts/audit-scientific-data.mjs
-python scripts/verify-scientific-independent.py
-node scripts/verify-scientific-completion.mjs
-python scripts/verify-completion-independent.py
-node scripts/verify-challenge-exports.mjs
-python scripts/verify-challenge-independent.py
 npm run verify:release
+$env:RASAD_TEST_ORIGIN='http://localhost:4173'
+node scripts/verify-rasad-batch1-browser.mjs
+node scripts/verify-rasad-batch1-browser.mjs --research
+node scripts/verify-rasad-batch1-browser.mjs --pilot
 ```
 
-Browser checks use existing local Chrome at the path in the scripts; run them sequentially because they share a debugging port. Some legacy E2E/language tests use a controlled older pilot; real-data suites independently check current activation. A passing build is not scientific or official challenge acceptance.
+Chrome browser verification currently uses the Windows Chrome path in the harness. Original-data integration tests skip when the private index is absent; that is not a passed original-data validation. Real model labels/artifact tests remain reproducible. [Current release evidence](docs/RASAD_AI_DELIVERY_REPORT.md).
 
-For local production semantics, build then run `node scripts/serve-production-audit.mjs` in a clean environment and inspect http://127.0.0.1:5187/#mission-atlas. `node scripts/verify-production-audit.mjs` checks actual API/data/assets. This is not cloud-runtime emulation. Current provider packaging/payload blockers are documented in [production audit](docs/PRODUCTION_READINESS_AUDIT.md) and [deployment checklist](docs/DEPLOYMENT_CHECKLIST.md); no deployment is authorized or performed.
+![Real research evaluation](docs/screenshots/research-evaluation.png)
 
-## Acknowledgments and source evidence
+[Atlas screenshot](docs/screenshots/mission-atlas.png) · [Calendar](docs/screenshots/burning-calendar.png) · [Arabic mobile research panel](docs/screenshots/research-arabic-mobile.png)
 
-NASA FIRMS/MODIS/VIIRS provide the original thermal-detection deliveries; no NASA endorsement is implied. Administrative geometry retains its documented source/license in [Jordan regions report](docs/JORDAN_REGIONS_RESTRUCTURE_REPORT.md). Earth imagery attribution is in EARTH_ALIVE.md and the Earth asset directory; basemap attribution remains visible for Esri/OpenFreeMap providers. Open-source dependencies retain their respective licenses. Product semantics and caveats: [NASA product verification](docs/NASA_PRODUCT_VERIFICATION.md), [current scientific audit](docs/SCIENTIFIC_DATA_AUDIT.json), [independent check](docs/SCIENTIFIC_INDEPENDENT_CHECK.json).
-
-A safe read-only native-file prescreen and exact candidate manifest are available for later manually authorized opportunity files: `node scripts/verify-opportunity-inputs.mjs .checkpoints/opportunity-inputs`. Exit 2 means missing/rejected inputs. Even a native signature/hash pass does not decode masks or enable coverage/calibration/anomalies. See [advanced input requirements](docs/ADVANCED_SCIENCE_DATA_REQUIREMENTS.md).
+No NASA endorsement, calibrated sensor equivalence, verified no-fire coverage or validated prediction is claimed. No paid service or public application deployment was performed.

@@ -1,0 +1,10 @@
+import express from 'express';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+import {createApp} from './app.js';
+const root=fileURLToPath(new URL('../dist/',import.meta.url));
+const app=createApp({remoteOrigin:()=>undefined});
+app.use(express.static(root,{index:'index.html',maxAge:0}));
+app.get('/{*page}',(_req,res)=>res.sendFile(path.join(root,'index.html')));
+const port=Number(process.env.PORT??4173);
+app.listen(port,'127.0.0.1',()=>console.log(`RASAD production preview http://localhost:${port}`));

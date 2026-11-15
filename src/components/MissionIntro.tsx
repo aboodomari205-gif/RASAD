@@ -10,7 +10,7 @@ export default function MissionIntro({ onFinish }: { onFinish: (enter: boolean) 
     const timeout = window.setTimeout(() => finish.current(false), reduced ? 0 : 2200);
     return () => clearTimeout(timeout);
   }, [reduced]);
-  return <motion.section className="mission-intro" aria-label={t("Optional FIREPULSE introduction")} initial={{ opacity: 1 }} exit={{ opacity: 0, scale: reduced ? 1 : 1.035 }} transition={{ duration: reduced ? 0 : .28 }} onKeyDown={event => { if (event.key === 'Escape') onFinish(false); }}>
+  return <motion.section className="mission-intro" aria-label={t("Optional RASAD introduction")} initial={{ opacity: 1 }} exit={{ opacity: 0, scale: reduced ? 1 : 1.035 }} transition={{ duration: reduced ? 0 : .28 }} onKeyDown={event => { if (event.key === 'Escape') onFinish(false); }}>
     <button className="intro-skip" onClick={() => onFinish(false)}>{t("Skip intro ↗")}</button>
     <div className="intro-atmosphere" aria-hidden="true"><svg viewBox="0 0 1000 700" preserveAspectRatio="xMidYMid slice">
       <defs><radialGradient id="orbital-light"><stop stopColor="#45D6C5" stopOpacity=".18" /><stop offset="1" stopColor="#080D17" stopOpacity="0" /></radialGradient><linearGradient id="limb"><stop stopColor="#45D6C5" stopOpacity="0" /><stop offset=".5" stopColor="#91ebdf" /><stop offset="1" stopColor="#FF7043" stopOpacity=".1" /></linearGradient></defs>
@@ -20,7 +20,7 @@ export default function MissionIntro({ onFinish }: { onFinish: (enter: boolean) 
       <motion.path d="M120 540 Q500 80 880 420" fill="none" stroke="#45D6C5" strokeWidth="1.5" initial={{ pathLength: 0, opacity: 0 }} animate={{ pathLength: 1, opacity: [.0, .7, .0] }} transition={{ duration: 2 }} />
     </svg></div>
     <div className="intro-copy"><motion.p initial={{ opacity: 0, letterSpacing: '0.45em' }} animate={{ opacity: 1, letterSpacing: '0.25em' }} transition={{ duration: .8 }}>{t("A DIFFERENT PERSPECTIVE ON EARTH")}</motion.p>
-      <h2 aria-label={t("FIREPULSE")}>{t('FIREPULSE'.split('').map((letter, index) => <motion.span aria-hidden="true" key={index} initial={{ y: 70, rotateX: 50, opacity: 0 }} animate={{ y: 0, rotateX: 0, opacity: 1 }} transition={{ duration: .65, delay: .12 + index * .045, ease: [.16, 1, .3, 1] }} className={index > 3 ? 'thermal' : ''}>{t(letter)}</motion.span>))}</h2>
+      <h2 aria-label={t("RASAD")}>{t('RASAD'.split('').map((letter, index) => <motion.span aria-hidden="true" key={index} initial={{ y: 70, rotateX: 50, opacity: 0 }} animate={{ y: 0, rotateX: 0, opacity: 1 }} transition={{ duration: .65, delay: .12 + index * .045, ease: [.16, 1, .3, 1] }} className={index > 3 ? 'thermal' : ''}>{t(letter)}</motion.span>))}</h2>
       <motion.div className="intro-actions" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .65, duration: .4 }}><button className="mission-button" onClick={() => onFinish(true)}>{t("Enter mission ↗")}</button><button className="text-button" onClick={() => onFinish(false)}>{t("Skip introduction")}</button></motion.div>
       <p className="intro-caption">{t("EARTH OBSERVATION / NASA SPACE APPS")}<br />{t("Procedural orbital study · Not satellite imagery")}</p>
     </div>

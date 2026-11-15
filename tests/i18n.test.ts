@@ -7,7 +7,7 @@ import { translateText, t, setLanguage, getLanguage, subscribeLanguage, locale }
 import { decisionSummary } from '../shared/analytics.ts';
 
 test('every static translated JSX label has reviewed Arabic copy (except brands and scientific units)', () => {
-  const unchanged = new Set(['FIRE', 'PULSE', 'FIREPULSE', 'MW', 'ESC', 'MODIS', 'VIIRS', 'VIIRS / MODIS', 'NASA FIRMS', 'NASA FIRMS / UTC', 'NASA FIRMS ·']);
+  const unchanged = new Set(['RASAD', 'FIRE', 'PULSE', 'FIREPULSE', 'MW', 'ESC', 'MODIS', 'VIIRS', 'VIIRS / MODIS', 'NASA FIRMS', 'NASA FIRMS / UTC', 'NASA FIRMS ·']);
   const files = (dir: string): string[] => readdirSync(dir, { withFileTypes: true }).flatMap(e => e.isDirectory() ? files(dir + '/' + e.name) : e.name.endsWith('.tsx') ? [dir + '/' + e.name] : []);
   const missing: string[] = [];
   function walk(value: unknown) {
@@ -28,7 +28,7 @@ test('Arabic dictionary and interpolated templates preserve values and scientifi
   assert.equal(translateText('7 observed dates available for VIIRS.', 'ar'), 'يتوفر 7 من تواريخ الرصد للمستشعر VIIRS.');
   assert.equal(translateText('7 VIIRS source records / 3 observed days in this month', 'ar'), '7 سجل مصدر للمستشعر VIIRS / 3 أيام مرصودة في هذا الشهر');
   assert.match(translateText('3 VIIRS observations; reported FRP sum 23.54 MW, partial reporting', 'ar'), /23\.54 MW، إبلاغ جزئي/);
-  assert.equal(translateText('Northern Jordan','ar'),'\u0634\u0645\u0627\u0644 \u0627\u0644\u0623\u0631\u062f\u0646');
+  assert.equal(translateText('Brazil','ar'),'\u0627\u0644\u0628\u0631\u0627\u0632\u064a\u0644');
   for (const raw of ['NASA FIRMS', 'MODIS', 'VIIRS', 'S-NPP', 'h', 'n', '2026-11-08T23:59:00Z', '-51.334, -8.231', 'firepulse.observations/v1']) assert.equal(translateText(raw, 'ar'), raw);
 });
 test('language switching notifies once, preserves non-string React/data values and uses Gregorian UTC formatting', () => {
@@ -38,10 +38,10 @@ test('language switching notifies once, preserves non-string React/data values a
   assert.equal(new Intl.DateTimeFormat(locale(), { year: 'numeric', timeZone: 'UTC' }).format(new Date('2026-12-31T23:59:59Z')), '2026');
   setLanguage('en'); assert.equal(t('Burning Calendar'), 'Burning Calendar'); assert.equal(notifications, 2); unsubscribe();
 });
-test('localized descriptive report retains actual UTC scope and no-data uncertainty', () => {
-  const brief = decisionSummary([], { region: 'ajloun', startDate: '2026-11-01', endDate: '2026-11-30' }, { state: 'unavailable', coverage: 'unknown', fixture: false }, '2026-11-11T21:00:00Z');
+test('localized descriptive report retains actual Brazil scope and no-data uncertainty', () => {
+  const brief = decisionSummary([], { region: 'brazil', startDate: '2026-11-01', endDate: '2026-11-30' }, { state: 'unavailable', coverage: 'unknown', fixture: false }, '2026-11-11T21:00:00Z');
   const result = translateText(brief, 'ar');
-  assert.match(result, /المنطقة: عجلون/); assert.match(result, /2026-11-01/); assert.match(result, /2026-11-11T21:00:00Z/);
+  assert.match(result, /المنطقة: البرازيل/); assert.match(result, /2026-11-01/); assert.match(result, /2026-11-11T21:00:00Z/);
   assert.match(result, /ليست حرائق غابات مؤكدة/); assert.match(result, /لا يثبت انعدام النشاط/); assert.doesNotMatch(result, /Generated:|Region:|No observations|Thermal detections/);
 });
 

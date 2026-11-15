@@ -4,6 +4,7 @@ import { useMotionPreference } from "./motion/useMotionPreference";
 import { lazy, Suspense, useEffect, useState } from "react";
 import { AnimatePresence, MotionConfig, motion } from "motion/react";
 import "./App.css";
+import "./design/rasad-workspace.css";
 import { useMission, readModuleHash, moduleHash } from "./state/mission";
 import MissionBoundary from "./components/MissionBoundary";
 import AnalysisBoundary from "./components/AnalysisBoundary";
@@ -95,6 +96,7 @@ export default function App() {
                 >
                   <BurningCalendar
                     initialRegion={missionRegion}
+                    onNavigate={setActive}
                     onExploreHistory={()=>setActive('Anomaly Detection')}
                     onReturn={() => setActive("Intelligence Map")}
                     onEarth={() => setLanding(true)}
@@ -142,7 +144,7 @@ export default function App() {
             <p>
               {t(missionMounted
                 ? "RETURNING TO MISSION"
-                : "OPENING AJLOUN MISSION")}
+                : "OPENING BRAZIL MISSION")}
             </p>
           </motion.div>
         ))}

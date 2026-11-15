@@ -1,14 +1,25 @@
 :root {
-  --atlas-void: #0b0d10;
-  --atlas-graphite: #15181d;
-  --atlas-raised: #1d2126;
-  --atlas-line: #393e44;
-  --atlas-line-soft: #292d33;
-  --atlas-ivory: #eae8e2;
-  --atlas-muted: #a7acae;
-  --atlas-dim: #81898e;
+  /* RASAD blue/green family, coordinated with the supplied original mark. */
+  --brand-primary: #123e67;
+  --brand-secondary: #21864a;
+  --brand-background: #071421;
+  --brand-surface: #102333;
+  --brand-text: #edf5f4;
+  --brand-border: #2a4352;
+  --activity-low: #ffd49b;
+  --activity-high: #e44826;
+  --warning: #efbd60;
+  --error: #ed706b;
+  --atlas-void: var(--brand-background);
+  --atlas-graphite: var(--brand-surface);
+  --atlas-raised: #173243;
+  --atlas-line: #2a4352;
+  --atlas-line-soft: #203745;
+  --atlas-ivory: #edf5f4;
+  --atlas-muted: #b0c4ca;
+  --atlas-dim: #91a9b3;
   --atlas-coral: #ff6848;
-  --atlas-cyan: #7bcad1;
+  --atlas-cyan: #87d8be;
   --atlas-font: 'DM Sans', 'Segoe UI', sans-serif;
   --atlas-display: 'Space Grotesk', 'Segoe UI', sans-serif;
   --atlas-mono: 'SFMono-Regular', Consolas, monospace;

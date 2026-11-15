@@ -1,3 +1,9 @@
+# Active South America migration ? 2026-11-14
+
+The active implementation and scientific status are governed by [NASA_ACCEPTANCE_MATRIX.md](NASA_ACCEPTANCE_MATRIX.md) and [FINAL_COMPLETION_REPORT.md](FINAL_COMPLETION_REPORT.md). Prior study-area reports and the tracker below are historical records, not active claims. Calibration is NOT_CALIBRATED; S-NPP history, opportunity inputs and independent validation remain missing.
+
+---
+
 # FIREPULSE completion tracker
 
 Audit baseline: 2026-11-11. Source checkpoint `.checkpoints/completion-20261111-213252/` (no Git repository; no secrets/datasets copied). Baseline: 48 tests, lint and production build pass. Existing lazy Three/MapLibre bundle warnings remain.

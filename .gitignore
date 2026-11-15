@@ -33,6 +33,9 @@ server/node_modules/
 *.sqlite*
 
 data/incoming/
+data/processed/
+data/indexes/
+data/manifests/
 server/incoming/
 
 # Deployment artifacts, raw/private deliveries and local tooling
@@ -54,3 +57,7 @@ Microsoft/
 *.env
 .npmrc
 .netrc
+
+# Python verification caches
+__pycache__/
+*.py[cod]

@@ -1,0 +1,8 @@
+# Missing NASA data checklist
+
+1. Request South America polygon/search extent [-82,-56,-34,13] in NASA FIRMS Archive Download for **VIIRS S-NPP C2 Standard**. Missing supplied years: **2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026**. Respect actual platform/product start and cessation dates; 2026 is partial. Keep original ZIPs, Readme, headers and processing metadata. Place them under `server/data/incoming/historical/` and rerun ingestion.
+2. Ask FIRMS to clarify the actual `fire_archive_J1V-C2` and `fire_archive_J2V-C2` supplied lineage, dates and Standard-processing claim against the current export Readme. Do not rename or silently relabel these files.
+3. Acquire the exact paired full-mask/geolocation/cloud products in SOUTH_AMERICA_ACQUISITION_MANIFEST.json for all intersecting pilot swaths, including no-hotspot granules. Preserve granule IDs, collection, acquisition, production time and checksum. Then design held-out validation across countries/seasons/years; do not extrapolate a pilot month to 26 years.
+4. Daily NRT delivery gaps must be distinguished from dates without positive rows. The independent raw inventory lists actual delivered member dates. Request any absent daily members within each source ZIP's filename-date span; their absence is not a verified zero. Historical positive-date gaps likewise do not establish a missing file or complete acquisition coverage.
+
+No NASA credentials are required for the supplied-file importer. Earthdata credentials for future acquisition must stay outside source control and public assets.

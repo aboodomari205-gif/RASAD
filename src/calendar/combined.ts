@@ -3,7 +3,7 @@ import type { ObservationCollection, ObservationFilter } from '../../shared/mode
 /** Observation-level rows avoid conflating raw counts across source strata. */
 export function calendarExportRecords(collection:ObservationCollection,filter:ObservationFilter,month:string){
  if(!/^\d{4}-(0[1-9]|1[0-2])$/.test(month)||!validUTCDate(month+'-01'))throw new RangeError('Invalid UTC export month');
- const normalized=normalizeCollection(collection,{region:filter.region??'ajloun'});
+ const normalized=normalizeCollection(collection,{region:filter.region??'brazil'});
  const records=filterObservations(normalized.observations,filter).filter(o=>o.utcDate.startsWith(month)).sort((a,b)=>a.id.localeCompare(b.id));
  return {normalized,records};
 }

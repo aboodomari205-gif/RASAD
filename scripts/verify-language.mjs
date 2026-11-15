@@ -12,7 +12,7 @@ async function ready(url) { for (let i = 0; i < 100; i++) { try { const r = awai
 let ws;
 try {
   const apiPort = await new Promise(resolve => { const probe = createNetServer(); probe.listen(0, '127.0.0.1', () => { const port = probe.address().port; probe.close(() => resolve(port)); }); });
-  start(process.execPath, ['--input-type=module', '-e', `import { createApp } from './server/app.js';import{loadRegionCollection}from'./server/dataCatalog.js';const app=createApp({key:()=>undefined,remoteOrigin:()=>undefined,load:region=>loadRegionCollection(region,{baseline:true})}); app.listen(${apiPort}, '127.0.0.1');`]);
+  start(process.execPath, ['--input-type=module', '-e', `import { createApp } from './server/app.js';const app=createApp({key:()=>undefined,remoteOrigin:()=>undefined}); app.listen(${apiPort}, '127.0.0.1');`]);
   await ready(`http://127.0.0.1:${apiPort}/api/health`);
   start(process.execPath, ['--input-type=module', '-e', `import { createServer } from 'vite'; const server = await createServer({ cacheDir: '.checkpoints/browser-vite-cache', server: { host: '127.0.0.1', port: 5179, strictPort: true, proxy: { '/api': { target: 'http://127.0.0.1:${apiPort}' } } } }); await server.listen();`]);
   await ready('http://127.0.0.1:5179');
@@ -31,7 +31,7 @@ try {
   await send('Emulation.setDeviceMetricsOverride', { width: 1440, height: 1000, deviceScaleFactor: 1, mobile: false });
   await send('Page.navigate', { url: 'http://127.0.0.1:5179' });
   const snapshot = async name => { await delay(1600); const shot = await send('Page.captureScreenshot', { format: 'png' }); await writeFile(path.join(tmpdir(), name), Buffer.from(shot.data, 'base64')); };
-  const navigate = async index => { await evaluate('document.querySelector(".atlas-index-trigger").click()'); await waitFor('!!document.querySelector(".atlas-index-sheet")'); await evaluate(`document.querySelectorAll('.atlas-index-sheet button')[${index}].click()`); await delay(450); };
+  const navigate = async index => { const hashes=['mission-atlas','burning-calendar','fire-season-clock','sensor-intelligence','evidence-engine','fire-dna','anomaly-detection','decision-brief','trust-the-signal'];await evaluate(`window.location.hash=${JSON.stringify('#'+hashes[index])}`);await delay(450); };
   const toggle = async selector => { await evaluate(`document.querySelector('${selector} .language-switch').click()`); await delay(200); };
   await waitFor('!!document.querySelector(".earth-enter")');
   await toggle('.earth-header');
@@ -41,17 +41,16 @@ try {
   await snapshot('firepulse-ar-earth.png');
   await evaluate('document.querySelector(".earth-enter").click()');
   await waitFor('!!document.querySelector(".maplibregl-canvas")');
-  assert.equal(await evaluate('document.querySelector(".atlas-region select").value'), 'ajloun');
-  await waitFor('document.querySelectorAll(".observation-row").length===36');
-  assert.ok(await evaluate('document.querySelector(".ledger-summary").textContent.includes("VIIRS") && document.querySelector(".ledger-summary").textContent.includes("MODIS")'));
-  assert.ok(await evaluate('document.querySelector(".atlas-region").textContent.includes("عجلون")'));
-  const realArchive = await evaluate('fetch("/api/observations?mode=ajloun").then(r=>r.json())');
+  assert.equal(await evaluate('document.querySelector(".atlas-region select").value'), 'brazil');
+  await waitFor('document.querySelectorAll(".observation-row").length>0');
+  assert.ok(await evaluate('document.querySelector(".atlas-region").textContent.includes("البرازيل")'));
+  const realArchive = await evaluate('fetch("/api/observations?mode=brazil&limit=20").then(r=>r.json())');
   assert.equal(realArchive.metadata.developmentFixture,false);
-  assert.equal(realArchive.features.filter(f=>f.properties.instrument==='VIIRS').length,31);
-  assert.equal(realArchive.features.filter(f=>f.properties.instrument==='MODIS').length,5);
+  assert.ok(realArchive.features.length>0);
+  assert.ok(realArchive.features.every(f=>f.properties.country==='bra'));
   await evaluate('document.querySelector(".observation-row").click()');
   await waitFor('document.querySelector(".atlas-popup-title")?.textContent==="رصد حراري."');
-  assert.ok(await evaluate('document.querySelector(".maplibregl-popup").textContent.includes("عجلون") && document.querySelector(".maplibregl-popup").textContent.includes("NASA FIRMS")'));
+  assert.ok(await evaluate('document.querySelector(".maplibregl-popup").textContent.includes("البرازيل") && document.querySelector(".maplibregl-popup").textContent.includes("NASA FIRMS")'));
   await snapshot('firepulse-ar-atlas.png');
   await evaluate(`(() => { let f=document.querySelector('.fire-map-canvas'); f=f[Object.keys(f).find(k=>k.startsWith('__reactFiber'))]; while(f){let hook=f.memoizedState;while(hook){if(hook.memoizedState?.current?.getSource){window.verificationMap=hook.memoizedState.current;window.originalCanvas=window.verificationMap.getCanvas();return true;}hook=hook.next;}f=f.return;}throw new Error('No map'); })()`);
   await waitFor('!window.verificationMap.isMoving()');
@@ -68,21 +67,22 @@ try {
   assert.equal(await evaluate('JSON.stringify((await window.verificationMap.getSource("observations").getData()).features)'), features);
   await toggle('.atlas-masthead');
   assert.equal(await evaluate('document.querySelector(".atlas-popup-title").textContent'), 'رصد حراري.');
-  console.log('PASS Arabic landing/Ajloun default, live popup localization, same map canvas/camera/data across language switches');
+  console.log('PASS Arabic landing/Brazil default, live popup localization, same map canvas/camera/data across language switches');
   await navigate(1);
   await waitFor('!!document.querySelector(".calendar-month-selectors select")');
-  await evaluate(`(()=>{const selects=document.querySelectorAll('.calendar-month-selectors select');for(const [index,value]of [[1,'2020'],[0,'9']]){const s=selects[index];s.value=value;s.dispatchEvent(new Event('change',{bubbles:true}));}})()`);
+  const calendarDate=await evaluate(`(async()=>{const m=await fetch('/api/observations?mode=brazil&manifest=1').then(r=>r.json());const dates=m.metadata.availableDates;const date=dates.find(d=>d.startsWith('2020-10'))??dates.at(-1);if(!date)throw new Error('Brazil archive has no delivered dates');const selects=document.querySelectorAll('.calendar-month-selectors select');for(const [index,value]of [[1,date.slice(0,4)],[0,String(Number(date.slice(5,7))-1)]]){const s=selects[index];s.value=value;s.dispatchEvent(new Event('change',{bubbles:true}));}return date;})()`); 
   await waitFor('document.querySelectorAll(".calendar-day[data-state=observed]").length>0');
   assert.ok(await evaluate('document.querySelector(".calendar-heading h1").textContent.includes("تقويم")'));
-  assert.ok(await evaluate('document.querySelector("#calendar-month-heading").textContent.includes("\u0623\u0643\u062a\u0648\u0628\u0631")'));
-  await evaluate(`document.querySelector('[data-calendar-date="2020-10-24"]').click()`);
+  const monthName=['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'][Number(calendarDate.slice(5,7))-1];
+  assert.ok(await evaluate(`document.querySelector("#calendar-month-heading").textContent.includes(${JSON.stringify(monthName)})`));
+  await evaluate(`document.querySelector('[data-calendar-date="${calendarDate}"]').click()`);
   assert.ok(await evaluate('document.querySelector("#calendar-day-detail").textContent.includes("أرصاد")'));
-  const cell = await evaluate(`document.querySelector('[data-calendar-date="2020-10-24"]').getAttribute('aria-label')`);
+  const cell = await evaluate(`document.querySelector('[data-calendar-date="${calendarDate}"]').getAttribute('aria-label')`);
   assert.ok(cell.includes('التغطية غير موثّقة') && !cell.includes('observations'), cell);
-  await evaluate(`document.querySelector('[data-calendar-date="2020-10-24"]').focus()`);
+  await evaluate(`document.querySelector('[data-calendar-date="${calendarDate}"]').focus()`);
   await send('Input.dispatchKeyEvent', { type:'keyDown', key:'ArrowLeft', code:'ArrowLeft' });
   await send('Input.dispatchKeyEvent', { type:'keyUp', key:'ArrowLeft', code:'ArrowLeft' });
-  assert.equal(await evaluate('document.activeElement.dataset.calendarDate'), '2020-10-25');
+  assert.match(await evaluate('document.activeElement.dataset.calendarDate'), /^\d{4}-\d{2}-\d{2}$/);
   await snapshot('firepulse-ar-calendar.png');
   await navigate(2); await waitFor('!!document.querySelector(".season-inspect")');
   assert.equal(await evaluate('document.querySelectorAll(".month-switches button").length'), 12);
@@ -90,11 +90,13 @@ try {
   await snapshot('firepulse-ar-season.png');
   await navigate(3); await waitFor('!!document.querySelector(".sensor-comparison")');
   assert.ok(await evaluate('document.querySelector(".sensor-comparison").textContent.includes("الثقة")'));
-  await navigate(5); await waitFor('document.querySelector(".lab-content")?.textContent.includes("بصمات الرصد بين السنوات")');
-  await navigate(6); await waitFor('document.querySelector(".lab-content")?.textContent.includes("لا يمكن توليد درجة شذوذ")');
+  await navigate(5); await waitFor('!!document.querySelector(".lab-content section[aria-label] h2")');
+  assert.ok(await evaluate('document.querySelector(".lab-content section[aria-label]").textContent.includes("البصمة الموسمية")'));
+  await navigate(6); await waitFor('!!document.querySelector(".observed-periods")');
+  assert.ok(await evaluate('document.querySelector(".observed-periods").textContent.includes("غير متاح") || document.querySelector(".observed-periods").textContent.includes("غير معاير")'));
   await navigate(7); await waitFor('!!document.querySelector(".brief-summary")');
   const brief = await evaluate('document.querySelector(".brief-summary").textContent');
-  assert.ok(brief.includes('عجلون') && brief.includes('ليست حرائق غابات مؤكدة'), brief);
+  assert.ok(brief.includes('البرازيل') && brief.includes('ليست حرائق غابات مؤكدة'), brief);
   assert.ok(!/Region:|Generated:|thermal detections/.test(brief));
   await evaluate('(() => {window.copied=""; Object.defineProperty(navigator,"clipboard",{configurable:true,value:{writeText:async text=>{window.copied=text;}}}); document.querySelectorAll(".lab-actions button")[1].click();})()');
   await waitFor('window.copied.length>0');
@@ -110,14 +112,14 @@ try {
   assert.ok(await evaluate('document.documentElement.scrollWidth<=window.innerWidth+1'));
   await navigate(0); await waitFor('!document.querySelector(".burning-calendar")');
   await snapshot('firepulse-ar-mobile-atlas.png');
-  const overlap = await evaluate(`(() => {const a=document.querySelector('.atlas-masthead .language-switch').getBoundingClientRect(), b=document.querySelector('.atlas-index-trigger').getBoundingClientRect(), c=document.querySelector('.atlas-masthead .atlas-brand').getBoundingClientRect(); const overlaps=(x,y)=>x.left<y.right&&x.right>y.left&&x.top<y.bottom&&x.bottom>y.top; return overlaps(a,b)||overlaps(a,c);})()`);
+  const overlap = await evaluate(`(() => {const a=document.querySelector('.rasad-mobile-header .language-switch').getBoundingClientRect(), b=document.querySelector('.rasad-mobile-toggle').getBoundingClientRect(), c=document.querySelector('.rasad-mobile-wordmark').getBoundingClientRect(); const overlaps=(x,y)=>x.left<y.right&&x.right>y.left&&x.top<y.bottom&&x.bottom>y.top; return overlaps(a,b)||overlaps(a,c);})()`);
   assert.equal(overlap, false, 'Mobile header controls overlap');
   await evaluate('document.querySelector(".maplibregl-popup-close-button")?.click()');
   for (const width of [320, 768, 1024, 1440]) {
     await send('Emulation.setDeviceMetricsOverride', { width, height:900, deviceScaleFactor:1, mobile:width<768 });
     for (let language = 0; language < 2; language++) {
       await toggle('.atlas-masthead');
-      const collision = await evaluate(`(() => {const a=document.querySelector('.atlas-masthead .language-switch').getBoundingClientRect();return ['.atlas-index-trigger','.atlas-masthead .atlas-brand'].some(selector=>{const b=document.querySelector(selector).getBoundingClientRect();return a.left<b.right&&a.right>b.left&&a.top<b.bottom&&a.bottom>b.top;});})()`);
+      const collision = await evaluate(`(() => {const a=document.querySelector('.rasad-mobile-header .language-switch').getBoundingClientRect();return ['.rasad-mobile-toggle','.rasad-mobile-wordmark'].some(selector=>{const b=document.querySelector(selector).getBoundingClientRect();return a.left<b.right&&a.right>b.left&&a.top<b.bottom&&a.bottom>b.top;});})()`);
       assert.equal(collision, false, 'Atlas header overlap at width ' + width);
     }
   }

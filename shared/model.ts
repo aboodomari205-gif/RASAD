@@ -1,5 +1,5 @@
 import type { Feature, FeatureCollection, Point, Polygon, MultiPolygon } from 'geojson';
-export type RegionId = 'ajloun' | 'northern-jordan';
+export type RegionId = 'ajloun' | 'northern-jordan' | 'south-america' | 'brazil' | 'argentina' | 'bolivia' | 'chile' | 'colombia' | 'ecuador' | 'peru' | 'paraguay' | 'uruguay' | 'venezuela' | 'guyana' | 'suriname';
 export type Instrument = 'VIIRS' | 'MODIS';
 export type Sensor = Instrument | 'UNKNOWN';
 export type AvailabilityState = 'loaded' | 'partial' | 'unavailable' | 'error' | 'fixture';
@@ -33,7 +33,7 @@ export type Issue = { code: string; row?: number; field?: string; severity: 'war
 export type Diagnostics = { inputRecords: number; acceptedRecords: number; uniqueRecords: number; duplicatesRemoved: number; rejectedRecords: number; sensorExcluded: number; issues: Issue[] };
 export type NormalizedCollection = { observations: Observation[]; datasets: Dataset[]; availability: Availability; diagnostics: Diagnostics; regionMismatch: boolean };
 export type ObservationFilter = { region?: RegionId; sensor?: string; processing?:Processing; platform?: string; datasetIds?: readonly string[];
-  startDate?: string; endDate?: string; startTime?: string; endTime?: string;
+  dayNight?:'D'|'N'; startDate?: string; endDate?: string; startTime?: string; endTime?: string;
   confidenceRaw?: string; frpMin?: number; frpMax?: number; fixture?: 'include' | 'exclude' | 'only'; bbox?: readonly [number, number, number, number] };
 export type VerifiedDayCoverage = { date: string; region: RegionId; instrument: Instrument; verified: true; complete: true; source: string; datasetId?: string; platform?: string | null };
 export type CoverageDay = VerifiedDayCoverage & { datasetId: string };

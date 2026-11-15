@@ -1,0 +1,1298 @@
+{
+  "generation": "86f1f872f7366fe4",
+  "inputRows": 48952994,
+  "importedUnique": 48552057,
+  "excludedOutsidePolygon": 379274,
+  "duplicates": 21661,
+  "quarantined": 2,
+  "sources": [
+    {
+      "dataset": "sa-modis-aqua-nrt",
+      "count": 103363,
+      "first": "2026-09-01",
+      "last": "2026-11-13",
+      "positiveDates": 73
+    },
+    {
+      "dataset": "sa-modis-aqua-standard",
+      "count": 10772150,
+      "first": "2002-07-04",
+      "last": "2026-08-31",
+      "positiveDates": 8798
+    },
+    {
+      "dataset": "sa-modis-terra-nrt",
+      "count": 63818,
+      "first": "2026-09-01",
+      "last": "2026-11-13",
+      "positiveDates": 73
+    },
+    {
+      "dataset": "sa-modis-terra-standard",
+      "count": 6662456,
+      "first": "2000-11-01",
+      "last": "2026-08-31",
+      "positiveDates": 9369
+    },
+    {
+      "dataset": "sa-n20-noaa20-nrt",
+      "count": 847502,
+      "first": "2026-08-01",
+      "last": "2026-11-14",
+      "positiveDates": 106
+    },
+    {
+      "dataset": "sa-n20-noaa20-standard",
+      "count": 21090900,
+      "first": "2018-04-01",
+      "last": "2026-07-31",
+      "positiveDates": 3038
+    },
+    {
+      "dataset": "sa-n21-noaa21-nrt",
+      "count": 817659,
+      "first": "2026-08-01",
+      "last": "2026-11-14",
+      "positiveDates": 106
+    },
+    {
+      "dataset": "sa-n21-noaa21-standard",
+      "count": 8194209,
+      "first": "2023-03-01",
+      "last": "2026-07-31",
+      "positiveDates": 1247
+    }
+  ],
+  "coverageMatrix": [
+    {
+      "year": "2000",
+      "dataset": "sa-modis-terra-standard",
+      "count": 31506,
+      "positiveDates": 61,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2001",
+      "dataset": "sa-modis-terra-standard",
+      "count": 256615,
+      "positiveDates": 347,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2002",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 454509,
+      "positiveDates": 170,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2002",
+      "dataset": "sa-modis-terra-standard",
+      "count": 296163,
+      "positiveDates": 355,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2003",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 622333,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2003",
+      "dataset": "sa-modis-terra-standard",
+      "count": 293940,
+      "positiveDates": 357,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2004",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 659343,
+      "positiveDates": 366,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2004",
+      "dataset": "sa-modis-terra-standard",
+      "count": 336786,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2005",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 618965,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2005",
+      "dataset": "sa-modis-terra-standard",
+      "count": 334393,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2006",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 465706,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2006",
+      "dataset": "sa-modis-terra-standard",
+      "count": 233853,
+      "positiveDates": 363,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2007",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 688337,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2007",
+      "dataset": "sa-modis-terra-standard",
+      "count": 384990,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2008",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 436832,
+      "positiveDates": 366,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2008",
+      "dataset": "sa-modis-terra-standard",
+      "count": 234350,
+      "positiveDates": 363,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2009",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 332040,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2009",
+      "dataset": "sa-modis-terra-standard",
+      "count": 176658,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2010",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 595563,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2010",
+      "dataset": "sa-modis-terra-standard",
+      "count": 347418,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2011",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 333532,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2011",
+      "dataset": "sa-modis-terra-standard",
+      "count": 194211,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2012",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 391900,
+      "positiveDates": 366,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2012",
+      "dataset": "sa-modis-terra-standard",
+      "count": 242715,
+      "positiveDates": 366,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2013",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 294090,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2013",
+      "dataset": "sa-modis-terra-standard",
+      "count": 177887,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2014",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 317939,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2014",
+      "dataset": "sa-modis-terra-standard",
+      "count": 200162,
+      "positiveDates": 364,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2015",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 383234,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2015",
+      "dataset": "sa-modis-terra-standard",
+      "count": 257319,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2016",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 381608,
+      "positiveDates": 366,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2016",
+      "dataset": "sa-modis-terra-standard",
+      "count": 233041,
+      "positiveDates": 357,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2017",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 395211,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2017",
+      "dataset": "sa-modis-terra-standard",
+      "count": 256385,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2018",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 304129,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2018",
+      "dataset": "sa-modis-terra-standard",
+      "count": 185028,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2018",
+      "dataset": "sa-n20-noaa20-standard",
+      "count": 1475982,
+      "positiveDates": 275,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2019",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 415380,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2019",
+      "dataset": "sa-modis-terra-standard",
+      "count": 273982,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2019",
+      "dataset": "sa-n20-noaa20-standard",
+      "count": 2679936,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2020",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 500270,
+      "positiveDates": 366,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2020",
+      "dataset": "sa-modis-terra-standard",
+      "count": 331537,
+      "positiveDates": 366,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2020",
+      "dataset": "sa-n20-noaa20-standard",
+      "count": 3297336,
+      "positiveDates": 366,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2021",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 367113,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2021",
+      "dataset": "sa-modis-terra-standard",
+      "count": 241152,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2021",
+      "dataset": "sa-n20-noaa20-standard",
+      "count": 2326676,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2022",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 418664,
+      "positiveDates": 349,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2022",
+      "dataset": "sa-modis-terra-standard",
+      "count": 263589,
+      "positiveDates": 353,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2022",
+      "dataset": "sa-n20-noaa20-standard",
+      "count": 2726831,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2023",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 399000,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2023",
+      "dataset": "sa-modis-terra-standard",
+      "count": 270918,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2023",
+      "dataset": "sa-n20-noaa20-standard",
+      "count": 2481026,
+      "positiveDates": 360,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2023",
+      "dataset": "sa-n21-noaa21-standard",
+      "count": 2227123,
+      "positiveDates": 306,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2024",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 598183,
+      "positiveDates": 366,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2024",
+      "dataset": "sa-modis-terra-standard",
+      "count": 389865,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2024",
+      "dataset": "sa-n20-noaa20-standard",
+      "count": 3906776,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2024",
+      "dataset": "sa-n21-noaa21-standard",
+      "count": 3823133,
+      "positiveDates": 364,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2025",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 278905,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2025",
+      "dataset": "sa-modis-terra-standard",
+      "count": 155797,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2025",
+      "dataset": "sa-n20-noaa20-standard",
+      "count": 1652838,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2025",
+      "dataset": "sa-n21-noaa21-standard",
+      "count": 1610855,
+      "positiveDates": 365,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2026",
+      "dataset": "sa-modis-aqua-nrt",
+      "count": 103363,
+      "positiveDates": 73,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2026",
+      "dataset": "sa-modis-aqua-standard",
+      "count": 119364,
+      "positiveDates": 243,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2026",
+      "dataset": "sa-modis-terra-nrt",
+      "count": 63818,
+      "positiveDates": 73,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2026",
+      "dataset": "sa-modis-terra-standard",
+      "count": 62196,
+      "positiveDates": 242,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2026",
+      "dataset": "sa-n20-noaa20-nrt",
+      "count": 847502,
+      "positiveDates": 106,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2026",
+      "dataset": "sa-n20-noaa20-standard",
+      "count": 543499,
+      "positiveDates": 212,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2026",
+      "dataset": "sa-n21-noaa21-nrt",
+      "count": 817659,
+      "positiveDates": 106,
+      "opportunity": "unknown"
+    },
+    {
+      "year": "2026",
+      "dataset": "sa-n21-noaa21-standard",
+      "count": 533098,
+      "positiveDates": 212,
+      "opportunity": "unknown"
+    }
+  ],
+  "inputs": [
+    {
+      "file": "server/data/incoming/historical/DL_FIRE_J1V-C2_847873old.zip",
+      "sha256": "207b020d5ff1282c6d35bcc5e2f843fde9d281562616e9750b38b30425e7caa7",
+      "bytes": 398122984
+    },
+    {
+      "file": "server/data/incoming/historical/DL_FIRE_J2V-C2_847874old.zip",
+      "sha256": "8a6da30662a1e3d5a41d4cd43ba50dfa71434276a33fe976de40da57bd79c02b",
+      "bytes": 162028564
+    },
+    {
+      "file": "server/data/incoming/historical/DL_FIRE_M-C61_847869old.zip",
+      "sha256": "aedf016dd9d14e7afccfdfa00503f4194eabceebd094ccd5fa4e761e5897eb61",
+      "bytes": 318814733
+    },
+    {
+      "file": "server/data/incoming/J2_VIIRS_C2_South_America_VJ214IMGTDL_NRT_2026318.txt",
+      "sha256": "d6f5fc805700db5ce3f1308941019bae348471f3a5408df294c2e320d2a2918d",
+      "bytes": 299537
+    },
+    {
+      "file": "server/data/incoming/MOIDS.zip",
+      "sha256": "6c4aee6ee7de5307017bed4e9dded499f5d4013fa06370caf73f2d729e201082",
+      "bytes": 719765
+    },
+    {
+      "file": "server/data/incoming/viirs.zip",
+      "sha256": "fd42158e32a181bbac9f5f293d2c809944e72b63783a6d66582d45101545caa0",
+      "bytes": 2018920
+    },
+    {
+      "file": "server/data/incoming/viirs1.zip",
+      "sha256": "2e89e19e4680d4c38dafd3bfc9b11fa125501102f42ef32192f62bab3b28ada7",
+      "bytes": 2096103
+    }
+  ],
+  "independentMembers": [
+    {
+      "file": "DL_FIRE_J1V-C2_847873old.zip",
+      "member": "fire_archive_J1V-C2_847873.csv",
+      "input": 21281290,
+      "outsidePolygon": 190390,
+      "memberSHA256": "1bbbe35c1a25484654117bf52774a2f2220da27339c75e29bae1ed4214fc96eb",
+      "first": "2018-04-01",
+      "last": "2026-07-31",
+      "sources": {
+        "N20/2": 21281290
+      }
+    },
+    {
+      "file": "DL_FIRE_J1V-C2_847873old.zip",
+      "member": "fire_nrt_J1V-C2_847873.csv",
+      "input": 742861,
+      "outsidePolygon": 3392,
+      "memberSHA256": "91322cb71fe082aed07979abd3b27a45ea32b743e32d05f19bdc13ee6dfa5df3",
+      "first": "2026-08-01",
+      "last": "2026-10-31",
+      "sources": {
+        "N20/2.0NRT": 742861
+      }
+    },
+    {
+      "file": "DL_FIRE_J2V-C2_847874old.zip",
+      "member": "fire_archive_J2V-C2_847874.csv",
+      "input": 8272381,
+      "outsidePolygon": 78172,
+      "memberSHA256": "9b02b8a123306cf0320cf2aae8f4dc49cc506115d22ff3df4865a8c8b2078e97",
+      "first": "2023-03-01",
+      "last": "2026-07-31",
+      "sources": {
+        "N21/2": 8272381
+      }
+    },
+    {
+      "file": "DL_FIRE_J2V-C2_847874old.zip",
+      "member": "fire_nrt_J2V-C2_847874.csv",
+      "input": 718794,
+      "outsidePolygon": 3455,
+      "memberSHA256": "a89c57c294a78ba7ef8b2307a56363455ad1673daf39175d9e61fa7f3f8176e8",
+      "first": "2026-08-01",
+      "last": "2026-10-31",
+      "sources": {
+        "N21/2.0NRT": 718794
+      }
+    },
+    {
+      "file": "DL_FIRE_M-C61_847869old.zip",
+      "member": "fire_archive_M-C61_847869.csv",
+      "input": 17535420,
+      "outsidePolygon": 100812,
+      "memberSHA256": "d684db2ab110f3a2726c81e0f1d1cf99f2f536b27f76f01987ce45a987631d77",
+      "first": "2000-11-01",
+      "last": "2026-08-31",
+      "sources": {
+        "Terra/6.03": 5820188,
+        "Aqua/6.03": 9426660,
+        "Terra/61.03": 884518,
+        "Aqua/61.03": 1404054
+      }
+    },
+    {
+      "file": "DL_FIRE_M-C61_847869old.zip",
+      "member": "fire_nrt_M-C61_847869.csv",
+      "input": 137509,
+      "outsidePolygon": 441,
+      "memberSHA256": "edd7fc8f5b53cb0e504ba16743a2e5b072bf1165fc7a33599c802c679541605b",
+      "first": "2026-09-01",
+      "last": "2026-10-31",
+      "sources": {
+        "Terra/6.1NRT": 52077,
+        "Aqua/6.1NRT": 85432
+      }
+    },
+    {
+      "file": "J2_VIIRS_C2_South_America_VJ214IMGTDL_NRT_2026318.txt",
+      "member": "J2_VIIRS_C2_South_America_VJ214IMGTDL_NRT_2026318.txt",
+      "input": 3512,
+      "outsidePolygon": 43,
+      "memberSHA256": "d6f5fc805700db5ce3f1308941019bae348471f3a5408df294c2e320d2a2918d",
+      "first": "2026-11-14",
+      "last": "2026-11-14",
+      "sources": {
+        "N21/2.0NRT": 3512
+      }
+    },
+    {
+      "file": "MOIDS.zip",
+      "member": "MOIDS/MODIS_C6_1_South_America_MCD14DL_NRT_2026304.txt",
+      "input": 2471,
+      "outsidePolygon": 7,
+      "memberSHA256": "94e61e699b83f709d861335c7796d83b091216d7adeaa9432894ea032833391a",
+      "first": "2026-10-31",
+      "last": "2026-10-31",
+      "sources": {
+        "T/6.1NRT": 1128,
+        "A/6.1NRT": 1343
+      }
+    },
+    {
+      "file": "MOIDS.zip",
+      "member": "MOIDS/MODIS_C6_1_South_America_MCD14DL_NRT_2026305.txt",
+      "input": 2772,
+      "outsidePolygon": 38,
+      "memberSHA256": "3b9007610b853ce67abebfd2ec8e9b72d830530d65770199d83af35b4c469e39",
+      "first": "2026-11-01",
+      "last": "2026-11-01",
+      "sources": {
+        "T/6.1NRT": 1213,
+        "A/6.1NRT": 1559
+      }
+    },
+    {
+      "file": "MOIDS.zip",
+      "member": "MOIDS/MODIS_C6_1_South_America_MCD14DL_NRT_2026306.txt",
+      "input": 1686,
+      "outsidePolygon": 12,
+      "memberSHA256": "7a4511fecd4a32857cb474db29dce46157980eb31798e4e121f964e9872e0c40",
+      "first": "2026-11-02",
+      "last": "2026-11-02",
+      "sources": {
+        "T/6.1NRT": 439,
+        "A/6.1NRT": 1247
+      }
+    },
+    {
+      "file": "MOIDS.zip",
+      "member": "MOIDS/MODIS_C6_1_South_America_MCD14DL_NRT_2026308.txt",
+      "input": 2471,
+      "outsidePolygon": 26,
+      "memberSHA256": "d689806ee47d71fdaeec140e124228c0a044203d7391a2281697091dd93113e8",
+      "first": "2026-11-04",
+      "last": "2026-11-04",
+      "sources": {
+        "T/6.1NRT": 682,
+        "A/6.1NRT": 1789
+      }
+    },
+    {
+      "file": "MOIDS.zip",
+      "member": "MOIDS/MODIS_C6_1_South_America_MCD14DL_NRT_2026309.txt",
+      "input": 2804,
+      "outsidePolygon": 13,
+      "memberSHA256": "bed5e242d9468616d45c1c9665d9442f01bb851c5886cc8f413cf4cc39521c12",
+      "first": "2026-11-05",
+      "last": "2026-11-05",
+      "sources": {
+        "T/6.1NRT": 1604,
+        "A/6.1NRT": 1200
+      }
+    },
+    {
+      "file": "MOIDS.zip",
+      "member": "MOIDS/MODIS_C6_1_South_America_MCD14DL_NRT_2026310.txt",
+      "input": 4174,
+      "outsidePolygon": 33,
+      "memberSHA256": "d2ac07ec3fad0e34b48b0096c79692cdbeafa3126dceaee4cef492ae4bebe559",
+      "first": "2026-11-06",
+      "last": "2026-11-06",
+      "sources": {
+        "T/6.1NRT": 1563,
+        "A/6.1NRT": 2611
+      }
+    },
+    {
+      "file": "MOIDS.zip",
+      "member": "MOIDS/MODIS_C6_1_South_America_MCD14DL_NRT_2026311.txt",
+      "input": 2535,
+      "outsidePolygon": 10,
+      "memberSHA256": "af3878e01551405cb7706af6b3978a46ede2603f4f12e90ff62ab9955770be84",
+      "first": "2026-11-07",
+      "last": "2026-11-07",
+      "sources": {
+        "T/6.1NRT": 592,
+        "A/6.1NRT": 1943
+      }
+    },
+    {
+      "file": "MOIDS.zip",
+      "member": "MOIDS/MODIS_C6_1_South_America_MCD14DL_NRT_2026312.txt",
+      "input": 2579,
+      "outsidePolygon": 2,
+      "memberSHA256": "405e6c1a6b69533b706d1543f186cf2288617da57414ff760878479c24229306",
+      "first": "2026-11-08",
+      "last": "2026-11-08",
+      "sources": {
+        "T/6.1NRT": 1450,
+        "A/6.1NRT": 1129
+      }
+    },
+    {
+      "file": "MOIDS.zip",
+      "member": "MOIDS/MODIS_C6_1_South_America_MCD14DL_NRT_2026313.txt",
+      "input": 1637,
+      "outsidePolygon": 26,
+      "memberSHA256": "633b7e4c298ada3b4f4542efce348fb3fea672884587c27fd5a5bfd6acab56d1",
+      "first": "2026-11-09",
+      "last": "2026-11-09",
+      "sources": {
+        "T/6.1NRT": 259,
+        "A/6.1NRT": 1378
+      }
+    },
+    {
+      "file": "MOIDS.zip",
+      "member": "MOIDS/MODIS_C6_1_South_America_MCD14DL_NRT_2026314.txt",
+      "input": 2441,
+      "outsidePolygon": 4,
+      "memberSHA256": "d8f1d0df052d80be4ea66e8437bb86003160963a15a1f5e65b6641f7691c6e18",
+      "first": "2026-11-10",
+      "last": "2026-11-10",
+      "sources": {
+        "T/6.1NRT": 1176,
+        "A/6.1NRT": 1265
+      }
+    },
+    {
+      "file": "MOIDS.zip",
+      "member": "MOIDS/MODIS_C6_1_South_America_MCD14DL_NRT_2026315.txt",
+      "input": 2904,
+      "outsidePolygon": 23,
+      "memberSHA256": "da38514e8f1152de2e36cf488baa2414b9e0a968a83ab0d625719eab4739fd99",
+      "first": "2026-11-11",
+      "last": "2026-11-11",
+      "sources": {
+        "T/6.1NRT": 1259,
+        "A/6.1NRT": 1645
+      }
+    },
+    {
+      "file": "MOIDS.zip",
+      "member": "MOIDS/MODIS_C6_1_South_America_MCD14DL_NRT_2026316.txt",
+      "input": 1659,
+      "outsidePolygon": 7,
+      "memberSHA256": "24d88a36d9a054ddc0dc4813659821d75a9c4e3a63d38023b134128637acbe23",
+      "first": "2026-11-12",
+      "last": "2026-11-12",
+      "sources": {
+        "T/6.1NRT": 589,
+        "A/6.1NRT": 1070
+      }
+    },
+    {
+      "file": "MOIDS.zip",
+      "member": "MOIDS/MODIS_C6_1_South_America_MCD14DL_NRT_2026317.txt",
+      "input": 2654,
+      "outsidePolygon": 9,
+      "memberSHA256": "9dff467c46f17cde9769e5efad64accadf42b041a6308cfb4f7ed7afc9201fa0",
+      "first": "2026-11-13",
+      "last": "2026-11-13",
+      "sources": {
+        "T/6.1NRT": 1161,
+        "A/6.1NRT": 1493
+      }
+    },
+    {
+      "file": "viirs.zip",
+      "member": "viirs/J2_VIIRS_C2_South_America_VJ214IMGTDL_NRT_2026304.txt",
+      "input": 8460,
+      "outsidePolygon": 95,
+      "memberSHA256": "33b7bf672077a335058515bfc51abfdbf9842893393646a57521ad6d5a1ac245",
+      "first": "2026-10-31",
+      "last": "2026-10-31",
+      "sources": {
+        "N21/2.0NRT": 8460
+      }
+    },
+    {
+      "file": "viirs.zip",
+      "member": "viirs/J2_VIIRS_C2_South_America_VJ214IMGTDL_NRT_2026306.txt",
+      "input": 7046,
+      "outsidePolygon": 71,
+      "memberSHA256": "d281976cceff87d1e94b3b8172011ec257260cd708cec09e71e5e9ccf0343c65",
+      "first": "2026-11-02",
+      "last": "2026-11-02",
+      "sources": {
+        "N21/2.0NRT": 7046
+      }
+    },
+    {
+      "file": "viirs.zip",
+      "member": "viirs/J2_VIIRS_C2_South_America_VJ214IMGTDL_NRT_2026307.txt",
+      "input": 7930,
+      "outsidePolygon": 71,
+      "memberSHA256": "c1866a84c785b6270d6d491e826f95794296b35e8c09891c21b0279fe1c162cc",
+      "first": "2026-11-03",
+      "last": "2026-11-03",
+      "sources": {
+        "N21/2.0NRT": 7930
+      }
+    },
+    {
+      "file": "viirs.zip",
+      "member": "viirs/J2_VIIRS_C2_South_America_VJ214IMGTDL_NRT_2026308.txt",
+      "input": 4340,
+      "outsidePolygon": 93,
+      "memberSHA256": "7f607b2f6c75cc6291ef99634f0d3f18e50265b028a0b21ee3366f7f6ab83044",
+      "first": "2026-11-04",
+      "last": "2026-11-04",
+      "sources": {
+        "N21/2.0NRT": 4340
+      }
+    },
+    {
+      "file": "viirs.zip",
+      "member": "viirs/J2_VIIRS_C2_South_America_VJ214IMGTDL_NRT_2026309.txt",
+      "input": 9316,
+      "outsidePolygon": 185,
+      "memberSHA256": "425d31ae390de5552a603f1b665d10cbe32647158c0ecb24dd1e6453bbe29834",
+      "first": "2026-11-05",
+      "last": "2026-11-05",
+      "sources": {
+        "N21/2.0NRT": 9316
+      }
+    },
+    {
+      "file": "viirs.zip",
+      "member": "viirs/J2_VIIRS_C2_South_America_VJ214IMGTDL_NRT_2026310.txt",
+      "input": 8586,
+      "outsidePolygon": 116,
+      "memberSHA256": "5123dc8a3e98cf543ca305ac5b234e0eb811a6de8c742d3f514e8e4124ed6bd7",
+      "first": "2026-11-06",
+      "last": "2026-11-06",
+      "sources": {
+        "N21/2.0NRT": 8586
+      }
+    },
+    {
+      "file": "viirs.zip",
+      "member": "viirs/J2_VIIRS_C2_South_America_VJ214IMGTDL_NRT_2026311.txt",
+      "input": 10486,
+      "outsidePolygon": 89,
+      "memberSHA256": "81df8b4d0e0b9fe4a4c7a2494eba25dd550b76350f32afe1c7111a43af4847e0",
+      "first": "2026-11-07",
+      "last": "2026-11-07",
+      "sources": {
+        "N21/2.0NRT": 10486
+      }
+    },
+    {
+      "file": "viirs.zip",
+      "member": "viirs/J2_VIIRS_C2_South_America_VJ214IMGTDL_NRT_2026312.txt",
+      "input": 9943,
+      "outsidePolygon": 57,
+      "memberSHA256": "aa05edbb86f51f70335bb4d946cd2e49d1f990bb4a518b3b7d28ab2fa1966efd",
+      "first": "2026-11-08",
+      "last": "2026-11-08",
+      "sources": {
+        "N21/2.0NRT": 9943
+      }
+    },
+    {
+      "file": "viirs.zip",
+      "member": "viirs/J2_VIIRS_C2_South_America_VJ214IMGTDL_NRT_2026313.txt",
+      "input": 7243,
+      "outsidePolygon": 74,
+      "memberSHA256": "ddb10b55d48d7d1d8ad0dccdac964a3819942363295d0bd58bc8d34948fade2e",
+      "first": "2026-11-09",
+      "last": "2026-11-09",
+      "sources": {
+        "N21/2.0NRT": 7243
+      }
+    },
+    {
+      "file": "viirs.zip",
+      "member": "viirs/J2_VIIRS_C2_South_America_VJ214IMGTDL_NRT_2026314.txt",
+      "input": 7674,
+      "outsidePolygon": 46,
+      "memberSHA256": "469ad984b727c7ec25882f9729d108a88b8007cad01235c50e7c4111b6821b10",
+      "first": "2026-11-10",
+      "last": "2026-11-10",
+      "sources": {
+        "N21/2.0NRT": 7674
+      }
+    },
+    {
+      "file": "viirs.zip",
+      "member": "viirs/J2_VIIRS_C2_South_America_VJ214IMGTDL_NRT_2026315.txt",
+      "input": 6545,
+      "outsidePolygon": 77,
+      "memberSHA256": "c1d815b1764c66414d3ab452f47e15b3c4fcf03aa7d477a3649899b990bc7ea3",
+      "first": "2026-11-11",
+      "last": "2026-11-11",
+      "sources": {
+        "N21/2.0NRT": 6545
+      }
+    },
+    {
+      "file": "viirs.zip",
+      "member": "viirs/J2_VIIRS_C2_South_America_VJ214IMGTDL_NRT_2026316.txt",
+      "input": 6953,
+      "outsidePolygon": 60,
+      "memberSHA256": "abcfe29eebb1432dee1956c7887113b648194e0b3a6bd2fa6350ae9ba52b0d11",
+      "first": "2026-11-12",
+      "last": "2026-11-12",
+      "sources": {
+        "N21/2.0NRT": 6953
+      }
+    },
+    {
+      "file": "viirs.zip",
+      "member": "viirs/J2_VIIRS_C2_South_America_VJ214IMGTDL_NRT_2026317.txt",
+      "input": 7149,
+      "outsidePolygon": 81,
+      "memberSHA256": "df706b4af0b8e70081d2d3fd3ba7f2ab856bf96dda599df006992d8b2b5c0c18",
+      "first": "2026-11-13",
+      "last": "2026-11-13",
+      "sources": {
+        "N21/2.0NRT": 7149
+      }
+    },
+    {
+      "file": "viirs.zip",
+      "member": "viirs/J2_VIIRS_C2_South_America_VJ214IMGTDL_NRT_2026318 (1).txt",
+      "input": 3512,
+      "outsidePolygon": 43,
+      "memberSHA256": "d6f5fc805700db5ce3f1308941019bae348471f3a5408df294c2e320d2a2918d",
+      "first": "2026-11-14",
+      "last": "2026-11-14",
+      "sources": {
+        "N21/2.0NRT": 3512
+      }
+    },
+    {
+      "file": "viirs.zip",
+      "member": "viirs/J2_VIIRS_C2_South_America_VJ214IMGTDL_NRT_2026318.txt",
+      "input": 6706,
+      "outsidePolygon": 46,
+      "memberSHA256": "4dc52966ef744f09d326e36116a491732a3b05c86b8ac3ac159f9a85bef4ee46",
+      "first": "2026-11-01",
+      "last": "2026-11-01",
+      "sources": {
+        "N21/2.0NRT": 6706
+      }
+    },
+    {
+      "file": "viirs1.zip",
+      "member": "viirs1/J1_VIIRS_C2_South_America_VJ114IMGTDL_NRT_2026304.txt",
+      "input": 7424,
+      "outsidePolygon": 61,
+      "memberSHA256": "b453b2d0136ec79a154ec5ef8b88d038b53fcfa583faf356c32f04e3da807b08",
+      "first": "2026-10-31",
+      "last": "2026-10-31",
+      "sources": {
+        "N20/2.0NRT": 7424
+      }
+    },
+    {
+      "file": "viirs1.zip",
+      "member": "viirs1/J1_VIIRS_C2_South_America_VJ114IMGTDL_NRT_2026305.txt",
+      "input": 8512,
+      "outsidePolygon": 80,
+      "memberSHA256": "d716f4702408542d88c5ec588252900ed309df81b43e6cf3494834980e3c0c64",
+      "first": "2026-11-01",
+      "last": "2026-11-01",
+      "sources": {
+        "N20/2.0NRT": 8512
+      }
+    },
+    {
+      "file": "viirs1.zip",
+      "member": "viirs1/J1_VIIRS_C2_South_America_VJ114IMGTDL_NRT_2026306.txt",
+      "input": 7826,
+      "outsidePolygon": 117,
+      "memberSHA256": "cd711825e1d508c8a5c9d6ca0aec58057b54c30200ed339a71a37697ba0fef42",
+      "first": "2026-11-02",
+      "last": "2026-11-02",
+      "sources": {
+        "N20/2.0NRT": 7826
+      }
+    },
+    {
+      "file": "viirs1.zip",
+      "member": "viirs1/J1_VIIRS_C2_South_America_VJ114IMGTDL_NRT_2026307.txt",
+      "input": 7384,
+      "outsidePolygon": 72,
+      "memberSHA256": "823a17e35e5cac2606e36b1b7a6cb9dc2cba91764a6e63255d5764ee4cfe0252",
+      "first": "2026-11-03",
+      "last": "2026-11-03",
+      "sources": {
+        "N20/2.0NRT": 7384
+      }
+    },
+    {
+      "file": "viirs1.zip",
+      "member": "viirs1/J1_VIIRS_C2_South_America_VJ114IMGTDL_NRT_2026308.txt",
+      "input": 9914,
+      "outsidePolygon": 100,
+      "memberSHA256": "238230cb22784157b39fb3ec09c5e7c9d873cce44c04da4d0ecb4d12f08ae02f",
+      "first": "2026-11-04",
+      "last": "2026-11-04",
+      "sources": {
+        "N20/2.0NRT": 9914
+      }
+    },
+    {
+      "file": "viirs1.zip",
+      "member": "viirs1/J1_VIIRS_C2_South_America_VJ114IMGTDL_NRT_2026309.txt",
+      "input": 4125,
+      "outsidePolygon": 41,
+      "memberSHA256": "a020cf768043ff8c379ab83c48a5b5cf2aadc29f8c1e7aac31e5ea0df2bde607",
+      "first": "2026-11-05",
+      "last": "2026-11-05",
+      "sources": {
+        "N20/2.0NRT": 4125
+      }
+    },
+    {
+      "file": "viirs1.zip",
+      "member": "viirs1/J1_VIIRS_C2_South_America_VJ114IMGTDL_NRT_2026310.txt",
+      "input": 10229,
+      "outsidePolygon": 88,
+      "memberSHA256": "c61c5596bd9a0864674b2f5f0e6af2d0f9583c903707b820627c2e7884c76064",
+      "first": "2026-11-06",
+      "last": "2026-11-06",
+      "sources": {
+        "N20/2.0NRT": 10229
+      }
+    },
+    {
+      "file": "viirs1.zip",
+      "member": "viirs1/J1_VIIRS_C2_South_America_VJ114IMGTDL_NRT_2026311.txt",
+      "input": 12391,
+      "outsidePolygon": 113,
+      "memberSHA256": "d30121bbda972cf188eb396ced1e29aefc1c44190f8410efee1e18ac73e5ddb4",
+      "first": "2026-11-07",
+      "last": "2026-11-07",
+      "sources": {
+        "N20/2.0NRT": 12391
+      }
+    },
+    {
+      "file": "viirs1.zip",
+      "member": "viirs1/J1_VIIRS_C2_South_America_VJ114IMGTDL_NRT_2026312.txt",
+      "input": 9298,
+      "outsidePolygon": 74,
+      "memberSHA256": "9486846ae6332aea77ae53f8d227796d9e6af5e31dbeed9c150c694869f774f1",
+      "first": "2026-11-08",
+      "last": "2026-11-08",
+      "sources": {
+        "N20/2.0NRT": 9298
+      }
+    },
+    {
+      "file": "viirs1.zip",
+      "member": "viirs1/J1_VIIRS_C2_South_America_VJ114IMGTDL_NRT_2026313.txt",
+      "input": 6825,
+      "outsidePolygon": 87,
+      "memberSHA256": "16b41ea84acc5b31f40b6b37afe416421bc559c60d95d1f3ff878e10ed8baeaa",
+      "first": "2026-11-09",
+      "last": "2026-11-09",
+      "sources": {
+        "N20/2.0NRT": 6825
+      }
+    },
+    {
+      "file": "viirs1.zip",
+      "member": "viirs1/J1_VIIRS_C2_South_America_VJ114IMGTDL_NRT_2026314.txt",
+      "input": 7750,
+      "outsidePolygon": 43,
+      "memberSHA256": "ee9768ef41027d75e1efc56551977859d2ad9b8d16941012507990a2e8ee2872",
+      "first": "2026-11-10",
+      "last": "2026-11-10",
+      "sources": {
+        "N20/2.0NRT": 7750
+      }
+    },
+    {
+      "file": "viirs1.zip",
+      "member": "viirs1/J1_VIIRS_C2_South_America_VJ114IMGTDL_NRT_2026315.txt",
+      "input": 6934,
+      "outsidePolygon": 60,
+      "memberSHA256": "b7370d852acb14ffb8c628f45d494dea55e1806d8178ef767ccacc791f40c045",
+      "first": "2026-11-11",
+      "last": "2026-11-11",
+      "sources": {
+        "N20/2.0NRT": 6934
+      }
+    },
+    {
+      "file": "viirs1.zip",
+      "member": "viirs1/J1_VIIRS_C2_South_America_VJ114IMGTDL_NRT_2026316.txt",
+      "input": 7695,
+      "outsidePolygon": 59,
+      "memberSHA256": "d9e3c55c894edf5fcbb23d4e911251e08171a4231b3d25d2e8ea478fe416ca53",
+      "first": "2026-11-12",
+      "last": "2026-11-12",
+      "sources": {
+        "N20/2.0NRT": 7695
+      }
+    },
+    {
+      "file": "viirs1.zip",
+      "member": "viirs1/J1_VIIRS_C2_South_America_VJ114IMGTDL_NRT_2026317.txt",
+      "input": 8282,
+      "outsidePolygon": 133,
+      "memberSHA256": "7ccf13c92796a334f83b46be292d5313ec234673f877835a9d2f0011b56fd218",
+      "first": "2026-11-13",
+      "last": "2026-11-13",
+      "sources": {
+        "N20/2.0NRT": 8282
+      }
+    },
+    {
+      "file": "viirs1.zip",
+      "member": "viirs1/J1_VIIRS_C2_South_America_VJ114IMGTDL_NRT_2026318.txt",
+      "input": 1962,
+      "outsidePolygon": 27,
+      "memberSHA256": "ed9f66eba441f4f1f39059797b3fbaa4ae04ea172fbeb0832b995c9594a1eaae",
+      "first": "2026-11-14",
+      "last": "2026-11-14",
+      "sources": {
+        "N20/2.0NRT": 1962
+      }
+    }
+  ],
+  "calibration": "NOT_CALIBRATED",
+  "activeJordanRecords": 0,
+  "dailyDeliveryGaps": {
+    "MOIDS.zip": {
+      "comparisonSpanUTC": [
+        "2026-10-31",
+        "2026-11-14"
+      ],
+      "availableAcquisitionDates": [
+        "2026-10-31",
+        "2026-11-01",
+        "2026-11-02",
+        "2026-11-04",
+        "2026-11-05",
+        "2026-11-06",
+        "2026-11-07",
+        "2026-11-08",
+        "2026-11-09",
+        "2026-11-10",
+        "2026-11-11",
+        "2026-11-12",
+        "2026-11-13"
+      ],
+      "datesWithoutSuppliedRecords": [
+        "2026-11-03",
+        "2026-11-14"
+      ],
+      "filenameDateMismatches": [],
+      "meaning": "Dates are parsed from actual acquisition columns across supplied members. An absent positive-record date is not verified zero, a missing swath or proof of a missing physical file. The comparison span is the union of supplied daily-ZIP dates, not an assumed delivery contract."
+    },
+    "viirs.zip": {
+      "comparisonSpanUTC": [
+        "2026-10-31",
+        "2026-11-14"
+      ],
+      "availableAcquisitionDates": [
+        "2026-10-31",
+        "2026-11-01",
+        "2026-11-02",
+        "2026-11-03",
+        "2026-11-04",
+        "2026-11-05",
+        "2026-11-06",
+        "2026-11-07",
+        "2026-11-08",
+        "2026-11-09",
+        "2026-11-10",
+        "2026-11-11",
+        "2026-11-12",
+        "2026-11-13",
+        "2026-11-14"
+      ],
+      "datesWithoutSuppliedRecords": [],
+      "filenameDateMismatches": [
+        {
+          "member": "viirs/J2_VIIRS_C2_South_America_VJ214IMGTDL_NRT_2026318.txt",
+          "filenameDate": "2026-11-14",
+          "actualAcquisitionDates": [
+            "2026-11-01"
+          ]
+        }
+      ],
+      "meaning": "Dates are parsed from actual acquisition columns across supplied members. An absent positive-record date is not verified zero, a missing swath or proof of a missing physical file. The comparison span is the union of supplied daily-ZIP dates, not an assumed delivery contract."
+    },
+    "viirs1.zip": {
+      "comparisonSpanUTC": [
+        "2026-10-31",
+        "2026-11-14"
+      ],
+      "availableAcquisitionDates": [
+        "2026-10-31",
+        "2026-11-01",
+        "2026-11-02",
+        "2026-11-03",
+        "2026-11-04",
+        "2026-11-05",
+        "2026-11-06",
+        "2026-11-07",
+        "2026-11-08",
+        "2026-11-09",
+        "2026-11-10",
+        "2026-11-11",
+        "2026-11-12",
+        "2026-11-13",
+        "2026-11-14"
+      ],
+      "datesWithoutSuppliedRecords": [],
+      "filenameDateMismatches": [],
+      "meaning": "Dates are parsed from actual acquisition columns across supplied members. An absent positive-record date is not verified zero, a missing swath or proof of a missing physical file. The comparison span is the union of supplied daily-ZIP dates, not an assumed delivery contract."
+    }
+  }
+}

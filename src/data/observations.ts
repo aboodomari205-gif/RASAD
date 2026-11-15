@@ -13,11 +13,18 @@ export function filterObservationCollection(collection: ObservationCollection, f
   }
   return { ...collection, features: filterObservations(normalized.observations, filter).map(observation => observation.feature) };
 }
-export async function fetchObservationCollection(region: RegionId, signal?: AbortSignal, year?: number, endYear?: number): Promise<ObservationCollection> {
+export async function fetchObservationCollection(region: RegionId, signal?: AbortSignal, year?: number, endYear?: number, window?: {from?:string;to?:string;offset?:number;limit?:number;filters?:ObservationFilter}): Promise<ObservationCollection> {
   const response = await fetch(`/api/observations?mode=${encodeURIComponent(region)}`+'&manifest=1', { signal });
   if (!response.ok) throw new Error('Observation source unavailable');
   let collection: ObservationCollection = await response.json();
-  if(collection.metadata?.historical){
+  if(collection.metadata?.scalable){
+    const query=new URLSearchParams({mode:region,limit:String(window?.limit??2000),offset:String(window?.offset??0)});
+    if(window?.from)query.set('from',window.from);if(window?.to)query.set('to',window.to);
+    if(year)query.set('year',String(year));
+    for(const [k,v] of Object.entries(window?.filters??{})){const name=({confidenceRaw:'confidence',dayNight:'daynight'} as Record<string,string>)[k]??k;if(['sensor','processing','platform','confidence','daynight','frpMin','frpMax'].includes(name)&&v!==undefined)query.set(name,String(v));}
+    const part=await fetch('/api/observations?'+query,{signal});if(!part.ok)throw new Error('Observation evidence window unavailable');
+    collection=await part.json();
+  } else if(collection.metadata?.historical){
     const metadata=collection.metadata,paths=metadata.yearPaths as Record<string,string>;const first=year??Number(metadata.defaultYear),last=endYear??first;
     if(last<first||last-first>2)throw new Error('Select at most three consecutive UTC years; full-history summaries remain separate from raw evidence.');
     const counts=metadata.yearCounts as Record<string,number>|undefined;let requested=0;for(let y=first;y<=last;y++)requested+=counts?.[String(y)]??0;if(requested>3000)throw new Error('Narrow the UTC window: raw evidence view is limited to 3000 observations.');
@@ -27,7 +34,7 @@ export async function fetchObservationCollection(region: RegionId, signal?: Abor
     collection={...collection,features,metadata:{...metadata,windowYear:first,windowThroughYear:last}};
   }
 
-  if (collection.type !== 'FeatureCollection' || !Array.isArray(collection.features) || collection.metadata?.mode !== region || (region === 'ajloun' && collection.metadata?.developmentFixture === true)) throw new Error('Unexpected observation collection scope');
+  if (collection.type !== 'FeatureCollection' || !Array.isArray(collection.features) || collection.metadata?.mode !== region || (region === 'south-america' && collection.metadata?.developmentFixture === true)) throw new Error('Unexpected observation collection scope');
   const normalized = normalizeCollection(collection, { region, deduplicate: true });
   if (normalized.regionMismatch || normalized.availability.state === 'error') throw new Error('Observation provenance or source is unavailable');
   // Legacy UI has one source choice per sensor; ambiguous same-sensor datasets need

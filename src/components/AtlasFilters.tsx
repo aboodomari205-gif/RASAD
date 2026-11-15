@@ -16,6 +16,7 @@ export default function AtlasFilters({
   onClose,
   fixture,
   connected,
+  platforms=[],
 }: {
   sensor: string;
   confidence: string;
@@ -26,6 +27,7 @@ export default function AtlasFilters({
   onClose: () => void;
   fixture: boolean;
   connected?: boolean;
+  platforms?:string[];
 }) {
   const { scope, update } = useMission();
   const [error, setError] = useState("");
@@ -57,6 +59,8 @@ export default function AtlasFilters({
       }}
     >
     <ProcessingScope />
+    <label>{t('Platform')}<select aria-label={t('Platform')} value={scope.platform??'all'} onChange={e=>change({platform:e.target.value==='all'?undefined:e.target.value})}><option value="all">{t('All platforms')}</option>{[...new Set(platforms)].map(p=><option key={p} value={p}>{p}</option>)}</select></label>
+    <label>{t('Day / night')}<select aria-label={t('Day / night')} value={scope.dayNight??'all'} onChange={e=>change({dayNight:e.target.value==='all'?undefined:e.target.value as 'D'|'N'})}><option value="all">{t('All')}</option><option value="D">{t('Day')}</option><option value="N">{t('Night')}</option></select></label>
       <header>
         <div>
           <span className="atlas-overline">{t("SOURCE CONTROL")}</span>
@@ -225,8 +229,8 @@ export default function AtlasFilters({
           fixture
             ? "regional archive only. No live feed."
             : connected
-              ? "Ajloun loaded observations. Coverage remains unknown."
-              : "Ajloun observations are not connected.",
+              ? "Brazil loaded observations. Coverage remains unknown."
+              : "Brazil observations are not connected.",
         )}
         <br />
         {t("Filters never change source coordinates or metadata.")}

@@ -1,0 +1,89 @@
+{
+  "MOIDS.zip": {
+    "comparisonSpanUTC": [
+      "2026-10-31",
+      "2026-11-14"
+    ],
+    "availableAcquisitionDates": [
+      "2026-10-31",
+      "2026-11-01",
+      "2026-11-02",
+      "2026-11-04",
+      "2026-11-05",
+      "2026-11-06",
+      "2026-11-07",
+      "2026-11-08",
+      "2026-11-09",
+      "2026-11-10",
+      "2026-11-11",
+      "2026-11-12",
+      "2026-11-13"
+    ],
+    "datesWithoutSuppliedRecords": [
+      "2026-11-03",
+      "2026-11-14"
+    ],
+    "filenameDateMismatches": [],
+    "meaning": "Dates are parsed from actual acquisition columns across supplied members. An absent positive-record date is not verified zero, a missing swath or proof of a missing physical file. The comparison span is the union of supplied daily-ZIP dates, not an assumed delivery contract."
+  },
+  "viirs.zip": {
+    "comparisonSpanUTC": [
+      "2026-10-31",
+      "2026-11-14"
+    ],
+    "availableAcquisitionDates": [
+      "2026-10-31",
+      "2026-11-01",
+      "2026-11-02",
+      "2026-11-03",
+      "2026-11-04",
+      "2026-11-05",
+      "2026-11-06",
+      "2026-11-07",
+      "2026-11-08",
+      "2026-11-09",
+      "2026-11-10",
+      "2026-11-11",
+      "2026-11-12",
+      "2026-11-13",
+      "2026-11-14"
+    ],
+    "datesWithoutSuppliedRecords": [],
+    "filenameDateMismatches": [
+      {
+        "member": "viirs/J2_VIIRS_C2_South_America_VJ214IMGTDL_NRT_2026318.txt",
+        "filenameDate": "2026-11-14",
+        "actualAcquisitionDates": [
+          "2026-11-01"
+        ]
+      }
+    ],
+    "meaning": "Dates are parsed from actual acquisition columns across supplied members. An absent positive-record date is not verified zero, a missing swath or proof of a missing physical file. The comparison span is the union of supplied daily-ZIP dates, not an assumed delivery contract."
+  },
+  "viirs1.zip": {
+    "comparisonSpanUTC": [
+      "2026-10-31",
+      "2026-11-14"
+    ],
+    "availableAcquisitionDates": [
+      "2026-10-31",
+      "2026-11-01",
+      "2026-11-02",
+      "2026-11-03",
+      "2026-11-04",
+      "2026-11-05",
+      "2026-11-06",
+      "2026-11-07",
+      "2026-11-08",
+      "2026-11-09",
+      "2026-11-10",
+      "2026-11-11",
+      "2026-11-12",
+      "2026-11-13",
+      "2026-11-14"
+    ],
+    "datesWithoutSuppliedRecords": [],
+    "filenameDateMismatches": [],
+    "meaning": "Dates are parsed from actual acquisition columns across supplied members. An absent positive-record date is not verified zero, a missing swath or proof of a missing physical file. The comparison span is the union of supplied daily-ZIP dates, not an assumed delivery contract."
+  }
+}
