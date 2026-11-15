@@ -157,11 +157,13 @@ export default function FireMap({
   onReplayIntro,
   calendarSelection,
   onRegionChange,
+  onMapReady,
 }: {
   missionRequest: number;
   onReplayIntro: () => void;
   calendarSelection?: CalendarMapSelection | null;
   onRegionChange?: (region: Region) => void;
+  onMapReady?: (instance:ml.Map|null)=>void;
 }) {
   useEffect(() => {
     const root = document.querySelector<HTMLElement>(".atlas-screen");
@@ -312,6 +314,7 @@ export default function FireMap({
       },
     });
     map.current = instance;
+    onMapReady?.(instance);
     camera.current = createMissionCamera(instance);
     signals.current = createSignalMotion(instance);
     instance.on("movestart", () => setCameraMoving(true));
@@ -477,6 +480,7 @@ export default function FireMap({
     }).catch(()=>{if(!disposed)setMapError('Study boundary could not load.');});
     return () => {
       disposed = true;
+      onMapReady?.(null);
       signals.current?.dispose();
       camera.current?.dispose();
       popup.current?.remove();
@@ -557,7 +561,7 @@ export default function FireMap({
     setConfidence,
     requestFromYear,
     requestThroughYear,
-    scope.startDate,scope.endDate,scope.sensor,scope.processing,scope.platform,scope.confidenceRaw,scope.frpMin,scope.frpMax,scope.dayNight,evidenceOffset,
+    scope.startDate,scope.endDate,scope.sensor,scope.processing,scope.platform,scope.confidenceRaw,scope.frpMin,scope.frpMax,scope.dayNight,scope.bbox,evidenceOffset,
   ]);
 
   function changeRegion(next: Region) {

@@ -1,29 +1,229 @@
-﻿import {lazy,Suspense,useEffect,useRef,useState} from 'react';
-import {Navigation} from './components/MissionUI';
-import type {Module} from './components/MissionUI';
-import {useMission,moduleHash,readModuleHash,sectionName} from './state/mission';
-import {useLanguage} from './i18n/useLanguage';
-import {t} from './i18n/translate';
-import AnalysisBoundary from './components/AnalysisBoundary';
-import HarmonizationLab,{ScientificVerdict} from './intelligence/HarmonizationLab';
-import './App.css';
-import './design/rasad-workspace.css';
-import './intelligence/intelligence.css';
-import './components/ScientificContext.css';
-import './design/focused-lab.css';
-const ResearchPrototype=lazy(()=>import('./intelligence/ResearchPrototype'));
-const BurningCalendar=lazy(()=>import('./calendar/BurningCalendar'));
-function Methods(){const ar=useLanguage()==='ar';return <div className="focused-lab evidence-methods"><header className="lab-introduction"><span className="atlas-overline">RASAD / NASA FIRMS</span><h1>{ar?'الأدلة والمنهجية':'Evidence & Methods'}</h1><p>{ar?'توحيد الدعم المكاني والزمني حسب المصدر، وليس إثبات تكافؤ المستشعرات.':'Source-aware spatial-temporal harmonization, not proof of sensor equivalence.'}</p></header><ScientificVerdict/><h2>{ar?'ما الذي يفعله المحرك؟':'What does the engine do?'}</h2><p>{ar?'يحفظ MODIS وVIIRS والمنصة والمنتج والمعالجة والثقة وUTC وFRP، ثم يجمع الرصد الحقيقي في خلايا H3 أو خلايا متساوية المساحة في اليوم نفسه. لا يدمج الثقة أو يفترض فرصة رصد متكافئة.':'It preserves MODIS/VIIRS, platform, product, processing, native confidence, UTC and FRP, then groups actual observations by common H3 or equal-area cell and UTC day. It does not normalize confidence or assume equal viewing opportunity.'}</p><h2>{ar?'حدود المقارنة':'Comparison limits'}</h2><p>{ar?'MODIS بدقة اسمية تقارب 1 كم وVIIRS بدقة اسمية تقارب 375 م يختلفان في الحساسية والبصمة. التداخل لا يعني الحدث نفسه أو رصدًا متزامنًا. غياب المقابل يعني غياب سجل مستلم وليس سلبية مؤكدة. نسب NOAA-20/21 Standard غير محسومة.':'MODIS (~1 km nominal) and VIIRS (~375 m nominal) differ in sensitivity and footprint. Co-detection does not prove a shared event or simultaneous acquisition. No delivered counterpart is not a verified negative. NOAA-20/21 Standard lineage remains unresolved.'}</p><h2>{ar?'التقويم والمراجع الموسمية':'Calendar and seasonal references'}</h2><p>{ar?'تصف المراجع المشروطة الأشهر ذات الرصد المستلم في المصدر نفسه. لا تثبت خط أساس مناخيًا كاملًا أو شذوذًا معايرًا أو أيامًا بلا حريق.':'Conditional references describe delivered positive months in the same source stratum. They do not establish a complete climatology, calibrated anomaly or verified no-fire days.'}</p><h2>{ar?'ما يلزم لمعايرة حقيقية':'Inputs required for actual calibration'}</h2><p>MOD14/MYD14 C6.1 + MOD03/MYD03; VNP14IMG/VJ114IMG/VJ214IMG C2; {ar?'أقنعة كاملة وفرصة الرصد وتحديد الموقع وQA السحب والبكسلات الصالحة بما فيها مرات المرور بلا حريق. ومدخلات بيئية حقيقية وتحقق بسنوات ومناطق مستقلة.':'full masks, observation opportunity, geolocation, cloud/valid-pixel QA including no-fire overpasses, authentic environmental features and independent held-out years/geographies.'}</p><p>Mato Grosso: W −57, S −14, E −55, N −12 · 2024-08-01–2024-08-31 UTC.</p><h2>{ar?'مراجع رسمية':'Official references'}</h2><p><a href="https://firms.modaps.eosdis.nasa.gov/content/descriptions/FIRMS_MODIS_Firehotspots.html" target="_blank" rel="noreferrer">NASA FIRMS MODIS</a> · <a href="https://firms.modaps.eosdis.nasa.gov/content/descriptions/FIRMS_VIIRS_Firehotspots.html" target="_blank" rel="noreferrer">NASA FIRMS VIIRS</a> · <a href="https://github.com/aboodomari205-gif/RASAD" target="_blank" rel="noreferrer">RASAD source / reproducible scripts</a></p><p>{ar?'صدّر JSON/CSV والرصد المقترن من مختبر التوحيد، وتقييم النموذج من مختبر AI. لا ادعاء بتأييد ناسا أو صلاحية عمليات الطوارئ.':'Export actual paired evidence and cell-day JSON/CSV in Harmonization Lab, and model evaluation in AI Research Lab. No NASA endorsement or emergency operational validity is claimed.'}</p></div>;}
-export default function App(){
- const language=useLanguage(),{scope,update}=useMission(),[active,setActive]=useState<Module>(readModuleHash),[dates,setDates]=useState({from:'2024-08-01',to:'2024-08-31'});const heading=useRef<HTMLHeadingElement>(null);
- function navigate(module:Module){setActive(sectionName(module) as Module);}
- useEffect(()=>{const restore=()=>setActive(readModuleHash());window.addEventListener('hashchange',restore);window.addEventListener('popstate',restore);return()=>{window.removeEventListener('hashchange',restore);window.removeEventListener('popstate',restore);};},[]);
- useEffect(()=>{const hash=moduleHash(active);if(window.location.hash!==hash)window.history.pushState(null,'',hash);heading.current?.focus({preventScroll:true});},[active]);
- function calendar(){update({region:'brazil',sensor:'all',confidenceRaw:'all',platform:undefined,processing:undefined,frpMin:undefined,frpMax:undefined,dayNight:undefined,startDate:dates.from,endDate:dates.to,calendarMonth:dates.from.slice(0,7),calendarDay:null});navigate('Burning Calendar');}
- return <div className="workspace-host focused-workspace"><div className="app-shell"><a className="skip-link" href="#main-workspace">{t('Skip to workspace')}</a><Navigation active={active} onChange={navigate}/><main id="main-workspace" className="main-content"><header className="focused-topbar"><h1 ref={heading} tabIndex={-1}>{t(sectionName(active))}</h1><span>{language==='ar'?'البرازيل فقط · الرصد لا يثبت حريقًا':'BRAZIL ONLY · DETECTIONS ≠ CONFIRMED FIRES'}</span></header><AnalysisBoundary onReset={()=>{setDates({from:'2024-08-01',to:'2024-08-31'});update({startDate:undefined,endDate:undefined,frpMin:undefined,frpMax:undefined,confidenceRaw:'all'});}} onReturn={()=>navigate('Harmonization Lab')}><Suspense fallback={<p className="focused-loading" role="status">{language==='ar'?'تحميل الأدلة…':'Loading evidence…'}</p>}>
- {active==='Harmonization Lab'&&<HarmonizationLab window={dates} onWindow={setDates} onCalendar={calendar} onAI={()=>navigate('AI Research Lab')}/>}
- {active==='Burning Calendar'&&<BurningCalendar initialRegion={scope.region} onReturn={()=>navigate('Harmonization Lab')} onEarth={()=>navigate('Harmonization Lab')} onMap={selection=>{setDates({from:selection.date,to:selection.date});navigate('Harmonization Lab');}}/>}
- {active==='AI Research Lab'&&<div className="focused-lab ai-research-page"><p className="scientific-warning prominent-model-warning">{language==='ar'?'تعلم آلي تجريبي؛ ليس معايرة متحققة بين MODIS وVIIRS أو تحسين دقة أو إعادة بناء أو توقع حرائق.':'Experimental ML; not validated MODIS–VIIRS calibration, downscaling, reconstruction or wildfire prediction.'}</p><ResearchPrototype/></div>}
- {active==='Evidence & Methods'&&<Methods/>}
- </Suspense></AnalysisBoundary></main></div></div>;
+﻿import { lazy, Suspense, useEffect, useRef, useState } from "react";
+import { Navigation } from "./components/MissionUI";
+import type { Module } from "./components/MissionUI";
+import {
+  useMission,
+  moduleHash,
+  readModuleHash,
+  sectionName,
+} from "./state/mission";
+import { useLanguage } from "./i18n/useLanguage";
+import { t } from "./i18n/translate";
+import AnalysisBoundary from "./components/AnalysisBoundary";
+import HarmonizationLab, {
+  ScientificVerdict,
+} from "./intelligence/HarmonizationLab";
+import "./App.css";
+import "./design/rasad-workspace.css";
+import "./intelligence/intelligence.css";
+import "./components/ScientificContext.css";
+import "./design/focused-lab.css";
+import "./design/restored-map.css";
+import CalibrationRoadmap from './intelligence/CalibrationRoadmap';
+const MapHarmonization = lazy(() => import('./intelligence/MapHarmonization'));
+const ResearchPrototype = lazy(
+  () => import("./intelligence/ResearchPrototype"),
+);
+const BurningCalendar = lazy(() => import("./calendar/BurningCalendar"));
+function Methods() {
+  const ar = useLanguage() === "ar";
+  return (
+    <div className="focused-lab evidence-methods">
+      <header className="lab-introduction">
+        <span className="atlas-overline">RASAD / NASA FIRMS</span>
+        <h1>{ar ? "الأدلة والمنهجية" : "Evidence & Methods"}</h1>
+        <p>
+          {ar
+            ? "توحيد الدعم المكاني والزمني حسب المصدر، وليس إثبات تكافؤ المستشعرات."
+            : "Source-aware spatial-temporal harmonization, not proof of sensor equivalence."}
+        </p>
+      </header>
+      <ScientificVerdict />
+      <h2>{ar ? "ما الذي يفعله المحرك؟" : "What does the engine do?"}</h2>
+      <p>
+        {ar
+          ? "يحفظ MODIS وVIIRS والمنصة والمنتج والمعالجة والثقة وUTC وFRP، ثم يجمع الرصد الحقيقي في خلايا H3 أو خلايا متساوية المساحة في اليوم نفسه. لا يدمج الثقة أو يفترض فرصة رصد متكافئة."
+          : "It preserves MODIS/VIIRS, platform, product, processing, native confidence, UTC and FRP, then groups actual observations by common H3 or equal-area cell and UTC day. It does not normalize confidence or assume equal viewing opportunity."}
+      </p>
+      <h2>{ar ? "حدود المقارنة" : "Comparison limits"}</h2>
+      <p>
+        {ar
+          ? "MODIS بدقة اسمية تقارب 1 كم وVIIRS بدقة اسمية تقارب 375 م يختلفان في الحساسية والبصمة. التداخل لا يعني الحدث نفسه أو رصدًا متزامنًا. غياب المقابل يعني غياب سجل مستلم وليس سلبية مؤكدة. نسب NOAA-20/21 Standard غير محسومة."
+          : "MODIS (~1 km nominal) and VIIRS (~375 m nominal) differ in sensitivity and footprint. Co-detection does not prove a shared event or simultaneous acquisition. No delivered counterpart is not a verified negative. NOAA-20/21 Standard lineage remains unresolved."}
+      </p>
+      <h2>
+        {ar ? "التقويم والمراجع الموسمية" : "Calendar and seasonal references"}
+      </h2>
+      <p>
+        {ar
+          ? "تصف المراجع المشروطة الأشهر ذات الرصد المستلم في المصدر نفسه. لا تثبت خط أساس مناخيًا كاملًا أو شذوذًا معايرًا أو أيامًا بلا حريق."
+          : "Conditional references describe delivered positive months in the same source stratum. They do not establish a complete climatology, calibrated anomaly or verified no-fire days."}
+      </p>
+      <h2>
+        {ar
+          ? "ما يلزم لمعايرة حقيقية"
+          : "Inputs required for actual calibration"}
+      </h2>
+      <p>
+        MOD14/MYD14 C6.1 + MOD03/MYD03; VNP14IMG/VJ114IMG/VJ214IMG C2;{" "}
+        {ar
+          ? "أقنعة كاملة وفرصة الرصد وتحديد الموقع وQA السحب والبكسلات الصالحة بما فيها مرات المرور بلا حريق. ومدخلات بيئية حقيقية وتحقق بسنوات ومناطق مستقلة."
+          : "full masks, observation opportunity, geolocation, cloud/valid-pixel QA including no-fire overpasses, authentic environmental features and independent held-out years/geographies."}
+      </p>
+      <p>
+        Mato Grosso: W −57, S −14, E −55, N −12 · 2024-08-01–2024-08-31 UTC.
+      </p>
+      <h2>{ar ? "مراجع رسمية" : "Official references"}</h2>
+      <p>
+        <a
+          href="https://firms.modaps.eosdis.nasa.gov/content/descriptions/FIRMS_MODIS_Firehotspots.html"
+          target="_blank"
+          rel="noreferrer"
+        >
+          NASA FIRMS MODIS
+        </a>{" "}
+        ·{" "}
+        <a
+          href="https://firms.modaps.eosdis.nasa.gov/content/descriptions/FIRMS_VIIRS_Firehotspots.html"
+          target="_blank"
+          rel="noreferrer"
+        >
+          NASA FIRMS VIIRS
+        </a>{" "}
+        ·{" "}
+        <a
+          href="https://github.com/aboodomari205-gif/RASAD"
+          target="_blank"
+          rel="noreferrer"
+        >
+          RASAD source / reproducible scripts
+        </a>
+      </p>
+      <p>
+        {ar
+          ? "صدّر JSON/CSV والرصد المقترن من مختبر التوحيد، وتقييم النموذج من مختبر AI. لا ادعاء بتأييد ناسا أو صلاحية عمليات الطوارئ."
+          : "Export actual paired evidence and cell-day JSON/CSV in Harmonization Lab, and model evaluation in AI Research Lab. No NASA endorsement or emergency operational validity is claimed."}
+      </p>
+    </div>
+  );
+}
+export default function App() {
+  const language = useLanguage(),
+    { scope, update } = useMission(),
+    [active, setActive] = useState<Module>(readModuleHash),
+    [dates, setDates] = useState({ from: "2024-08-01", to: "2024-08-31" });
+  const heading = useRef<HTMLHeadingElement>(null);
+  function navigate(module: Module) {
+    setActive(sectionName(module) as Module);
+  }
+  useEffect(() => {
+    const restore = () => setActive(readModuleHash());
+    window.addEventListener("hashchange", restore);
+    window.addEventListener("popstate", restore);
+    return () => {
+      window.removeEventListener("hashchange", restore);
+      window.removeEventListener("popstate", restore);
+    };
+  }, []);
+  useEffect(() => {
+    const hash = moduleHash(active);
+    if (window.location.hash !== hash) window.history.pushState(null, "", hash);
+    heading.current?.focus({ preventScroll: true });
+  }, [active]);
+  function calendar() {
+    update({
+      region: "brazil",
+      sensor: "all",
+      confidenceRaw: "all",
+      platform: undefined,
+      processing: undefined,
+      frpMin: undefined,
+      frpMax: undefined,
+      dayNight: undefined,
+      startDate: dates.from,
+      endDate: dates.to,
+      calendarMonth: dates.from.slice(0, 7),
+      calendarDay: null,
+    });
+    navigate("Burning Calendar");
+  }
+  return (
+    <div className="workspace-host focused-workspace">
+      <div className="app-shell">
+        <a className="skip-link" href="#main-workspace">
+          {t("Skip to workspace")}
+        </a>
+        <Navigation active={active} onChange={navigate} />
+        <main id="main-workspace" className="main-content">
+          <header className="focused-topbar">
+            <h1 ref={heading} tabIndex={-1}>
+              {t(sectionName(active))}
+            </h1>
+            <span>
+              {language === "ar"
+                ? "البرازيل فقط · الرصد لا يثبت حريقًا"
+                : "BRAZIL ONLY · DETECTIONS ≠ CONFIRMED FIRES"}
+            </span>
+          </header>
+          <AnalysisBoundary
+            onReset={() => {
+              setDates({ from: "2024-08-01", to: "2024-08-31" });
+              update({
+                startDate: undefined,
+                endDate: undefined,
+                frpMin: undefined,
+                frpMax: undefined,
+                confidenceRaw: "all",
+              });
+            }}
+            onReturn={() => navigate("Harmonization Lab")}
+          >
+            <Suspense
+              fallback={
+                <p className="focused-loading" role="status">
+                  {language === "ar" ? "تحميل الأدلة…" : "Loading evidence…"}
+                </p>
+              }
+            >
+              {active === "Harmonization Lab" && (
+                <>
+                  <MapHarmonization/>
+                  <details className="focused-lab detailed-comparison"><summary>{language==='ar'?'المقارنة التفصيلية والتصدير':'Detailed source comparison and exports'}</summary><HarmonizationLab
+                    window={dates}
+                    onWindow={next=>{setDates(next);update({startDate:next.from,endDate:next.to,bbox:[-57,-14,-55,-12]});}}
+                    onCalendar={calendar}
+                    onAI={() => navigate("AI Research Lab")}
+                  /></details>
+                </>
+              )}
+              {active === "Burning Calendar" && (
+                <BurningCalendar
+                  initialRegion={scope.region}
+                  onReturn={() => navigate("Harmonization Lab")}
+                  onEarth={() => navigate("Harmonization Lab")}
+                  onMap={(selection) => {
+                    setDates({ from: selection.date, to: selection.date });
+                    update({startDate:selection.date,endDate:selection.date,sensor:selection.sensor,bbox:[-57,-14,-55,-12]});
+                    navigate("Harmonization Lab");
+                  }}
+                />
+              )}
+              {active === "AI Research Lab" && (
+                <div className="focused-lab ai-research-page">
+                  <p className="scientific-warning prominent-model-warning">
+                    {language === "ar"
+                      ? "تعلم آلي تجريبي؛ ليس معايرة متحققة بين MODIS وVIIRS أو تحسين دقة أو إعادة بناء أو توقع حرائق."
+                      : "Experimental ML; not validated MODIS–VIIRS calibration, downscaling, reconstruction or wildfire prediction."}
+                  </p>
+                  <CalibrationRoadmap onMap={()=>navigate('Harmonization Lab')}/>
+                  <details className="secondary-frp-experiment"><summary>{language==='ar'?'تجربة FRP الاستكشافية الثانوية / النموذج الفعلي':'Secondary exploratory FRP experiment / actual trained model'}</summary><ResearchPrototype /></details>
+                </div>
+              )}
+              {active === "Evidence & Methods" && <Methods />}
+            </Suspense>
+          </AnalysisBoundary>
+        </main>
+      </div>
+    </div>
+  );
 }

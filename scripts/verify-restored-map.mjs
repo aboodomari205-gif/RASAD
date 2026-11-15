@@ -1,0 +1,47 @@
+import path from 'node:path';import fs from 'node:fs/promises';import {spawn} from 'node:child_process';import assert from 'node:assert/strict';
+const origin=process.env.RASAD_TEST_ORIGIN??'http://localhost:4173',port=Number(process.env.RASAD_CDP_PORT??9601);
+const out='.checkpoints/rasad-map-restored/screenshots';await fs.mkdir(out,{recursive:true});
+const child=spawn('C:/Program Files/Google/Chrome/Application/chrome.exe',['--headless=new','--disable-gpu','--no-first-run','--no-default-browser-check','--enable-unsafe-swiftshader','--remote-allow-origins=*','--remote-debugging-port='+port,'--user-data-dir='+path.resolve('.checkpoints/rasad-map-restored/chrome'),'about:blank'],{windowsHide:true,stdio:'ignore'});
+const delay=ms=>new Promise(r=>setTimeout(r,ms));const keep=setInterval(()=>{},1000);let ws;
+try{
+ let v;for(let i=0;i<80;i++){try{v=await(await fetch('http://127.0.0.1:'+port+'/json/version')).json();break;}catch{}await delay(200);}assert.ok(v,'Chrome unavailable');
+ ws=new WebSocket(v.webSocketDebuggerUrl);await new Promise((r,j)=>{ws.addEventListener('open',r,{once:true});ws.addEventListener('error',j,{once:true});});let seq=0,session;const pending=new Map(),errors=[];
+ ws.addEventListener('message',event=>{const m=JSON.parse(event.data);if(m.id){const p=pending.get(m.id);if(p){pending.delete(m.id);clearTimeout(p.timer);if(m.error)p.reject(Error(m.error.message));else p.resolve(m.result);}}else if(m.method==='Runtime.exceptionThrown')errors.push(m.params.exceptionDetails.exception?.description??m.params.exceptionDetails.text);});
+ const send=(method,params={},target=session)=>new Promise((resolve,reject)=>{const id=++seq;pending.set(id,{resolve,reject,timer:setTimeout(()=>reject(Error('CDP timeout '+method)),20000)});ws.send(JSON.stringify({id,method,params,...(target?{sessionId:target}:{})}));});
+ const {targetId}=await send('Target.createTarget',{url:'about:blank'},null);session=(await send('Target.attachToTarget',{targetId,flatten:true},null)).sessionId;
+ const evaluate=async expression=>{const r=await send('Runtime.evaluate',{expression,awaitPromise:true,returnByValue:true,userGesture:true});if(r.exceptionDetails)throw Error(r.exceptionDetails.exception?.description??r.exceptionDetails.text);return r.result.value;};
+ const wait=async expression=>{for(let i=0;i<180;i++){if(await evaluate('Boolean('+expression+')'))return;await delay(150);}throw Error('Timed out '+expression);};
+ const viewport=async(width,height)=>send('Emulation.setDeviceMetricsOverride',{width,height,deviceScaleFactor:1,mobile:width<800});
+ const capture=async name=>{await delay(350);const r=await send('Page.captureScreenshot',{format:'png'});await fs.writeFile(out+'/'+name+'.png',Buffer.from(r.data,'base64'));};
+ await send('Page.enable');await send('Runtime.enable');await viewport(1440,1000);await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:'reduce'}]});
+ const tiles=[];await send('Network.enable');ws.addEventListener('message',event=>{const m=JSON.parse(event.data);if(m.method==='Network.responseReceived'&&/MapServer\/tile\//.test(m.params.response.url)&&m.params.response.status===200)tiles.push(m.params.response.url);});
+ await send('Page.addScriptToEvaluateOnNewDocument',{source:"localStorage.setItem('firepulse.language.v1','en');sessionStorage.removeItem('rasad.brazil-scope.v1')"});await send('Page.navigate',{url:origin+'/'});
+ await wait('!!document.querySelector(".maplibregl-canvas")');
+ await evaluate(`(()=>{const e=document.querySelector('.fire-map-canvas');let f=e[Object.keys(e).find(k=>k.startsWith('__reactFiber'))];while(f){let h=f.memoizedState;while(h){if(h.memoizedState?.current?.getSource){window.qaMap=h.memoizedState.current;return;}h=h.next;}f=f.return;}})()`);
+ await wait('window.qaMap?.getSource("observations")');
+ await wait('(async()=>{const d=await qaMap.getSource("observations").getData();return d.features.length>0&&d.features.every(f=>f.geometry.coordinates[0]>=-57&&f.geometry.coordinates[0]<=-55&&f.geometry.coordinates[1]>=-14&&f.geometry.coordinates[1]<=-12)})()');
+ await evaluate('qaMap.fitBounds([[-57,-14],[-55,-12]],{padding:80,duration:0});true');
+ await wait('qaMap.queryRenderedFeatures({layers:["observations"]}).length>0');
+ for(let i=0;i<70&&!tiles.length;i++)await delay(200);assert.ok(tiles.length>0,'No actual imagery tile HTTP 200 responses');
+ assert.ok(await evaluate('document.querySelector(".maplibregl-canvas").getBoundingClientRect().height>=380'));
+ await capture('restored-map-desktop');
+ for(const sensor of ['MODIS','VIIRS']){await evaluate(`[...document.querySelectorAll('.map-harmonization-toolbar button')].find(b=>b.textContent==='${sensor}').click()`);await wait(`(async()=>{const d=await qaMap.getSource('observations').getData();return d.features.length>0&&d.features.every(f=>f.properties.instrument==='${sensor}')})()`);}
+ await evaluate("[...document.querySelectorAll('.map-harmonization-toolbar button')].find(b=>b.textContent==='Both sensors').click()");
+ await wait('(async()=>{const d=await qaMap.getSource("observations").getData();return new Set(d.features.map(f=>f.properties.instrument)).size===2})()');
+ await evaluate("[...document.querySelectorAll('.map-harmonization-toolbar button')].find(b=>b.textContent==='After: common support').click()");await wait('qaMap.getLayoutProperty("rasad-common-fill","visibility")==="visible"&&qaMap.queryRenderedFeatures({layers:["rasad-common-fill"]}).length>0');await capture('restored-h3-desktop');
+ await evaluate("(()=>{const s=document.querySelector('[aria-label=\"Map common support\"]');s.value='equal-area';s.dispatchEvent(new Event('change',{bubbles:true}));})()");
+ await evaluate("(()=>{const s=document.querySelector('[aria-label=\"Map equal-area size\"]');s.value='5000';s.dispatchEvent(new Event('change',{bubbles:true}));})()");
+ await wait('(async()=>{const d=await qaMap.getSource("rasad-common").getData();return d.features.length>0&&d.features.every(f=>f.properties.areaKm2===25)})()');await capture('restored-equal-area-desktop');
+ await evaluate("[...document.querySelectorAll('.map-harmonization-toolbar button')].find(b=>b.textContent==='Before: native detections').click()");
+ assert.ok(await evaluate('!!document.querySelector(".atlas-timeline")'));
+ const next=await evaluate("(()=>{const b=document.querySelector('.atlas-timeline button[aria-label=\"Next delivered date\"]');if(b&&!b.disabled){b.click();return true;}return false;})()");
+ assert.ok(next,'No functional timeline date control');await delay(700);
+ const priorDate=await evaluate('document.querySelector("#rasad-date-select").value');await evaluate("document.querySelector('.atlas-timeline [aria-label=\"Play observed-date playback\"]').click()");await delay(1900);assert.notEqual(await evaluate('document.querySelector("#rasad-date-select").value'),priorDate);await evaluate("document.querySelector('.atlas-timeline [aria-label=\"Pause observed-date playback\"]')?.click()");
+ await evaluate("document.querySelector('.rasad-nav-links [data-module=\"AI Research Lab\"]').click()");await wait('!!document.querySelector(".calibration-roadmap")');assert.ok(await evaluate('document.querySelector(".calibration-roadmap").textContent.includes("DATA-BLOCKED")'));
+ await evaluate('document.querySelector(".secondary-frp-experiment summary").click()');await wait('document.querySelector(".research-prototype")?.textContent.includes("27.216")');await capture('ai-harmonization-roadmap');
+ await evaluate("document.querySelector('.rasad-nav-links [data-module=\"Burning Calendar\"]').click()");await wait('!!document.querySelector(".calendar-grid")');
+ await evaluate("document.querySelector('.rasad-nav-links [data-module=\"Harmonization Lab\"]').click()");await wait('!!document.querySelector(".maplibregl-canvas")');
+ await viewport(390,844);await delay(1500);await evaluate(`(()=>{const e=document.querySelector('.fire-map-canvas');let f=e[Object.keys(e).find(k=>k.startsWith('__reactFiber'))];while(f){let h=f.memoizedState;while(h){if(h.memoizedState?.current?.getSource){window.qaMap=h.memoizedState.current;return;}h=h.next;}f=f.return;}})()`);await wait('qaMap.getLayer("observations")&&qaMap.queryRenderedFeatures({layers:["observations"]}).length>0');await capture('restored-map-mobile');assert.ok(await evaluate('document.querySelector(".maplibregl-canvas").getBoundingClientRect().height>=380'));assert.ok(await evaluate('document.documentElement.scrollWidth<=innerWidth+2'));
+ await evaluate('document.querySelector(".rasad-mobile-header .language-switch").click()');await wait('document.documentElement.dir==="rtl"');await capture('restored-map-arabic-mobile');
+ assert.deepEqual(errors,[]);await fs.writeFile('.checkpoints/rasad-map-restored/browser-proof.json',JSON.stringify({passed:true,actualMapLibre:true,actualTileHTTP200:tiles.length,nativeRendered:true,bbox:true,modisFilter:true,viirsFilter:true,h3Rendered:true,equalArea5km:true,timeline:true,calibrationDataBlocked:true,secondaryRealFRP:true,calendar:true,mobileRTL:true,errors},null,2));console.log('PASS restored actual MapLibre, real imagery tiles, genuine pilot detections, sensor filters, rendered H3/5km, timeline, AI roadmap and mobile RTL.');
+}finally{ws?.close();clearInterval(keep);child.kill();}

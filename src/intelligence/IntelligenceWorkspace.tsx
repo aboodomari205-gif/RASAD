@@ -2,6 +2,7 @@ import { sectionName } from '../state/mission';
 import SeasonalFingerprint from './SeasonalFingerprint';
 import BrazilPilot from './BrazilPilot';
 import ResearchPrototype from './ResearchPrototype';
+import HarmonizationLab from './HarmonizationLab';
 import {useScopedSeries} from '../data/useScopedSeries';
 import SensorTrustLens from '../components/SensorTrustLens';
 import {ACTIVE_REGIONS,regionName} from '../../shared/regions';
@@ -39,6 +40,7 @@ export default function IntelligenceWorkspace({ active, onNavigate, onMap, onEar
   const data = useMissionData();
   const title = useRef<HTMLHeadingElement>(null);
   const [message, setMessage] = useState('');
+  const [harmonizationWindow, setHarmonizationWindow] = useState({ from: '2024-08-01', to: '2024-08-31' });
   const [generatedAt] = useState(() => new Date().toISOString());
   const [selectedMonth, setSelectedMonth] = useState(Number(scope.calendarMonth.slice(5)) - 1);
   const yearsSelected = scope.seasonYears ?? [];
@@ -80,6 +82,8 @@ export default function IntelligenceWorkspace({ active, onNavigate, onMap, onEar
 ] as const).find(group=>group.some(module=>module===active))?.map(module=><button key={module} aria-current={module===active?'page':undefined} onClick={()=>onNavigate(module)}>{t(module==='Fire DNA'?'Seasonal fingerprint':module==='Fire Season Clock'?'Year comparison':module==='Evidence Engine'?'Agreement & sensitivity':module==='Decision Brief'?'Exports & research brief':module==='Trust the Signal'?'Methodology':module==='Sensor Intelligence'?'Source comparison':module)}</button>)}</nav><ProcessingScope />
     <div className="lab-notice" role="status">{t(data.status === 'loading' ? 'Reading the observation collection…' : data.status === 'error' ? <>{t(data.error)} <button onClick={data.retry}>{t("Retry observation source")}</button></> : <>{t(regionName(scope.region)+' / NASA FIRMS. ')}{t(data.availability.state.toUpperCase())}{t(" · Coverage unknown. ")}{t(partial && 'Partial input: rejected/warning records limit interpretation. ')}{t(data.records.length ? 'Raw sensor counts remain separate.' : 'No observations in this scope; this is not verified zero activity.')}</>)}</div>
     {(active==='Sensor Intelligence'||active==='Evidence Engine')&&<SensorTrustLens expanded/>}{active!=='Anomaly Detection'&&Boolean(data.collection.metadata?.scalable)&&<p className="lab-notice">{t('Historical and seasonal charts use full source summaries. Agreement, metadata and descriptive briefs use the bounded displayed evidence page; they do not represent a complete historical comparison.')}{scopedSeries?.error&&t('Summary filtering unavailable. Narrow quality-filtered analyses to 31 UTC days; no partial chart is substituted.')}</p>}<div className="lab-content" aria-busy={data.status === 'loading'}>
+      {active === 'Sensor Intelligence' && <HarmonizationLab window={harmonizationWindow} onWindow={setHarmonizationWindow} onCalendar={() => onNavigate('Burning Calendar')} onAI={() => onNavigate('Decision Brief')} />}
+      {active === 'Sensor Intelligence' && <div className="lab-actions"><button onClick={() => onNavigate('Intelligence Map')}>{t('Open interactive satellite map / افتح الخريطة التفاعلية')}</button><button onClick={() => onNavigate('Decision Brief')}>{t('Open trained AI research results / نتائج نموذج الذكاء الاصطناعي')}</button></div>}
       {['Anomaly Detection','Sensor Intelligence','Trust the Signal','Decision Brief'].includes(active)&&<ResearchPrototype/>}
       {['Anomaly Detection','Sensor Intelligence','Trust the Signal','Decision Brief'].includes(active)&&<BrazilPilot view={active==='Sensor Intelligence'?'sensors':active==='Anomaly Detection'?'activity':'report'}/>}
       {active==='Anomaly Detection'&&historyView}{active==='Fire DNA'&&<SeasonalFingerprint collection={data.collection} onMonth={openMonth}/>}

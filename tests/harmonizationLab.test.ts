@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 // @ts-ignore Node runtime JS.
-import {southHarmonization} from '../server/southAmerica.js';
+import {southHarmonization,southCollection} from '../server/southAmerica.js';
 // @ts-ignore Shared runtime JS.
 import {harmonizationLab} from '../shared/harmonizationLab.js';
 test('same-cell different-date detections do not create a same-day pair, null FRP stays unknown',()=>{
@@ -23,4 +23,9 @@ test('real equal-area support conserves counts, declared areas and country/date 
  const real=southHarmonization({mode:'brazil',from:'2024-08-01',to:'2024-08-02',support:'equal-area',size:'5000'});
  assert.ok(real.count>0);assert.ok(real.cells.every((c:{areaKm2:number})=>c.areaKm2===25));assert.equal(real.cellDays.reduce((n:number,r:{count:number})=>n+r.count,0),real.count);
  assert.throws(()=>southHarmonization({mode:'jordan',from:'2024-08-01',to:'2024-08-01'}));assert.throws(()=>southHarmonization({from:'2024-08-01',to:'2024-09-01'}));
+});
+test('restored map native API clips original positions to pilot bbox and preserves sensor filtering',{skip:!fs.existsSync('server/data/south-america/active.json')},()=>{
+ const query={mode:'brazil',from:'2024-08-24',to:'2024-08-24',bbox:'-57,-14,-55,-12'};
+ for(const sensor of ['MODIS','VIIRS']){const data=southCollection({...query,sensor});assert.ok(data.features.length>0);assert.ok(data.features.every((f:{geometry:{coordinates:number[]};properties:{instrument:string}})=>f.properties.instrument===sensor&&f.geometry.coordinates[0]>=-57&&f.geometry.coordinates[0]<=-55&&f.geometry.coordinates[1]>=-14&&f.geometry.coordinates[1]<=-12));}
+ assert.throws(()=>southCollection({...query,bbox:'invalid'}));
 });

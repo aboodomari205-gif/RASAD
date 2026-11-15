@@ -4,6 +4,14 @@
 
 RASAD brings authentic MODIS and VIIRS thermal detections onto common spatial and UTC supports while retaining sensor, platform, product, processing, confidence and uncertainty. MODIS (~1 km nominal) and VIIRS (~375 m nominal) have different detection sensitivity; adding their raw counts does not create a comparable fire-history series. Hotspots are not unique fires, perimeters or verified ignition events.
 
+## Interactive map restored - final emergency delivery
+
+The DEFAULT Harmonization Lab starts with the actual large MapLibre interactive map, satellite imagery, genuine Brazil pilot detections, source filters, acquisition timeline/playback and same-map native/common-support H3 or equal-area views. No introductory panel is placed before the map. AI calibration is a future opportunity-aware DATA-BLOCKED pipeline; the unchanged actual FRP model is a secondary expandable experiment.
+
+Current proof, exact changed files and restored-map screenshots: [map restoration report](docs/RASAD_MAP_RESTORATION_REPORT.md). Submission copy: [SUBMISSION_READY.md](SUBMISSION_READY.md). Separate seven-slide PDF: [submission/RASAD_NASA_DEMO_7_SLIDES.pdf](submission/RASAD_NASA_DEMO_7_SLIDES.pdf).
+
+The latest requested FIREPULSE remote is inaccessible (Repository not found); do not imply the final correction has been pushed there. The prior RASAD public source remains available. Original local index/raw data are excluded from GitHub.
+
 ## Four focused sections
 
 The default home is **Harmonization Lab** (`/#harmonization-lab`). There is no cinematic intro or entry gate.
@@ -97,12 +105,12 @@ npm run build
 npm run lint
 npm run verify:release
 $env:RASAD_TEST_ORIGIN='http://localhost:4173'
-node scripts/verify-focused-product.mjs
+node scripts/verify-restored-map.mjs
 ```
 
 Chrome browser verification currently uses the Windows Chrome path in the harness. Original-data integration tests skip when the private index is absent; that is not a passed original-data validation. Real model labels/artifact tests remain reproducible. [Current focused-product acceptance](docs/RASAD_FOCUSED_PRODUCT_REPORT.md). Older five-section browser scripts are retained as historical harnesses, not the current acceptance workflow.
 
-![Focused default Harmonization Lab](docs/screenshots/harmonization-home.png)
+![Restored actual interactive MapLibre map](docs/screenshots/restored-map.png)
 
 [Actual sensor comparison](docs/screenshots/sensor-comparison.png) | [Dedicated AI Research Lab](docs/screenshots/ai-research-lab.png) | [Arabic mobile home](docs/screenshots/harmonization-arabic-mobile.png)
 

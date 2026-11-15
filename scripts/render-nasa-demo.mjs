@@ -1,4 +1,5 @@
 import path from 'node:path';import fs from 'node:fs/promises';import {spawn} from 'node:child_process';import assert from 'node:assert/strict';
+import {pathToFileURL} from 'node:url';
 const port=Number(process.env.RASAD_CDP_PORT??9611);
 const out='.checkpoints/rasad-focused/screenshots';await fs.mkdir(out,{recursive:true});
 const child=spawn('C:/Program Files/Google/Chrome/Application/chrome.exe',['--headless=new','--disable-gpu','--no-first-run','--no-default-browser-check','--enable-unsafe-swiftshader','--remote-allow-origins=*','--remote-debugging-port='+port,'--user-data-dir='+path.resolve('.checkpoints/rasad-focused/demo-chrome'),'about:blank'],{windowsHide:true,stdio:'ignore'});
@@ -13,8 +14,7 @@ try{
  const wait=async expression=>{for(let i=0;i<180;i++){if(await evaluate('Boolean('+expression+')'))return;await delay(150);}throw Error('Timed out '+expression);};
  const viewport=async(width,height)=>send('Emulation.setDeviceMetricsOverride',{width,height,deviceScaleFactor:1,mobile:width<800});
  await send('Page.enable');await send('Runtime.enable');await viewport(1440,1000);await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:'reduce'}]});
- const html=await fs.readFile('artifacts/RASAD_NASA_DEMO_7_SLIDES.html','utf8');
- await send('Page.navigate',{url:'data:text/html;base64,'+Buffer.from(html).toString('base64')});
+ await send('Page.navigate',{url:pathToFileURL(path.resolve('artifacts/RASAD_NASA_DEMO_7_SLIDES.html')).href});
  await wait('document.querySelectorAll(".slide").length===7');
  await evaluate('Promise.all([...document.images].map(i=>i.decode()))');
  const pdf=await send('Page.printToPDF',{printBackground:true,preferCSSPageSize:true,displayHeaderFooter:false});

@@ -21,7 +21,7 @@ export async function fetchObservationCollection(region: RegionId, signal?: Abor
     const query=new URLSearchParams({mode:region,limit:String(window?.limit??2000),offset:String(window?.offset??0)});
     if(window?.from)query.set('from',window.from);if(window?.to)query.set('to',window.to);
     if(year)query.set('year',String(year));
-    for(const [k,v] of Object.entries(window?.filters??{})){const name=({confidenceRaw:'confidence',dayNight:'daynight'} as Record<string,string>)[k]??k;if(['sensor','processing','platform','confidence','daynight','frpMin','frpMax'].includes(name)&&v!==undefined)query.set(name,String(v));}
+    for(const [k,v] of Object.entries(window?.filters??{})){const name=({confidenceRaw:'confidence',dayNight:'daynight'} as Record<string,string>)[k]??k;if(['sensor','processing','platform','confidence','daynight','frpMin','frpMax','bbox'].includes(name)&&v!==undefined)query.set(name,String(v));}
     const part=await fetch('/api/observations?'+query,{signal});if(!part.ok)throw new Error('Observation evidence window unavailable');
     collection=await part.json();
   } else if(collection.metadata?.historical){

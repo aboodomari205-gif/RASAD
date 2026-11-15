@@ -1,4 +1,6 @@
 export const southAmericaArabic:Record<string,string>={
+ 'Open interactive satellite map / افتح الخريطة التفاعلية':'افتح خريطة الأقمار الصناعية التفاعلية',
+ 'Open trained AI research results / نتائج نموذج الذكاء الاصطناعي':'افتح نتائج نموذج الذكاء الاصطناعي البحثي المدرّب',
  'Harmonization Lab':'مختبر التوحيد','AI Research Lab':'مختبر أبحاث AI','Evidence & Methods':'الأدلة والمنهجية','Observe, harmonize, compare':'ارصد، وحّد الدعم، قارن','Experimental FRP, not calibration':'FRP تجريبي، وليس معايرة',
  'Historical and seasonal charts use full source summaries. Agreement, metadata and descriptive briefs use the bounded displayed evidence page; they do not represent a complete historical comparison.':'تستخدم المخططات التاريخية والموسمية ملخصات المصادر الكاملة. أما الارتباطات والبيانات الوصفية والموجزات فتخص صفحة الأدلة المحدودة المعروضة، ولا تمثل مقارنة تاريخية كاملة.',
  'Summary filtering unavailable. Narrow quality-filtered analyses to 31 UTC days; no partial chart is substituted.':'ترشيح الملخصات غير متاح. حدد نافذة لا تتجاوز 31 يومًا لتحليلات الجودة؛ ولا يُستعاض عنها بمخطط من بيانات جزئية.',

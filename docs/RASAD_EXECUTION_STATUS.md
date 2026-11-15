@@ -1,5 +1,7 @@
 # Full implementation execution status
 
+**Emergency map restoration is current:** the original MapLibre map is again the large first/default panel, with native source filters, actual pilot observations, H3/equal-area before/after layers and timeline/playback. AI harmonization roadmap is primary; conditional-FRP is secondary. 165 tests pass and actual desktop/mobile imagery/point rendering is browser-verified. See [current map restoration report](RASAD_MAP_RESTORATION_REPORT.md). Latest requested FIREPULSE remote is inaccessible; previous RASAD delivery remains preserved. Submission text and separate seven-slide PDF are local and ready.
+
 **Current focused product:** four public sections, direct default `/#harmonization-lab`, dedicated `/#ai-research-lab`. Source-aware harmonization is the deliverable; the unchanged FRP model is an explicitly experimental extension. Latest acceptance: 164 tests pass, build/release and focused bilingual/browser/export/print checks pass. Separate seven-slide PDF is generated and verified. See [current product correction report](RASAD_FOCUSED_PRODUCT_REPORT.md); older five-section/cinematic records below are preserved history.
 
 **GitHub delivery completed:** the user-selected repository https://github.com/aboodomari205-gif/RASAD received the tested source/model delivery on `main`. Earlier FIREPULSE access blockers below are historical. No public application hosting or NASA submission was performed.

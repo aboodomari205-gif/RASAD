@@ -36,13 +36,14 @@ function scope(query){
  for(const key of ['mode','region'])if(query[key]!==undefined&&!activeRegion(query[key]))throw new RangeError('Unsupported study region');
  const region=query.mode??query.region??'brazil';if(!activeRegion(region))throw new RangeError('Unsupported study region');
  const from=query.from,to=query.to;
+ const bbox=query.bbox===undefined?undefined:query.bbox.split(',').map(Number);if(bbox)validateFilter({bbox});
  for(const v of[from,to])if(v!==undefined&&(!/^\d{4}-\d{2}-\d{2}$/.test(v)||new Date(v+'T00:00:00Z').toISOString().slice(0,10)!==v))throw new RangeError('Invalid UTC date');
  if(from&&to&&from>to)throw new RangeError('Invalid UTC range');
  const number=name=>{if(query[name]===undefined)return undefined;if(!query[name].trim())throw new RangeError('Empty numeric filter');return Number(query[name]);};
  validateFilter({region,startDate:from,endDate:to,sensor:query.sensor,processing:query.processing,platform:query.platform,confidenceRaw:query.confidence,frpMin:number('frpMin'),frpMax:number('frpMax')});
  if(query.daynight&&!['D','N'].includes(query.daynight))throw new RangeError('Day/night must be D or N');
  const country=ACTIVE_REGIONS.find(r=>r.id===region).country;
- return {region,country,from,to};
+ return {region,country,from,to,bbox};
 }
 function context(s){const state=store();return {...state,datasets:state.datasets.map(d=>({...d,regionId:s.region}))};}
 function predicates(s,query={},alias=''){const clauses=[],values=[];const p=alias?alias+'.':'';
@@ -64,6 +65,7 @@ function* scopedRows(query,s=scope(query),state=context(s)){
  for(const chunk of state.db.prepare(`SELECT a.dataset,a.country,a.payload FROM chunks a JOIN datasets d ON d.id=a.dataset ${where} ORDER BY a.date,a.id`).iterate(...values)){
   const dataset=state.datasets.find(d=>d.id===chunk.dataset);
   for(const [id,lon,lat,timestamp,rawValues,deliveryKey,line] of JSON.parse(inflateSync(chunk.payload))){
+   if(s.bbox&&(lon<s.bbox[0]||lon>s.bbox[2]||lat<s.bbox[1]||lat>s.bbox[3]))continue;
    const delivery=state.deliveries.get(deliveryKey),raw=Object.fromEntries(delivery.headers.map((h,i)=>[h,rawValues[i]]));
    const frp=raw.frp===''?null:Number(raw.frp);
    if(query.confidence&&query.confidence!=='all'&&query.confidence!==raw.confidence)continue;
