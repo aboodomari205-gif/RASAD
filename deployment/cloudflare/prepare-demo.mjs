@@ -1,9 +1,9 @@
 // Publish only the authentic, bounded research pilot, never the private archive.
 import fs from 'node:fs/promises';
 import {createHash} from 'node:crypto';
-import {researchRows,southCollection,southManifest} from '../../server/southAmerica.js';
-import {researchPrototype} from '../../server/research.js';
-export async function prepareDemo(root='dist/demo') {
+export async function prepareArchiveDemo(root='dist/demo') {
+ const {researchRows,southCollection,southManifest}=await import('../../server/southAmerica.js');
+ const {researchPrototype}=await import('../../server/research.js');
  const query={mode:'brazil',from:'2024-08-01',to:'2024-08-31',bbox:'-57,-14,-55,-12'};
  const {generation,rows:stream}=researchRows(query),rows=[...stream].map(r=>({id:r.id,lon:r.lon,lat:r.lat,timestamp:r.timestamp,frp:r.frp,raw:{confidence:r.raw.confidence,daynight:r.raw.daynight},dataset:{id:r.dataset.id,sensor:r.dataset.sensor,platform:r.dataset.platform,product:r.dataset.product,version:r.dataset.version,processing:r.dataset.processing,source:r.dataset.source,fieldSemantics:r.dataset.fieldSemantics},delivery:{source_file:r.delivery.source_file,member:r.delivery.member,sha256:r.delivery.sha256}}));
  const features=[];
@@ -19,4 +19,11 @@ export async function prepareDemo(root='dist/demo') {
  await fs.mkdir(root,{recursive:true});await fs.writeFile(root+'/evidence.json',bytes);
  await fs.writeFile(root+'/manifest.json',JSON.stringify({scope:query,count:rows.length,generation,sha256:createHash('sha256').update(bytes).digest('hex'),limitations:'Limited-data demo: actual Mato Grosso pilot only, August 2024; unknown observation opportunity.'},null,2));
  console.log(`Prepared ${rows.length} authentic pilot observations (${Buffer.byteLength(bytes)} bytes), generation ${generation}`);
+}
+export async function prepareDemo(root='dist/demo'){
+ const bytes=await fs.readFile('deployment/pilot/evidence.json'),manifest=JSON.parse(await fs.readFile('deployment/pilot/manifest.json','utf8'));
+ if(createHash('sha256').update(bytes).digest('hex')!==manifest.sha256)throw Error('Authentic pilot checksum mismatch; refusing substitute data');
+ const packet=JSON.parse(bytes),artifact=JSON.parse(await fs.readFile('models/brazil-frp-model.json','utf8'));
+ if(packet.generation!==artifact.generation||packet.observations.length!==artifact.evaluation.inputRows||packet.observations.length!==manifest.count)throw Error('Pilot/model scope mismatch');
+ await fs.mkdir(root,{recursive:true});await fs.writeFile(root+'/evidence.json',bytes);await fs.writeFile(root+'/manifest.json',JSON.stringify(manifest,null,2));console.log(`Prepared checked static pilot: ${manifest.count} observations, ${bytes.length} bytes; no local archive required`);
 }

@@ -2,9 +2,11 @@
 
 Current entry point: `npm run build:cloudflare`. Preserve historical release files; do not upload an older FIREPULSE ZIP.
 
-Without `RASAD_DATA_API_ORIGIN`, the build reads the original indexed archive **at build time** and packages exactly the authentic Mato Grosso pilot (−57, −14, −55, −12; August 2024). A generation/count check ties its 6,876 observations to the existing fitted research artifact. `dist/demo/manifest.json` records scope, count, generation and SHA256. No private database, raw archive, credentials or other countries are copied. The browser displays a bilingual limited-data notice.
+Without `RASAD_DATA_API_ORIGIN`, the build verifies and copies the **committed static packet** in `deployment/pilot`, exported from the original indexed Mato Grosso archive (−57, −14, −55, −12; August 2024). Hosted builds require no private archive or Node API. A generation/count check ties its 6,876 observations to the existing fitted research artifact. `dist/demo/manifest.json` records scope, count, generation and SHA256. No private database, raw archive, credentials or other countries are copied. The browser displays a bilingual limited-data notice.
 
-Pages serves the Vite frontend, authentic Brazil boundary, MapLibre worker and bounded evidence asset. An advanced-mode Pages Worker implements read-only filtering, pagination, source summaries, H3/equal-area harmonization and the original held-out research results. Missing periods stay empty with unknown coverage. Unsupported full-archive routes return an explicit error. This is not a live NASA feed.
+Pages serves the Vite frontend, authentic Brazil boundary, MapLibre worker and bounded evidence asset. The static browser adapter loads and verifies the packet's SHA-256, then runs the same read-only filtering, pagination, source summaries, H3/equal-area harmonization and fitted-model inference used by the optional Pages Worker. The static pilot issues no backend HTTP requests and works on a file-only HTTPS host. Missing periods stay empty with unknown coverage. Unsupported full-archive routes return an explicit error. This is not a live NASA feed.
+
+Regenerate only on an installation containing the original archive: `node deployment/cloudflare/export-pilot.mjs`. Review and commit the packet and manifest together. Never generate substitute observations when the archive is missing.
 
 With `RASAD_DATA_API_ORIGIN=https://your-indexed-api.example`, the same build emits the original read-only API proxy instead. The original Node backend, private indexed SQLite archive and model files remain on that API host. It requires a current Node version, `npm ci`, `npm --prefix server ci`, and the existing archive activation. Pages cannot run that Node/SQLite service directly.
 
