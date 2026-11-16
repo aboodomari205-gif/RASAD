@@ -342,7 +342,7 @@ export default function FireMap({
           id: "south-america-outline",
           type: "line",
           source: "south-america-boundary",
-          paint: { "line-color": "#9eb6ae", "line-width": 0.7,"line-opacity":0.4 },
+          paint: { "line-color": "#39dbc0", "line-width": 2,"line-opacity":0.9 },
         });
       }
       if (!instance.getSource("observations")) {
@@ -477,7 +477,7 @@ export default function FireMap({
       if(disposed)return;
       boundary.current=result;
       if(instance.getSource('observations'))restore();
-      instance.fitBounds([[-57,-14],[-55,-12]],{padding:window.innerWidth<700?30:65,duration:0});
+      camera.current?.fit(result, journey.current);
     }).catch(()=>{if(!disposed)setMapError('Study boundary could not load.');});
     return () => {
       disposed = true;
@@ -788,13 +788,13 @@ export default function FireMap({
     if (!map.current) return;
     const target = boundary.current;
     journey.current = camera.current?.begin() ?? 0;
-    if (target) map.current.fitBounds([[-57,-14],[-55,-12]],{padding:window.innerWidth<700?30:65,duration:500});
+    if (target) camera.current?.fit(target, journey.current);
   }
   useEffect(() => {
     if (!missionRequest || !camera.current) return;
     journey.current = camera.current.begin();
     const target = boundary.current;
-    if (target) map.current?.fitBounds([[-57,-14],[-55,-12]],{padding:window.innerWidth<700?30:65,duration:0});
+    if (target) camera.current.fit(target, journey.current, false);
     document.getElementById("enter-mission")?.focus({ preventScroll: true });
   }, [missionRequest]);
   useEffect(() => {
@@ -843,7 +843,7 @@ export default function FireMap({
         source?.setData(next);
         if (camera.current) {
           journey.current = camera.current.begin();
-          map.current?.fitBounds([[-57,-14],[-55,-12]],{padding:window.innerWidth<700?30:65,duration:0});
+          camera.current.fit(next, journey.current, false);
         }
       })
       .catch(() => setMapError("Regional boundary could not load."));

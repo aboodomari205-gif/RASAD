@@ -1991,4 +1991,9 @@
 .app-shell .main-content .restored-map-panel .atlas-screen[data-observation-selected=true] .atlas-view-label { visibility:hidden; }
 .app-shell .main-content .restored-map-panel .temporal-play { min-inline-size:32px;min-block-size:32px; }
 /* Historical full-screen map fitted only to the existing RASAD host. */
+.temporal-date-navigation{display:flex;align-items:center;gap:6px;max-width:100%;}
+.temporal-date-navigation select{min-width:0;max-width:100%;background:#102721;color:#d5eee5;border:1px solid #41665c;border-radius:5px;padding:5px;}
+.temporal-date-navigation button{background:transparent;color:#80e3ca;border:1px solid #41665c;border-radius:5px;min-width:30px;min-height:30px;}
+.temporal-date-navigation button:disabled{opacity:.35;}
+.demo-scope-notice{margin:12px 20px;padding:12px 16px;border:1px solid #498b78;border-radius:8px;color:#c8eee0;background:#102721;font-size:13px;line-height:1.5;}
 .app-shell .main-content .restored-map-panel .atlas-screen{height:100%!important;min-height:680px;}

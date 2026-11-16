@@ -2,7 +2,7 @@
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-  define: { __RASAD_ACTIVE_ONLY__: 'true' },
+  define: { __RASAD_ACTIVE_ONLY__: 'true', __RASAD_LIMITED_DEMO__: 'false' },
   plugins: [react(), {
     name: 'firepulse-south-america-data-api',
     apply: 'serve',

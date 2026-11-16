@@ -1,4 +1,5 @@
 export const southAmericaArabic:Record<string,string>={
+ 'Delivered UTC date':'تاريخ الرصد المستلم بالتوقيت العالمي',
  'More timeline controls':'أدوات زمنية إضافية','Less timeline controls':'اختصار أدوات الزمن',
  'Open interactive satellite map / افتح الخريطة التفاعلية':'افتح خريطة الأقمار الصناعية التفاعلية',
  'Open trained AI research results / نتائج نموذج الذكاء الاصطناعي':'افتح نتائج نموذج الذكاء الاصطناعي البحثي المدرّب',

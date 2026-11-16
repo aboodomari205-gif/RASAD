@@ -21,6 +21,7 @@ import "./design/focused-lab.css";
 import "./design/restored-map.css";
 import "./design/original-map.css";
 import CalibrationRoadmap from './intelligence/CalibrationRoadmap';
+declare const __RASAD_LIMITED_DEMO__: boolean;
 const MapHarmonization = lazy(() => import('./intelligence/MapHarmonization'));
 const ResearchPrototype = lazy(
   () => import("./intelligence/ResearchPrototype"),
@@ -156,6 +157,7 @@ export default function App() {
         </a>
         <Navigation active={active} onChange={navigate} />
         <main id="main-workspace" className="main-content">
+          {__RASAD_LIMITED_DEMO__ && <p role="status" className="demo-scope-notice">{language === 'ar' ? 'عرض محدود ببيانات حقيقية: ماتو غروسو، أغسطس 2024 فقط. التغطية وفرصة الرصد مجهولتان. يتطلب الأرشيف الكامل الخادم الأصلي.' : 'LIMITED-DATA DEMO · Authentic Mato Grosso observations, August 2024 only. Coverage and observation opportunity are unknown. Full archive queries require the original backend.'}</p>}
           <header className="focused-topbar">
             <h1 ref={heading} tabIndex={-1}>
               {t(sectionName(active))}

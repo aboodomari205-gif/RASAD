@@ -64,6 +64,14 @@ export default function AtlasTimeline({
         </button>
       </div>
       <div className="temporal-workspace">
+        {dates.length>0&&<div className="temporal-date-navigation">
+          <button aria-label={t('Previous delivered date')} disabled={index<=1} onClick={()=>selectDate(dates[index-2])}>‹</button>
+          <select id="rasad-date-select" aria-label={t('Delivered UTC date')} value={dates.includes(selected)?selected:''} onChange={event=>selectDate(event.target.value)}>
+            {!dates.includes(selected)&&<option value="">{t('Custom UTC date range')}</option>}
+            {dates.map(date=><option key={date} value={date}>{date} UTC</option>)}
+          </select>
+          <button aria-label={t('Next delivered date')} disabled={index>=dates.length} onClick={()=>selectDate(dates[index])}>›</button>
+        </div>}
         {onYear&&years.length>0&&<div className="atlas-year-controls">
           <span>{t('Historical year / UTC')}</span>
           <button aria-label={t('Previous observed year')} disabled={yearIndex<=0} onClick={()=>{pause();onYear(years[yearIndex-1]);}}>&lsaquo;</button>
