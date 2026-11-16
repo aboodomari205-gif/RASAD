@@ -477,7 +477,7 @@ export default function FireMap({
       if(disposed)return;
       boundary.current=result;
       if(instance.getSource('observations'))restore();
-      camera.current?.fit(result, journey.current);
+      instance.fitBounds([[-57,-14],[-55,-12]],{padding:window.innerWidth<700?30:65,duration:0});
     }).catch(()=>{if(!disposed)setMapError('Study boundary could not load.');});
     return () => {
       disposed = true;
@@ -794,7 +794,7 @@ export default function FireMap({
     if (!missionRequest || !camera.current) return;
     journey.current = camera.current.begin();
     const target = boundary.current;
-    if (target) camera.current.fit(target, journey.current, false);
+    if (target) map.current?.fitBounds([[-57,-14],[-55,-12]],{padding:window.innerWidth<700?30:65,duration:0});
     document.getElementById("enter-mission")?.focus({ preventScroll: true });
   }, [missionRequest]);
   useEffect(() => {
@@ -843,7 +843,7 @@ export default function FireMap({
         source?.setData(next);
         if (camera.current) {
           journey.current = camera.current.begin();
-          camera.current.fit(next, journey.current, false);
+          map.current?.fitBounds([[-57,-14],[-55,-12]],{padding:window.innerWidth<700?30:65,duration:0});
         }
       })
       .catch(() => setMapError("Regional boundary could not load."));

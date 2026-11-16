@@ -1,0 +1,19 @@
+{
+  "schema": "rasad.static-pilot/v1",
+  "generation": "86f1f872f7366fe4",
+  "count": 6876,
+  "bytes": 957684,
+  "sha256": "1b64435ac6305eb5b010f76f5a4dc276d45a200334e3362763723412a605420b",
+  "scope": {
+    "mode": "brazil",
+    "from": "2024-08-01",
+    "to": "2024-08-31",
+    "bbox": [
+      -57,
+      -14,
+      -55,
+      -12
+    ]
+  },
+  "limitations": "Authentic delivered pilot detections only; observation opportunity unknown; not complete or live Brazil coverage."
+}

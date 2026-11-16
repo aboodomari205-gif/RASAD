@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 import {ACTIVE_REGIONS} from '../shared/regions.ts';
 const required = ['dist/index.html', 'dist/south-america-countries.geojson', 'dist/brand/rasad-source.jpeg', 'dist/manifest.webmanifest', 'dist/earth/blue-marble-2048.png', 'vercel.json', 'api/[...path].js'];
 for (const filename of required) assert.ok(fs.existsSync(filename), `Missing release asset: ${filename}`);
+for(const name of ['evidence.json','manifest.json'])assert.deepEqual(fs.readFileSync('dist/rasad-data/'+name),fs.readFileSync('public/rasad-data/'+name),'Final build must contain the reviewed public pilot '+name);
 assert.deepEqual(ACTIVE_REGIONS.map(region=>region.id),['brazil']);
 assert.ok(!fs.existsSync('dist/jordan-adm1.geojson'),'Retired study asset must not be packaged');
 const assets = fs.readdirSync('dist/assets');

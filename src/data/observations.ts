@@ -1,4 +1,5 @@
 import { filterObservations, normalizeCollection } from '../../shared/observations.ts';
+import {readJSONResponse} from '../../shared/jsonResponse.js';
 import type { ObservationCollection, ObservationFilter, RegionId } from '../../shared/model.ts';
 const collectionListeners = new Set<(collection: ObservationCollection) => void>();
 export function subscribeObservationCollections(listener: (collection: ObservationCollection) => void) {
@@ -16,14 +17,14 @@ export function filterObservationCollection(collection: ObservationCollection, f
 export async function fetchObservationCollection(region: RegionId, signal?: AbortSignal, year?: number, endYear?: number, window?: {from?:string;to?:string;offset?:number;limit?:number;filters?:ObservationFilter}): Promise<ObservationCollection> {
   const response = await fetch(`/api/observations?mode=${encodeURIComponent(region)}`+'&manifest=1', { signal });
   if (!response.ok) throw new Error('Observation source unavailable');
-  let collection: ObservationCollection = await response.json();
+  let collection: ObservationCollection = await readJSONResponse(response,'Observation manifest');
   if(collection.metadata?.scalable){
     const query=new URLSearchParams({mode:region,limit:String(window?.limit??2000),offset:String(window?.offset??0)});
     if(window?.from)query.set('from',window.from);if(window?.to)query.set('to',window.to);
     if(year)query.set('year',String(year));
     for(const [k,v] of Object.entries(window?.filters??{})){const name=({confidenceRaw:'confidence',dayNight:'daynight'} as Record<string,string>)[k]??k;if(['sensor','processing','platform','confidence','daynight','frpMin','frpMax','bbox'].includes(name)&&v!==undefined)query.set(name,String(v));}
     const part=await fetch('/api/observations?'+query,{signal});if(!part.ok)throw new Error('Observation evidence window unavailable');
-    collection=await part.json();
+    collection=await readJSONResponse(part,'Observation evidence window');
   } else if(collection.metadata?.historical){
     const metadata=collection.metadata,paths=metadata.yearPaths as Record<string,string>;const first=year??Number(metadata.defaultYear),last=endYear??first;
     if(last<first||last-first>2)throw new Error('Select at most three consecutive UTC years; full-history summaries remain separate from raw evidence.');

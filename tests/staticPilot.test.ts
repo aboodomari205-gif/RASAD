@@ -5,6 +5,17 @@ import {createHash} from 'node:crypto';
 import {decodePilotPacket} from '../shared/pilotPacket.js';
 import {harmonizationLab} from '../shared/harmonizationLab.js';
 import {researchRows,southCollection,southHarmonization} from '../server/southAmerica.js';
+import {readJSONResponse,requireJSONResponse} from '../shared/jsonResponse.js';
+
+test('JSON delivery rejects a successful HTML SPA fallback before parsing and reports HTTP failures',async()=>{
+ let parsed=false;
+ const html={ok:true,status:200,headers:new Headers({'content-type':'text/html; charset=utf-8'}),json:()=>{parsed=true;throw Error('Unexpected token');}};
+ assert.throws(()=>readJSONResponse(html,'/rasad-data/evidence.json'),/expected application\/json, received text\/html.*HTTP 200/);assert.equal(parsed,false);
+ assert.throws(()=>requireJSONResponse(new Response('Missing',{status:404}),'Pilot'),/HTTP 404/);
+ assert.deepEqual(await readJSONResponse(Response.json({authentic:true}),'Pilot'),{authentic:true});
+ assert.deepEqual(fs.readFileSync('public/rasad-data/evidence.json'),fs.readFileSync('deployment/pilot/evidence.json'));
+ assert.deepEqual(fs.readFileSync('public/rasad-data/manifest.json'),fs.readFileSync('deployment/pilot/manifest.json'));
+});
 
 test('committed static pilot conserves every authentic indexed coordinate, source, UTC, native confidence and FRP',()=>{
  const bytes=fs.readFileSync('deployment/pilot/evidence.json'),manifest=JSON.parse(fs.readFileSync('deployment/pilot/manifest.json','utf8')),snapshot=decodePilotPacket(JSON.parse(bytes.toString()));

@@ -20,7 +20,7 @@ export async function prepareArchiveDemo(root='dist/demo') {
  await fs.writeFile(root+'/manifest.json',JSON.stringify({scope:query,count:rows.length,generation,sha256:createHash('sha256').update(bytes).digest('hex'),limitations:'Limited-data demo: actual Mato Grosso pilot only, August 2024; unknown observation opportunity.'},null,2));
  console.log(`Prepared ${rows.length} authentic pilot observations (${Buffer.byteLength(bytes)} bytes), generation ${generation}`);
 }
-export async function prepareDemo(root='dist/demo'){
+export async function prepareDemo(root='dist/rasad-data'){
  const bytes=await fs.readFile('deployment/pilot/evidence.json'),manifest=JSON.parse(await fs.readFile('deployment/pilot/manifest.json','utf8'));
  if(createHash('sha256').update(bytes).digest('hex')!==manifest.sha256)throw Error('Authentic pilot checksum mismatch; refusing substitute data');
  const packet=JSON.parse(bytes),artifact=JSON.parse(await fs.readFile('models/brazil-frp-model.json','utf8'));
