@@ -24,7 +24,7 @@ try{
  assert.ok(await evaluate('!document.body.innerText.includes("UNCONNECTED")&&!document.body.innerText.includes("Observation source unavailable")'));
  await wait('qaMap.getLayer("rasad-pilot-outline")');assert.equal(await evaluate('qaMap.getLayoutProperty("rasad-pilot-outline","visibility")'),'none');
  const national=await evaluate('(async()=>{const d=await qaMap.getSource("south-america-boundary").getData();return {count:d.features.length,id:d.features[0].properties.id,coordinates:JSON.stringify(d.features[0].geometry.coordinates).length}})()');assert.equal(national.count,1);assert.equal(national.id,'bra');assert.ok(national.coordinates>1000);
- if(process.argv.includes('--static')){assert.ok(await evaluate('qaMap.getZoom()>6&&qaMap.getCenter().lng>=-57&&qaMap.getCenter().lng<=-55'));assert.equal(jsonAssets.length,2);for(const asset of jsonAssets){assert.equal(asset.status,200);assert.equal(asset.contentType,'application/json');}}
+ if(process.argv.includes('--static')){assert.ok(await evaluate('qaMap.getZoom()>6&&qaMap.getCenter().lng>=-57&&qaMap.getCenter().lng<=-55'));assert.equal(jsonAssets.length,2);assert.ok(jsonAssets.some(a=>new URL(a.url).pathname==='/rasad-data/brazil-pilot-aug2024.json'));for(const asset of jsonAssets){assert.equal(asset.status,200);assert.equal(asset.contentType,'application/json');}}
  await evaluate('qaMap.fitBounds([[-57,-14],[-55,-12]],{padding:80,duration:0});true');
  await wait('qaMap.queryRenderedFeatures({layers:["observations"]}).length>0');
  for(let i=0;i<70&&!tiles.length;i++)await delay(200);assert.ok(tiles.length>0,'No actual imagery tile HTTP 200 responses');

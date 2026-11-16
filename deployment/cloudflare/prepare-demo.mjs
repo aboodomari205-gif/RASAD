@@ -25,5 +25,5 @@ export async function prepareDemo(root='dist/rasad-data'){
  if(createHash('sha256').update(bytes).digest('hex')!==manifest.sha256)throw Error('Authentic pilot checksum mismatch; refusing substitute data');
  const packet=JSON.parse(bytes),artifact=JSON.parse(await fs.readFile('models/brazil-frp-model.json','utf8'));
  if(packet.generation!==artifact.generation||packet.observations.length!==artifact.evaluation.inputRows||packet.observations.length!==manifest.count)throw Error('Pilot/model scope mismatch');
- await fs.mkdir(root,{recursive:true});await fs.writeFile(root+'/evidence.json',bytes);await fs.writeFile(root+'/manifest.json',JSON.stringify(manifest,null,2));console.log(`Prepared checked static pilot: ${manifest.count} observations, ${bytes.length} bytes; no local archive required`);
+ await fs.mkdir(root,{recursive:true});await fs.writeFile(root+'/evidence.json',bytes);await fs.writeFile(root+'/brazil-pilot-aug2024.json',bytes);await fs.writeFile(root+'/manifest.json',JSON.stringify(manifest,null,2));console.log(`Prepared checked static pilot: ${manifest.count} observations, ${bytes.length} bytes; no local archive required`);
 }

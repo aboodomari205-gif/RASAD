@@ -11,7 +11,7 @@ export default {async fetch(request,env){
  if(!['GET','HEAD'].includes(request.method))return json({error:'Read-only demo'},405);
  try{
   for(const key of ['mode','region'])if(q[key]&&q[key]!=='brazil')return json({error:'Brazil only'},400);
-  retained??=env.ASSETS.fetch(new Request(new URL('/rasad-data/evidence.json',url))).then(r=>readJSONResponse(r,'/rasad-data/evidence.json')).then(decodePilotPacket).catch(e=>{retained=undefined;throw e;});
+  retained??=env.ASSETS.fetch(new Request(new URL('/rasad-data/brazil-pilot-aug2024.json',url))).then(r=>readJSONResponse(r,'/rasad-data/brazil-pilot-aug2024.json')).then(decodePilotPacket).catch(e=>{retained=undefined;throw e;});
   const data=await retained;
   if(p==='/api/research/prototype'){
    data.prototype.examples=data.prototype.examples.map(example=>({...example,estimatedMeanFRPMW:predictResearch(data.model,example)}));

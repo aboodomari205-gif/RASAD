@@ -5,10 +5,10 @@ import {requireJSONResponse,readJSONResponse} from '../../shared/jsonResponse.js
 export function installStaticPilot(){
  const originalFetch=globalThis.fetch.bind(globalThis);
  const assets={fetch:async request=>{
-  const response=await originalFetch(request);
-  if(new URL(request.url).pathname!=='/rasad-data/evidence.json')return response;
-  requireJSONResponse(response,'/rasad-data/evidence.json');
-  const bytes=await response.arrayBuffer(),manifestResponse=await originalFetch('/rasad-data/manifest.json');
+  const response=await originalFetch(request,{cache:'no-store'});
+  if(new URL(request.url).pathname!=='/rasad-data/brazil-pilot-aug2024.json')return response;
+  requireJSONResponse(response,'/rasad-data/brazil-pilot-aug2024.json');
+  const bytes=await response.arrayBuffer(),manifestResponse=await originalFetch('/rasad-data/manifest.json',{cache:'no-store'});
   const manifest=await readJSONResponse(manifestResponse,'/rasad-data/manifest.json'),digest=await crypto.subtle.digest('SHA-256',bytes),hash=Array.from(new Uint8Array(digest),b=>b.toString(16).padStart(2,'0')).join('');
   if(hash!==manifest.sha256)throw Error('Pilot checksum mismatch');
   return new Response(bytes,{headers:{'Content-Type':'application/json'}});

@@ -14,6 +14,7 @@ test('JSON delivery rejects a successful HTML SPA fallback before parsing and re
  assert.throws(()=>requireJSONResponse(new Response('Missing',{status:404}),'Pilot'),/HTTP 404/);
  assert.deepEqual(await readJSONResponse(Response.json({authentic:true}),'Pilot'),{authentic:true});
  assert.deepEqual(fs.readFileSync('public/rasad-data/evidence.json'),fs.readFileSync('deployment/pilot/evidence.json'));
+ assert.deepEqual(fs.readFileSync('public/rasad-data/brazil-pilot-aug2024.json'),fs.readFileSync('deployment/pilot/evidence.json'));
  assert.deepEqual(fs.readFileSync('public/rasad-data/manifest.json'),fs.readFileSync('deployment/pilot/manifest.json'));
 });
 

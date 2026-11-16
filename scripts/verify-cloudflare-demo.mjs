@@ -8,6 +8,7 @@ const origin=process.argv[2]??'http://127.0.0.1:5180';
 async function get(route){const r=await fetch(origin+route);assert.equal(r.status,200,route);return r.json();}
 const bytes=await fs.readFile('dist/rasad-data/evidence.json'),snapshot=decodePilotPacket(JSON.parse(bytes)),manifest=JSON.parse(await fs.readFile('dist/rasad-data/manifest.json'));
 assert.equal(createHash('sha256').update(bytes).digest('hex'),manifest.sha256);
+const publicPacket=await fetch(origin+'/rasad-data/brazil-pilot-aug2024.json');assert.equal(publicPacket.status,200);assert.match(publicPacket.headers.get('content-type'),/^application\/json/);assert.equal(createHash('sha256').update(Buffer.from(await publicPacket.arrayBuffer())).digest('hex'),manifest.sha256);
 assert.equal(snapshot.rows.length,6876);assert.equal(new Set(snapshot.features.map(f=>f.id)).size,6876);
 const actual=await get('/api/observations?mode=brazil&manifest=1');assert.equal(actual.metadata.limitedDataDemo,true);assert.equal(actual.metadata.totalDelivered,6876);
 const ids=new Set();let total=0;
